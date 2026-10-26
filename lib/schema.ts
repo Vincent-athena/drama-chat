@@ -67,6 +67,7 @@ export const JudgeResultSchema = z.object({
   completed: z.boolean(),
   reason: z.string().default(""),
   eventSummary: z.string().default(""),
+  notes: z.string().default(""),
 });
 export type JudgeResult = z.infer<typeof JudgeResultSchema>;
 
@@ -114,3 +115,8 @@ export type StorySummary = {
 };
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
+
+export type PublicGroup = { id: number; memberIds: string[] };
+
+/** A group chat message; characterId is the speaker, or "" when the player spoke. */
+export type GroupChatMessage = ChatMessage & { characterId: string };
