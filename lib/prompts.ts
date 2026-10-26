@@ -164,6 +164,7 @@ export function judgePrompt(
   phaseIndex: number,
   recent: TaggedMessage[],
   events: string[],
+  notes: string,
   groupMembers?: GroupMembers
 ): string {
   const phase = story.phases[phaseIndex];
@@ -179,13 +180,18 @@ Completion criteria: ${phase.completionCriteria}
 Earlier events:
 ${events.length ? events.map((e) => `- ${e}`).join("\n") : "- none"}
 
-Recent conversation (oldest first, across all characters):
+Your notes from earlier in this chapter (progress already achieved, possibly no longer in the conversation below):
+${notes || "(none yet)"}
+
+Recent conversation (oldest first, across all chats):
 ${transcript || "(no messages yet)"}
 
-Judge strictly but fairly: the criteria must be clearly met in the conversation itself (e.g. the key information was actually revealed or the key action actually happened), not merely hinted at or asked about.
+Judge strictly but fairly: the criteria must be clearly met, in the conversation or in your notes (e.g. the key information was actually revealed or the key action actually happened), not merely hinted at or asked about. Parts of the criteria may have been met at different times or in different chats; together they count.
+
+Then update your notes: a short bullet list of every part of the criteria that has clearly been achieved so far in this chapter, with who said or did it. Keep everything from your earlier notes unless the conversation contradicts it, and add only what clearly happened. Leave out guesses and things that were only hinted at.
 
 Respond with JSON only, in exactly this shape:
-{"completed": true|false, "reason": "one short sentence", "eventSummary": "if completed, one sentence in past tense describing what happened, written as a story event; otherwise empty string"}`;
+{"completed": true|false, "reason": "one short sentence", "eventSummary": "if completed, one sentence in past tense describing what happened, written as a story event; otherwise empty string", "notes": "- updated bullet list, one item per line"}`;
 }
 
 export function storyGeneratorPrompt(premise: string, numPhases: number, numCharacters: number): string {

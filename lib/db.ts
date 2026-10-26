@@ -35,6 +35,13 @@ function open(): Database.Database {
       summary     TEXT NOT NULL,
       created_at  TEXT NOT NULL DEFAULT (datetime('now'))
     );
+    CREATE TABLE IF NOT EXISTS chapter_notes (
+      story_id    TEXT NOT NULL,
+      phase_index INTEGER NOT NULL,
+      notes       TEXT NOT NULL,
+      updated_at  TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (story_id, phase_index)
+    );
     CREATE TABLE IF NOT EXISTS chat_groups (
       id          INTEGER PRIMARY KEY AUTOINCREMENT,
       story_id    TEXT NOT NULL,
@@ -180,6 +187,23 @@ export function addEvent(storyId: string, phaseIndex: number, summary: string): 
     .run(storyId, phaseIndex, summary);
 }
 
+/** The director's running notes on what the player has achieved in a chapter so far. */
+export function getChapterNotes(storyId: string, phaseIndex: number): string {
+  const row = db()
+    .prepare("SELECT notes FROM chapter_notes WHERE story_id = ? AND phase_index = ?")
+    .get(storyId, phaseIndex) as { notes: string } | undefined;
+  return row?.notes ?? "";
+}
+
+export function setChapterNotes(storyId: string, phaseIndex: number, notes: string): void {
+  db()
+    .prepare(
+      `INSERT INTO chapter_notes (story_id, phase_index, notes) VALUES (?, ?, ?)
+       ON CONFLICT(story_id, phase_index) DO UPDATE SET notes = excluded.notes, updated_at = datetime('now')`
+    )
+    .run(storyId, phaseIndex, notes);
+}
+
 export function resetStory(storyId: string): void {
   const d = db();
   d.transaction(() => {
@@ -187,5 +211,6 @@ export function resetStory(storyId: string): void {
     d.prepare("DELETE FROM messages WHERE story_id = ?").run(storyId);
     d.prepare("DELETE FROM events WHERE story_id = ?").run(storyId);
     d.prepare("DELETE FROM chat_groups WHERE story_id = ?").run(storyId);
+    d.prepare("DELETE FROM chapter_notes WHERE story_id = ?").run(storyId);
   })();
 }

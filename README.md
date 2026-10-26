@@ -61,8 +61,9 @@ confronting two suspects at once.
 
 - **Characters** only receive knowledge for chapters you've reached, so they can't spoil later twists.
   Their secrets are in the prompt, with the instruction to reveal them only when you earn it.
-- **The director** runs after each reply. It returns JSON `{completed, reason, eventSummary}` checked
-  against the chapter's hidden `completionCriteria`. When a chapter completes, its summary becomes a
+- **The director** runs after each reply. It returns JSON `{completed, reason, eventSummary, notes}` checked
+  against the chapter's hidden `completionCriteria`. It reads the last 30 messages plus its own running notes
+  on what you've achieved this chapter, so progress made long ago (or in another chat) still counts. When a chapter completes, its summary becomes a
   shared "what happened so far" memory for every character.
 - A character locked until a later chapter is shown as `???` and its chat API returns 403.
 

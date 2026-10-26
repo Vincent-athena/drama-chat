@@ -134,16 +134,17 @@ export async function judgePhase(
   phaseIndex: number,
   recent: TaggedMessage[],
   events: string[],
+  notes: string,
   groupMembers?: GroupMembers
 ): Promise<JudgeResult> {
   const raw = await jsonCompletion(
-    [{ role: "user", content: judgePrompt(story, phaseIndex, recent, events, groupMembers) }],
+    [{ role: "user", content: judgePrompt(story, phaseIndex, recent, events, notes, groupMembers) }],
     0
   );
   try {
     return JudgeResultSchema.parse(JSON.parse(raw));
   } catch {
-    return { completed: false, reason: "judge returned invalid JSON", eventSummary: "" };
+    return { completed: false, reason: "judge returned invalid JSON", eventSummary: "", notes: "" };
   }
 }
 

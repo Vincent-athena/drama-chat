@@ -1,4 +1,12 @@
-import { addEvent, getPhaseIndex, getRecentStoryMessages, listGroups, setPhaseIndex } from "./db";
+import {
+  addEvent,
+  getChapterNotes,
+  getPhaseIndex,
+  getRecentStoryMessages,
+  listGroups,
+  setChapterNotes,
+  setPhaseIndex,
+} from "./db";
 import { judgePhase } from "./deepseek";
 import type { GroupMembers } from "./prompts";
 import type { Story } from "./schema";
@@ -28,10 +36,14 @@ export async function judgeTurn(story: Story, phaseIndex: number, events: string
     phaseIndex,
     getRecentStoryMessages(story.id),
     events,
+    getChapterNotes(story.id, phaseIndex),
     groupMembersOf(story.id)
   );
   // Another request may have advanced the phase while this one was streaming.
-  if (!verdict.completed || getPhaseIndex(story.id) !== phaseIndex) return { type: "done", phaseAdvanced: false };
+  if (getPhaseIndex(story.id) !== phaseIndex) return { type: "done", phaseAdvanced: false };
+  // An empty result means the judge failed; keep the old notes rather than wiping them.
+  if (verdict.notes.trim()) setChapterNotes(story.id, phaseIndex, verdict.notes.trim());
+  if (!verdict.completed) return { type: "done", phaseAdvanced: false };
 
   const next = phaseIndex + 1;
   addEvent(story.id, phaseIndex, verdict.eventSummary || `${story.phases[phaseIndex].title} was resolved.`);

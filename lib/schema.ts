@@ -67,6 +67,7 @@ export const JudgeResultSchema = z.object({
   completed: z.boolean(),
   reason: z.string().default(""),
   eventSummary: z.string().default(""),
+  notes: z.string().default(""),
 });
 export type JudgeResult = z.infer<typeof JudgeResultSchema>;
 
