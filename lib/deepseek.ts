@@ -4,6 +4,7 @@ import type { TaggedMessage } from "./db";
 import {
   characterSystemPrompt,
   groupChatMessages,
+  hintPrompt,
   judgePrompt,
   speakerPrompt,
   storyGeneratorPrompt,
@@ -46,6 +47,7 @@ const GROUP_HISTORY_WINDOW = 30;
 const MAX_GROUP_SPEAKERS = 3;
 
 const SpeakersSchema = z.object({ speakers: z.array(z.string()) });
+const HintSchema = z.object({ hint: z.string().min(1) });
 
 async function* streamReply(messages: OpenAI.Chat.ChatCompletionMessageParam[]): AsyncGenerator<string> {
   const stream = await deepseek().chat.completions.create({
@@ -146,6 +148,12 @@ export async function judgePhase(
   } catch {
     return { completed: false, reason: "judge returned invalid JSON", eventSummary: "", notes: "" };
   }
+}
+
+/** Writes a hint for the current chapter, based on what the player has achieved so far. */
+export async function generateHint(...args: Parameters<typeof hintPrompt>): Promise<string> {
+  const raw = await jsonCompletion([{ role: "user", content: hintPrompt(...args) }], 0.7);
+  return HintSchema.parse(JSON.parse(raw)).hint;
 }
 
 export async function generateStory(

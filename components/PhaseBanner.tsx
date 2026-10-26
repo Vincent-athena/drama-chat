@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import HintButton from "./HintButton";
 import type { PublicStory } from "@/lib/schema";
 
 export default function PhaseBanner({ story }: { story: PublicStory }) {
-  const [showHint, setShowHint] = useState(false);
   const phase = story.currentPhase;
 
   if (!phase) {
@@ -40,14 +39,9 @@ export default function PhaseBanner({ story }: { story: PublicStory }) {
         <p className="text-xs uppercase tracking-wider text-white/50">Objective</p>
         <p className="mt-0.5 text-white">{phase.objective}</p>
       </div>
-      {phase.hint && (
-        <div className="mt-3 text-sm">
-          <button onClick={() => setShowHint((v) => !v)} className="text-gold-500 hover:text-gold-400">
-            {showHint ? "Hide hint" : "Need a hint?"}
-          </button>
-          {showHint && <p className="mt-1 text-white/60">💡 {phase.hint}</p>}
-        </div>
-      )}
+      <div className="mt-3">
+        <HintButton key={story.phaseIndex} storyId={story.id} />
+      </div>
     </section>
   );
 }

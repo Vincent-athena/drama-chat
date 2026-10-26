@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ApiKeyNotice from "./ApiKeyNotice";
+import HintButton from "./HintButton";
 import { PhaseAdvanceModal, readChatStream, Rich, type PhaseAdvance } from "./chat-parts";
 import type { ChatMessage, PublicCharacter, PublicStory } from "@/lib/schema";
 
@@ -116,6 +117,9 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
               Chapter {story.phaseIndex + 1}: {story.currentPhase.title}
             </p>
             <p className="mt-1 text-white/80">🎯 {story.currentPhase.objective}</p>
+            <div className="mt-3">
+              <HintButton key={story.phaseIndex} storyId={storyId} />
+            </div>
           </div>
         )}
       </aside>

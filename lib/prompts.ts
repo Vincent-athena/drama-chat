@@ -194,6 +194,48 @@ Respond with JSON only, in exactly this shape:
 {"completed": true|false, "reason": "one short sentence", "eventSummary": "if completed, one sentence in past tense describing what happened, written as a story event; otherwise empty string", "notes": "- updated bullet list, one item per line"}`;
 }
 
+export type HintLevel = 1 | 2 | 3;
+
+const HINT_STYLE: Record<HintLevel, string> = {
+  1: "A gentle nudge: point the player toward who to talk to or what kind of approach to try. Do not name the fact they need to uncover.",
+  2: "A clearer pointer: name the character to talk to and what to ask about or press them on.",
+  3: "A direct walkthrough: say exactly who to talk to and what to say or show them to get it. You may say what they need to get the character to admit, but never write the character's reply for them.",
+};
+
+export function hintPrompt(
+  story: Story,
+  phaseIndex: number,
+  available: Character[],
+  notes: string,
+  recent: TaggedMessage[],
+  level: HintLevel,
+  groupMembers?: GroupMembers
+): string {
+  const phase = story.phases[phaseIndex];
+  const transcript = recent.map((m) => transcriptLine(story, m, groupMembers)).join("\n");
+  return `You give hints to a player of the interactive drama "${story.title}" who is stuck on a chapter.
+
+Chapter: "${phase.title}"
+Player objective: ${phase.objective}
+What must happen to complete it (hidden from the player): ${phase.completionCriteria}
+Author's hint for this chapter: ${phase.hint || "(none)"}
+
+Characters the player can talk to now (one-on-one, or several together in a group chat):
+${available.map((c) => `- ${c.name}, ${c.role}. Secrets: ${c.secrets.join(" / ") || "none"}`).join("\n")}
+
+What the player has already achieved this chapter (director's notes):
+${notes || "(nothing recorded yet)"}
+
+Recent conversation (oldest first):
+${transcript || "(no messages yet)"}
+
+Write one hint, at this level of detail: ${HINT_STYLE[level]}
+Focus on the part of the requirement that is still missing; don't repeat what the player has already achieved. If characters must be convinced together, suggest a group chat. Only mention the characters listed above.
+Write 1-3 sentences, addressed to the player as "you", in the same language as the player objective.
+
+Respond with JSON only: {"hint": "..."}`;
+}
+
 export function storyGeneratorPrompt(premise: string, numPhases: number, numCharacters: number): string {
   return `You are a screenwriter designing an interactive drama chat game. The player talks one-on-one with characters to uncover the story. The story is split into chapters (phases); each chapter has an objective the player must achieve through conversation, and new characters become available as chapters progress.
 

@@ -46,6 +46,12 @@ Context flows both ways:
 The director sees group messages too, so a chapter can be completed in a group, for example by
 confronting two suspects at once.
 
+## Hints
+
+Stuck on a chapter? **💡 Need a hint?** (on the story page and beside every chat) asks DeepSeek for a hint based on
+what you've already achieved this chapter and what's still missing. Click again for a more direct hint, up to a
+full walkthrough on the third. Without an API key it falls back to the chapter's written hint.
+
 ## How it works
 
 | Piece | File |
