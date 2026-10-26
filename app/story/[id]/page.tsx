@@ -4,6 +4,7 @@ import Link from "next/link";
 import { use, useCallback, useEffect, useState } from "react";
 import ApiKeyNotice from "@/components/ApiKeyNotice";
 import CharacterCard from "@/components/CharacterCard";
+import GroupChats from "@/components/GroupChats";
 import PhaseBanner from "@/components/PhaseBanner";
 import type { PublicStory } from "@/lib/schema";
 
@@ -76,6 +77,8 @@ export default function StoryHub({ params }: { params: Promise<{ id: string }> }
           {locked.map((c) => <CharacterCard key={c.id} storyId={story.id} character={c} />)}
         </div>
       </section>
+
+      <GroupChats key={`${story.id}-${story.phaseIndex}`} story={story} />
     </div>
   );
 }

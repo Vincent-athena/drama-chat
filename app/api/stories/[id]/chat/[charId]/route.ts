@@ -1,15 +1,8 @@
 import { NextResponse } from "next/server";
-import {
-  addEvent,
-  addMessage,
-  getEvents,
-  getHistory,
-  getPhaseIndex,
-  getRecentStoryMessages,
-  setPhaseIndex,
-} from "@/lib/db";
-import { chatWithCharacter, judgePhase, MissingApiKeyError } from "@/lib/deepseek";
-import { charactersUnlockedAt, getStory, isUnlocked } from "@/lib/stories";
+import { addMessage, getEvents, getGroupMessagesFor, getHistory, getPhaseIndex } from "@/lib/db";
+import { chatWithCharacter, MissingApiKeyError } from "@/lib/deepseek";
+import { groupMembersOf, judgeTurn } from "@/lib/director";
+import { getStory, isUnlocked } from "@/lib/stories";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -64,43 +57,15 @@ export async function POST(req: Request, { params }: Params) {
       const send = (obj: unknown) => controller.enqueue(encoder.encode(JSON.stringify(obj) + "\n"));
       try {
         let reply = "";
-        for await (const delta of chatWithCharacter(story, character, phaseIndex, events, history, message)) {
+        const context = { groupChats: getGroupMessagesFor(id, charId), groupMembers: groupMembersOf(id) };
+        for await (const delta of chatWithCharacter(story, character, phaseIndex, events, history, message, context)) {
           reply += delta;
           send({ type: "delta", text: delta });
         }
         addMessage(id, charId, { role: "user", content: message });
         addMessage(id, charId, { role: "assistant", content: reply });
         send({ type: "replied" });
-
-        const finished = phaseIndex >= story.phases.length;
-        if (finished) {
-          send({ type: "done", phaseAdvanced: false });
-          return;
-        }
-
-        const verdict = await judgePhase(story, phaseIndex, getRecentStoryMessages(id), events);
-        // Another request may have advanced the phase while this one was streaming.
-        if (verdict.completed && getPhaseIndex(id) === phaseIndex) {
-          const next = phaseIndex + 1;
-          addEvent(id, phaseIndex, verdict.eventSummary || `${story.phases[phaseIndex].title} was resolved.`);
-          setPhaseIndex(id, next);
-          const nextPhase = story.phases[next];
-          send({
-            type: "done",
-            phaseAdvanced: true,
-            completedPhaseTitle: story.phases[phaseIndex].title,
-            eventSummary: verdict.eventSummary,
-            finished: !nextPhase,
-            newPhase: nextPhase
-              ? { title: nextPhase.title, narration: nextPhase.narration, objective: nextPhase.objective }
-              : null,
-            unlocked: nextPhase
-              ? charactersUnlockedAt(story, next).map((c) => ({ id: c.id, name: c.name, avatarEmoji: c.avatarEmoji }))
-              : [],
-          });
-        } else {
-          send({ type: "done", phaseAdvanced: false });
-        }
+        send(await judgeTurn(story, phaseIndex, events));
       } catch (err) {
         console.error("chat error", err);
         send({ type: "error", message: err instanceof Error ? err.message : "Unknown error" });

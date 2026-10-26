@@ -114,3 +114,8 @@ export type StorySummary = {
 };
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
+
+export type PublicGroup = { id: number; memberIds: string[] };
+
+/** A group chat message; characterId is the speaker, or "" when the player spoke. */
+export type GroupChatMessage = ChatMessage & { characterId: string };

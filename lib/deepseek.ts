@@ -1,6 +1,15 @@
 import OpenAI from "openai";
+import { z } from "zod";
 import type { TaggedMessage } from "./db";
-import { characterSystemPrompt, judgePrompt, storyGeneratorPrompt } from "./prompts";
+import {
+  characterSystemPrompt,
+  groupChatMessages,
+  judgePrompt,
+  speakerPrompt,
+  storyGeneratorPrompt,
+  type CharacterContext,
+  type GroupMembers,
+} from "./prompts";
 import {
   JudgeResultSchema,
   StorySchema,
@@ -33,29 +42,77 @@ function deepseek(): OpenAI {
 const model = () => process.env.DEEPSEEK_MODEL || "deepseek-chat";
 
 const HISTORY_WINDOW = 20;
+const GROUP_HISTORY_WINDOW = 30;
+const MAX_GROUP_SPEAKERS = 3;
+
+const SpeakersSchema = z.object({ speakers: z.array(z.string()) });
+
+async function* streamReply(messages: OpenAI.Chat.ChatCompletionMessageParam[]): AsyncGenerator<string> {
+  const stream = await deepseek().chat.completions.create({
+    model: model(),
+    temperature: 1.1,
+    stream: true,
+    messages,
+  });
+  for await (const chunk of stream) {
+    const delta = chunk.choices[0]?.delta?.content;
+    if (delta) yield delta;
+  }
+}
 
 /** Streams a character's reply token by token. */
-export async function* chatWithCharacter(
+export function chatWithCharacter(
   story: Story,
   character: Character,
   phaseIndex: number,
   events: string[],
   history: ChatMessage[],
-  userMsg: string
+  userMsg: string,
+  context: CharacterContext = {}
 ): AsyncGenerator<string> {
-  const stream = await deepseek().chat.completions.create({
-    model: model(),
-    temperature: 1.1,
-    stream: true,
-    messages: [
-      { role: "system", content: characterSystemPrompt(story, character, phaseIndex, events) },
-      ...history.slice(-HISTORY_WINDOW),
-      { role: "user", content: userMsg },
-    ],
-  });
-  for await (const chunk of stream) {
-    const delta = chunk.choices[0]?.delta?.content;
-    if (delta) yield delta;
+  return streamReply([
+    { role: "system", content: characterSystemPrompt(story, character, phaseIndex, events, context) },
+    ...history.slice(-HISTORY_WINDOW),
+    { role: "user", content: userMsg },
+  ]);
+}
+
+/**
+ * Streams one character's turn in a group chat. `history` is the group conversation so far,
+ * ending with the player's message and any replies already given this round.
+ */
+export function chatInGroup(
+  story: Story,
+  character: Character,
+  phaseIndex: number,
+  events: string[],
+  history: TaggedMessage[],
+  context: CharacterContext
+): AsyncGenerator<string> {
+  return streamReply([
+    { role: "system", content: characterSystemPrompt(story, character, phaseIndex, events, context) },
+    ...groupChatMessages(story, character, history.slice(-GROUP_HISTORY_WINDOW)),
+  ]);
+}
+
+/** Picks which group members answer the player, in order. Falls back to everyone, capped at 3. */
+export async function pickSpeakers(
+  story: Story,
+  members: Character[],
+  history: TaggedMessage[],
+  userMsg: string
+): Promise<Character[]> {
+  const fallback = members.slice(0, MAX_GROUP_SPEAKERS);
+  try {
+    const raw = await jsonCompletion([{ role: "user", content: speakerPrompt(story, members, history, userMsg) }], 0.3);
+    const ids = SpeakersSchema.parse(JSON.parse(raw)).speakers;
+    const picked = [...new Set(ids)]
+      .map((id) => members.find((c) => c.id === id))
+      .filter((c): c is Character => Boolean(c))
+      .slice(0, MAX_GROUP_SPEAKERS);
+    return picked.length ? picked : fallback;
+  } catch {
+    return fallback;
   }
 }
 
@@ -76,10 +133,11 @@ export async function judgePhase(
   story: Story,
   phaseIndex: number,
   recent: TaggedMessage[],
-  events: string[]
+  events: string[],
+  groupMembers?: GroupMembers
 ): Promise<JudgeResult> {
   const raw = await jsonCompletion(
-    [{ role: "user", content: judgePrompt(story, phaseIndex, recent, events) }],
+    [{ role: "user", content: judgePrompt(story, phaseIndex, recent, events, groupMembers) }],
     0
   );
   try {
