@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background: #0b0710;
+  color: #ece4f2;
+}
+
+body {
+  background-image: radial-gradient(ellipse at top, rgba(179, 38, 62, 0.18), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(212, 166, 74, 0.08), transparent 60%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: rise 0.35s ease-out both; }

@@ -1,0 +1,150 @@
+{
+  "id": "sample-midnight-manor",
+  "title": "Midnight at Ashcombe Manor",
+  "synopsis": "Lord Edmund Ashcombe has collapsed dead at his own sixtieth birthday gala, and the storm has cut the manor off from the world. The family says his heart gave out. You were his guest, and you do not believe them.",
+  "setting": "Ashcombe Manor, a crumbling country estate in Yorkshire, November 1927. A violent storm has flooded the only road; the telephone line is down. Candlelight, wet stone, and a house full of people who all wanted something from the dead man.",
+  "tone": "Gothic murder mystery melodrama: whispered confessions, family betrayal, and old secrets.",
+  "phases": [
+    {
+      "id": "p1",
+      "title": "The Body in the Study",
+      "narration": "The music stopped at a quarter past eleven. You found Lord Ashcombe slumped over his desk, a brandy glass shattered at his feet. The doctor has called it heart failure, but something about that study felt wrong: the smell, the silence, the way the housekeeper would not meet your eyes.",
+      "objective": "Find evidence that Lord Ashcombe's death was not natural.",
+      "completionCriteria": "A character has told the player that the brandy decanter in Lord Ashcombe's study was washed out and refilled shortly after his death, before anyone official could examine it.",
+      "hint": "Housekeepers notice everything that moves in a house, including dishes that were cleaned when they shouldn't have been."
+    },
+    {
+      "id": "p2",
+      "title": "The Widow and the Doctor",
+      "narration": "Someone washed away the evidence. Now the grieving widow has descended from her room, and the family physician hovers at her side a little too closely. If the brandy was poisoned, why was Dr. Crane so quick to write 'heart failure'?",
+      "objective": "Discover why Dr. Crane declared the death natural.",
+      "completionCriteria": "Dr. Crane or Lady Vivienne has admitted that they are having an affair and that Crane signed off the death as heart failure without a proper examination, at least partly to avoid an investigation that would expose them.",
+      "hint": "Lovers protect each other. Press one about the other."
+    },
+    {
+      "id": "p3",
+      "title": "The Maid's Secret",
+      "narration": "The affair explains the doctor's haste, but not the poison. Then a young maid slips a folded note under your door: 'He changed his will tonight. Ask me why.' Her name is Clara Wren, and she has been crying.",
+      "objective": "Learn what Lord Ashcombe's new will said, and why it mattered.",
+      "completionCriteria": "Clara has revealed that she is Lord Ashcombe's illegitimate daughter and that the will he signed on the night of his death named her as his principal heir.",
+      "hint": "Clara is frightened. Kindness and patience will get further than accusations."
+    },
+    {
+      "id": "p4",
+      "title": "Who Poured the Brandy",
+      "narration": "The new will disinherited the family, but one person had more to lose than money. At dawn, Edmund's sister Eleanor returns from the chapel, composed and dry-eyed, carrying the estate ledgers she has kept for twenty years.",
+      "objective": "Expose the murderer.",
+      "completionCriteria": "Eleanor Ashcombe has confessed to poisoning the brandy, OR the player has confronted her with both the embezzlement and the decanter evidence and another character has confirmed seeing Eleanor with the decanter.",
+      "hint": "Mrs. Hale has been protecting someone this whole time. Ask her again, now that you know about the ledgers."
+    }
+  ],
+  "characters": [
+    {
+      "id": "mrs-hale",
+      "name": "Mrs. Agnes Hale",
+      "role": "Housekeeper of thirty years",
+      "avatarEmoji": "🗝️",
+      "personality": "Stern, proper, fiercely loyal to the Ashcombe family, especially Miss Eleanor, who took her in when she was widowed. Hides fear behind duty.",
+      "speechStyle": "Formal Yorkshire servant's English. Short, clipped sentences. Says 'sir' or 'madam'. Becomes flustered and repetitive when cornered.",
+      "secrets": [
+        "She washed and refilled the brandy decanter shortly after the death because Miss Eleanor told her to 'tidy the study before the guests see'.",
+        "She saw Miss Eleanor alone in the butler's pantry with the decanter about an hour before the toast."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Knows the decanter was cleaned and refilled after the death, because she did it herself. Will admit this if the player notices something off about the study or presses about the brandy, but will not yet say who asked her.",
+        "p2": "Has long suspected the affair between Lady Vivienne and Dr. Crane and disapproves of it.",
+        "p3": "Knows Clara's mother was a maid at the manor twenty years ago who left in disgrace.",
+        "p4": "If confronted about Eleanor and the ledgers, she will break down and admit she saw Eleanor with the decanter in the pantry before the toast."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "julian",
+      "name": "Julian Ashcombe",
+      "role": "Edmund's son and presumed heir",
+      "avatarEmoji": "🥃",
+      "personality": "Charming, bitter, and drunk. Resents his father's coldness. Deep in gambling debts. Grief comes out as sarcasm.",
+      "speechStyle": "Upper-class drawl, sardonic jokes, calls people 'old sport'. Occasionally drops the act and sounds like a hurt boy.",
+      "secrets": [
+        "He owes £4,000 to a London bookmaker and argued with his father about money an hour before the death.",
+        "He overheard his father on the telephone earlier that day asking the solicitor to bring 'the new papers' tonight."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Knows his father drank only from the study decanter, never from the party punch. Thinks the whole family is lying about something.",
+        "p2": "Despises Dr. Crane and suspects he is 'too fond' of his stepmother.",
+        "p3": "Knows a solicitor visited that evening and that his father seemed 'almost happy' afterward.",
+        "p4": "Noticed Aunt Eleanor has been nervous about the estate accounts for months and refused to let anyone see the ledgers."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "vivienne",
+      "name": "Lady Vivienne Ashcombe",
+      "role": "Edmund's young second wife",
+      "avatarEmoji": "💎",
+      "personality": "Glamorous former actress, twenty years younger than her husband. Performs grief beautifully. Genuinely afraid of scandal and poverty.",
+      "speechStyle": "Theatrical, breathy, uses 'darling'. Switches to cold precision when threatened.",
+      "secrets": [
+        "She has been having an affair with Dr. Crane for a year.",
+        "She begged Crane to write 'heart failure' so there would be no police inquiry into the household."
+      ],
+      "knowledgeByPhase": {
+        "p2": "Will deny the affair until the player shows they already suspect it or catches her contradicting Crane; then she admits it and admits asking Crane to sign the death as natural, insisting she did not kill Edmund.",
+        "p3": "Knows Edmund recently became obsessed with 'righting an old wrong' but not what it was.",
+        "p4": "Once asked Eleanor for money from the estate and was told the accounts were 'not as healthy as Edmund believes'."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "dr-crane",
+      "name": "Dr. Silas Crane",
+      "role": "Family physician",
+      "avatarEmoji": "🩺",
+      "personality": "Precise, clever, and quietly ashamed. A good doctor who made one cowardly choice for love.",
+      "speechStyle": "Measured, clinical vocabulary, long pauses. Uses medical terms then corrects himself into plain English.",
+      "secrets": [
+        "He is Lady Vivienne's lover.",
+        "He smelled bitter almonds on Edmund's lips (cyanide) but signed heart failure anyway, without a proper examination."
+      ],
+      "knowledgeByPhase": {
+        "p2": "If pressed about his haste or the affair, he will eventually admit both, and that he smelled bitter almonds and suspects poison.",
+        "p3": "Treated Clara's mother long ago and knows she bore a child whose father was 'a gentleman of this house'.",
+        "p4": "Knows cyanide is kept in the manor for killing wasps in the orchard, and that the key to that cabinet is on the housekeeper's ring and Miss Eleanor's."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "clara",
+      "name": "Clara Wren",
+      "role": "Young housemaid",
+      "avatarEmoji": "🕯️",
+      "personality": "Gentle, timid, intelligent, and terrified. Grieving a father she only just got to know.",
+      "speechStyle": "Soft-spoken, apologetic, local accent. Says 'I shouldn't say' before saying exactly the important thing.",
+      "secrets": [
+        "She is Lord Ashcombe's illegitimate daughter; he told her only a month ago.",
+        "The will he signed tonight leaves the manor and most of the fortune to her."
+      ],
+      "knowledgeByPhase": {
+        "p3": "Will reveal she is Edmund's daughter and that the new will names her heir if the player is gentle and earns her trust.",
+        "p4": "Edmund told her that 'once the will is done, I'll have Eleanor's books audited; something isn't right'. She saw Eleanor overhear this conversation."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "eleanor",
+      "name": "Miss Eleanor Ashcombe",
+      "role": "Edmund's elder sister and estate manager",
+      "avatarEmoji": "📒",
+      "personality": "Brilliant, devout, and proud. Ran the estate for twenty years while Edmund took the credit. Believes she was owed everything she took.",
+      "speechStyle": "Precise, cutting, quotes scripture. Never raises her voice. When her composure finally cracks, it all pours out.",
+      "secrets": [
+        "She has embezzled over £30,000 from the estate over fifteen years.",
+        "She poisoned Edmund's brandy with the orchard cyanide after learning he planned an audit, then had Mrs. Hale clean the decanter."
+      ],
+      "knowledgeByPhase": {
+        "p4": "Will deflect with dignity and point suspicion at Vivienne and Julian. If the player confronts her with both the ledgers/embezzlement and evidence about the decanter (especially Mrs. Hale's testimony), she confesses, insisting Edmund 'would have thrown me out with nothing after a lifetime of service'."
+      },
+      "unlockPhase": "p4"
+    }
+  ]
+}
