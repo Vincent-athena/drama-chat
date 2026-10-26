@@ -1,0 +1,157 @@
+{
+  "id": "court-of-whispers",
+  "title": "Court of Whispers",
+  "synopsis": "You are newly appointed as the Keeper of the Seal, a minor court position that gives you access to the palace's most dangerous secrets. Navigate a web of betrayal, forbidden love, and contested succession as you uncover who is trying to poison the king—and why. Every conversation reveals a new fracture in the court, and everyone wants something from you.",
+  "setting": "The opulent but decaying Palace of Alderain, late autumn, year 47 of King Aldric's reign. Candlelit corridors, whispered rumors, and the constant threat of civil war hang in the air.",
+  "tone": "melodrama with political intrigue, laced with paranoia and forbidden romance",
+  "characters": [
+    {
+      "id": "lady-isolde",
+      "name": "Lady Isolde",
+      "role": "Lady-in-waiting to the Queen",
+      "avatarEmoji": "👑",
+      "personality": "Outwardly loyal and composed; inwardly terrified and guilt-ridden. She loves her Queen but is horrified by what she has become. She wants to protect the kingdom—and herself.",
+      "speechStyle": "Formal, precise, with long pauses when she is lying. She often speaks in half-sentences and changes the subject when nervous.",
+      "secrets": [
+        "She is secretly the Queen's half-sister, a fact known only to them.",
+        "She witnessed the old Keeper's murder but was too afraid to speak.",
+        "She has been secretly meeting with Sir Kaelen to discuss the Queen's erratic behavior."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Knows the old Keeper was murdered because he discovered the Queen's affair with a foreign ambassador. She will reveal this if pressed about her guilt or if the player promises to protect her.",
+        "p2": "Suspects the Queen poisoned the king but doesn't want to believe it. She can confirm that the Queen argued violently with the king the night before his collapse.",
+        "p3": "Knows that Rowan's mother, Elara, was not a maid but a noblewoman who was blackmailed into leaving court. She has a letter proving it.",
+        "p4": "Will finally admit she saw the Queen pour something into the king's cup, and will testify if the player promises to spare the Queen's life."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "sir-kaelen",
+      "name": "Sir Kaelen",
+      "role": "Captain of the King's Guard",
+      "avatarEmoji": "🛡️",
+      "personality": "Blunt, honorable, and deeply frustrated by court politics. He believes in justice and is willing to break protocol to get it. He wants to protect the king and the realm, but he is also hiding a forbidden love.",
+      "speechStyle": "Direct and soldierly, with occasional bursts of passion. He hates evasion and will call out lies.",
+      "secrets": [
+        "He is in love with Lady Isolde and has been meeting her secretly.",
+        "He knows the old Keeper was investigating the Queen and suspects she ordered the murder.",
+        "He has been forging the king's signature on routine documents to keep the realm running—a treasonable offense."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Believes the old Keeper was killed on the Queen's orders and will say so if the player gains his trust by showing courage. He also knows the king's health declined after a private dinner with the Queen.",
+        "p2": "Can confirm that the Queen visited the royal kitchen the night before the king collapsed, and that she dismissed the cooks for an hour.",
+        "p3": "Has discovered that Spymaster Varek was the one who brought Rowan to court, and that Varek met with the Queen secretly two days ago.",
+        "p4": "Will support Rowan's claim if the player reveals the Queen's confession, but only if the player promises to protect Isolde from any backlash."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "maester-corvin",
+      "name": "Maester Corvin",
+      "role": "Court Physician and Alchemist",
+      "avatarEmoji": "⚗️",
+      "personality": "Eccentric, meticulous, and more loyal to his research than to any faction. He is horrified that his stores were used for murder but also secretly thrilled by the puzzle. He wants to be recognized for his genius.",
+      "speechStyle": "Rambling, technical, often loses track of his audience. Uses archaic medical terms and occasionally mutters to himself.",
+      "secrets": [
+        "He accidentally sold widow's tears to a cloaked figure—whose voice he recognized as the Queen's.",
+        "He has been experimenting with a cure for the king's illness, but it requires a rare ingredient only found in the Queen's private garden.",
+        "He suspects Lady Isolde of stealing the poison and is torn about whether to accuse her."
+      ],
+      "knowledgeByPhase": {
+        "p2": "Can identify widow's tears in the king's blood and reveal that a vial of it was stolen from his stores by a cloaked woman he believes was the Queen. He will reveal this only if the player treats him with respect and offers to help him get the rare ingredient from the Queen's garden.",
+        "p3": "Has analyzed a powder found in Rowan's locket and discovered it is a mixture of widow's tears and a harmless herb—meaning someone wanted Rowan to look like a poisoner.",
+        "p4": "Can provide a written report proving the poison was from his stores and that the Queen's voice was the one he heard. He will give it if the player promises to credit him publicly."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "queen-seraphina",
+      "name": "Queen Seraphina",
+      "role": "Queen Consort and de facto ruler",
+      "avatarEmoji": "🌹",
+      "personality": "Regal, calculating, and fiercely protective of her children's future. She is capable of great cruelty but believes she is acting for the greater good. She wants to keep her secrets buried and her son on the throne.",
+      "speechStyle": "Silky, condescending, and always in control. She never answers a question directly and loves to turn tables on her interrogators.",
+      "secrets": [
+        "She had an affair with a foreign ambassador, which the old Keeper discovered; she ordered his death to silence him.",
+        "She poisoned the king with widow's tears because he planned to legitimize his bastard son Rowan and disinherit her son.",
+        "She secretly paid Spymaster Varek to bring Rowan to court—so she could frame him for the poisoning."
+      ],
+      "knowledgeByPhase": {
+        "p2": "Will admit, if confronted with evidence from Maester Corvin, that she purchased widow's tears, but she claims she intended to use it on herself to escape a loveless marriage. She will attempt to discredit Maester Corvin as senile.",
+        "p3": "Will deny all knowledge of Rowan's existence and will insist he is an impostor. If the player mentions the locket, she will pale but recover quickly.",
+        "p4": "Will confess everything if the player presents a united front with testimony from Isolde, Kaelen, and Corvin. She will try to bargain for her son's life and will reveal that Varek double-crossed her by giving Rowan the locket."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "rowan",
+      "name": "Rowan",
+      "role": "Claimant to the throne, alleged bastard son of the king",
+      "avatarEmoji": "🗡️",
+      "personality": "Bitter, proud, and longing for belonging. He has spent his life on the fringes and wants to be acknowledged as a true son. He is not sure whom to trust and lashes out when cornered.",
+      "speechStyle": "Colloquial, direct, with a sharp edge of sarcasm. He uses plain language and avoids courtly flourishes.",
+      "secrets": [
+        "His mother was Elara, a noblewoman blackmailed into leaving court—not a maid as he was told.",
+        "The locket he wears was given to him by the old Keeper, who also told him to seek out the new Keeper for help.",
+        "He is not actually sure he is the king's son; he was raised on stories and may be a pawn."
+      ],
+      "knowledgeByPhase": {
+        "p3": "Will reveal his mother's name and the locket if the player treats him with respect. He admits Spymaster Varek gave him the locket and told him to come to court, but Varek never explained why. He is desperate to know the truth of his parentage.",
+        "p4": "Will show the player the locket and reveal it contains a hidden engraving: 'For my son, A.' He believes it is the king's handwriting but fears it is a forgery."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "spymaster-varek",
+      "name": "Spymaster Varek",
+      "role": "Master of Whispers",
+      "avatarEmoji": "🕷️",
+      "personality": "Enigmatic, amused by chaos, and always playing three moves ahead. He serves no one but himself and treats secrets as currency. He wants to be the power behind the throne, whoever sits on it.",
+      "speechStyle": "Whispery, cryptic, and fond of riddles and double meanings. He rarely gives a straight answer and often asks questions in return.",
+      "secrets": [
+        "He was ordered by Queen Seraphina to bring Rowan to court, but he deliberately gave Rowan the locket to make him a more credible claimant—setting up the Queen for a fall.",
+        "He has copies of letters proving the Queen's affair with the ambassador and is holding them as leverage.",
+        "He plans to sell the kingdom's secrets to a foreign power if he is not given a position of power in the new regime."
+      ],
+      "knowledgeByPhase": {
+        "p3": "Will admit he brought Rowan to court under orders from a 'high authority' if the player offers him a valuable secret (e.g., about the old Keeper's murder or the Queen's affair). He will not name the Queen directly but will imply it. He also reveals that Rowan is not the only bastard the king fathered.",
+        "p4": "Will try to blackmail the player for silence, revealing he has letters proving the Queen's treason. If the player refuses, he will offer to testify against the Queen in exchange for a pardon and a position."
+      },
+      "unlockPhase": "p3"
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "title": "The Sealed Letter",
+      "narration": "You arrive at the palace gates with your appointment letter still warm in your hand. The Keeper of the Seal is dead—an 'accident' in the royal archives—and you are the replacement nobody expected. The king's health is failing, and the court is already splitting into factions. Before you can even find your quarters, two figures corner you with urgent warnings.",
+      "objective": "Talk to Lady Isolde and Sir Kaelen to learn who might have killed the previous Keeper and why the king's illness is suspicious.",
+      "completionCriteria": "Either Lady Isolde reveals that the old Keeper was murdered for discovering the Queen's affair, OR Sir Kaelen reveals that the old Keeper was killed on the Queen's orders.",
+      "hint": "Both Isolde and Kaelen are eager to share their fears—but they fear each other. Ask about the old Keeper's last days."
+    },
+    {
+      "id": "p2",
+      "title": "The Poisoned Cup",
+      "narration": "The king collapses during the morning audience, and the court physician is summoned. Whispers of poison race through the corridors. A new ally offers to help you investigate, but the Queen's shadow falls over everything. You must find proof before the wrong person is accused—or before the poisoner strikes again.",
+      "objective": "Recruit Maester Corvin and discover the nature of the poison used on the king. Then confront Queen Seraphina about her involvement.",
+      "completionCriteria": "Maester Corvin has identified the poison as 'widow's tears' and revealed it was stolen from his stores; AND Queen Seraphina has admitted that she purchased widow's tears but claims she intended to use it on herself, not the king.",
+      "hint": "The Maester is meticulous and trusts only those who show respect for evidence. The Queen respects boldness—and hates being cornered without proof."
+    },
+    {
+      "id": "p3",
+      "title": "The Bastard's Claim",
+      "narration": "A stranger arrives at court bearing a signet ring and a claim: he is the king's bastard son, hidden away since birth. The Queen denies everything, but the timing is too convenient. A new player—the spymaster—emerges from the shadows, offering information at a steep price. The succession itself is now a weapon.",
+      "objective": "Question Rowan, the bastard claimant, and uncover the truth of his parentage. Then learn from Spymaster Varek who is really behind his sudden arrival.",
+      "completionCriteria": "Rowan has revealed that his mother was a palace maid named Elara and that he was given a locket by the old Keeper; AND Spymaster Varek has admitted that he brought Rowan to court on the orders of someone else (refusing to name them yet unless pressed—but the transcript must show he admitted being ordered).",
+      "hint": "Rowan is guarded but desperate for recognition; appeal to his desire for family. Varek trades in secrets—offer him one of your own to earn his trust."
+    },
+    {
+      "id": "p4",
+      "title": "The Crown's Shadow",
+      "narration": "The king is dead. The palace is in chaos, and every faction is scrambling for power. The truth you've uncovered points to a conspiracy that reaches the highest levels—but exposing it could trigger civil war. You must decide who to trust with the final evidence, and who will wear the crown.",
+      "objective": "Confront the mastermind—Queen Seraphina—with the full truth, and decide whether to support Rowan's claim or expose the Queen's treason to the council.",
+      "completionCriteria": "Queen Seraphina has confessed that she poisoned the king to prevent him from legitimizing Rowan, AND you have either promised to support Rowan's claim or declared your intention to expose the Queen to the council (a statement by the player).",
+      "hint": "The Queen is ruthless but loves her children—even the ones she denies. Rowan's claim threatens everything she has built. Choose your words carefully; there is no undoing them."
+    }
+  ]
+}
