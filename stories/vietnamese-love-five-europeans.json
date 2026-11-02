@@ -1,0 +1,274 @@
+{
+  "id": "vietnamese-love-five-europeans",
+  "title": "Trái Tim Năm Châu",
+  "synopsis": "Một chàng trai Việt Nam trẻ tuổi, Minh, bị cuốn vào lưới tình với năm cô gái đến từ khắp châu Âu. Mỗi người mang theo một bí mật, và một trong số họ đang âm mưu phá hoại cuộc đời anh. Bạn phải trò chuyện để khám phá sự thật trước khi quá muộn.",
+  "setting": "Hà Nội và Đà Lạt, Việt Nam, thời hiện đại. Những quán cà phê ấm cúng, những con phố cổ kính và những buổi tiệc tối sang trọng. Không khí lãng mạn nhưng ẩn chứa căng thẳng và nghi ngờ.",
+  "tone": "Melodrama lãng mạn với nét noir nhẹ",
+  "characters": [
+    {
+      "id": "elodie",
+      "name": "Elodie",
+      "role": "Nghệ sĩ người Pháp",
+      "avatarEmoji": "🎨",
+      "personality": "Lãng mạn, bí ẩn, dễ tổn thương nhưng cũng đầy toan tính.",
+      "speechStyle": "Nhẹ nhàng, thơ mộng, thường dùng hình ảnh ẩn dụ.",
+      "secrets": [
+        "Jacques là chồng cũ của cô và đã đánh cắp bức tranh quý của cô.",
+        "Cô đã nhờ Sofia theo dõi Minh để bảo vệ anh khỏi Greta.",
+        "Cô vẫn còn tình cảm với Jacques và đang do dự có nên quay lại với anh ta không."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Tiết lộ cô đến Việt Nam để tìm bức tranh 'Mùa Thu Hà Nội' bị thất lạc, nhưng không nói ai đã lấy.",
+        "p2": "Thừa nhận Sofia là bạn thân và đã nhờ Sofia để mắt đến Minh.",
+        "p6": "Thú nhận Jacques là chồng cũ và bức tranh là của cô, bị Jacques đánh cắp. Cô cũng thừa nhận đã nghi ngờ Greta."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "greta",
+      "name": "Greta",
+      "role": "Doanh nhân người Đức",
+      "avatarEmoji": "💼",
+      "personality": "Lạnh lùng, tham vọng, kiểm soát và luôn toan tính.",
+      "speechStyle": "Trực tiếp, sắc bén, thường dùng từ ngữ kinh doanh.",
+      "secrets": [
+        "Cô muốn trả thù Elodie vì Elodie đã khiến bạn trai cũ của Greta phá sản.",
+        "Cô đã thuê Carmen viết bài bôi nhọ Minh để làm mất uy tín của Elodie.",
+        "Cô đang gặp khó khăn tài chính và cố gắng lừa Jacques đầu tư vào dự án mờ ám."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Tiết lộ cô đang tìm kiếm một đối tác kinh doanh bí ẩn, nhưng không nói tên.",
+        "p3": "Được Carmen tiết lộ là người đứng sau ép buộc cô viết bài.",
+        "p5": "Thừa nhận đang gặp khó khăn tài chính và đã gặp Jacques ở Đà Lạt để thuyết phục đầu tư.",
+        "p7": "Thú nhận âm mưu trả thù Elodie và việc thuê Carmen, mua chuộc Anneke."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "sofia",
+      "name": "Sofia",
+      "role": "Nhiếp ảnh gia người Ý",
+      "avatarEmoji": "📸",
+      "personality": "Nồng nhiệt, tò mò, trung thành nhưng hay do dự.",
+      "speechStyle": "Sôi nổi, giàu cảm xúc, thường dùng từ ngữ thân mật.",
+      "secrets": [
+        "Cô là bạn thân của Elodie và đã theo dõi Minh theo yêu cầu của Elodie.",
+        "Cô bắt đầu nghi ngờ động cơ của Elodie và đã bí mật điều tra.",
+        "Cô đã chụp được bằng chứng Greta gặp Carmen và Anneke."
+      ],
+      "knowledgeByPhase": {
+        "p2": "Thừa nhận là bạn thân của Elodie và đã theo dõi Minh, nhưng nói cô bắt đầu nghi ngờ Elodie.",
+        "p7": "Tiết lộ đã tìm thấy bằng chứng về âm mưu của Greta và cung cấp bằng chứng."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "carmen",
+      "name": "Carmen",
+      "role": "Nhà báo lá cải người Tây Ban Nha",
+      "avatarEmoji": "📰",
+      "personality": "Sắc sảo, nhiều chuyện, thích giật gân nhưng có lòng tự trọng.",
+      "speechStyle": "Nhanh nhảu, hay dùng câu hỏi tu từ, giọng điệu kịch tính.",
+      "secrets": [
+        "Cô bị Greta ép buộc viết bài bôi nhọ Minh bằng cách đe dọa tiết lộ một bê bối trong quá khứ của cô.",
+        "Cô biết về mối quan hệ giữa Greta và Jacques nhưng chưa dám nói.",
+        "Cô thực sự muốn giúp Minh nếu anh bảo vệ cô khỏi Greta."
+      ],
+      "knowledgeByPhase": {
+        "p3": "Thú nhận bị Greta ép buộc viết bài và tiết lộ Greta là người đứng sau.",
+        "p7": "Cung cấp bằng chứng Greta đã thuê cô và mua chuộc Anneke."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "beatrice",
+      "name": "Beatrice",
+      "role": "Luật sư người Anh",
+      "avatarEmoji": "⚖️",
+      "personality": "Điềm tĩnh, thông minh, nguyên tắc nhưng cũng đầy tham vọng.",
+      "speechStyle": "Trang trọng, logic, thường dùng thuật ngữ pháp lý.",
+      "secrets": [
+        "Cô đang điều tra Greta vì nghi ngờ biển thủ quỹ từ thiện.",
+        "Cô có bằng chứng Greta gặp Jacques ở Đà Lạt.",
+        "Cô muốn sử dụng thông tin này để thăng tiến trong công việc, không hoàn toàn vì công lý."
+      ],
+      "knowledgeByPhase": {
+        "p4": "Tiết lộ cô theo dõi Greta và cho xem bằng chứng Greta gặp một người đàn ông bí ẩn ở Đà Lạt.",
+        "p7": "Hỗ trợ pháp lý để vạch trần Greta nếu cần."
+      },
+      "unlockPhase": "p4"
+    },
+    {
+      "id": "anneke",
+      "name": "Anneke",
+      "role": "Chủ homestay người Hà Lan",
+      "avatarEmoji": "🏡",
+      "personality": "Thân thiện, chu đáo, nhưng dễ bị áp lực và sợ xung đột.",
+      "speechStyle": "Nhẹ nhàng, hay dùng từ ngữ địa phương, giọng điệu quan tâm.",
+      "secrets": [
+        "Cô đã được Greta trả tiền để theo dõi Minh và báo cáo mọi hoạt động của anh.",
+        "Cô biết người đàn ông bí mật gặp Greta là Jacques.",
+        "Cô cảm thấy tội lỗi và muốn chuộc lỗi bằng cách giúp Minh."
+      ],
+      "knowledgeByPhase": {
+        "p5": "Tiết lộ người đàn ông bí ẩn là Jacques và Greta đã gặp anh ta để thuyết phục đầu tư.",
+        "p7": "Thú nhận đã được Greta trả tiền để theo dõi Minh và cung cấp bằng chứng."
+      },
+      "unlockPhase": "p5"
+    },
+    {
+      "id": "jacques",
+      "name": "Jacques",
+      "role": "Nhà đầu tư người Pháp, chồng cũ của Elodie",
+      "avatarEmoji": "🕴️",
+      "personality": "Quyến rũ, mưu mô, tham lam nhưng vẫn còn tình cảm với Elodie.",
+      "speechStyle": "Lịch thiệp, hoa mỹ, thường dùng từ ngữ thương mại.",
+      "secrets": [
+        "Anh ta đã đánh cắp bức tranh của Elodie để bán cho một nhà sưu tập.",
+        "Anh ta đang cố gắng lừa Greta trong một thương vụ đầu tư giả.",
+        "Anh ta muốn quay lại với Elodie và sẵn sàng trả lại bức tranh để chuộc lỗi."
+      ],
+      "knowledgeByPhase": {
+        "p6": "Xuất hiện gián tiếp qua lời kể của Elodie; sau đó có thể liên lạc được với Minh qua điện thoại.",
+        "p8": "Có thể xuất hiện trực tiếp để đưa ra lời đề nghị với Minh và Elodie."
+      },
+      "unlockPhase": "p6"
+    },
+    {
+      "id": "minh-mother",
+      "name": "Bà Lan",
+      "role": "Mẹ của Minh",
+      "avatarEmoji": "👩‍🦳",
+      "personality": "Truyền thống, yêu thương con trai, nhưng lo lắng về những mối quan hệ của con.",
+      "speechStyle": "Ấm áp, hay dùng thành ngữ, giọng điệu quan tâm.",
+      "secrets": [
+        "Bà biết về quá khứ của Minh với một cô gái châu Âu trước đây.",
+        "Bà đã nhận được một lá thư nặc danh cảnh báo về các cô gái.",
+        "Bà muốn Minh tìm được hạnh phúc nhưng sợ con bị tổn thương."
+      ],
+      "knowledgeByPhase": {
+        "p2": "Gọi điện hỏi thăm và tiết lộ bà đã nhận được thư nặc danh cảnh báo.",
+        "p4": "Cung cấp thêm chi tiết về lá thư và khuyên Minh cẩn thận."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "lucas",
+      "name": "Lucas",
+      "role": "Bạn thân người Việt của Minh",
+      "avatarEmoji": "🍻",
+      "personality": "Vui tính, thẳng thắn, trung thành nhưng đôi khi bốc đồng.",
+      "speechStyle": "Thân mật, hay dùng tiếng lóng, giọng điệu hài hước.",
+      "secrets": [
+        "Anh đã từng thấy Greta gặp Carmen ở một quán kín và chụp ảnh lại.",
+        "Anh nghi ngờ Beatrice có động cơ cá nhân.",
+        "Anh có cảm tình với Sofia và muốn bảo vệ cô."
+      ],
+      "knowledgeByPhase": {
+        "p3": "Cung cấp thông tin về cuộc gặp giữa Greta và Carmen.",
+        "p5": "Chia sẻ nghi ngờ về Beatrice và cảm xúc với Sofia."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "isabelle",
+      "name": "Isabelle",
+      "role": "Nhà sưu tập nghệ thuật người Bỉ",
+      "avatarEmoji": "🖼️",
+      "personality": "Tinh tế, kín đáo, đam mê nghệ thuật nhưng cũng thực dụng.",
+      "speechStyle": "Nhẹ nhàng, chậm rãi, thường dùng từ ngữ nghệ thuật.",
+      "secrets": [
+        "Cô là người đã mua bức tranh bị đánh cắp từ Jacques.",
+        "Cô biết Jacques đã lừa dối Elodie và muốn trả lại bức tranh cho người chủ thực sự.",
+        "Cô có bằng chứng Jacques và Greta đã giao dịch với nhau."
+      ],
+      "knowledgeByPhase": {
+        "p7": "Liên lạc với Minh và tiết lộ cô đang giữ bức tranh, cung cấp bằng chứng về giao dịch của Jacques và Greta."
+      },
+      "unlockPhase": "p7"
+    },
+    {
+      "id": "henrik",
+      "name": "Henrik",
+      "role": "Cảnh sát điều tra người Đan Mạch",
+      "avatarEmoji": "👮",
+      "personality": "Nghiêm túc, công bằng, kiên trì nhưng có phần cứng nhắc.",
+      "speechStyle": "Trang trọng, rõ ràng, thường dùng câu hỏi điều tra.",
+      "secrets": [
+        "Anh đang điều tra vụ biển thủ quỹ từ thiện của Greta theo đơn tố cáo của Beatrice.",
+        "Anh có bằng chứng Greta đã chuyển tiền cho Carmen và Anneke.",
+        "Anh muốn bắt giữ Greta nhưng cần lời khai của Minh."
+      ],
+      "knowledgeByPhase": {
+        "p8": "Xuất hiện để điều tra và yêu cầu Minh cung cấp lời khai về Greta."
+      },
+      "unlockPhase": "p8"
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "title": "Cuộc Gặp Gỡ Đầu Tiên",
+      "narration": "Bạn là Minh, một chàng trai Việt Nam vừa trở về Hà Nội sau nhiều năm du học. Tại một quán cà phê nhỏ, bạn tình cờ gặp hai cô gái châu Âu xinh đẹp: Elodie, một nghệ sĩ người Pháp, và Greta, một doanh nhân người Đức. Cả hai đều tỏ ra thân thiện, nhưng ánh mắt họ dường như có điều gì đó che giấu. Hãy trò chuyện để tìm hiểu họ.",
+      "objective": "Trò chuyện với Elodie và Greta để tìm hiểu lý do họ đến Việt Nam.",
+      "completionCriteria": "Elodie tiết lộ cô đến để tìm kiếm một bức tranh bị thất lạc, và Greta tiết lộ cô đang tìm kiếm một đối tác kinh doanh bí ẩn.",
+      "hint": "Hãy hỏi về quá khứ và mục đích chuyến đi của họ."
+    },
+    {
+      "id": "p2",
+      "title": "Bóng Hình Mới",
+      "narration": "Buổi tối hôm sau, tại một bữa tiệc do Greta tổ chức, bạn gặp Sofia, một cô gái người Ý nồng nhiệt và quyến rũ. Cô ấy dường như biết rất rõ về bạn, dù bạn chưa từng gặp cô ấy. Trong khi đó, Elodie có vẻ lo lắng khi nhìn thấy Sofia.",
+      "objective": "Tìm hiểu mối quan hệ giữa Sofia và Elodie, và lý do Sofia biết về bạn.",
+      "completionCriteria": "Sofia thừa nhận cô là bạn thân của Elodie và đã theo dõi bạn theo yêu cầu của Elodie, nhưng cô ấy bắt đầu nghi ngờ động cơ của Elodie.",
+      "hint": "Hỏi Sofia về Elodie và về những gì cô ấy biết về bạn."
+    },
+    {
+      "id": "p3",
+      "title": "Lời Đồn Đại",
+      "narration": "Tin đồn về mối quan hệ của bạn với các cô gái châu Âu bắt đầu lan truyền. Một cô gái người Tây Ban Nha tên là Carmen xuất hiện, làm việc tại một tạp chí lá cải địa phương. Cô ấy muốn phỏng vấn bạn, nhưng có vẻ cô ấy biết nhiều hơn những gì cô ấy viết.",
+      "objective": "Ngăn chặn Carmen viết bài bôi nhọ bạn bằng cách tìm ra bí mật của cô ấy.",
+      "completionCriteria": "Carmen thú nhận cô đang bị ép buộc bởi một người giấu mặt để viết bài, và cô tiết lộ người đó có liên hệ với Greta.",
+      "hint": "Hỏi Carmen về nguồn tin của cô ấy và ai đang đe dọa cô ấy."
+    },
+    {
+      "id": "p4",
+      "title": "Bức Thư Tuyệt Mệnh",
+      "narration": "Bạn nhận được một bức thư nặc danh cảnh báo rằng một trong những cô gái đang âm mưu hại bạn. Cùng lúc đó, một luật sư người Anh tên là Beatrice liên hệ với bạn, nói rằng cô ấy đang điều tra về một vụ lừa đảo tài chính có liên quan đến Greta. Cô ấy muốn hợp tác với bạn.",
+      "objective": "Điều tra âm mưu đứng sau bức thư nặc danh và quyết định có nên tin Beatrice hay không.",
+      "completionCriteria": "Beatrice tiết lộ cô đã theo dõi Greta vì nghi ngờ cô ta biển thủ tiền từ một quỹ từ thiện, và cô cho bạn xem bằng chứng Greta đã gặp một người đàn ông bí ẩn tại Đà Lạt.",
+      "hint": "Hỏi Beatrice về bằng chứng cô ấy có và về mối liên hệ với Greta."
+    },
+    {
+      "id": "p5",
+      "title": "Chuyến Đi Đà Lạt",
+      "narration": "Bạn quyết định đến Đà Lạt để điều tra. Tại đó, bạn gặp lại Greta, người có vẻ đang che giấu điều gì đó. Một cô gái người Hà Lan tên là Anneke, chủ một homestay, cung cấp cho bạn thông tin về những vị khách bí ẩn. Cô ấy có vẻ thân thiện nhưng cũng có phần lo lắng.",
+      "objective": "Tìm ra người đàn ông bí ẩn mà Greta đã gặp ở Đà Lạt và mục đích của cuộc gặp.",
+      "completionCriteria": "Anneke tiết lộ người đàn ông đó là một nhà đầu tư người Pháp tên là Jacques, và Greta đã cố gắng thuyết phục anh ta đầu tư vào một dự án mờ ám. Greta thừa nhận cô đang gặp khó khăn tài chính và cần tiền.",
+      "hint": "Hỏi Anneke về những người khách gần đây và hỏi Greta về Jacques."
+    },
+    {
+      "id": "p6",
+      "title": "Sự Thật Về Elodie",
+      "narration": "Elodie bất ngờ xuất hiện ở Đà Lạt, tỏ ra ghen tuông và giận dữ. Cô ấy buộc tội bạn phản bội cô ấy. Trong lúc tranh cãi, cô ấy vô tình tiết lộ rằng cô ấy không chỉ đến để tìm bức tranh. Bạn nhận ra có một mối liên hệ giữa Elodie và Jacques.",
+      "objective": "Làm rõ mối quan hệ giữa Elodie và Jacques, và tìm hiểu lý do thực sự cô ấy đến Việt Nam.",
+      "completionCriteria": "Elodie thú nhận Jacques là chồng cũ của cô, và cô đến để lấy lại bức tranh mà Jacques đã đánh cắp từ cô. Cô cũng thừa nhận đã nhờ Sofia theo dõi bạn để bảo vệ bạn khỏi âm mưu của Greta.",
+      "hint": "Hỏi Elodie về Jacques và về bức tranh."
+    },
+    {
+      "id": "p7",
+      "title": "Âm Mưu Lộ Diện",
+      "narration": "Bạn tập hợp tất cả các cô gái tại một buổi gặp mặt. Căng thẳng lên đến đỉnh điểm khi Sofia tiết lộ rằng cô đã tìm thấy bằng chứng về một âm mưu lớn hơn. Hóa ra, Greta không chỉ muốn tiền mà còn muốn trả thù Elodie vì một chuyện trong quá khứ. Anneke và Carmen cũng bị cuốn vào vòng xoáy này.",
+      "objective": "Vạch trần âm mưu của Greta và tìm ra động cơ thực sự của cô ta.",
+      "completionCriteria": "Greta thừa nhận cô muốn phá hoại Elodie vì Elodie đã từng khiến bạn trai cũ của Greta phá sản. Sofia cung cấp bằng chứng Greta đã thuê Carmen viết bài bôi nhọ và đã cố gắng mua chuộc Anneke để theo dõi bạn.",
+      "hint": "Khuyến khích các cô gái đối chất với Greta và đưa ra bằng chứng."
+    },
+    {
+      "id": "p8",
+      "title": "Lựa Chọn Cuối Cùng",
+      "narration": "Sau khi sự thật được phơi bày, Greta rời đi trong im lặng. Những cô gái còn lại chờ đợi quyết định của bạn. Bạn phải chọn người mình thực sự tin tưởng và muốn ở bên, đồng thời quyết định xem có nên tha thứ cho những ai đã lừa dối bạn hay không.",
+      "objective": "Đưa ra quyết định cuối cùng về mối quan hệ của bạn với từng cô gái và kết thúc câu chuyện.",
+      "completionCriteria": "Bạn tuyên bố lựa chọn của mình với ít nhất một cô gái và giải quyết mâu thuẫn với những người còn lại (tha thứ hoặc từ biệt).",
+      "hint": "Hãy nói chuyện với từng người để hiểu rõ cảm xúc của họ trước khi quyết định."
+    }
+  ]
+}

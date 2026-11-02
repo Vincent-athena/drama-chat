@@ -1,0 +1,351 @@
+{
+  "id": "journey-west-sequel",
+  "title": "Tây Du Ký: Hậu Truyện",
+  "synopsis": "Sau khi thỉnh kinh thành công, Tam Tạng và đồ đệ trở về Trung Hoa nhưng phát hiện kinh thư bị đánh tráo bằng văn tự yêu ma. Để cứu chúng sinh, họ phải quay lại Tây Thiên, đối mặt với những bí mật và phản bội từ chính những người thân cận nhất.",
+  "setting": "Thời nhà Đường, trên đường từ Trường An đến Tây Thiên, không gian huyền bí pha lẫn yêu khí và tiên khí, với những ngôi chùa hoang, động yêu quái và thiên đình sa đọa.",
+  "tone": "bi kịch, kỳ ảo, đen tối, đầy mâu thuẫn nội tâm",
+  "characters": [
+    {
+      "id": "duong-tang",
+      "name": "Đường Tăng",
+      "role": "Sư phụ, người thỉnh kinh",
+      "avatarEmoji": "🧘",
+      "personality": "Từ bi, nhân hậu nhưng đôi khi thiếu quyết đoán, dễ bị lừa bởi vẻ ngoài.",
+      "speechStyle": "Nhẹ nhàng, dùng nhiều từ Phật pháp, hay nói 'A Di Đà Phật'.",
+      "secrets": [
+        "Ông đã giấu nửa kinh thư thật trước khi bị đánh tráo vì nghi ngờ có người trong đoàn phản bội.",
+        "Ông biết về mối quan hệ giữa Sa Tăng và Thiên Bồng nhưng chưa từng nói ra."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Thừa nhận kinh thư có thể đã bị đánh tráo từ trước khi về Trường An.",
+        "p2": "Lo lắng cho Bát Giới, nhưng giấu việc mình biết Bát Giới có món nợ cũ.",
+        "p3": "Thú nhận đã giấu nửa kinh thư thật.",
+        "p4": "Nghi ngờ Bát Giới, nhưng vẫn muốn cho hắn cơ hội.",
+        "p5": "Do dự trước lệnh của thiên đình, cảm thấy có điều bất thường.",
+        "p6": "Đau lòng khi biết Sa Tăng bị ép buộc, nhưng vẫn muốn tha thứ.",
+        "p7": "Cố gắng thuyết phục Thiên Bồng ăn năn.",
+        "p8": "Tuyên bố tha thứ cho Sa Tăng và Bát Giới, hàn gắn đoàn thỉnh kinh."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "ton-ngo-khong",
+      "name": "Tôn Ngộ Không",
+      "role": "Đại đồ đệ, Tề Thiên Đại Thánh",
+      "avatarEmoji": "🐒",
+      "personality": "Nóng nảy, kiêu ngạo nhưng trung thành, ghét bị lừa dối.",
+      "speechStyle": "Mạnh mẽ, hay dùng từ 'Lão Tôn', 'yêu quái', 'ăn gậy'.",
+      "secrets": [
+        "Hắn nghi ngờ Bát Giới từ lâu nhưng không có bằng chứng.",
+        "Hắn biết Thiên Bồng Nguyên Soái có liên hệ với Bát Giới nhưng chưa nói vì sợ Bát Giới bị tổn thương."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Tiết lộ nghi ngờ có kẻ trong đoàn tiếp tay cho yêu quái.",
+        "p2": "Thừa nhận đã thấy Bát Giới lén rời trại đêm qua nhưng không ngăn cản.",
+        "p3": "Muốn giết Bạch Cốt Tinh ngay, nhưng bị Đường Tăng ngăn cản.",
+        "p4": "Đánh hơi thấy mùi yêu khí trên người Bát Giới.",
+        "p5": "Tin tưởng sứ giả thiên đình, nhưng bắt đầu nghi ngờ khi thấy Bát Giới cười khẩy.",
+        "p6": "Giận dữ khi biết Sa Tăng theo dõi đoàn, nhưng đồng ý tạm tha.",
+        "p7": "Sẵn sàng chiến đấu với Thiên Bồng.",
+        "p8": "Chiến đấu bảo vệ đoàn, công nhận sự thay đổi của Bát Giới."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "bat-gioi",
+      "name": "Trư Bát Giới",
+      "role": "Nhị đồ đệ, Thiên Bồng Nguyên Soái đầu thai",
+      "avatarEmoji": "🐷",
+      "personality": "Tham ăn, ham gái đẹp nhưng thực ra có lòng tự trọng cao, sợ bị coi thường.",
+      "speechStyle": "Thô lỗ, hay pha trò, nhưng đôi khi lộ vẻ chua chát.",
+      "secrets": [
+        "Hắn tự nguyện đến gặp Bạch Cốt Tinh để đòi món nợ cũ (một phần ký ức của Thiên Bồng).",
+        "Hắn lấy trộm nửa kinh thư thật của Đường Tăng để đưa cho Bạch Cốt Tinh, nhưng sau đó hối hận."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Mất tích, không thể nói chuyện.",
+        "p3": "Bị giam trong hang Bạch Cốt Tinh, không thể nói chuyện.",
+        "p4": "Nói dối về việc bị bắt cóc, che giấu việc tự nguyện đến gặp Bạch Cốt Tinh.",
+        "p5": "Tiết lộ kẻ giả mạo lệnh Ngọc Hoàng là Thiên Bồng Nguyên Soái – tiền kiếp của hắn.",
+        "p6": "Lo lắng khi Sa Tăng bị phát hiện, sợ bí mật của mình cũng bị lộ.",
+        "p7": "Tuyên bố sẽ chống lại tiền kiếp của mình, đứng về phía đoàn thỉnh kinh.",
+        "p8": "Đối đầu với Thiên Bồng, khẳng định bản thân không phải hắn ta."
+      },
+      "unlockPhase": "p4"
+    },
+    {
+      "id": "sa-tang",
+      "name": "Sa Tăng",
+      "role": "Tam đồ đệ, cựu hầu cận của Thiên Bồng",
+      "avatarEmoji": "🧔",
+      "personality": "Trầm lặng, trung thành nhưng luôn sợ hãi quá khứ, dễ bị uy hiếp.",
+      "speechStyle": "Ít nói, giọng trầm, hay dùng từ 'thưa sư phụ', 'đệ tử'.",
+      "secrets": [
+        "Hắn từng là người hầu cận của Thiên Bồng Nguyên Soái trước khi bị đày xuống trần.",
+        "Thiên Bồng đã ép hắn theo dõi Đường Tăng và báo lại vị trí kinh thư thật, nếu không sẽ giết hắn."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Giấu việc Bát Giới từng nhắc đến món nợ cũ với yêu quái phương Bắc.",
+        "p3": "Không có mặt trong hang động, nhưng lo lắng cho Bát Giới.",
+        "p4": "Thừa nhận đã thấy Bát Giới lén lấy nửa kinh thư thật.",
+        "p5": "Im lặng, sợ bị phát hiện.",
+        "p6": "Thú nhận bị Thiên Bồng ép theo dõi đoàn.",
+        "p7": "Đứng về phía đoàn, giúp tìm ra vị trí kinh thư thật.",
+        "p8": "Bảo vệ Đường Tăng, được tha thứ."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "bach-cot-tinh",
+      "name": "Bạch Cốt Tinh",
+      "role": "Yêu quái xương trắng, người yêu cũ của Thiên Bồng",
+      "avatarEmoji": "💀",
+      "personality": "Lạnh lùng, thù dai nhưng thực ra khao khát được yêu thương và thừa nhận.",
+      "speechStyle": "Thì thầm, mỉa mai, hay dùng từ 'ngươi', 'bản cô nương'.",
+      "secrets": [
+        "Ả không chết hoàn toàn nhờ một nửa kinh thư thật mà Bát Giới đưa.",
+        "Ả muốn hồi sinh để trả thù Thiên Bồng vì đã bỏ rơi ả, nhưng sâu thẳm vẫn còn yêu hắn."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Chưa xuất hiện.",
+        "p3": "Giữ Bát Giới để đổi lấy một nửa kinh thư thật.",
+        "p4": "Không xuất hiện trực tiếp, nhưng Bát Giới nhắc đến ả.",
+        "p5": "Không xuất hiện.",
+        "p6": "Không xuất hiện.",
+        "p7": "Được Thiên Bồng nhắc đến là người hắn muốn hồi sinh.",
+        "p8": "Thừa nhận nỗi đau bắt nguồn từ sự phản bội của Thiên Bồng, được thuyết phục từ bỏ hận thù."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "thien-bong",
+      "name": "Thiên Bồng Nguyên Soái",
+      "role": "Thiên tướng sa đọa, tiền kiếp của Bát Giới",
+      "avatarEmoji": "⚡",
+      "personality": "Kiêu ngạo, cay đắng vì bị đày, mưu mô nhưng vẫn còn chút lương tri.",
+      "speechStyle": "Lớn tiếng, hay dùng từ 'bản soái', 'phàm nhân', 'trả giá'.",
+      "secrets": [
+        "Hắn giả mạo lệnh Ngọc Hoàng để đánh tráo kinh thư.",
+        "Hắn muốn dùng kinh thư thật để hồi sinh Bạch Cốt Tinh, người yêu cũ, vì hắn hối hận đã bỏ rơi ả."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Chưa xuất hiện.",
+        "p3": "Chưa xuất hiện.",
+        "p4": "Chưa xuất hiện.",
+        "p5": "Được Bát Giới tiết lộ là kẻ giả mạo lệnh Ngọc Hoàng.",
+        "p6": "Được Sa Tăng nhắc đến là kẻ đã ép buộc hắn.",
+        "p7": "Xuất hiện, thừa nhận đã đánh tráo kinh thư, tiết lộ nơi giấu nửa kinh thư thật còn lại.",
+        "p8": "Đối đầu với Bát Giới, bị thuyết phục hoặc bị đánh bại."
+      },
+      "unlockPhase": "p7"
+    },
+    {
+      "id": "su-gia-thien-dinh",
+      "name": "Sứ giả thiên đình",
+      "role": "Sứ giả của Ngọc Hoàng",
+      "avatarEmoji": "📜",
+      "personality": "Lịch sự nhưng lươn lẹo, luôn giữ vẻ mặt bí ẩn.",
+      "speechStyle": "Trang trọng, hay dùng từ 'thánh chỉ', 'bệ hạ', 'phàm trần'.",
+      "secrets": [
+        "Lệnh của Ngọc Hoàng mà hắn tuyên bố là giả, do Thiên Bồng giả mạo.",
+        "Hắn biết sự thật nhưng bị Thiên Bồng đe dọa nên phải diễn kịch."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Chưa xuất hiện.",
+        "p3": "Chưa xuất hiện.",
+        "p4": "Chưa xuất hiện.",
+        "p5": "Thừa nhận lệnh Ngọc Hoàng không có thật, do một kẻ khác trong thiên đình giả mạo.",
+        "p6": "Không xuất hiện.",
+        "p7": "Không xuất hiện.",
+        "p8": "Không xuất hiện."
+      },
+      "unlockPhase": "p5"
+    },
+    {
+      "id": "ngoc-hoang",
+      "name": "Ngọc Hoàng Đại Đế",
+      "role": "Chúa tể thiên đình",
+      "avatarEmoji": "👑",
+      "personality": "Uy nghiêm, xa cách, nhưng thực ra hay lo lắng về việc mất kiểm soát.",
+      "speechStyle": "Trang nghiêm, hay dùng từ 'trẫm', 'thiên đình', 'trật tự'.",
+      "secrets": [
+        "Ông biết Thiên Bồng giả mạo lệnh mình nhưng không can thiệp vì muốn thử thách đoàn thỉnh kinh.",
+        "Ông hối hận vì đã đày Thiên Bồng quá nặng tay."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Chưa xuất hiện.",
+        "p3": "Chưa xuất hiện.",
+        "p4": "Chưa xuất hiện.",
+        "p5": "Không xuất hiện trực tiếp, nhưng sứ giả nhắc đến.",
+        "p6": "Chưa xuất hiện.",
+        "p7": "Chưa xuất hiện.",
+        "p8": "Chưa xuất hiện."
+      },
+      "unlockPhase": "p6"
+    },
+    {
+      "id": "quan-am",
+      "name": "Quan Âm Bồ Tát",
+      "role": "Bồ Tát hộ mệnh của đoàn thỉnh kinh",
+      "avatarEmoji": "🪷",
+      "personality": "Từ bi, thấu hiểu nhưng đôi khi bí ẩn, không can thiệp trực tiếp.",
+      "speechStyle": "Nhẹ nhàng, dùng nhiều ẩn dụ, hay nói 'thiện tai', 'nhân quả'.",
+      "secrets": [
+        "Bà biết trước việc kinh thư bị đánh tráo nhưng không ngăn cản vì đó là một phần thử thách.",
+        "Bà là người đã gợi ý cho Đường Tăng giấu nửa kinh thư thật."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Chưa xuất hiện.",
+        "p3": "Chưa xuất hiện.",
+        "p4": "Chưa xuất hiện.",
+        "p5": "Chưa xuất hiện.",
+        "p6": "Chưa xuất hiện.",
+        "p7": "Chưa xuất hiện.",
+        "p8": "Xuất hiện sau khi kinh thư được phục hồi, tiết lộ bà đã biết trước mọi chuyện và khuyên Đường Tăng giấu kinh thư."
+      },
+      "unlockPhase": "p8"
+    },
+    {
+      "id": "nguu-ma-vuong",
+      "name": "Ngưu Ma Vương",
+      "role": "Yêu quái phương Bắc, chủ nợ cũ của Bát Giới",
+      "avatarEmoji": "🐂",
+      "personality": "Hào sảng, trọng nghĩa khí nhưng nóng tính và thù dai.",
+      "speechStyle": "To tiếng, hay dùng từ 'lão Ngưu', 'huynh đệ', 'nợ máu'.",
+      "secrets": [
+        "Hắn là người đã giới thiệu Bát Giới với Bạch Cốt Tinh để đòi món nợ cũ.",
+        "Hắn biết Thiên Bồng và Bạch Cốt Tinh từng là một cặp."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Được nhắc đến qua mảnh vải đen dấu hiệu yêu quái phương Bắc.",
+        "p3": "Chưa xuất hiện.",
+        "p4": "Chưa xuất hiện.",
+        "p5": "Chưa xuất hiện.",
+        "p6": "Chưa xuất hiện.",
+        "p7": "Chưa xuất hiện.",
+        "p8": "Chưa xuất hiện."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "tieu-bach-long",
+      "name": "Tiểu Bạch Long",
+      "role": "Bạch Long Mã, con trai Long Vương",
+      "avatarEmoji": "🐉",
+      "personality": "Trẻ trung, nhiệt tình nhưng hay do dự, sợ trách nhiệm.",
+      "speechStyle": "Hồn nhiên, hay dùng từ 'tại hạ', 'thưa các vị'.",
+      "secrets": [
+        "Hắn chứng kiến Bát Giới lén lấy kinh thư nhưng không dám nói ra vì sợ bị đuổi khỏi đoàn.",
+        "Hắn biết Đường Tăng giấu nửa kinh thư thật ở đâu."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Chưa xuất hiện.",
+        "p3": "Chưa xuất hiện.",
+        "p4": "Chưa xuất hiện.",
+        "p5": "Chưa xuất hiện.",
+        "p6": "Chưa xuất hiện.",
+        "p7": "Chưa xuất hiện.",
+        "p8": "Chưa xuất hiện."
+      },
+      "unlockPhase": "p7"
+    },
+    {
+      "id": "kim-giac-dai-vuong",
+      "name": "Kim Giác Đại Vương",
+      "role": "Yêu quái giữ động Liên Hoa, anh em kết nghĩa của Ngưu Ma Vương",
+      "avatarEmoji": "👹",
+      "personality": "Xảo quyệt, tham lam nhưng sợ vợ, luôn tìm cách trục lợi.",
+      "speechStyle": "Nham hiểm, hay dùng từ 'bản vương', 'của quý', 'giao dịch'.",
+      "secrets": [
+        "Hắn giữ một phần kinh thư giả mà Thiên Bồng đưa để đổi lấy bảo vật.",
+        "Hắn biết vị trí hang ổ của Bạch Cốt Tinh."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Chưa xuất hiện.",
+        "p3": "Chưa xuất hiện.",
+        "p4": "Chưa xuất hiện.",
+        "p5": "Chưa xuất hiện.",
+        "p6": "Chưa xuất hiện.",
+        "p7": "Chưa xuất hiện.",
+        "p8": "Chưa xuất hiện."
+      },
+      "unlockPhase": "p8"
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "title": "Phát hiện kinh giả",
+      "narration": "Ngươi là một lữ khách tình cờ gặp đoàn thỉnh kinh trên đường về Trường An. Kinh thư vừa mở ra đã hóa thành tro bụi, chỉ còn một mảnh giấy ghi dòng chữ yêu ma: 'Kẻ phản bội sẽ trả giá'. Tam Tạng hoảng hốt, Ngộ Không nghi ngờ có kẻ đứng sau. Ngươi quyết định giúp họ tìm ra sự thật.",
+      "objective": "Nói chuyện với Đường Tăng và Tôn Ngộ Không để tìm hiểu về nghi ngờ kẻ phản bội trong đoàn.",
+      "completionCriteria": "Người chơi đã nghe Đường Tăng thừa nhận kinh thư có thể đã bị đánh tráo từ trước khi về đến Trường An, và Ngộ Không tiết lộ rằng hắn nghi ngờ có kẻ trong đoàn đã tiếp tay cho yêu quái.",
+      "hint": "Hãy hỏi thẳng Đường Tăng về lần mở kinh thư đầu tiên, và Ngộ Không về những kẻ khả nghi."
+    },
+    {
+      "id": "p2",
+      "title": "Bát Giới biến mất",
+      "narration": "Sáng hôm sau, Bát Giới không còn ở trại. Trong chăn của hắn có một mảnh vải đen thêu hình đầu lợn rừng – dấu hiệu của yêu quái phương Bắc. Sa Tăng lo lắng, Ngộ Không cười nhạt. Ngươi cần tìm manh mối trước khi quá muộn.",
+      "objective": "Điều tra sự mất tích của Bát Giới bằng cách nói chuyện với Sa Tăng và Ngộ Không, đồng thời tìm dấu vết của yêu quái phương Bắc.",
+      "completionCriteria": "Người chơi đã biết Sa Tăng giấu việc Bát Giới từng nhắc đến một 'món nợ cũ' với yêu quái phương Bắc, và Ngộ Không thừa nhận đã thấy Bát Giới lén lút rời trại đêm qua nhưng không ngăn cản.",
+      "hint": "Sa Tăng có vẻ giấu giếm điều gì đó về Bát Giới. Hãy hỏi Ngộ Không về đêm qua."
+    },
+    {
+      "id": "p3",
+      "title": "Hang động Bạch Cốt",
+      "narration": "Một luồng yêu khí dẫn ngươi đến hang động của Bạch Cốt Tinh – kẻ tưởng đã bị Ngộ Không đánh chết. Ả ta vẫn tồn tại, và tiết lộ rằng Bát Giới đang ở trong tay ả, nhưng ả muốn trao đổi. Ngộ Không nổi giận đòi giết ả ngay, còn Đường Tăng muốn nghe ngóng.",
+      "objective": "Thương lượng với Bạch Cốt Tinh để biết điều kiện thả Bát Giới, đồng thời xoa dịu căng thẳng giữa Ngộ Không và Đường Tăng.",
+      "completionCriteria": "Người chơi đã nghe Bạch Cốt Tinh nói rằng ả giữ Bát Giới để đổi lấy 'một nửa kinh thư thật', và Đường Tăng thừa nhận ông đã giấu một nửa kinh thư thật trước khi bị đánh tráo.",
+      "hint": "Bạch Cốt Tinh không muốn giết Bát Giới – ả muốn thứ gì đó. Hãy hỏi Đường Tăng về số kinh thư thật."
+    },
+    {
+      "id": "p4",
+      "title": "Bát Giới trở về",
+      "narration": "Bát Giới được thả, nhưng hắn thay đổi: ánh mắt lạnh lùng, lời nói dối trá. Hắn khẳng định mình bị bắt cóc, nhưng Ngộ Không đã đánh hơi thấy mùi yêu khí trên người hắn. Sa Tăng im lặng, còn Đường Tăng tỏ ra nghi ngờ. Ngươi phải tìm ra sự thật.",
+      "objective": "Tra hỏi Bát Giới về thời gian bị giam, kiểm tra lời khai của hắn với Sa Tăng và Ngộ Không.",
+      "completionCriteria": "Người chơi đã phát hiện Bát Giới nói dối về việc bị bắt cóc (hắn thừa nhận đã tự nguyện đến gặp Bạch Cốt Tinh để đòi món nợ), và Sa Tăng thừa nhận đã thấy Bát Giới lén lấy một nửa kinh thư thật trước khi biến mất.",
+      "hint": "Hãy hỏi Bát Giới về món nợ với Bạch Cốt Tinh. Sa Tăng có thể biết nhiều hơn hắn nói."
+    },
+    {
+      "id": "p5",
+      "title": "Thiên đình can thiệp",
+      "narration": "Một sứ giả thiên đình xuất hiện, tuyên bố kinh thư giả là do Ngọc Hoàng ra lệnh để thử thách lòng trung thành của đoàn thỉnh kinh. Nhưng sứ giả có vẻ che giấu điều gì. Ngộ Không tin ngay, Đường Tăng do dự, Bát Giới cười khẩy. Ngươi cần tìm ra động cơ thật sự.",
+      "objective": "Nói chuyện với sứ giả thiên đình để làm rõ lệnh của Ngọc Hoàng, đồng thời thăm dò phản ứng của Ngộ Không và Bát Giới.",
+      "completionCriteria": "Người chơi đã nghe sứ giả thừa nhận lệnh của Ngọc Hoàng không hề có thật, mà do một kẻ khác trong thiên đình giả mạo, và Bát Giới tiết lộ rằng kẻ đó chính là Thiên Bồng Nguyên Soái – người tiền kiếp của hắn.",
+      "hint": "Sứ giả thiên đình không đáng tin. Hãy hỏi Bát Giới về quá khứ của hắn ở thiên đình."
+    },
+    {
+      "id": "p6",
+      "title": "Quá khứ của Sa Tăng",
+      "narration": "Một bức thư cũ rơi ra từ hành lý của Sa Tăng, tiết lộ hắn từng là người hầu cận của Thiên Bồng Nguyên Soái trước khi bị đày xuống trần. Sa Tăng hoảng sợ, thú nhận mình bị ép phải theo dõi đoàn. Ngộ Không giận dữ, Đường Tăng đau lòng. Ngươi phải quyết định có tin Sa Tăng hay không.",
+      "objective": "Thuyết phục Sa Tăng khai ra kẻ đã ép buộc hắn, và xoa dịu Ngộ Không để không đuổi Sa Tăng.",
+      "completionCriteria": "Người chơi đã nghe Sa Tăng thừa nhận Thiên Bồng Nguyên Soái ép hắn theo dõi Đường Tăng và báo lại vị trí kinh thư thật, và Ngộ Không đồng ý tạm tha cho Sa Tăng với điều kiện hắn phải giúp tìm ra kẻ chủ mưu.",
+      "hint": "Sa Tăng sợ hãi nhưng không phải kẻ xấu. Hãy hỏi hắn về người đã ép buộc hắn."
+    },
+    {
+      "id": "p7",
+      "title": "Đối mặt Thiên Bồng",
+      "narration": "Thiên Bồng Nguyên Soái xuất hiện, thừa nhận đã đánh tráo kinh thư để trả thù việc bị đày xuống trần. Hắn muốn dùng kinh thư thật để hồi sinh Bạch Cốt Tinh, người yêu cũ của hắn. Bát Giới phản đối kịch liệt, vì hắn chính là hậu kiếp của Thiên Bồng và không muốn sống trong bóng tối của quá khứ. Ngộ Không sẵn sàng đánh, Đường Tăng muốn thuyết phục.",
+      "objective": "Đàm phán với Thiên Bồng Nguyên Soái, khai thác mâu thuẫn giữa hắn và Bát Giới để tìm cách lấy lại kinh thư thật.",
+      "completionCriteria": "Người chơi đã khiến Thiên Bồng Nguyên Soái tiết lộ nơi giấu nửa kinh thư thật còn lại, và Bát Giới tuyên bố sẽ đứng về phía đoàn thỉnh kinh chống lại tiền kiếp của mình.",
+      "hint": "Thiên Bồng và Bát Giới là một. Hãy khai thác nỗi sợ của Bát Giới về việc bị tiền kiếp chi phối."
+    },
+    {
+      "id": "p8",
+      "title": "Kinh thư phục hồi",
+      "narration": "Với vị trí kinh thư thật được tiết lộ, đoàn thỉnh kinh phải đối mặt với Bạch Cốt Tinh lần cuối. Ả ta đã hồi sinh nhờ một nửa kinh thư, và giờ muốn đoạt nốt nửa còn lại. Ngộ Không chiến đấu, Sa Tăng bảo vệ Đường Tăng, Bát Giới đối đầu với chính tiền kiếp của mình. Ngươi là người đưa ra lời cuối cùng để hàn gắn hoặc chia rẽ.",
+      "objective": "Thuyết phục Bạch Cốt Tinh từ bỏ hận thù, hoặc giúp đoàn thỉnh kinh đánh bại ả bằng cách đoàn kết các thành viên.",
+      "completionCriteria": "Người chơi đã khiến Bạch Cốt Tinh thừa nhận nỗi đau của ả bắt nguồn từ sự phản bội của Thiên Bồng, và Đường Tăng tuyên bố tha thứ cho Sa Tăng và Bát Giới, qua đó đoàn thỉnh kinh được hàn gắn và kinh thư thật được phục hồi.",
+      "hint": "Bạch Cốt Tinh không chỉ muốn trả thù – ả muốn được thừa nhận. Hãy nói về sự tha thứ."
+    }
+  ]
+}

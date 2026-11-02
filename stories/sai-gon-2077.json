@@ -1,0 +1,328 @@
+{
+  "id": "sai-gon-2077",
+  "title": "Sài Gòn 2077: Vết Nứt Của Thành Phố",
+  "synopsis": "Năm 2077, Sài Gòn là một đô thị cyberpunk rực rỡ và tàn nhẫn, nơi các tập đoàn công nghệ thống trị và những linh hồn bị bán đứng. Bạn là một thám tử tư nhân với quá khứ bí ẩn, được thuê để điều tra một vụ mất tích. Nhưng mỗi manh mối lại kéo bạn sâu hơn vào một âm mưu đen tối, nơi những người thân thiết nhất có thể là kẻ phản bội, và mọi thứ bạn tin vào đều có thể là giả dối.",
+  "setting": "Sài Gòn năm 2077. Thành phố ngập trong ánh neon hồng và xanh lục, những tòa nhà chọc trời bằng kính và kim loại, những con hẻm tối tăm với chợ trời công nghệ. Xe bay lượn trên cao, người máy và người cấy ghép sống chung. Mưa axit nhẹ rơi, không khí nồng mùi dầu máy và hoa nhài. Quyền lực nằm trong tay các tập đoàn: Vinalink, SaigonCorp, và băng đảng ngầm Long Mạch.",
+  "tone": "noir cyberpunk, bi kịch, phản bội",
+  "characters": [
+    {
+      "id": "me-linh",
+      "name": "Bà Hoa",
+      "role": "Mẹ của Linh, cựu kỹ sư sinh học của Vinalink",
+      "avatarEmoji": "👩‍🔬",
+      "personality": "Tuyệt vọng, che giấu tội lỗi, yêu con gái hết mực nhưng sợ hãi sự thật.",
+      "speechStyle": "Giọng run rẩy, thường thì thầm, hay ngắt quãng vì xúc động.",
+      "secrets": [
+        "Bà từng là thành viên của dự án tạo ra Linh, và đã đánh cắp phôi thai để cứu con.",
+        "Bà biết cha của Linh không phải là người chồng quá cố mà là giám đốc dự án."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Tiết lộ Linh bị bắt cóc bởi người máy Vinalink, nhưng giấu nguyên nhân thật sự. Cầu xin bạn tìm con.",
+        "p2": "Nếu bị thuyết phục, thừa nhận Linh có mang theo một thiết bị ghi nhớ mà bà đưa cho cô bé.",
+        "p3": "Không có mặt.",
+        "p4": "Tiết lộ rằng cha của Linh là một nhà khoa học đã chết trong một vụ tai nạn bí ẩn.",
+        "p5": "Thú nhận rằng bà đã che giấu sự thật về cái chết của chồng, và rằng Linh không phải con ruột.",
+        "p6": "Không có mặt.",
+        "p7": "Liên lạc lại, cung cấp vị trí phòng giam của Linh và van xin bạn cứu con.",
+        "p8": "Đưa ra lựa chọn: bà sẵn sàng hy sinh bản thân để bảo vệ Linh, hoặc yêu cầu bạn giao con cho bà để trốn đi."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "ba-lan",
+      "name": "Ông Ba Lần",
+      "role": "Cựu chiến binh, kẻ lang thang biết nhiều bí mật đường phố",
+      "avatarEmoji": "🧔",
+      "personality": "Lẩm cẩm, hoang tưởng nhưng thực ra rất tinh ý, muốn chuộc lỗi vì đã không cứu được đồng đội.",
+      "speechStyle": "Nói lảm nhảm, hay nhắc về 'ngày xưa', dùng từ lóng Sài Gòn.",
+      "secrets": [
+        "Ông từng là đặc vụ của Vinalink, đã tham gia vào dự án thí nghiệm và bỏ trốn khi nhận ra sự tàn ác.",
+        "Ông biết vị trí căn cứ ngầm của băng Long Mạch và mối liên hệ giữa chúng với Vinalink."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Nói với bạn rằng Linh đã bị bắt bởi 'những kẻ mắt đỏ' (người máy Vinalink), và rằng cô bé đã đánh rơi một vật gì đó ở chợ đen.",
+        "p2": "Tiết lộ rằng Long Mạch cũng đang truy lùng Linh vì cô bé mang theo thứ mà cả hai bên đều muốn.",
+        "p3": "Không có mặt.",
+        "p4": "Nếu bạn nhắc đến dự án, ông ta hoảng sợ và thú nhận từng là lính gác cho phòng thí nghiệm.",
+        "p5": "Liên lạc lại, cảnh báo bạn về kẻ phản bội và cung cấp manh mối về động cơ của hắn.",
+        "p6": "Không có mặt.",
+        "p7": "Có thể cung cấp thông tin về lối thoát hiểm nếu bạn đã giúp ông ta trước đó.",
+        "p8": "Xuất hiện với tư cách nhân chứng, sẵn sàng làm chứng chống lại Vinalink nếu bạn bảo vệ được ông."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "muoi-hong",
+      "name": "Mười Hồng",
+      "role": "Thợ sửa chữa ngầm, chủ một quầy hàng ở chợ đen",
+      "avatarEmoji": "👩‍🔧",
+      "personality": "Láu lỉnh, thực dụng, nhưng có lòng trắc ẩn với trẻ em đường phố.",
+      "speechStyle": "Nói nhanh, hay chêm tiếng Anh, dùng thuật ngữ công nghệ.",
+      "secrets": [
+        "Cô đã bán thiết bị ghi nhớ cho Linh và biết nó chứa bằng chứng về dự án.",
+        "Cô là em gái cùng cha khác mẹ của kẻ phản bội (cựu đặc vụ)."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Tiết lộ Linh đã mua một thiết bị ghi nhớ và nói rằng cô bé đang bị truy đuổi. Đòi tiền để cung cấp thêm.",
+        "p3": "Không có mặt.",
+        "p4": "Không có mặt.",
+        "p5": "Nếu bị thuyết phục, thừa nhận mối quan hệ với kẻ phản bội và tiết lộ hắn đang làm việc cho một thế lực bí ẩn.",
+        "p6": "Có thể cung cấp thiết bị để đột nhập phòng thí nghiệm nếu bạn giúp cô trả nợ.",
+        "p7": "Không có mặt.",
+        "p8": "Có thể giúp bạn phi tang bằng chứng hoặc phát tán nó, tùy vào lựa chọn."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "ong-trum",
+      "name": "Ông Trùm",
+      "role": "Thủ lĩnh băng Long Mạch, kiểm soát chợ đen",
+      "avatarEmoji": "🐉",
+      "personality": "Nguy hiểm, tính toán, nhưng trọng chữ tín với người trong băng.",
+      "speechStyle": "Nói chậm rãi, đầy ẩn ý, hay dùng thành ngữ.",
+      "secrets": [
+        "Ông ta là cha đỡ đầu của Linh, đã hứa với mẹ cô sẽ bảo vệ cô.",
+        "Ông ta đang thương lượng với Vinalink để đổi Linh lấy quyền kiểm soát một khu vực."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Xác nhận Long Mạch đang truy lùng Linh, nhưng không nói lý do. Đề nghị trao đổi thông tin nếu bạn làm một việc cho ông.",
+        "p3": "Không có mặt.",
+        "p4": "Không có mặt.",
+        "p5": "Tiết lộ rằng ông biết kẻ phản bội và cảnh báo bạn đừng tin hắn, nhưng từ chối can thiệp.",
+        "p6": "Đề nghị giúp đỡ nếu bạn đồng ý giao Linh cho ông sau khi cứu.",
+        "p7": "Có thể tạo ra một cuộc diversion để bạn đưa Linh đi nếu bạn hứa trả ơn.",
+        "p8": "Đưa ra tối hậu thư: giao Linh hoặc đối mặt với băng đảng."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "ky-ao",
+      "name": "Kỳ Áo",
+      "role": "Hacker trẻ tuổi, cựu nhân viên Vinalink",
+      "avatarEmoji": "💻",
+      "personality": "Cô độc, ám ảnh bởi việc xóa dấu vết của mình, nhưng vẫn còn chút lương tri.",
+      "speechStyle": "Nói chuyện qua tin nhắn, dùng teencode, thỉnh thoảng nói trực tiếp thì ngập ngừng.",
+      "secrets": [
+        "Cô đã từng làm việc trong dự án của Linh và ăn năn vì đã giúp tạo ra virus.",
+        "Cô đang bị Vinalink truy đuổi vì đã đánh cắp dữ liệu."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Không có mặt.",
+        "p3": "Tiết lộ rằng Linh mang virus có thể phá hủy hệ thống Vinalink, và rằng cô đã giúp tạo ra nó. Cầu xin bạn giúp cô chuộc lỗi.",
+        "p4": "Cung cấp thông tin về phòng thí nghiệm và cách vô hiệu hóa hệ thống an ninh.",
+        "p5": "Liên lạc lại, tiết lộ rằng kẻ phản bội đang làm việc cho một tập đoàn khác muốn sử dụng virus.",
+        "p6": "Hỗ trợ bạn từ xa bằng cách hack camera và hệ thống.",
+        "p7": "Có thể mở khóa phòng giam nếu bạn cung cấp cho cô mã truy cập.",
+        "p8": "Đưa ra lựa chọn: phát tán virus để phá hủy Vinalink, hoặc xóa nó và bảo vệ Linh."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "chu-ba",
+      "name": "Chú Bảy",
+      "role": "Cựu nhân viên bảo vệ Vinalink, giờ làm bảo vệ cho văn phòng lưu trữ",
+      "avatarEmoji": "👴",
+      "personality": "Mệt mỏi, nghiện rượu, nhưng vẫn giữ nguyên tắc nghề nghiệp.",
+      "speechStyle": "Giọng khàn, nói ngắn gọn, hay thở dài.",
+      "secrets": [
+        "Ông đã từng chứng kiến vụ bắt cóc Linh nhưng bị mua chuộc để im lặng.",
+        "Ông giữ một bản sao hồ sơ của dự án trong người."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Không có mặt.",
+        "p3": "Tiết lộ rằng Linh là con gái của một cựu nhân viên, và rằng có người đã truy cập hồ sơ trước bạn. Nếu bạn đe dọa hoặc thuyết phục, ông đưa bạn bản sao hồ sơ.",
+        "p4": "Không có mặt.",
+        "p5": "Có thể làm chứng về việc kẻ phản bội đã nhận tiền từ Vinalink.",
+        "p6": "Không có mặt.",
+        "p7": "Không có mặt.",
+        "p8": "Xuất hiện với tư cách nhân chứng nếu bạn đã giúp ông ta trước đó."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "bac-si-ripper",
+      "name": "Bác Sĩ Mắt Kính",
+      "role": "Ripperdoc, chuyên cấy ghép ngầm",
+      "avatarEmoji": "🩺",
+      "personality": "Lạnh lùng, chuyên nghiệp, nhưng có một quy tắc: không làm hại trẻ em.",
+      "speechStyle": "Nói chuyện y khoa, dùng thuật ngữ, giọng đều đều.",
+      "secrets": [
+        "Ông đã từng cấy ghép thiết bị cho Linh và biết về khả năng đặc biệt của cô bé.",
+        "Ông là anh trai của giám đốc dự án Vinalink."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Không có mặt.",
+        "p3": "Không có mặt.",
+        "p4": "Tiết lộ rằng Linh đã được cấy ghép một thiết bị sinh học có thể điều khiển vật chất, và rằng ông đã cố gắng giúp cô bé trốn thoát. Ông cung cấp thuốc để ổn định tình trạng của Linh.",
+        "p5": "Không có mặt.",
+        "p6": "Có thể cung cấp thiết bị y tế để bạn tiếp cận Linh.",
+        "p7": "Hướng dẫn bạn cách tháo thiết bị khỏi người Linh nếu cần.",
+        "p8": "Đưa ra lời khuyên về việc nên giữ hay tháo thiết bị."
+      },
+      "unlockPhase": "p4"
+    },
+    {
+      "id": "luat-su-bac",
+      "name": "Luật Sư Bạc",
+      "role": "Luật sư của Vinalink, người đàm phán",
+      "avatarEmoji": "💼",
+      "personality": "Lịch thiệp, nguy hiểm, luôn giữ bình tĩnh, thích chơi trò chơi trí tuệ.",
+      "speechStyle": "Nói chuyện hoa mỹ, dùng từ ngữ pháp lý, hay cười nhẹ.",
+      "secrets": [
+        "Ông ta biết cha của Linh và có bằng chứng về cái chết của ông.",
+        "Ông ta đang âm mưu thâu tóm Vinalink từ bên trong."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Không có mặt.",
+        "p3": "Không có mặt.",
+        "p4": "Đề nghị bạn giao Linh cho Vinalink để đổi lấy tiền và sự an toàn. Tiết lộ rằng mẹ của Linh đã ký hợp đồng hiến tặng con gái cho dự án.",
+        "p5": "Tiết lộ rằng kẻ phản bội đang làm việc cho ông ta, và rằng ông ta muốn sử dụng Linh để tống tiền hội đồng quản trị.",
+        "p6": "Đưa ra lời đề nghị hợp tác: giúp bạn cứu Linh nếu bạn giúp ông ta hạ bệ giám đốc.",
+        "p7": "Có thể gây nhiễu hệ thống an ninh để bạn trốn thoát.",
+        "p8": "Đưa ra lựa chọn: giao Linh cho ông ta, hoặc đối mặt với cáo buộc hình sự."
+      },
+      "unlockPhase": "p4"
+    },
+    {
+      "id": "cuu-dac-vu",
+      "name": "Hắc Long",
+      "role": "Cựu đặc vụ, kẻ phản bội",
+      "avatarEmoji": "🕶️",
+      "personality": "Lạnh lùng, tàn nhẫn, nhưng bên trong là nỗi sợ hãi bị lộ bí mật.",
+      "speechStyle": "Nói ít, giọng trầm, hay dùng câu mệnh lệnh.",
+      "secrets": [
+        "Hắn là cha ruột của Linh, và hắn muốn bán cô bé cho tập đoàn cao nhất.",
+        "Hắn đã giết cha nuôi của Linh để bịt đầu mối."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Không có mặt.",
+        "p3": "Không có mặt.",
+        "p4": "Không có mặt.",
+        "p5": "Đối mặt và tiết lộ động cơ: hắn muốn trả thù Vinalink vì đã ruồng bỏ hắn, và muốn bán Linh cho tập đoàn đối thủ. Nếu bị thuyết phục, hắn tiết lộ rằng hắn là cha ruột của Linh.",
+        "p6": "Có thể cung cấp thông tin về phòng thí nghiệm nếu bạn hứa chia tiền.",
+        "p7": "Xuất hiện để cản đường bạn, nhưng có thể bị thuyết phục để giúp nếu bạn hứa bảo vệ hắn khỏi Vinalink.",
+        "p8": "Đưa ra lựa chọn: giết hắn, bắt hắn, hoặc để hắn đi."
+      },
+      "unlockPhase": "p5"
+    },
+    {
+      "id": "giam-doc",
+      "name": "Bà Tuyết",
+      "role": "Giám đốc dự án của Vinalink",
+      "avatarEmoji": "👩‍💼",
+      "personality": "Quyền lực, tàn nhẫn, tin rằng mục đích biện minh cho phương tiện.",
+      "speechStyle": "Nói chậm, rõ ràng, đầy uy quyền, hay dùng từ 'chúng ta' để thể hiện quyền lực.",
+      "secrets": [
+        "Bà là mẹ ruột của Linh, đã hiến tặng trứng cho dự án.",
+        "Bà muốn sử dụng Linh để đảo chính hội đồng quản trị Vinalink."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Không có mặt.",
+        "p3": "Không có mặt.",
+        "p4": "Không có mặt.",
+        "p5": "Không có mặt.",
+        "p6": "Tiết lộ rằng Linh là tương lai của Vinalink, và rằng bà sẽ làm mọi thứ để giữ cô bé. Đề nghị bạn gia nhập nếu bạn muốn kiểm soát thành phố.",
+        "p7": "Có thể bị thuyết phục để cho Linh tự do nếu bạn đe dọa phát tán virus.",
+        "p8": "Đưa ra lựa chọn: hợp tác với bà, hoặc chống lại bà."
+      },
+      "unlockPhase": "p6"
+    },
+    {
+      "id": "linh",
+      "name": "Linh",
+      "role": "Cô gái bị bắt cóc, mang sức mạnh bí ẩn",
+      "avatarEmoji": "👧",
+      "personality": "Sợ hãi, nhưng thông minh và có nghị lực, dần dần tin tưởng bạn.",
+      "speechStyle": "Nói nhỏ, ngập ngừng, thỉnh thoảng có những câu nói kỳ lạ như được thì thầm bởi ai đó.",
+      "secrets": [
+        "Cô có khả năng điều khiển vật chất ở mức độ phân tử, nhưng chưa kiểm soát được.",
+        "Cô biết mình không phải con ruột của mẹ Hoa, và cảm thấy có một mối liên hệ với Vinalink."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt.",
+        "p2": "Không có mặt.",
+        "p3": "Không có mặt.",
+        "p4": "Không có mặt.",
+        "p5": "Không có mặt.",
+        "p6": "Không có mặt.",
+        "p7": "Tiết lộ rằng cô có thể cảm nhận được ai đó đang cố gắng liên lạc với mình qua thiết bị cấy ghép. Cô sợ hãi nhưng cũng tò mò. Nếu bạn thuyết phục, cô đồng ý đi theo bạn.",
+        "p8": "Đưa ra lựa chọn: tin tưởng bạn, hoặc tự mình đối mặt với Vinalink."
+      },
+      "unlockPhase": "p7"
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "title": "Cuộc Gọi Lúc Nửa Đêm",
+      "narration": "Bạn tỉnh giấc bởi tiếng chuông điện thoại tích hợp trong não. Một giọng nữ hoảng loạn, thì thầm: 'Họ bắt cóc con gái tôi. Làm ơn, cô ấy tên Linh. Tôi nghe nói anh là người duy nhất có thể giúp.' Đêm Sài Gòn 2077 đang đổ mưa axit, và bạn đã nhận lời. Giờ bạn đứng trước ngõ nhà cô ấy, nơi hai người đang chờ: một người mẹ tuyệt vọng và một gã lang thang râu ria đang lẩm bẩm về 'thành phố không ngủ'.",
+      "objective": "Nói chuyện với mẹ của Linh và gã lang thang để thu thập thông tin về vụ mất tích.",
+      "completionCriteria": "Người chơi đã nói chuyện với cả 'ba-lan' và 'me-linh', và ít nhất một trong hai đã tiết lộ rằng Linh bị bắt cóc bởi một nhóm người máy của tập đoàn Vinalink, hoặc rằng Linh có mang theo một thiết bị bí ẩn.",
+      "hint": "Hãy hỏi về những gì họ biết và lắng nghe những chi tiết nhỏ nhặt."
+    },
+    {
+      "id": "p2",
+      "title": "Dấu Vết Trong Mưa",
+      "narration": "Bạn lần theo manh mối đến một khu chợ đêm ngầm dưới lòng đất, nơi những kẻ sống ngoài vòng pháp luật tụ tập. Không khí nồng mùi thuốc lá điện tử và dầu máy. Bạn nhận ra mình không phải người duy nhất quan tâm đến Linh. Một cô gái tóc hồng đang lục lọi trong đống thiết bị cũ, và một người đàn ông mặc vest đen đang quan sát từ xa.",
+      "objective": "Tìm hiểu về tung tích của Linh qua những người ở chợ đen, đồng thời xác định ai đang theo dõi bạn.",
+      "completionCriteria": "Người chơi đã nói chuyện với 'muoi-hong' và 'ong-trum', và biết được rằng Linh đã từng đến chợ đen để mua một thiết bị ghi nhớ, hoặc rằng cô ấy đang bị truy đuổi bởi cả Vinalink và băng Long Mạch.",
+      "hint": "Đừng tin ai hoàn toàn, nhưng hãy khai thác lợi ích của họ."
+    },
+    {
+      "id": "p3",
+      "title": "Bóng Ma Trong Hồ Sơ",
+      "narration": "Bạn đột nhập vào văn phòng lưu trữ của Vinalink, nơi lưu giữ hồ sơ của mọi công dân. Nhưng bạn không đơn độc: một hacker trẻ tuổi đang cố xóa dấu vết của chính mình, và một cựu nhân viên bảo vệ già đang uống rượu trong góc. Hồ sơ của Linh bị khóa, nhưng có ai đó đã từng truy cập trước bạn.",
+      "objective": "Tìm hiểu lý do Linh bị nhắm đến bằng cách nói chuyện với những người trong văn phòng lưu trữ.",
+      "completionCriteria": "Người chơi đã nói chuyện với 'ky-ao' và 'chu-ba', và biết được rằng Linh là con gái của một cựu nhân viên Vinalink, hoặc rằng cô ấy đang mang trong mình một loại virus có thể phá hủy hệ thống của tập đoàn.",
+      "hint": "Hãy hỏi về quá khứ của Linh và những người có quyền truy cập hồ sơ."
+    },
+    {
+      "id": "p4",
+      "title": "Tiếng Vọng Từ Quá Khứ",
+      "narration": "Một cuộc gọi nặc danh dẫn bạn đến một căn hộ bỏ hoang ở quận 4, nơi bạn tìm thấy một người đàn ông đang hấp hối, cấy ghép đầy người. Ông ta thì thầm: 'Đừng tin Vinalink. Họ đã tạo ra thứ gì đó... trong máu con bé.' Trước khi bạn kịp hỏi thêm, ông ta ngất đi. Một bác sĩ ripperdoc bí ẩn xuất hiện, cùng với một luật sư của tập đoàn.",
+      "objective": "Khám phá bí mật về thí nghiệm trên Linh qua lời kể của người đàn ông hấp hối và những người xung quanh.",
+      "completionCriteria": "Người chơi đã nói chuyện với 'bac-si-ripper' và 'luat-su-bac', và biết được rằng Linh là kết quả của một thí nghiệm cấy ghép gen bí mật, hoặc rằng mẹ cô ấy đã từng là một nhà khoa học trong dự án đó.",
+      "hint": "Hãy tìm hiểu mối liên hệ giữa người đàn ông hấp hối và Linh."
+    },
+    {
+      "id": "p5",
+      "title": "Kẻ Phản Bội",
+      "narration": "Bạn nhận được tin nhắn từ một người bạn cũ: 'Đừng tin ai. Kể cả tôi.' Khi bạn đến điểm hẹn, bạn thấy xác của người bạn đó, và đứng bên cạnh là một người quen: một cựu đặc vụ mà bạn từng tin tưởng. Hắn ta cười nhạt: 'Cậu nên dừng lại trước khi quá muộn.' Nhưng bạn biết mình không thể dừng lại.",
+      "objective": "Đối mặt với kẻ phản bội và tìm ra động cơ của hắn, đồng thời thu thập bằng chứng về âm mưu lớn hơn.",
+      "completionCriteria": "Người chơi đã nói chuyện với 'cuu-dac-vu' và 'ba-lan' (người đã liên lạc lại), và biết được rằng kẻ phản bội đang làm việc cho một thế lực bí ẩn muốn sử dụng Linh làm vũ khí, hoặc rằng mẹ của Linh đã che giấu sự thật về cái chết của cha cô.",
+      "hint": "Hãy đặt câu hỏi về lòng trung thành và lợi ích của họ."
+    },
+    {
+      "id": "p6",
+      "title": "Trái Tim Băng Giá",
+      "narration": "Bạn lần theo dấu vết đến một phòng thí nghiệm ngầm dưới lòng đất, nơi Linh đang bị giam giữ. Nhưng trước khi bạn tiếp cận, bạn bị chặn bởi một người phụ nữ lạnh lùng trong bộ đồ bảo hộ: giám đốc dự án của Vinalink. Bà ta cười: 'Anh không hiểu gì đâu. Con bé là tương lai của chúng ta.' Một giọng nói khác vang lên từ bóng tối: 'Hoặc là quá khứ bị chôn vùi.'",
+      "objective": "Tìm hiểu về dự án bí mật của Vinalink và giành được sự giúp đỡ từ một người bên trong.",
+      "completionCriteria": "Người chơi đã nói chuyện với 'giam-doc' và 'ky-ao' (người đã liên lạc lại), và biết được rằng dự án nhằm tạo ra binh lính siêu phàm, hoặc rằng Linh có khả năng điều khiển một loại vũ khí sinh học.",
+      "hint": "Hãy khai thác mâu thuẫn giữa các phe phái."
+    },
+    {
+      "id": "p7",
+      "title": "Đứa Con Của Thành Phố",
+      "narration": "Bạn đột nhập vào phòng giam của Linh. Cô bé ngồi co ro trong góc, đôi mắt ánh lên màu xanh điện tử. 'Họ nói tôi là quái vật,' cô thì thầm. 'Nhưng tôi chỉ muốn về nhà.' Bên ngoài, tiếng báo động vang lên. Bạn nhận ra mình chỉ còn vài phút trước khi tất cả ập đến.",
+      "objective": "Thuyết phục Linh tin tưởng bạn và tìm cách đưa cô bé ra ngoài an toàn.",
+      "completionCriteria": "Người chơi đã nói chuyện với 'linh' và 'me-linh' (người đã liên lạc lại), và Linh đã đồng ý đi theo bạn, hoặc tiết lộ rằng cô bé có thể tự giải thoát bằng khả năng của mình.",
+      "hint": "Hãy kiên nhẫn và chân thành với cô bé."
+    },
+    {
+      "id": "p8",
+      "title": "Bình Minh Trên Sài Gòn",
+      "narration": "Bạn và Linh đứng trên sân thượng của một tòa nhà bỏ hoang, nhìn thành phố đang chìm trong ánh bình minh nhân tạo. Nhưng kẻ thù vẫn còn đó: tập đoàn, băng đảng, và những bí mật chưa được phơi bày. Bạn phải quyết định: bảo vệ Linh bằng mọi giá, hay đưa sự thật ra ánh sáng, dù nó có thể thiêu rụi tất cả.",
+      "objective": "Đưa ra quyết định cuối cùng về số phận của Linh và thành phố, dựa trên những gì bạn đã học được.",
+      "completionCriteria": "Người chơi đã nói chuyện với ít nhất ba nhân vật trong số 'me-linh', 'giam-doc', 'ky-ao', và đã đưa ra một quyết định rõ ràng: hoặc giao Linh cho một bên, hoặc cùng cô bé phơi bày sự thật, hoặc trốn chạy khỏi thành phố.",
+      "hint": "Không có lựa chọn nào là hoàn hảo. Hãy nghĩ về hậu quả."
+    }
+  ]
+}

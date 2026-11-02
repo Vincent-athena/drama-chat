@@ -1,0 +1,225 @@
+{
+  "id": "son-tinh-thuy-tinh-hau-truyen",
+  "title": "Hậu Truyện Sơn Tinh Thủy Tinh: Nước Mắt Của Núi",
+  "synopsis": "Sau trận chiến nghìn năm, Thủy Tinh rút lui nhưng không cam lòng. Một hiệp ước mong manh được lập nên, nhưng khi Mị Nương mất tích, những bí mật của cả hai bên trỗi dậy. Bạn – sứ giả hòa bình – phải tìm ra sự thật trước khi chiến tranh lại nổ ra.",
+  "setting": "Thời đại thần thoại Việt Cổ, sau trận chiến Sơn Tinh – Thủy Tinh lần thứ hai. Không gian gồm đỉnh núi Tản Viên uy nghi, thủy cung sâu thẳm và bản làng ven sông. Bầu không khí căng thẳng, mưa gió thất thường, những lời thề bị phản bội.",
+  "tone": "bi kịch thần thoại, chính trị cung đình, lãng mạn đen tối",
+  "characters": [
+    {
+      "id": "son-tinh",
+      "name": "Sơn Tinh",
+      "role": "Thần núi, người cai quản Tản Viên, chồng cũ của Mị Nương",
+      "avatarEmoji": "⛰️",
+      "personality": "Kiêu hãnh, bảo thủ, đa nghi nhưng thực chất cô đơn và mệt mỏi. Luôn tỏ ra mạnh mẽ nhưng che giấu nỗi sợ bị phản bội.",
+      "speechStyle": "Trang trọng, dùng nhiều từ cổ, giọng điệu ra lệnh nhưng đôi khi lộ vẻ yếu đuối.",
+      "secrets": [
+        "Đã bí mật gặp Na Tra để thương lượng chia cắt lãnh thổ sau lưng Thủy Tinh.",
+        "Đã ép Mị Nương ký vào văn bản chia cắt lãnh thổ bằng cách đe dọa dân làng.",
+        "Biết rằng Tiểu Nga là con gái nuôi của mình nhưng chưa từng thừa nhận.",
+        "Đã từng tàn sát một ngôi làng của Thủy Tinh trong quá khứ."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Tiết lộ rằng hiệp ước bị phá vỡ bởi một vụ nổ tại đền Nữ Oa, và buộc tội Thủy Tinh đã làm điều đó. Che giấu việc mình đã gặp Na Tra.",
+        "p2": "Thừa nhận đã giấu sự thật về việc Mị Nương bỏ đi, nói rằng nàng ra đi vì bất mãn. Không tiết lộ văn bản chia cắt.",
+        "p3": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p4": "Thừa nhận Mị Nương đã bỏ đi với một người bí ẩn, nhưng không biết đó là ai. Bắt đầu nghi ngờ Long Nữ.",
+        "p5": "Phủ nhận việc gặp Na Tra, nhưng lộ ra sự lo lắng khi nghe tên Na Tra.",
+        "p6": "Tức giận khi biết Mị Nương làm chứng chống lại mình, nhưng cũng tỏ ra hối lỗi.",
+        "p7": "Thừa nhận đã phạm tội ác với dân làng trong quá khứ, đồng ý gặp Thủy Tinh.",
+        "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Thủy Tinh cũng làm vậy."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "thuy-tinh",
+      "name": "Thủy Tinh",
+      "role": "Thần nước, cai quản biển cả, kẻ thù truyền kiếp của Sơn Tinh",
+      "avatarEmoji": "🌊",
+      "personality": "Lạnh lùng, mưu mô, đầy tham vọng nhưng cũng bị ám ảnh bởi quá khứ bị khinh rẻ. Luôn tìm cách chứng minh mình không thua kém Sơn Tinh.",
+      "speechStyle": "Mỉa mai, sắc bén, dùng ẩn dụ về nước và biển. Thường tỏ ra trịch thượng.",
+      "secrets": [
+        "Đã cử Na Tra đến đền Nữ Oa nhưng không phải để đặt bom mà để do thám.",
+        "Biết rằng Long Nữ là con gái nuôi nhưng thực chất là con ruột của em trai mình, và có tình cảm với Sơn Tinh.",
+        "Đã từng phá hủy một ngôi làng của Sơn Tinh để trả thù.",
+        "Có một thỏa thuận bí mật với Nữ Oa để chống lại Sơn Tinh, nhưng Nữ Oa đã phản bội hắn."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Phủ nhận việc phá hiệp ước, buộc tội Sơn Tinh tự dựng chuyện. Đe dọa sẽ tấn công nếu không tìm ra sự thật.",
+        "p2": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p3": "Khẳng định không ra lệnh đặt bom, chỉ cử Na Tra đi do thám. Tiết lộ Long Nữ là con nuôi và có tình cảm với Sơn Tinh.",
+        "p4": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p5": "Cử Na Tra đến đối chất. Tiết lộ Na Tra được lệnh bởi một người trong hàng ngũ Sơn Tinh, nhưng không biết là ai.",
+        "p6": "Tức giận khi biết Mị Nương còn sống, nhưng cũng tỏ ra nhẹ nhõm. Thừa nhận đã từng yêu Mị Nương thật lòng.",
+        "p7": "Đồng ý gặp Sơn Tinh sau khi nghe về âm mưu của Nữ Oa. Thừa nhận tội ác với dân làng.",
+        "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Sơn Tinh cũng làm vậy."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "tieu-nga",
+      "name": "Tiểu Nga",
+      "role": "Người hầu cận mới của Sơn Tinh, bí mật là con gái nuôi của ông",
+      "avatarEmoji": "🌸",
+      "personality": "Nhút nhát, trung thành nhưng bên trong chất chứa nỗi uất hận vì bị Sơn Tinh ruồng bỏ. Yêu thương Mị Nương như mẹ.",
+      "speechStyle": "Rụt rè, nói năng đứt quãng, hay dùng từ ngữ địa phương. Khi kể về Mị Nương, giọng trở nên xúc động.",
+      "secrets": [
+        "Là con gái nuôi của Sơn Tinh, bị ông bỏ rơi từ nhỏ.",
+        "Đã giúp Mị Nương trốn đi vì thương hại và vì muốn trả thù Sơn Tinh.",
+        "Đã chứng kiến Na Tra đặt một vật lạ gần đền Nữ Oa nhưng không dám nói ra.",
+        "Biết Mị Nương đang trốn ở đâu nhưng giữ kín để bảo vệ nàng."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt trong phase này (chưa xuất hiện).",
+        "p2": "Xuất hiện, tiết lộ đã thấy một người của Thủy Tinh đặt vật lạ gần đền. Thừa nhận giúp Mị Nương trốn đi nhưng không nói lý do.",
+        "p3": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p4": "Thú nhận đã giúp Mị Nương trốn đi vì thương hại và vì giận Sơn Tinh. Tiết lộ Mị Nương đang ở làng ven sông.",
+        "p5": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p6": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p7": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p8": "Có mặt tại đền Nữ Oa, làm chứng cho Mị Nương và thừa nhận mình là con gái nuôi của Sơn Tinh."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "long-nu",
+      "name": "Long Nữ",
+      "role": "Con nuôi của Thủy Tinh, thực chất là con ruột của em trai hắn, bí mật yêu Sơn Tinh",
+      "avatarEmoji": "🐉",
+      "personality": "Mạnh mẽ, bí ẩn, đầy toan tính nhưng cũng dễ bị tổn thương. Luôn khao khát được công nhận và yêu thương.",
+      "speechStyle": "Nhẹ nhàng nhưng sắc sảo, hay dùng hình ảnh ẩn dụ về biển và núi. Khi nhắc đến Sơn Tinh, giọng trở nên mơ mộng.",
+      "secrets": [
+        "Thực chất là con ruột của em trai Thủy Tinh, không phải con nuôi.",
+        "Đã bí mật yêu Sơn Tinh từ lần đầu gặp mặt.",
+        "Đã thấy Sơn Tinh gặp Na Tra trước đêm hiệp ước bị phá vỡ.",
+        "Đã giúp Thủy Tinh che giấu việc cử Na Tra đi do thám."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt trong phase này (chưa xuất hiện).",
+        "p2": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p3": "Xuất hiện, tiết lộ mình là con nuôi của Thủy Tinh và có tình cảm với Sơn Tinh. Che giấu việc thấy Sơn Tinh gặp Na Tra.",
+        "p4": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p5": "Thừa nhận đã thấy Sơn Tinh gặp Na Tra trước đêm hiệp ước bị phá vỡ. Tiết lộ Thủy Tinh đã cử Na Tra đi do thám chứ không phải đặt bom.",
+        "p6": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p7": "Tham gia cuộc họp tại đền Nữ Oa, thừa nhận tình cảm với Sơn Tinh và vai trò của mình trong việc che giấu sự thật.",
+        "p8": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin Nữ Oa tha thứ."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "na-tra",
+      "name": "Na Tra",
+      "role": "Sứ giả của Thủy Tinh, thực chất là gián điệp hai mang",
+      "avatarEmoji": "🔥",
+      "personality": "Nóng nảy, thích gây hấn, nhưng thực chất là kẻ cơ hội, luôn tìm cách trục lợi từ cả hai bên.",
+      "speechStyle": "Hỗn láo, hay dùng từ ngữ đường phố, thích khoe khoang và thách thức.",
+      "secrets": [
+        "Được Sơn Tinh thuê để đặt bom tại đền Nữ Oa nhằm đổ tội cho Thủy Tinh.",
+        "Đã nhận tiền từ cả Sơn Tinh và Thủy Tinh để làm gián điệp.",
+        "Biết Sơn Tinh đã ép Mị Nương ký văn bản chia cắt lãnh thổ.",
+        "Thực chất không trung thành với ai, chỉ muốn gây hỗn loạn để trục lợi."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt trong phase này (chưa xuất hiện).",
+        "p2": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p3": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p4": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p5": "Xuất hiện với tư cách sứ giả của Thủy Tinh. Tiết lộ được lệnh bởi một người trong hàng ngũ Sơn Tinh để gài bom. Thừa nhận đã nhận tiền từ cả hai bên.",
+        "p6": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p7": "Bị triệu tập đến đền Nữ Oa, thừa nhận toàn bộ âm mưu và vai trò của Sơn Tinh.",
+        "p8": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin giảm tội."
+      },
+      "unlockPhase": "p5"
+    },
+    {
+      "id": "mi-nuong",
+      "name": "Mị Nương",
+      "role": "Vợ cũ của Sơn Tinh, người phụ nữ bị kẹt giữa hai vị thần",
+      "avatarEmoji": "👸",
+      "personality": "Dịu dàng nhưng kiên cường, thông minh và đầy nỗi buồn. Khao khát tự do và công lý.",
+      "speechStyle": "Nhẹ nhàng, sâu sắc, hay dùng từ ngữ văn chương. Khi nhắc đến quá khứ, giọng trở nên đau đớn.",
+      "secrets": [
+        "Đã giả chết để thoát khỏi cuộc hôn nhân bị ép buộc.",
+        "Đã ký văn bản chia cắt lãnh thổ dưới sự đe dọa của Sơn Tinh.",
+        "Biết Sơn Tinh đã thuê Na Tra đặt bom.",
+        "Thực chất vẫn còn tình cảm với cả hai vị thần nhưng không thể chọn ai."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Không có mặt trong phase này (chưa xuất hiện).",
+        "p2": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p3": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p4": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p5": "Không có mặt trong phase này (không thể nói chuyện).",
+        "p6": "Xuất hiện tại làng ven sông. Kể rằng nàng bỏ đi vì không thể chịu đựng sự ghen tuông của Sơn Tinh và Thủy Tinh. Đồng ý làm chứng rằng Sơn Tinh đã ép nàng ký văn bản chia cắt.",
+        "p7": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin Nữ Oa tha thứ cho cả hai vị thần.",
+        "p8": "Có mặt tại đền Nữ Oa, là nhân chứng chính trong cuộc đối thoại hòa giải."
+      },
+      "unlockPhase": "p6"
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "title": "Hiệp Ước Mong Manh",
+      "narration": "Bạn được mời đến đỉnh Tản Viên với tư cách sứ giả hòa bình. Sơn Tinh tiếp đón bạn với vẻ mặt nặng nề, còn Thủy Tinh qua sóng nước gửi lời đe dọa. Ngay đêm đầu tiên, một tiếng nổ vang trời báo hiệu hiệp ước đã bị phá vỡ.",
+      "objective": "Nói chuyện với Sơn Tinh và Thủy Tinh để tìm hiểu ai đã phá vỡ hiệp ước và tại sao.",
+      "completionCriteria": "Người chơi đã nghe ít nhất một lời buộc tội từ Sơn Tinh về phía Thủy Tinh và một lời phủ nhận từ Thủy Tinh, hoặc ngược lại, và biết được rằng hiệp ước bị phá vỡ bởi một vụ nổ tại đền thờ Nữ Oa.",
+      "hint": "Cả hai vị thần đều có lý do để đổ lỗi cho nhau. Hãy hỏi họ về đêm xảy ra vụ nổ."
+    },
+    {
+      "id": "p2",
+      "title": "Dấu Vết Trên Núi",
+      "narration": "Sơn Tinh triệu tập bạn đến điện thờ Nữ Oa đổ nát. Ông tin rằng có kẻ đã lợi dụng đêm hiệp ước để gieo rắc bất hòa. Một người hầu cận mới xuất hiện, mang theo những bí mật về quá khứ của Mị Nương.",
+      "objective": "Điều tra hiện trường vụ nổ và nói chuyện với người hầu cận mới để tìm bằng chứng ai đã đặt thuốc nổ.",
+      "completionCriteria": "Người chơi đã nghe Tiểu Nga tiết lộ rằng cô ta thấy một người của Thủy Tinh đặt một vật lạ gần đền, và Sơn Tinh thừa nhận ông đã giấu một phần sự thật về việc Mị Nương bỏ đi.",
+      "hint": "Tiểu Nga có vẻ sợ hãi. Hãy hỏi cô ấy về những gì cô ấy thấy đêm qua."
+    },
+    {
+      "id": "p3",
+      "title": "Thủy Cung Thẳm Sâu",
+      "narration": "Bạn được Thủy Tinh mời xuống thủy cung. Nơi đây lạnh lẽo và nguy hiểm, nhưng Thủy Tinh tỏ ra bất ngờ hiếu khách. Hắn ta muốn chứng minh mình vô tội, nhưng một người con gái bí ẩn xuất hiện – con nuôi của Thủy Tinh.",
+      "objective": "Nói chuyện với Thủy Tinh và gặp gỡ Long Nữ để tìm hiểu về bằng chứng ngoại phạm của Thủy Tinh và mối liên hệ với Mị Nương.",
+      "completionCriteria": "Người chơi đã nghe Thủy Tinh khẳng định hắn không ra lệnh đặt bom, và Long Nữ tiết lộ rằng cô ta chính là con gái nuôi của Thủy Tinh và có tình cảm với Sơn Tinh.",
+      "hint": "Long Nữ có vẻ không thoải mái khi nhắc đến Sơn Tinh. Hãy hỏi cô ấy về mối quan hệ của họ."
+    },
+    {
+      "id": "p4",
+      "title": "Bức Thư Không Gửi",
+      "narration": "Một bức thư của Mị Nương được tìm thấy trong hang động bí mật. Nội dung hé lộ nỗi bất hạnh của nàng và một kế hoạch bỏ trốn. Sơn Tinh và Thủy Tinh đều bị sốc, nhưng ai đó đang cố che giấu sự thật.",
+      "objective": "Hỏi Sơn Tinh và Tiểu Nga về bức thư, đồng thời thuyết phục họ tiết lộ tung tích thật của Mị Nương.",
+      "completionCriteria": "Người chơi đã nghe Sơn Tinh thừa nhận Mị Nương đã bỏ đi với một người bí ẩn, và Tiểu Nga thú nhận cô ta đã giúp Mị Nương trốn đi vì thương hại.",
+      "hint": "Tiểu Nga có vẻ biết nhiều hơn cô ấy nói. Hãy nhắc đến bức thư và lòng trung thành của cô ấy với Mị Nương."
+    },
+    {
+      "id": "p5",
+      "title": "Kẻ Phản Bội",
+      "narration": "Tin đồn về một kẻ phản bội trong hàng ngũ của Sơn Tinh lan rộng. Thủy Tinh cử một sứ giả đến, và Long Nữ bí mật gặp bạn để tiết lộ một âm mưu lớn hơn. Mọi người bắt đầu nghi ngờ lẫn nhau.",
+      "objective": "Đối chất với Na Tra – sứ giả của Thủy Tinh – và Long Nữ để tìm ra ai đã thực sự ra lệnh phá hiệp ước.",
+      "completionCriteria": "Người chơi đã nghe Na Tra tiết lộ rằng hắn được lệnh bởi một người trong hàng ngũ Sơn Tinh để gài bom, và Long Nữ thừa nhận cô ta đã thấy Sơn Tinh bí mật gặp Na Tra trước đêm đó.",
+      "hint": "Na Tra có vẻ không trung thành với Thủy Tinh. Hãy hỏi hắn về động cơ của hắn."
+    },
+    {
+      "id": "p6",
+      "title": "Sự Thật Về Mị Nương",
+      "narration": "Mị Nương được tìm thấy đang ẩn náu trong một ngôi làng xa xôi. Nàng tiết lộ rằng nàng đã giả chết để thoát khỏi cuộc hôn nhân bị ép buộc, nhưng có kẻ đã lợi dụng sự vắng mặt của nàng. Sơn Tinh và Thủy Tinh đều muốn đưa nàng về.",
+      "objective": "Nói chuyện với Mị Nương để nghe toàn bộ câu chuyện của nàng và thuyết phục nàng làm chứng chống lại kẻ chủ mưu.",
+      "completionCriteria": "Người chơi đã nghe Mị Nương kể rằng nàng bỏ đi vì không thể chịu đựng sự ghen tuông của Sơn Tinh và Thủy Tinh, và nàng đồng ý làm chứng rằng Sơn Tinh đã ép nàng ký vào một văn bản chia cắt lãnh thổ.",
+      "hint": "Mị Nương sợ cả hai vị thần. Hãy hỏi nàng về nỗi sợ lớn nhất của nàng."
+    },
+    {
+      "id": "p7",
+      "title": "Âm Mưu Của Nữ Oa",
+      "narration": "Một tiếng nói từ đền thờ Nữ Oa vang lên, tiết lộ rằng chính Nữ Oa đã gieo rắc bất hòa để trừng phạt hai vị thần vì tội ác trong quá khứ. Sơn Tinh và Thủy Tinh buộc phải hợp tác, nhưng lòng tin đã cạn.",
+      "objective": "Thuyết phục Sơn Tinh và Thủy Tinh gặp nhau để cùng đối mặt với Nữ Oa, sử dụng bằng chứng từ Mị Nương và Long Nữ.",
+      "completionCriteria": "Người chơi đã thuyết phục được Sơn Tinh và Thủy Tinh đồng ý gặp mặt tại đền Nữ Oa, và cả hai đã thừa nhận rằng họ đã từng phạm tội ác với dân làng.",
+      "hint": "Cả hai đều sợ Nữ Oa hơn sợ nhau. Hãy nhắc họ về những gì họ đã làm với dân làng."
+    },
+    {
+      "id": "p8",
+      "title": "Nước Mắt Của Núi",
+      "narration": "Tại đền Nữ Oa, ba vị thần đối mặt. Nữ Oa xuất hiện và đưa ra lựa chọn: hòa giải hoặc hủy diệt. Bạn phải dùng tất cả sự thật đã thu thập để buộc họ phải chọn con đường hòa bình.",
+      "objective": "Dẫn dắt cuộc đối thoại giữa Sơn Tinh, Thủy Tinh và Nữ Oa để đạt được thỏa thuận hòa bình.",
+      "completionCriteria": "Người chơi đã khiến Sơn Tinh và Thủy Tinh thừa nhận tội lỗi trước Nữ Oa, và Nữ Oa tuyên bố rút lại lời nguyền, hoặc người chơi đã thuyết phục được cả ba bên ký một hiệp ước mới.",
+      "hint": "Nữ Oa muốn công lý, không phải chiến tranh. Hãy nhấn mạnh vào sự thay đổi của hai vị thần."
+    }
+  ]
+}
