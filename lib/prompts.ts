@@ -1,4 +1,4 @@
-import type { ChatMessage, Character, Story } from "./schema";
+import type { ChatMessage, Character, Story, StoryOutline } from "./schema";
 import type { TaggedMessage } from "./db";
 
 /** Member ids of each group chat, keyed by group id. */
@@ -194,20 +194,43 @@ Respond with JSON only, in exactly this shape:
 {"completed": true|false, "reason": "one short sentence", "eventSummary": "if completed, one sentence in past tense describing what happened, written as a story event; otherwise empty string", "notes": "- updated bullet list, one item per line"}`;
 }
 
-export function storyGeneratorPrompt(premise: string, numPhases: number, numCharacters: number): string {
-  return `You are a screenwriter designing an interactive drama chat game. The player talks one-on-one with characters to uncover the story. The story is split into chapters (phases); each chapter has an objective the player must achieve through conversation, and new characters become available as chapters progress.
+const HAIR_LENGTHS = "Short, Medium, Medium-long, Long";
 
-Premise from the user: ${premise || "Surprise me with an original, gripping drama."}
+/** The "appearance" field of a character. Kept as data (for later image generation). */
+const APPEARANCE_RULES = `Each character's "appearance" describes how they look and appear in key moments of the story. Write every appearance value in English:
+- gender: "female", "male" or "other" (non-human, unknown)
+- age: best estimate in years, as a number. Infer it from every clue: a mother of an adult, a director, a veteran, a boss, a god of old or a title like "Bà" means middle-aged or older.
+- apparentAge: how old they LOOK, as a number. Same as age unless the story gives a reason (magic, immortality, a spirit in a young body, eternal youth, a dragon in human form). In fantasy or myth settings, consider it for every long-lived character.
+- eastAsian: true if they are plausibly East or Southeast Asian
+- hairLength: one of ${HAIR_LENGTHS}; hairstyle: 1-4 hairstyle words (e.g. "wavy bangs", "straight", "bob", "updo")
+- look: face, build, skin and distinctive features, one sentence
+- outfit: their signature clothing, one sentence, true to the setting's era and culture
+- scenes: 3 scenes showing this character in the story, each different. Each has "title" (in the story's language, a short caption), "pose" (body pose and camera angle, e.g. "standing, looking back over shoulder", "sitting on stone steps"), "outfit" (what they wear in this scene, true to the era), "background" (place, time of day, lighting) and "mood". Keep every scene suitable for all audiences.`;
 
-Design a story with exactly ${numPhases} phases and exactly ${numCharacters} characters.
-Requirements:
-- Exactly 2 characters unlock in the first phase. Spread the rest across later phases (each later phase should unlock at least one character if possible).
+const STORY_INTRO = `You are a screenwriter designing an interactive drama chat game. The player talks one-on-one with characters to uncover the story. The story is split into chapters (phases); each chapter has an objective the player must achieve through conversation, and new characters become available as chapters progress.`;
+
+const STORY_REQUIREMENTS = `- Exactly 2 characters unlock in the first phase. Spread the rest across later phases (each later phase should unlock at least one character if possible).
 - Each phase objective must be achievable by talking to characters available in that phase.
 - completionCriteria must be concrete and checkable from a chat transcript (e.g. "A character has revealed that X did Y").
 - Each character needs secrets and knowledgeByPhase entries (keyed by phase id) that create twists and conflict between characters.
 - Drama: betrayal, hidden relationships, conflicting motives. Every character wants something.
 - ids are short kebab-case strings. avatarEmoji is a single emoji.
-- Write in the same language as the premise.
+- Write in the same language as the premise, except "appearance", which is in English.
+- modernSetting: true only if characters wear present-day clothing (roughly 1990 onwards, including near-future cities), false for historical, mythological or fantasy settings.`;
+
+const premiseLine = (premise: string) => `Premise from the user: ${premise || "Surprise me with an original, gripping drama."}`;
+
+/** Stage 1 of story generation: meta, phases and a roster of character concepts. */
+export function storyOutlinePrompt(premise: string, numPhases: number, numCharacters: number): string {
+  return `${STORY_INTRO}
+
+${premiseLine(premise)}
+
+Design the OUTLINE of a story with exactly ${numPhases} phases and exactly ${numCharacters} characters. Characters get only a short concept now; their full details are written in a later step.
+Requirements:
+${STORY_REQUIREMENTS}
+- Count carefully: the "phases" array has exactly ${numPhases} entries and the "characters" array has exactly ${numCharacters} entries, no more, no fewer.
+- Each character's "concept" is 1-2 sentences: what they want, their main secret or twist, and how they link to other characters.
 
 Respond with JSON only, in exactly this shape:
 {
@@ -216,11 +239,52 @@ Respond with JSON only, in exactly this shape:
   "synopsis": "2-3 sentences shown on the story card",
   "setting": "time, place, atmosphere",
   "tone": "e.g. noir, melodrama, gothic romance",
+  "modernSetting": false,
   "phases": [
     {"id": "p1", "title": "string", "narration": "2-4 sentences read when the chapter opens, second person", "objective": "what the player must do, shown to player", "completionCriteria": "hidden, precise condition for the director", "hint": "a gentle nudge"}
   ],
   "characters": [
-    {"id": "kebab-id", "name": "string", "role": "string", "avatarEmoji": "🎭", "personality": "string", "speechStyle": "string", "secrets": ["string"], "knowledgeByPhase": {"p1": "what they know or will reveal in p1"}, "unlockPhase": "p1"}
+    {"id": "kebab-id", "name": "string", "role": "string", "avatarEmoji": "🎭", "unlockPhase": "p1", "concept": "1-2 sentences"}
   ]
 }`;
+}
+
+/** Stage 2 of story generation: full details for a batch of characters from the outline. */
+export function characterBatchPrompt(premise: string, outline: StoryOutline, ids: string[]): string {
+  const roster = outline.characters
+    .map((c) => `- id "${c.id}": ${c.name}, ${c.role}. Unlocks in ${c.unlockPhase}. ${c.concept}`)
+    .join("\n");
+  const phases = outline.phases
+    .map((p) => `- ${p.id} "${p.title}": ${p.objective} (hidden criteria: ${p.completionCriteria})`)
+    .join("\n");
+  return `${STORY_INTRO}
+
+${premiseLine(premise)}
+
+The story outline is already decided.
+Title: ${outline.title}
+Synopsis: ${outline.synopsis}
+Setting: ${outline.setting}
+Tone: ${outline.tone}
+modernSetting: ${outline.modernSetting ?? false}
+
+Phases:
+${phases}
+
+All characters (concepts, so secrets and relationships stay consistent across the cast):
+${roster}
+
+Now write the full details of ONLY these characters: ${ids.map((id) => `"${id}"`).join(", ")}.
+Requirements:
+${STORY_REQUIREMENTS}
+- Keep each character's id, name, role, avatarEmoji and unlockPhase exactly as in the roster.
+- knowledgeByPhase must have an entry for every phase id (${outline.phases.map((p) => p.id).join(", ")}). Be concise: a sentence or two per phase.
+- Keep the secrets consistent with the other characters' concepts.
+
+${APPEARANCE_RULES}
+
+Respond with JSON only, in exactly this shape:
+{"characters": [
+  {"id": "kebab-id", "name": "string", "role": "string", "avatarEmoji": "🎭", "personality": "string", "speechStyle": "string", "secrets": ["string"], "knowledgeByPhase": {"p1": "what they know or will reveal in p1"}, "unlockPhase": "p1", "appearance": {"gender": "female", "age": 24, "apparentAge": 24, "eastAsian": true, "hairLength": "Long", "hairstyle": "straight", "look": "string", "outfit": "string", "scenes": [{"title": "string", "pose": "string", "outfit": "string", "background": "string", "mood": "string"}]}}
+]}`;
 }

@@ -1,0 +1,307 @@
+{
+  "id": "reborn-wizard-medieval",
+  "title": "The Wizard Who Remembers",
+  "synopsis": "You died a bullied loser in the 21st century and woke as a powerful wizard in a medieval kingdom that despises magic. Armed with modern knowledge and forbidden power, you must navigate court intrigue, betrayal, and hidden bloodlines to survive—and maybe save the very people who fear you.",
+  "setting": "The Kingdom of Valdoria, a quasi-medieval realm of stone castles, muddy villages, and superstitious clergy. Magic is outlawed and punishable by death. Atmosphere is tense, gritty, and full of whispered conspiracies.",
+  "tone": "Dark fantasy political drama with underdog revenge and moral ambiguity.",
+  "characters": [
+    {
+      "id": "inquisitor-malachar",
+      "name": "Inquisitor Malachar",
+      "role": "Church Inquisitor",
+      "avatarEmoji": "⛪",
+      "personality": "Cold, fanatical, but secretly terrified of true magic; believes he is doing God’s work.",
+      "speechStyle": "Formal, biblical, with a hint of trembling when discussing the supernatural.",
+      "secrets": [
+        "He witnessed a real miracle as a child and has never told anyone because it contradicted church doctrine.",
+        "He is the bastard son of a noble who abandoned him, and he harbors deep resentment toward the aristocracy.",
+        "He keeps a hidden journal of his doubts about the church’s teachings."
+      ],
+      "knowledgeByPhase": {
+        "p1": "He will reveal that he knows you have real magic (not just superstition) if you demonstrate a minor controlled act or speak of knowledge from your old world that no one could fake. He will agree to delay the execution if you promise to help him understand magic.",
+        "p2": "He knows the hidden chamber under the chapel but will not reveal it unless you convince him it is for holy study.",
+        "p3": "He can confirm that the king’s illness is natural if you describe symptoms in modern terms, but he will demand you keep it secret to avoid panic.",
+        "p4": "He has heard rumors of Duke Aldric’s coup but dismisses them until you show evidence.",
+        "p5": "He can vouch for your innocence if you reveal that the duke’s sorcerer is real—something he secretly fears.",
+        "p6": "He will testify that the duke’s sorcerer was the true heretic if you spare him from exposure.",
+        "p7": "He is the chief witness against you, but if you blackmail him with his hidden journal, he will recant.",
+        "p8": "He will support legalizing magic if you promise to let him oversee it, or he will oppose you to the end."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "jailer-brutus",
+      "name": "Jailer Brutus",
+      "role": "Royal Jailer",
+      "avatarEmoji": "🔒",
+      "personality": "Gruff, cynical, but has a soft spot for underdogs; hates the nobility.",
+      "speechStyle": "Blunt, sarcastic, uses prison slang.",
+      "secrets": [
+        "He is secretly a former soldier who was betrayed by Duke Aldric and left for dead.",
+        "He knows the hidden tunnel system beneath the castle because he used to smuggle food through them.",
+        "He has a daughter who was executed for petty theft, and he blames the church."
+      ],
+      "knowledgeByPhase": {
+        "p1": "He knows you are not a threat if you speak to him about your old-world knowledge (e.g., how to treat infections). He will help you escape if you promise to expose the duke’s corruption.",
+        "p2": "He can reveal the hidden chamber in the undercroft, which he uses for contraband.",
+        "p3": "He knows the court healer is incompetent and can confirm the king’s illness is natural.",
+        "p4": "He has a letter from Duke Aldric offering him gold to poison the king—he will give it to you if you promise to protect his remaining family.",
+        "p5": "He knows the duke’s hideout is an old monastery in the forest.",
+        "p6": "He can vouch for your innocence to the queen if you bring him proof the duke killed his daughter’s executioner.",
+        "p7": "He saw the church’s witness meet with Duke Aldric’s agent and will testify.",
+        "p8": "He will support whatever you decide if you ensure the duke’s followers are punished."
+      },
+      "unlockPhase": "p1"
+    },
+    {
+      "id": "elara",
+      "name": "Elara",
+      "role": "Castle Maid",
+      "avatarEmoji": "🧹",
+      "personality": "Quiet, observant, fiercely loyal to those who earn her trust.",
+      "speechStyle": "Soft-spoken, uses simple words, but sharp when cornered.",
+      "secrets": [
+        "She is the illegitimate daughter of the late king’s brother, making her a potential claimant to the throne.",
+        "She has been stealing documents from the duke’s study for months.",
+        "She is in love with the disgraced knight, Sir Rowan, but has never told him."
+      ],
+      "knowledgeByPhase": {
+        "p2": "She will reveal the location of a safe house in the village if you help her hide stolen documents.",
+        "p3": "She overheard the queen’s advisor plotting to blame you for the king’s illness.",
+        "p4": "Her brother was arrested by the duke’s men, and she will reveal the duke’s hideout if you promise to save him.",
+        "p5": "She can confirm the prince is alive and being held in the monastery.",
+        "p6": "She will vouch for your innocence to the queen if you bring her brother back alive.",
+        "p7": "She has proof that the church’s witness was bribed.",
+        "p8": "She will support legalizing magic if you promise to protect her family."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "the-hooded-stranger",
+      "name": "The Hooded Stranger",
+      "role": "Mysterious Figure",
+      "avatarEmoji": "🕶️",
+      "personality": "Enigmatic, manipulative, speaks in riddles; motives are unclear.",
+      "speechStyle": "Whispery, poetic, avoids direct answers.",
+      "secrets": [
+        "He is actually the king’s illegitimate son, raised in secret by a magic-worshipping cult.",
+        "He wants to use you to overthrow the church and install himself as a puppet king.",
+        "He has a magical artifact that can amplify your powers but also bind you to his will."
+      ],
+      "knowledgeByPhase": {
+        "p2": "He will reveal the hidden chamber under the chapel if you agree to meet him alone at midnight.",
+        "p3": "He knows the king’s illness was caused by a poisoned candle from the duke’s agent.",
+        "p4": "He offers you a deal: he will help you expose the duke if you promise to support his claim to the throne.",
+        "p5": "He can lead you to the duke’s hideout if you give him the artifact first—a double-cross.",
+        "p6": "He will betray you to the duke unless you outmaneuver him.",
+        "p7": "He can provide evidence against the church if you agree to marry Elara to secure his claim.",
+        "p8": "He will try to seize power; you must either stop him or join him."
+      },
+      "unlockPhase": "p2"
+    },
+    {
+      "id": "court-healer-aldous",
+      "name": "Court Healer Aldous",
+      "role": "Royal Physician",
+      "avatarEmoji": "⚕️",
+      "personality": "Pompous, insecure, desperate to keep his position.",
+      "speechStyle": "Overly formal, uses medical jargon incorrectly.",
+      "secrets": [
+        "He has been poisoning the king with small doses of arsenic to keep him ill and dependent.",
+        "He knows Duke Aldric is behind the poisoning but is too afraid to speak.",
+        "He has a gambling debt to a crime lord who is actually the duke’s agent."
+      ],
+      "knowledgeByPhase": {
+        "p3": "He will reveal the king’s illness is natural (though he lies about the cause) if you threaten to expose his incompetence.",
+        "p4": "He can testify that Duke Aldric’s agent delivered a strange candle to the king’s chamber.",
+        "p5": "He knows the duke’s hideout is the old monastery because he was brought there once blindfolded.",
+        "p6": "He will confess to the poisoning if you promise to protect him from the duke.",
+        "p7": "He will recant his testimony against you if you blackmail him with his gambling debt.",
+        "p8": "He will support any new law if you pay off his debt."
+      },
+      "unlockPhase": "p3"
+    },
+    {
+      "id": "queen-iseret",
+      "name": "Queen Iseret",
+      "role": "Queen of Valdoria",
+      "avatarEmoji": "👑",
+      "personality": "Regal, calculating, protective of her son; deeply religious but pragmatic.",
+      "speechStyle": "Authoritative, measured, uses formal address.",
+      "secrets": [
+        "She knows her husband is being poisoned but cannot prove it; she suspects the duke.",
+        "She secretly prays to the old gods, not the church’s god.",
+        "She is infertile and the prince is actually the son of her sister, who died in childbirth."
+      ],
+      "knowledgeByPhase": {
+        "p4": "She will reveal her suspicion that the duke is behind the king’s illness if you bring her proof.",
+        "p5": "She will grant you a pardon if you rescue the prince.",
+        "p6": "She will confirm the prince is safe if you bring him to her.",
+        "p7": "She will preside over your trial and can be swayed if you reveal the church’s corruption.",
+        "p8": "She will support legalizing magic if you promise to protect her son’s claim to the throne."
+      },
+      "unlockPhase": "p4"
+    },
+    {
+      "id": "duke-aldric",
+      "name": "Duke Aldric",
+      "role": "King’s Brother and Usurper",
+      "avatarEmoji": "⚔️",
+      "personality": "Charismatic, ruthless, believes he is destined to rule.",
+      "speechStyle": "Smooth, persuasive, uses flattery and veiled threats.",
+      "secrets": [
+        "He has the church’s leader in his pocket, promising to make him archbishop.",
+        "He genuinely believes the king is a weak fool and that magic should be controlled, not destroyed.",
+        "He has a hidden son who is a powerful latent magic user."
+      ],
+      "knowledgeByPhase": {
+        "p4": "He will offer you a position if you join him, revealing his plan to overthrow the king.",
+        "p5": "He will taunt you with the prince’s location if you confront him.",
+        "p6": "He will offer to spare you if you join him, but his sorcerer will try to kill you anyway.",
+        "p7": "He will testify against you if captured, but can be blackmailed with his hidden son’s secret.",
+        "p8": "He will either be executed or escape, depending on your actions."
+      },
+      "unlockPhase": "p4"
+    },
+    {
+      "id": "sir-rowan",
+      "name": "Sir Rowan",
+      "role": "Disgraced Knight",
+      "avatarEmoji": "🛡️",
+      "personality": "Honorable but haunted by past failures; drinks to forget.",
+      "speechStyle": "Gruff, formal, with occasional self-deprecating humor.",
+      "secrets": [
+        "He was the one who arrested you on your first day, but he now believes you are innocent.",
+        "He is in love with Elara but believes he is unworthy of her.",
+        "He knows the duke’s hideout because he was once the duke’s squire."
+      ],
+      "knowledgeByPhase": {
+        "p5": "He will reveal the duke’s hideout if you convince him you can save the prince.",
+        "p6": "He will vouch for your innocence to the queen if you bring him proof of the duke’s betrayal.",
+        "p7": "He will testify that the church’s witness was seen with the duke’s agent.",
+        "p8": "He will support whatever you decide if you help him win Elara’s hand."
+      },
+      "unlockPhase": "p5"
+    },
+    {
+      "id": "prince-theron",
+      "name": "Prince Theron",
+      "role": "Young Prince and Heir",
+      "avatarEmoji": "🤴",
+      "personality": "Brave but naive, eager to prove himself.",
+      "speechStyle": "Earnest, youthful, uses informal language.",
+      "secrets": [
+        "He saw his uncle’s sorcerer perform magic and has been sworn to secrecy.",
+        "He knows his mother is not his birth mother.",
+        "He dreams of becoming a wizard himself."
+      ],
+      "knowledgeByPhase": {
+        "p6": "He will reveal the sorcerer’s weakness (a phobia of fire) if you befriend him.",
+        "p7": "He will testify that you saved his life, which sways the queen.",
+        "p8": "He will beg you to stay and teach him magic."
+      },
+      "unlockPhase": "p6"
+    },
+    {
+      "id": "high-priest-ulric",
+      "name": "High Priest Ulric",
+      "role": "Leader of the Church",
+      "avatarEmoji": "📿",
+      "personality": "Politically savvy, corrupt, secretly atheist.",
+      "speechStyle": "Sanctimonious, uses religious platitudes.",
+      "secrets": [
+        "He is in league with Duke Aldric and promised to crown him king.",
+        "He has a secret treasury filled with gold donated by the faithful.",
+        "He knows magic is real but suppresses it to maintain power."
+      ],
+      "knowledgeByPhase": {
+        "p7": "He will testify against you, but can be blackmailed with his secret treasury.",
+        "p8": "He will oppose legalizing magic unless you threaten to expose his corruption."
+      },
+      "unlockPhase": "p7"
+    },
+    {
+      "id": "mira",
+      "name": "Mira",
+      "role": "Village Herbalist and Secret Magic User",
+      "avatarEmoji": "🌿",
+      "personality": "Warm, cautious, terrified of being discovered.",
+      "speechStyle": "Folksy, uses nature metaphors.",
+      "secrets": [
+        "She is a low-level magic user who has been hiding her powers for years.",
+        "She knows the old gods’ rituals and can teach you medieval magic.",
+        "She is the hooded stranger’s mother."
+      ],
+      "knowledgeByPhase": {
+        "p8": "She will help you establish a new law if you promise to protect her from the church."
+      },
+      "unlockPhase": "p8"
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "title": "A New Life, Old Fears",
+      "narration": "You wake in a cold tower cell, your body unfamiliar but your mind sharp with memories of a cruel modern world. The king’s men have accused you of heresy, but a strange energy hums beneath your skin—magic, real and wild. You have one chance to talk your way out before the pyre is lit.",
+      "objective": "Convince the inquisitor and the jailer that you are not a threat—or make them fear you enough to release you.",
+      "completionCriteria": "At least one of the following characters has revealed that they know you possess real magic (not mere superstition) and has agreed to help you escape or stay your execution: Inquisitor Malachar or Jailer Brutus.",
+      "hint": "Fear and faith are tools. One of them might respect power more than piety."
+    },
+    {
+      "id": "p2",
+      "title": "Whispers in the Keep",
+      "narration": "You are free, but under watch, lodged in a servant’s chamber of the royal keep. The court is a nest of knives, and the king’s health is failing. A maid named Elara has taken an interest in you—and so has a hooded stranger who leaves cryptic notes. You need allies before the next full moon.",
+      "objective": "Secure a hiding place for your magical studies and learn who in the castle might secretly support you.",
+      "completionCriteria": "A character has revealed the location of a hidden chamber or safe house where magic can be practiced, AND a character has revealed that at least one noble secretly sympathizes with magic users.",
+      "hint": "Servants hear everything. The stranger might be testing you before revealing themselves."
+    },
+    {
+      "id": "p3",
+      "title": "The Healer’s Confession",
+      "narration": "The king coughs blood, and the court physician is baffled. You recognize the symptoms from your old world—an infection, not a curse. But the queen’s advisor insists it is sorcery. You must decide whether to intervene and risk exposure, or let the king die and plunge the realm into chaos.",
+      "objective": "Learn the true nature of the king’s illness and find a way to treat it without being accused of causing it.",
+      "completionCriteria": "A character has revealed that the king’s illness is natural (not magical), AND a character has agreed to help you administer a treatment or cover up your involvement.",
+      "hint": "The healer knows more than he says. The queen’s advisor may be lying about the cause."
+    },
+    {
+      "id": "p4",
+      "title": "The Usurper’s Shadow",
+      "narration": "The king is recovering, but his brother, Duke Aldric, has begun rallying troops. Whispers say Aldric has the church’s blessing and plans a coup. A mysterious figure offers you a deal: power in exchange for a favor that could destroy your soul. Meanwhile, Elara’s loyalty is tested when her brother is arrested.",
+      "objective": "Expose the duke’s conspiracy to the king—or decide to join it—while protecting your allies from the fallout.",
+      "completionCriteria": "A character has revealed concrete evidence (e.g., a letter or witness) that Duke Aldric is planning the coup, AND you have either given that evidence to a loyalist or made a pact with the duke.",
+      "hint": "The mysterious figure might be the duke’s agent—or a third faction. Elara’s brother could be a bargaining chip."
+    },
+    {
+      "id": "p5",
+      "title": "Blood and Thorns",
+      "narration": "The coup fails, but the duke escapes and takes a hostage—the young prince. The queen accuses you of orchestrating the whole affair to seize power. You must prove your innocence while secretly tracking the duke’s hideout. A new ally emerges from the shadows: a disgraced knight who owes you a life debt from your first night in the cell.",
+      "objective": "Find the duke’s hideout and learn the prince’s location before the queen’s guards arrest you.",
+      "completionCriteria": "A character has revealed the duke’s hideout location or the prince’s whereabouts, AND a character has agreed to vouch for your innocence to the queen.",
+      "hint": "The disgraced knight knows the duke’s old haunts. The queen’s advisor may be trying to frame you."
+    },
+    {
+      "id": "p6",
+      "title": "The Wizard’s Gambit",
+      "narration": "You stand before the duke in his forest lair, the prince bound nearby. The duke offers you a kingdom if you join him—but his sorcerer advisor has detected your true power and wants to harvest it. You must choose between saving the prince and destroying the duke, while the queen’s army closes in.",
+      "objective": "Rescue the prince and neutralize the duke’s sorcerer, preferably without revealing your full power to the court.",
+      "completionCriteria": "The prince has been freed (a character confirms he is safe), AND the duke’s sorcerer has been defeated or captured, AND at least one witness (not an ally) has seen you use magic but agreed to keep it secret.",
+      "hint": "The sorcerer’s greed is his weakness. The prince might know something about his uncle’s plans."
+    },
+    {
+      "id": "p7",
+      "title": "The Trial of Heresy",
+      "narration": "The duke is captured, but the church demands a scapegoat. You are put on trial for heresy, and the evidence is damning. Your allies are barred from speaking, but the queen herself presides. Old enemies return to testify against you, and a figure from your past world appears in a dream—or is it a vision?",
+      "objective": "Survive the trial by discrediting the church’s evidence or by convincing the queen to spare you.",
+      "completionCriteria": "A character has revealed that the church’s chief witness was bribed or lied, AND the queen has declared you innocent or pardoned you.",
+      "hint": "The jailer might have seen something in the cells. The queen’s faith is shaken by her son’s rescue."
+    },
+    {
+      "id": "p8",
+      "title": "A Kingdom Reborn",
+      "narration": "You are free, but the kingdom is fractured. The church has declared a crusade against all magic users, and the people are afraid. You have one final chance to use your knowledge and power to forge a new order—or to leave it all behind. The choice is yours, but old debts must be paid first.",
+      "objective": "Decide the fate of magic in Valdoria: either help establish a new law that protects magic users, or destroy the church’s power, or abdicate and leave the kingdom to its fate.",
+      "completionCriteria": "A character has confirmed that a new law or decree has been passed (or will be passed) that legalizes magic, OR the church’s leader has been overthrown, OR you have told a character you are leaving and they have acknowledged it.",
+      "hint": "The queen owes you a debt. The church’s leader might be blackmailed. Some allies may not want you to leave."
+    }
+  ]
+}

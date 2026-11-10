@@ -9,6 +9,34 @@ export const PhaseSchema = z.object({
   hint: z.string().default(""),
 });
 
+// Model output sometimes has null for optional text; treat it as empty.
+const text = () => z.string().nullish().transform((v) => v ?? "");
+
+/** One scene of a character: a pose, an outfit and a background. Kept as data for later image generation. */
+export const SceneSchema = z.object({
+  title: z.string().min(1),
+  pose: text(),
+  outfit: text(),
+  background: text(),
+  mood: text(),
+});
+
+/** How a character looks. Descriptions are in English because they may later go into image prompts. */
+export const AppearanceSchema = z.object({
+  gender: z.enum(["female", "male", "other"]).catch("other"),
+  age: z.coerce.number().catch(0),
+  /** How old they look. May be lower than `age` when magic, immortality or a body swap keeps them young. */
+  apparentAge: z
+    .preprocess((v) => (typeof v === "number" || (typeof v === "string" && v.trim() !== "") ? Number(v) : undefined), z.number().positive().optional())
+    .catch(undefined),
+  eastAsian: z.boolean().catch(false),
+  hairLength: text(),
+  hairstyle: text(),
+  look: text(),
+  outfit: text(),
+  scenes: z.array(SceneSchema).default([]),
+});
+
 export const CharacterSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
@@ -19,6 +47,7 @@ export const CharacterSchema = z.object({
   secrets: z.array(z.string()).default([]),
   knowledgeByPhase: z.record(z.string(), z.string()).default({}),
   unlockPhase: z.string().min(1),
+  appearance: AppearanceSchema.optional(),
 });
 
 export const StorySchema = z
@@ -28,6 +57,8 @@ export const StorySchema = z
     synopsis: z.string().min(1),
     setting: z.string().min(1),
     tone: z.string().min(1),
+    /** Present-day clothing (roughly 1990 onwards) rather than historical, mythological or fantasy dress. */
+    modernSetting: z.boolean().optional(),
     characters: z.array(CharacterSchema).min(2),
     phases: z.array(PhaseSchema).min(2),
   })
@@ -59,9 +90,33 @@ export const StorySchema = z
     }
   });
 
+/** Stage 1 of story generation: meta, phases and a roster of short character concepts. */
+export const StoryOutlineSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/, "id must be kebab-case"),
+  title: z.string().min(1),
+  synopsis: z.string().min(1),
+  setting: z.string().min(1),
+  tone: z.string().min(1),
+  modernSetting: z.boolean().optional(),
+  phases: z.array(PhaseSchema).min(2),
+  characters: z.array(
+    z.object({
+      id: z.string().min(1),
+      name: z.string().min(1),
+      role: z.string().min(1),
+      avatarEmoji: z.string().default("🎭"),
+      unlockPhase: z.string().min(1),
+      concept: z.string().min(1),
+    })
+  ),
+});
+
 export type Phase = z.infer<typeof PhaseSchema>;
 export type Character = z.infer<typeof CharacterSchema>;
+export type Appearance = z.infer<typeof AppearanceSchema>;
+export type Scene = z.infer<typeof SceneSchema>;
 export type Story = z.infer<typeof StorySchema>;
+export type StoryOutline = z.infer<typeof StoryOutlineSchema>;
 
 export const JudgeResultSchema = z.object({
   completed: z.boolean(),

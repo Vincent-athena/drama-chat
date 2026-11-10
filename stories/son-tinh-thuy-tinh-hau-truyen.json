@@ -4,6 +4,7 @@
   "synopsis": "Sau trận chiến nghìn năm, Thủy Tinh rút lui nhưng không cam lòng. Một hiệp ước mong manh được lập nên, nhưng khi Mị Nương mất tích, những bí mật của cả hai bên trỗi dậy. Bạn – sứ giả hòa bình – phải tìm ra sự thật trước khi chiến tranh lại nổ ra.",
   "setting": "Thời đại thần thoại Việt Cổ, sau trận chiến Sơn Tinh – Thủy Tinh lần thứ hai. Không gian gồm đỉnh núi Tản Viên uy nghi, thủy cung sâu thẳm và bản làng ven sông. Bầu không khí căng thẳng, mưa gió thất thường, những lời thề bị phản bội.",
   "tone": "bi kịch thần thoại, chính trị cung đình, lãng mạn đen tối",
+  "modernSetting": false,
   "characters": [
     {
       "id": "son-tinh",
@@ -28,7 +29,40 @@
         "p7": "Thừa nhận đã phạm tội ác với dân làng trong quá khứ, đồng ý gặp Thủy Tinh.",
         "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Thủy Tinh cũng làm vậy."
       },
-      "unlockPhase": "p1"
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "male",
+        "age": 45,
+        "apparentAge": 45,
+        "eastAsian": true,
+        "hairLength": "Long",
+        "hairstyle": "topknot, loose strands",
+        "look": "Chiseled face with sharp jawline, deep-set piercing eyes, bronzed skin, muscular build, faint scars on arms, stern expression.",
+        "outfit": "Dark green brocade robe with mountain motifs, bronze belt, leather boots, and a heavy fur cloak.",
+        "scenes": [
+          {
+            "title": "Trên đỉnh Tản Viên",
+            "pose": "standing tall, looking down from mountain peak, arms crossed",
+            "outfit": "Dark green brocade robe with mountain motifs, bronze belt, fur cloak billowing",
+            "background": "Tản Viên mountain summit at dawn, mist swirling, golden light breaking through clouds",
+            "mood": "majestic and lonely"
+          },
+          {
+            "title": "Lời thề dưới mưa",
+            "pose": "kneeling on one knee, hand pressed to chest, head bowed",
+            "outfit": "Simple white ceremonial robe, unadorned, wet from rain",
+            "background": "Stone altar in a forest clearing, heavy rain, lightning in distance",
+            "mood": "solemn and sorrowful"
+          },
+          {
+            "title": "Nỗi đau của núi",
+            "pose": "sitting on a stone throne, leaning forward with head in hands",
+            "outfit": "Loose dark robe, barefoot, hair disheveled",
+            "background": "Dimly lit stone hall with flickering torches, night",
+            "mood": "anguished and vulnerable"
+          }
+        ]
+      }
     },
     {
       "id": "thuy-tinh",
@@ -53,7 +87,40 @@
         "p7": "Đồng ý gặp Sơn Tinh sau khi nghe về âm mưu của Nữ Oa. Thừa nhận tội ác với dân làng.",
         "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Sơn Tinh cũng làm vậy."
       },
-      "unlockPhase": "p1"
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "male",
+        "age": 45,
+        "apparentAge": 45,
+        "eastAsian": true,
+        "hairLength": "Long",
+        "hairstyle": "slicked back, wet look",
+        "look": "Pale skin with a cold, handsome face, sharp cheekbones, narrow calculating eyes, lean but muscular build, always appears slightly damp.",
+        "outfit": "Deep blue and silver armor with wave patterns, a flowing cape, and a coral crown.",
+        "scenes": [
+          {
+            "title": "Ngai vàng thủy cung",
+            "pose": "sitting on a throne made of coral and pearl, fingers steepled",
+            "outfit": "Regal deep blue robe with silver embroidery, coral crown",
+            "background": "Thủy Tinh's underwater palace, bioluminescent lights, dark blue waters",
+            "mood": "calculating and cold"
+          },
+          {
+            "title": "Nỗi hận nghìn năm",
+            "pose": "standing with fists clenched, glaring at a mountain in the distance",
+            "outfit": "Battle armor with barnacles and seaweed, trident in hand",
+            "background": "Stormy sea shore, dark clouds, raging waves",
+            "mood": "vengeful and bitter"
+          },
+          {
+            "title": "Bí mật trong bóng tối",
+            "pose": "leaning against a pillar, half in shadow, smirking",
+            "outfit": "Dark blue tunic with silver trim, no armor",
+            "background": "Corridor of the underwater palace, dim lighting, shadows",
+            "mood": "scheming and sinister"
+          }
+        ]
+      }
     },
     {
       "id": "tieu-nga",
@@ -78,7 +145,40 @@
         "p7": "Không có mặt trong phase này (không thể nói chuyện).",
         "p8": "Có mặt tại đền Nữ Oa, làm chứng cho Mị Nương và thừa nhận mình là con gái nuôi của Sơn Tinh."
       },
-      "unlockPhase": "p2"
+      "unlockPhase": "p2",
+      "appearance": {
+        "gender": "female",
+        "age": 22,
+        "apparentAge": 22,
+        "eastAsian": true,
+        "hairLength": "Medium-long",
+        "hairstyle": "braided, simple",
+        "look": "Delicate features, large doe eyes, pale skin, petite build, often looks downcast, with a faint scar on her left wrist.",
+        "outfit": "Simple brown linen tunic and skirt, a worn leather belt, and cloth shoes.",
+        "scenes": [
+          {
+            "title": "Người hầu trung thành",
+            "pose": "standing with head bowed, hands clasped in front",
+            "outfit": "Plain brown servant's tunic, apron",
+            "background": "Stone hall of Sơn Tinh's palace, morning light",
+            "mood": "submissive and sad"
+          },
+          {
+            "title": "Ký ức về mẹ",
+            "pose": "sitting on a rock, holding a small cloth doll, looking at it",
+            "outfit": "Simple green dress, barefoot",
+            "background": "Garden with blooming flowers, afternoon sunlight",
+            "mood": "nostalgic and longing"
+          },
+          {
+            "title": "Nỗi uất hận",
+            "pose": "standing in the rain, face upturned, tears mixing with rain",
+            "outfit": "Soaked brown tunic, hair plastered to face",
+            "background": "Courtyard at night, heavy rain, lightning",
+            "mood": "angry and hurt"
+          }
+        ]
+      }
     },
     {
       "id": "long-nu",
@@ -103,7 +203,40 @@
         "p7": "Tham gia cuộc họp tại đền Nữ Oa, thừa nhận tình cảm với Sơn Tinh và vai trò của mình trong việc che giấu sự thật.",
         "p8": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin Nữ Oa tha thứ."
       },
-      "unlockPhase": "p3"
+      "unlockPhase": "p3",
+      "appearance": {
+        "gender": "female",
+        "age": 25,
+        "apparentAge": 25,
+        "eastAsian": true,
+        "hairLength": "Long",
+        "hairstyle": "wavy, flowing",
+        "look": "Ethereal beauty with sharp features, almond-shaped eyes, pale skin with a faint blue tint, graceful and strong build.",
+        "outfit": "Flowing aquamarine gown with pearl accents, silver jewelry, and a delicate coral tiara.",
+        "scenes": [
+          {
+            "title": "Công chúa thủy cung",
+            "pose": "standing on a balcony overlooking the sea, hand on railing",
+            "outfit": "Aquamarine gown with pearl embroidery, coral tiara",
+            "background": "Underwater palace balcony, glowing jellyfish, deep blue light",
+            "mood": "regal and contemplative"
+          },
+          {
+            "title": "Tình yêu giấu kín",
+            "pose": "sitting by a tide pool, tracing patterns in the water",
+            "outfit": "Simple white dress, barefoot, hair loose",
+            "background": "Rocky shore at twilight, calm sea, first stars",
+            "mood": "wistful and romantic"
+          },
+          {
+            "title": "Toan tính",
+            "pose": "leaning against a marble column, arms crossed, a sly smile",
+            "outfit": "Dark teal dress with silver accents",
+            "background": "Dimly lit corridor of the palace, shadows",
+            "mood": "scheming and confident"
+          }
+        ]
+      }
     },
     {
       "id": "na-tra",
@@ -128,7 +261,40 @@
         "p7": "Bị triệu tập đến đền Nữ Oa, thừa nhận toàn bộ âm mưu và vai trò của Sơn Tinh.",
         "p8": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin giảm tội."
       },
-      "unlockPhase": "p5"
+      "unlockPhase": "p5",
+      "appearance": {
+        "gender": "male",
+        "age": 30,
+        "apparentAge": 30,
+        "eastAsian": true,
+        "hairLength": "Short",
+        "hairstyle": "messy, spiky",
+        "look": "Boyish face with a mischievous grin, bright eyes, athletic build, a small scar above his eyebrow.",
+        "outfit": "Light leather armor with red accents, fingerless gloves, and a short spear.",
+        "scenes": [
+          {
+            "title": "Sứ giả của Thủy Tinh",
+            "pose": "standing with a spear planted, confident smirk",
+            "outfit": "Leather armor with red sash, spear",
+            "background": "Beach at sunset, waves crashing",
+            "mood": "arrogant and cocky"
+          },
+          {
+            "title": "Gián điệp hai mang",
+            "pose": "hiding behind a tree, peeking out",
+            "outfit": "Dark hooded cloak over armor",
+            "background": "Forest at night, moonlight filtering through leaves",
+            "mood": "sneaky and alert"
+          },
+          {
+            "title": "Cơ hội",
+            "pose": "sitting at a tavern table, counting coins",
+            "outfit": "Casual tunic, no armor",
+            "background": "Rustic tavern, candlelight, evening",
+            "mood": "greedy and relaxed"
+          }
+        ]
+      }
     },
     {
       "id": "mi-nuong",
@@ -153,7 +319,40 @@
         "p7": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin Nữ Oa tha thứ cho cả hai vị thần.",
         "p8": "Có mặt tại đền Nữ Oa, là nhân chứng chính trong cuộc đối thoại hòa giải."
       },
-      "unlockPhase": "p6"
+      "unlockPhase": "p6",
+      "appearance": {
+        "gender": "female",
+        "age": 35,
+        "apparentAge": 35,
+        "eastAsian": true,
+        "hairLength": "Long",
+        "hairstyle": "updo with loose strands",
+        "look": "Graceful and elegant, with a sorrowful expression, high cheekbones, dark eyes, slender build, and a small mole below her left eye.",
+        "outfit": "Elegant silk áo dài in pale pink with lotus embroidery, pearl necklace, and wooden clogs.",
+        "scenes": [
+          {
+            "title": "Nỗi buồn của Mị Nương",
+            "pose": "sitting by a window, looking out, hand on chin",
+            "outfit": "Pale pink áo dài with lotus embroidery",
+            "background": "Palace room, soft morning light, silk curtains",
+            "mood": "melancholic and longing"
+          },
+          {
+            "title": "Khao khát tự do",
+            "pose": "standing on a cliff edge, arms outstretched, eyes closed",
+            "outfit": "Simple white dress, hair loose",
+            "background": "Cliff overlooking the sea, windy, overcast",
+            "mood": "yearning and hopeful"
+          },
+          {
+            "title": "Kiên cường",
+            "pose": "standing tall, facing forward, determined expression",
+            "outfit": "Dark blue áo dài with silver patterns",
+            "background": "Throne room, dramatic lighting",
+            "mood": "resolute and strong"
+          }
+        ]
+      }
     }
   ],
   "phases": [

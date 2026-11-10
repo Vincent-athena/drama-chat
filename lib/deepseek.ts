@@ -2,21 +2,25 @@ import OpenAI from "openai";
 import { z } from "zod";
 import type { TaggedMessage } from "./db";
 import {
+  characterBatchPrompt,
   characterSystemPrompt,
   groupChatMessages,
   judgePrompt,
   speakerPrompt,
-  storyGeneratorPrompt,
+  storyOutlinePrompt,
   type CharacterContext,
   type GroupMembers,
 } from "./prompts";
 import {
+  CharacterSchema,
   JudgeResultSchema,
+  StoryOutlineSchema,
   StorySchema,
   type ChatMessage,
   type Character,
   type JudgeResult,
   type Story,
+  type StoryOutline,
 } from "./schema";
 
 export class MissingApiKeyError extends Error {
@@ -116,17 +120,30 @@ export async function pickSpeakers(
   }
 }
 
-async function jsonCompletion(
+
+/** The model's JSON reply; with `maxTokens` set, `truncated` says the reply hit that limit and was cut off. */
+async function jsonCompletionChecked(
   messages: OpenAI.Chat.ChatCompletionMessageParam[],
-  temperature: number
-): Promise<string> {
+  temperature: number,
+  maxTokens?: number
+): Promise<{ raw: string; truncated: boolean }> {
   const res = await deepseek().chat.completions.create({
     model: model(),
     temperature,
     response_format: { type: "json_object" },
     messages,
+    ...(maxTokens ? { max_tokens: maxTokens } : {}),
   });
-  return res.choices[0]?.message?.content ?? "";
+  const choice = res.choices[0];
+  return { raw: choice?.message?.content ?? "", truncated: choice?.finish_reason === "length" };
+}
+
+async function jsonCompletion(
+  messages: OpenAI.Chat.ChatCompletionMessageParam[],
+  temperature: number,
+  maxTokens?: number
+): Promise<string> {
+  return (await jsonCompletionChecked(messages, temperature, maxTokens)).raw;
 }
 
 export async function judgePhase(
@@ -148,34 +165,202 @@ export async function judgePhase(
   }
 }
 
-export async function generateStory(
-  premise: string,
-  { numPhases = 4, numCharacters = 6 }: { numPhases?: number; numCharacters?: number } = {}
-): Promise<Story> {
-  const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
-    { role: "user", content: storyGeneratorPrompt(premise, numPhases, numCharacters) },
-  ];
 
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const raw = await jsonCompletion(messages, 1.0);
-    let problems: string;
-    try {
-      const parsed = StorySchema.safeParse(JSON.parse(raw));
-      if (parsed.success) {
-        const story = parsed.data;
-        const firstPhaseCount = story.characters.filter((c) => c.unlockPhase === story.phases[0].id).length;
-        if (firstPhaseCount === 2 || attempt === 1) return story;
-        problems = `Exactly 2 characters must unlock in the first phase, but ${firstPhaseCount} do.`;
-      } else {
-        problems = parsed.error.issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
+/**
+ * Swaps closing brackets that don't match what they close, e.g. an object ended with "]".
+ * Long generated stories occasionally contain this slip, which otherwise fails the whole story.
+ */
+export function fixMismatchedBrackets(raw: string): string {
+  const out = raw.split("");
+  const stack: string[] = [];
+  let inString = false;
+  for (let i = 0; i < out.length; i++) {
+    const ch = out[i];
+    if (inString) {
+      if (ch === "\\") i++;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') inString = true;
+    else if (ch === "{" || ch === "[") stack.push(ch === "{" ? "}" : "]");
+    else if (ch === "}" || ch === "]") {
+      const expected = stack.pop();
+      if (expected && ch !== expected) out[i] = expected;
+    }
+  }
+  return out.join("");
+}
+
+/** Describes a JSON syntax error with the lines around it, so the model can find it. */
+function describeJsonError(raw: string, err: unknown): string {
+  const message = err instanceof Error ? err.message : String(err);
+  const line = Number(/line (\d+)/.exec(message)?.[1]);
+  if (!line) return `The response was not valid JSON: ${message}`;
+  const lines = raw.split("\n");
+  const context = lines.slice(Math.max(0, line - 4), line + 2).join("\n");
+  return `The response was not valid JSON: ${message}\nAround line ${line}:\n${context}`;
+}
+
+const STORY_ATTEMPTS = 3;
+const STORY_MAX_TOKENS = 8192;
+const CHARACTERS_PER_BATCH = 3;
+
+const TRUNCATED_PROBLEM = "The response was cut off before the JSON ended. Be more concise.";
+
+type Checked<T> = { value: T; problems?: undefined } | { problems: string };
+
+/**
+ * Asks for JSON until `check` accepts it, feeding the problems back to the model.
+ * `check` returns the value, or a description of what is wrong.
+ */
+async function generateChecked<T>(
+  stage: string,
+  prompt: string,
+  check: (json: unknown) => Checked<T>
+): Promise<T> {
+  const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [{ role: "user", content: prompt }];
+  let problems = "";
+  for (let attempt = 0; attempt < STORY_ATTEMPTS; attempt++) {
+    const { raw, truncated } = await jsonCompletionChecked(messages, 1.0, STORY_MAX_TOKENS);
+    let json: unknown;
+    if (truncated) {
+      problems = TRUNCATED_PROBLEM;
+    } else {
+      try {
+        json = JSON.parse(fixMismatchedBrackets(raw));
+      } catch (err) {
+        problems = describeJsonError(raw, err);
       }
-    } catch {
-      problems = "The response was not valid JSON.";
+    }
+    if (json !== undefined) {
+      const result = check(json);
+      if (result.problems === undefined) return result.value;
+      problems = result.problems;
     }
     messages.push(
       { role: "assistant", content: raw },
       { role: "user", content: `Your JSON has problems:\n${problems}\nReturn the complete corrected JSON only.` }
     );
   }
-  throw new Error("DeepSeek did not produce a valid story after 2 attempts. Try again or simplify the premise.");
+  throw new Error(
+    `Story generation failed at the ${stage} stage after ${STORY_ATTEMPTS} attempts (last problem: ${problems.split("\n")[0]}). ` +
+      "Try again, or use fewer chapters or characters."
+  );
+}
+
+const zodProblems = (error: z.ZodError) =>
+  error.issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
+
+/** Problems with the outline's counts, ids and unlock phases, or "" when it is fine. */
+export function outlineProblems(outline: StoryOutline, numPhases: number, numCharacters: number): string {
+  const problems: string[] = [];
+  const phaseIds = outline.phases.map((p) => p.id);
+  if (outline.phases.length !== numPhases) problems.push(`Expected exactly ${numPhases} phases, got ${outline.phases.length}.`);
+  if (outline.characters.length !== numCharacters) {
+    problems.push(
+      `Expected exactly ${numCharacters} characters, got ${outline.characters.length}: ` +
+        `${outline.characters.length > numCharacters ? "remove" : "add"} ${Math.abs(outline.characters.length - numCharacters)}.`
+    );
+  }
+  if (new Set(phaseIds).size !== phaseIds.length) problems.push("Phase ids must be unique.");
+  const charIds = outline.characters.map((c) => c.id);
+  if (new Set(charIds).size !== charIds.length) problems.push("Character ids must be unique.");
+  for (const c of outline.characters) {
+    if (!phaseIds.includes(c.unlockPhase)) {
+      problems.push(`Character "${c.id}" has unlockPhase "${c.unlockPhase}", which is not a phase id (${phaseIds.join(", ")}).`);
+    }
+  }
+  const first = outline.characters.filter((c) => c.unlockPhase === phaseIds[0]).length;
+  if (first !== 2) problems.push(`Exactly 2 characters must unlock in the first phase, but ${first} do.`);
+  if (numCharacters >= numPhases + 1) {
+    const empty = phaseIds.slice(1).filter((id) => !outline.characters.some((c) => c.unlockPhase === id));
+    if (empty.length) problems.push(`Each later phase should unlock at least one character; none unlock in: ${empty.join(", ")}.`);
+  }
+  return problems.join("\n");
+}
+
+/**
+ * The model often writes a character or two too many. Drops the extras from the most crowded later phase,
+ * latest first, rather than failing the whole outline.
+ */
+export function dropExtraCharacters(outline: StoryOutline, numCharacters: number): StoryOutline {
+  const characters = [...outline.characters];
+  const firstPhase = outline.phases[0]?.id;
+  while (characters.length > numCharacters) {
+    const counts = new Map<string, number>();
+    for (const c of characters) counts.set(c.unlockPhase, (counts.get(c.unlockPhase) ?? 0) + 1);
+    let drop = -1;
+    for (let i = characters.length - 1; i >= 0; i--) {
+      const phase = characters[i].unlockPhase;
+      if (phase === firstPhase) continue;
+      if (drop === -1 || counts.get(phase)! > counts.get(characters[drop].unlockPhase)!) drop = i;
+    }
+    if (drop === -1) break;
+    characters.splice(drop, 1);
+  }
+  return { ...outline, characters };
+}
+
+const CharacterBatchSchema = z.object({ characters: z.array(z.unknown()) });
+
+/** Writes the full details of the characters `ids`, keeping the roster's id, name, role, emoji and unlock phase. */
+async function generateCharacterBatch(
+  premise: string,
+  outline: StoryOutline,
+  ids: string[]
+): Promise<Character[]> {
+  const roster = new Map(outline.characters.map((c) => [c.id, c]));
+  return generateChecked(`character details (${ids.join(", ")})`, characterBatchPrompt(premise, outline, ids), (json): Checked<Character[]> => {
+    const batch = CharacterBatchSchema.safeParse(json);
+    if (!batch.success) return { problems: 'Expected {"characters": [...]}.' };
+    const byId = new Map<string, unknown>();
+    for (const c of batch.data.characters) {
+      const id = (c as { id?: unknown } | null)?.id;
+      if (typeof id === "string") byId.set(id, c);
+    }
+    const problems: string[] = [];
+    const characters: Character[] = [];
+    for (const id of ids) {
+      const given = byId.get(id);
+      if (!given) {
+        problems.push(`Missing the character with id "${id}".`);
+        continue;
+      }
+      const { name, role, avatarEmoji, unlockPhase } = roster.get(id)!;
+      const parsed = CharacterSchema.safeParse({ ...(given as object), id, name, role, avatarEmoji, unlockPhase });
+      if (parsed.success) characters.push(parsed.data);
+      else problems.push(`Character "${id}":\n${zodProblems(parsed.error)}`);
+    }
+    return problems.length ? { problems: problems.join("\n") } : { value: characters };
+  });
+}
+
+/**
+ * Generates a story in stages, since the whole thing does not fit in one reply:
+ * an outline (meta, phases, character roster), then full character details in parallel batches.
+ */
+export async function generateStory(
+  premise: string,
+  { numPhases = 4, numCharacters = 6 }: { numPhases?: number; numCharacters?: number } = {}
+): Promise<Story> {
+  const outline = await generateChecked("outline", storyOutlinePrompt(premise, numPhases, numCharacters), (json): Checked<StoryOutline> => {
+    const parsed = StoryOutlineSchema.safeParse(json);
+    if (!parsed.success) return { problems: zodProblems(parsed.error) };
+    const trimmed = dropExtraCharacters(parsed.data, numCharacters);
+    const problems = outlineProblems(trimmed, numPhases, numCharacters);
+    return problems ? { problems } : { value: trimmed };
+  });
+
+  const ids = outline.characters.map((c) => c.id);
+  const batches: string[][] = [];
+  for (let i = 0; i < ids.length; i += CHARACTERS_PER_BATCH) batches.push(ids.slice(i, i + CHARACTERS_PER_BATCH));
+  const details = (await Promise.all(batches.map((batch) => generateCharacterBatch(premise, outline, batch)))).flat();
+  const byId = new Map(details.map((c) => [c.id, c]));
+
+  const { characters: _roster, ...meta } = outline;
+  const parsed = StorySchema.safeParse({ ...meta, characters: ids.map((id) => byId.get(id)) });
+  if (!parsed.success) {
+    throw new Error(`Story generation failed at the assembly stage: ${zodProblems(parsed.error).split("\n")[0]}`);
+  }
+  return parsed.data;
 }

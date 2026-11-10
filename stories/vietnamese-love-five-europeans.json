@@ -4,6 +4,7 @@
   "synopsis": "Một chàng trai Việt Nam trẻ tuổi, Minh, bị cuốn vào lưới tình với năm cô gái đến từ khắp châu Âu. Mỗi người mang theo một bí mật, và một trong số họ đang âm mưu phá hoại cuộc đời anh. Bạn phải trò chuyện để khám phá sự thật trước khi quá muộn.",
   "setting": "Hà Nội và Đà Lạt, Việt Nam, thời hiện đại. Những quán cà phê ấm cúng, những con phố cổ kính và những buổi tiệc tối sang trọng. Không khí lãng mạn nhưng ẩn chứa căng thẳng và nghi ngờ.",
   "tone": "Melodrama lãng mạn với nét noir nhẹ",
+  "modernSetting": true,
   "characters": [
     {
       "id": "elodie",
@@ -22,7 +23,40 @@
         "p2": "Thừa nhận Sofia là bạn thân và đã nhờ Sofia để mắt đến Minh.",
         "p6": "Thú nhận Jacques là chồng cũ và bức tranh là của cô, bị Jacques đánh cắp. Cô cũng thừa nhận đã nghi ngờ Greta."
       },
-      "unlockPhase": "p1"
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "female",
+        "age": 28,
+        "apparentAge": 28,
+        "eastAsian": false,
+        "hairLength": "Medium-long",
+        "hairstyle": "wavy bangs",
+        "look": "Pale skin, sharp cheekbones, dark eyes with a hint of melancholy, often wears red lipstick.",
+        "outfit": "A silk scarf tied around her neck, a vintage trench coat, and leather ankle boots.",
+        "scenes": [
+          {
+            "title": "Buổi triển lãm đầu tiên",
+            "pose": "Standing confidently in front of her painting, holding a glass of wine.",
+            "outfit": "Elegant black dress with a deep V-neck and a silver pendant.",
+            "background": "Art gallery in Hanoi, evening, warm spotlight lighting.",
+            "mood": "Proud but guarded."
+          },
+          {
+            "title": "Bên hồ Đà Lạt",
+            "pose": "Sitting on a wooden dock, looking out over the water, arms wrapped around her knees.",
+            "outfit": "Oversized beige sweater and jeans, barefoot.",
+            "background": "Lake in Da Lat, misty morning, soft natural light.",
+            "mood": "Reflective and vulnerable."
+          },
+          {
+            "title": "Cuộc gọi bí ẩn",
+            "pose": "Leaning against a brick wall in an alley, phone pressed to her ear, eyes scanning the street.",
+            "outfit": "Dark jeans, a leather jacket, and a black beret.",
+            "background": "Old Quarter alley in Hanoi, night, dim street lamps.",
+            "mood": "Tense and secretive."
+          }
+        ]
+      }
     },
     {
       "id": "greta",
@@ -42,7 +76,40 @@
         "p5": "Thừa nhận đang gặp khó khăn tài chính và đã gặp Jacques ở Đà Lạt để thuyết phục đầu tư.",
         "p7": "Thú nhận âm mưu trả thù Elodie và việc thuê Carmen, mua chuộc Anneke."
       },
-      "unlockPhase": "p1"
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "female",
+        "age": 32,
+        "apparentAge": 32,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "sleek bob",
+        "look": "Fair skin, sharp blue eyes, strong jawline, always impeccably dressed.",
+        "outfit": "A tailored white blazer, black trousers, and a minimalist gold watch.",
+        "scenes": [
+          {
+            "title": "Cuộc họp căng thẳng",
+            "pose": "Sitting at a conference table, hands folded, staring intently at the person across.",
+            "outfit": "Navy blue suit with a crisp white shirt.",
+            "background": "Modern office in Hanoi, daytime, natural light through large windows.",
+            "mood": "Authoritative and calculating."
+          },
+          {
+            "title": "Dạo bước phố cổ",
+            "pose": "Walking briskly, looking at her phone, ignoring the surroundings.",
+            "outfit": "Black trench coat over a grey turtleneck and dark jeans.",
+            "background": "Hanoi Old Quarter, late afternoon, golden hour light.",
+            "mood": "Focused and detached."
+          },
+          {
+            "title": "Ly cà phê một mình",
+            "pose": "Sitting alone at a café table, stirring a coffee, gazing out the window.",
+            "outfit": "Casual chic: a beige blouse and dark slacks.",
+            "background": "Upscale café in Hanoi, morning, soft indoor lighting.",
+            "mood": "Thoughtful and slightly lonely."
+          }
+        ]
+      }
     },
     {
       "id": "sofia",
@@ -60,7 +127,40 @@
         "p2": "Thừa nhận là bạn thân của Elodie và đã theo dõi Minh, nhưng nói cô bắt đầu nghi ngờ Elodie.",
         "p7": "Tiết lộ đã tìm thấy bằng chứng về âm mưu của Greta và cung cấp bằng chứng."
       },
-      "unlockPhase": "p2"
+      "unlockPhase": "p2",
+      "appearance": {
+        "gender": "female",
+        "age": 26,
+        "apparentAge": 26,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "curly",
+        "look": "Olive skin, warm brown eyes, a freckled nose, and a camera always around her neck.",
+        "outfit": "A loose linen shirt, cargo pants, and comfortable sneakers.",
+        "scenes": [
+          {
+            "title": "Chụp ảnh phố cổ",
+            "pose": "Crouching to take a photo of a street vendor, camera raised.",
+            "outfit": "Denim jacket, white t-shirt, and khaki pants.",
+            "background": "Hanoi street market, midday, bright sunlight.",
+            "mood": "Curious and engaged."
+          },
+          {
+            "title": "Khoảnh khắc bên hoa",
+            "pose": "Standing among flower beds, lifting her camera to her eye.",
+            "outfit": "Floral sundress and a straw hat.",
+            "background": "Da Lat flower garden, afternoon, soft light.",
+            "mood": "Joyful and carefree."
+          },
+          {
+            "title": "Đêm suy tư",
+            "pose": "Sitting on a balcony, looking at photos on her camera, a glass of wine beside her.",
+            "outfit": "Oversized sweater and leggings.",
+            "background": "Balcony overlooking Hanoi skyline, night, city lights.",
+            "mood": "Nostalgic and hesitant."
+          }
+        ]
+      }
     },
     {
       "id": "carmen",
@@ -78,7 +178,40 @@
         "p3": "Thú nhận bị Greta ép buộc viết bài và tiết lộ Greta là người đứng sau.",
         "p7": "Cung cấp bằng chứng Greta đã thuê cô và mua chuộc Anneke."
       },
-      "unlockPhase": "p3"
+      "unlockPhase": "p3",
+      "appearance": {
+        "gender": "female",
+        "age": 30,
+        "apparentAge": 30,
+        "eastAsian": false,
+        "hairLength": "Medium",
+        "hairstyle": "voluminous waves",
+        "look": "Tanned skin, dark expressive eyes, full lips, always wears bold earrings.",
+        "outfit": "A bright red blouse, black pencil skirt, and high heels.",
+        "scenes": [
+          {
+            "title": "Phỏng vấn độc quyền",
+            "pose": "Leaning forward with a recorder, eyes wide with interest.",
+            "outfit": "A sharp blazer over a low-cut top.",
+            "background": "Hotel lobby in Hanoi, evening, warm lighting.",
+            "mood": "Eager and probing."
+          },
+          {
+            "title": "Theo dõi manh mối",
+            "pose": "Peeking around a corner, notebook in hand.",
+            "outfit": "Dark sunglasses, a trench coat, and sneakers.",
+            "background": "Hanoi alley, night, dimly lit.",
+            "mood": "Sneaky and determined."
+          },
+          {
+            "title": "Viết bài bên hồ",
+            "pose": "Sitting on a bench, typing on a laptop, occasionally glancing up.",
+            "outfit": "Casual jeans and a loose blouse.",
+            "background": "Hoan Kiem Lake, morning, soft sunlight.",
+            "mood": "Focused and ambitious."
+          }
+        ]
+      }
     },
     {
       "id": "beatrice",
@@ -96,7 +229,40 @@
         "p4": "Tiết lộ cô theo dõi Greta và cho xem bằng chứng Greta gặp một người đàn ông bí ẩn ở Đà Lạt.",
         "p7": "Hỗ trợ pháp lý để vạch trần Greta nếu cần."
       },
-      "unlockPhase": "p4"
+      "unlockPhase": "p4",
+      "appearance": {
+        "gender": "female",
+        "age": 34,
+        "apparentAge": 34,
+        "eastAsian": false,
+        "hairLength": "Medium-long",
+        "hairstyle": "straight",
+        "look": "Fair skin, sharp grey eyes, a composed expression, often wears pearl earrings.",
+        "outfit": "A tailored navy suit, a silk blouse, and classic pumps.",
+        "scenes": [
+          {
+            "title": "Tư vấn pháp lý",
+            "pose": "Sitting at a desk, hands folded, speaking with authority.",
+            "outfit": "Grey suit with a white shirt.",
+            "background": "Law office in Hanoi, daytime, professional lighting.",
+            "mood": "Confident and analytical."
+          },
+          {
+            "title": "Dạo bước công viên",
+            "pose": "Walking slowly, hands in pockets, deep in thought.",
+            "outfit": "Beige trench coat over a black dress.",
+            "background": "Park in Hanoi, late afternoon, golden light.",
+            "mood": "Contemplative and reserved."
+          },
+          {
+            "title": "Đọc hồ sơ",
+            "pose": "Sitting in a leather armchair, reading a document, glasses on.",
+            "outfit": "Casual blouse and trousers.",
+            "background": "Library or study, evening, warm lamp light.",
+            "mood": "Serious and meticulous."
+          }
+        ]
+      }
     },
     {
       "id": "anneke",
@@ -114,7 +280,40 @@
         "p5": "Tiết lộ người đàn ông bí ẩn là Jacques và Greta đã gặp anh ta để thuyết phục đầu tư.",
         "p7": "Thú nhận đã được Greta trả tiền để theo dõi Minh và cung cấp bằng chứng."
       },
-      "unlockPhase": "p5"
+      "unlockPhase": "p5",
+      "appearance": {
+        "gender": "female",
+        "age": 29,
+        "apparentAge": 29,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "braided",
+        "look": "Fair skin, light brown eyes, a warm smile, often wears casual, comfortable clothing.",
+        "outfit": "A flowy floral dress, a cardigan, and sandals.",
+        "scenes": [
+          {
+            "title": "Chào đón khách",
+            "pose": "Standing at the door of her homestay, smiling warmly.",
+            "outfit": "A simple blouse and skirt, apron on.",
+            "background": "Homestay in Da Lat, morning, bright and cheerful.",
+            "mood": "Welcoming and friendly."
+          },
+          {
+            "title": "Chăm sóc vườn",
+            "pose": "Kneeling in the garden, tending to flowers.",
+            "outfit": "Jeans and a t-shirt, gardening gloves.",
+            "background": "Garden of homestay, sunny day.",
+            "mood": "Peaceful and content."
+          },
+          {
+            "title": "Lo lắng một mình",
+            "pose": "Sitting on the porch steps, hugging a mug, looking worried.",
+            "outfit": "Oversized sweater and leggings.",
+            "background": "Homestay porch, evening, soft twilight.",
+            "mood": "Anxious and uncertain."
+          }
+        ]
+      }
     },
     {
       "id": "jacques",
@@ -132,7 +331,40 @@
         "p6": "Xuất hiện gián tiếp qua lời kể của Elodie; sau đó có thể liên lạc được với Minh qua điện thoại.",
         "p8": "Có thể xuất hiện trực tiếp để đưa ra lời đề nghị với Minh và Elodie."
       },
-      "unlockPhase": "p6"
+      "unlockPhase": "p6",
+      "appearance": {
+        "gender": "male",
+        "age": 40,
+        "apparentAge": 40,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "slicked back",
+        "look": "Olive skin, dark charming eyes, a confident smile, always well-groomed.",
+        "outfit": "A tailored suit, often with a pocket square, and expensive shoes.",
+        "scenes": [
+          {
+            "title": "Gặp gỡ tại quán bar",
+            "pose": "Leaning against the bar, holding a whiskey, surveying the room.",
+            "outfit": "Dark suit with a loosened tie.",
+            "background": "Upscale bar in Hanoi, night, moody lighting.",
+            "mood": "Charming and predatory."
+          },
+          {
+            "title": "Cuộc trò chuyện bí mật",
+            "pose": "Standing in a corner, talking on the phone, looking over his shoulder.",
+            "outfit": "Trench coat over a suit.",
+            "background": "Street corner in Hanoi, night, rain.",
+            "mood": "Suspicious and secretive."
+          },
+          {
+            "title": "Nhìn về quá khứ",
+            "pose": "Sitting on a bench, staring at a photograph, expression soft.",
+            "outfit": "Casual shirt and trousers.",
+            "background": "Park in Da Lat, afternoon, dappled sunlight.",
+            "mood": "Regretful and nostalgic."
+          }
+        ]
+      }
     },
     {
       "id": "minh-mother",
@@ -150,7 +382,40 @@
         "p2": "Gọi điện hỏi thăm và tiết lộ bà đã nhận được thư nặc danh cảnh báo.",
         "p4": "Cung cấp thêm chi tiết về lá thư và khuyên Minh cẩn thận."
       },
-      "unlockPhase": "p2"
+      "unlockPhase": "p2",
+      "appearance": {
+        "gender": "female",
+        "age": 55,
+        "apparentAge": 55,
+        "eastAsian": true,
+        "hairLength": "Medium",
+        "hairstyle": "updo",
+        "look": "Warm brown eyes, gentle smile, silver streaks in her hair, traditional and elegant.",
+        "outfit": "An áo dài in a soft color, often with a pearl necklace.",
+        "scenes": [
+          {
+            "title": "Bữa cơm gia đình",
+            "pose": "Standing in the kitchen, serving food, smiling at the camera.",
+            "outfit": "Simple blouse and pants, apron.",
+            "background": "Home kitchen in Hanoi, evening, warm light.",
+            "mood": "Loving and nurturing."
+          },
+          {
+            "title": "Đi chùa",
+            "pose": "Walking up the steps of a pagoda, holding incense.",
+            "outfit": "Traditional áo dài, modest and elegant.",
+            "background": "Pagoda in Hanoi, morning, soft light.",
+            "mood": "Serene and devout."
+          },
+          {
+            "title": "Lo lắng cho con",
+            "pose": "Sitting on a sofa, looking at a photo of Minh, worried expression.",
+            "outfit": "Cardigan and comfortable pants.",
+            "background": "Living room, afternoon, natural light.",
+            "mood": "Concerned and protective."
+          }
+        ]
+      }
     },
     {
       "id": "lucas",
@@ -168,7 +433,40 @@
         "p3": "Cung cấp thông tin về cuộc gặp giữa Greta và Carmen.",
         "p5": "Chia sẻ nghi ngờ về Beatrice và cảm xúc với Sofia."
       },
-      "unlockPhase": "p3"
+      "unlockPhase": "p3",
+      "appearance": {
+        "gender": "male",
+        "age": 27,
+        "apparentAge": 27,
+        "eastAsian": true,
+        "hairLength": "Short",
+        "hairstyle": "messy",
+        "look": "Tan skin, friendly eyes, a wide grin, often wears casual streetwear.",
+        "outfit": "A graphic t-shirt, jeans, and a bomber jacket.",
+        "scenes": [
+          {
+            "title": "Cà phê với Minh",
+            "pose": "Sitting at a café table, laughing, holding a coffee.",
+            "outfit": "Hoodie and jeans.",
+            "background": "Street café in Hanoi, morning, bustling.",
+            "mood": "Cheerful and relaxed."
+          },
+          {
+            "title": "Chơi bóng rổ",
+            "pose": "Dribbling a basketball, focused on the game.",
+            "outfit": "Sports jersey and shorts.",
+            "background": "Outdoor court in Hanoi, late afternoon.",
+            "mood": "Energetic and competitive."
+          },
+          {
+            "title": "Lắng nghe bạn",
+            "pose": "Leaning against a wall, arms crossed, listening intently.",
+            "outfit": "Denim jacket and t-shirt.",
+            "background": "Street corner, evening, streetlights.",
+            "mood": "Serious and supportive."
+          }
+        ]
+      }
     },
     {
       "id": "isabelle",
@@ -185,7 +483,40 @@
       "knowledgeByPhase": {
         "p7": "Liên lạc với Minh và tiết lộ cô đang giữ bức tranh, cung cấp bằng chứng về giao dịch của Jacques và Greta."
       },
-      "unlockPhase": "p7"
+      "unlockPhase": "p7",
+      "appearance": {
+        "gender": "female",
+        "age": 45,
+        "apparentAge": 45,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "elegant pixie",
+        "look": "Fair skin, piercing blue eyes, a sophisticated air, minimal makeup.",
+        "outfit": "A chic blazer, silk scarf, and tailored trousers.",
+        "scenes": [
+          {
+            "title": "Tham quan triển lãm",
+            "pose": "Standing before a painting, head tilted, analyzing.",
+            "outfit": "Black dress and a statement necklace.",
+            "background": "Art gallery in Hanoi, evening, spotlight.",
+            "mood": "Appreciative and discerning."
+          },
+          {
+            "title": "Trò chuyện với nghệ sĩ",
+            "pose": "Sitting across from Elodie, hands gesturing, engaged in conversation.",
+            "outfit": "Blouse and skirt, elegant.",
+            "background": "Café in Hanoi, afternoon, soft light.",
+            "mood": "Interested and calculating."
+          },
+          {
+            "title": "Ngắm hoàng hôn",
+            "pose": "Standing on a terrace, looking out at the sunset, a glass in hand.",
+            "outfit": "Evening gown, sophisticated.",
+            "background": "Rooftop terrace in Da Lat, sunset, warm colors.",
+            "mood": "Reflective and satisfied."
+          }
+        ]
+      }
     },
     {
       "id": "henrik",
@@ -202,7 +533,40 @@
       "knowledgeByPhase": {
         "p8": "Xuất hiện để điều tra và yêu cầu Minh cung cấp lời khai về Greta."
       },
-      "unlockPhase": "p8"
+      "unlockPhase": "p8",
+      "appearance": {
+        "gender": "male",
+        "age": 38,
+        "apparentAge": 38,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "neat",
+        "look": "Fair skin, stern expression, sharp jawline, often wears a serious demeanor.",
+        "outfit": "A dark suit, white shirt, and a tie, looking official.",
+        "scenes": [
+          {
+            "title": "Điều tra hiện trường",
+            "pose": "Kneeling down, examining something on the ground with a gloved hand.",
+            "outfit": "Police jacket and jeans.",
+            "background": "Alley in Hanoi, night, police lights.",
+            "mood": "Focused and serious."
+          },
+          {
+            "title": "Thẩm vấn",
+            "pose": "Sitting across a table, hands folded, staring intently.",
+            "outfit": "Suit and tie.",
+            "background": "Interrogation room, dim light.",
+            "mood": "Intense and probing."
+          },
+          {
+            "title": "Suy nghĩ",
+            "pose": "Standing by a window, looking out, hands in pockets.",
+            "outfit": "Casual shirt and trousers.",
+            "background": "Office, evening, city lights.",
+            "mood": "Thoughtful and determined."
+          }
+        ]
+      }
     }
   ],
   "phases": [

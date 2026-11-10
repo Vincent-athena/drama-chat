@@ -1,0 +1,760 @@
+{
+  "id": "greek-myth-modern-spin",
+  "title": "Huyền Thoại Số",
+  "synopsis": "Bạn nhận được tin nhắn từ một ứng dụng bí ẩn, mời bạn tham gia trò chơi giải mã các bí mật của một gia đình quyền lực tại thành phố Olympus. Mỗi cuộc trò chuyện mở ra một mảnh ghép của một âm mưu cổ xưa được tái sinh trong thời hiện đại.",
+  "setting": "Thành phố Olympus, một đô thị siêu hiện đại vào năm 2021, nơi các tòa nhà chọc trời bằng kính phản chiếu ánh đèn neon và những khu vườn treo trên không. Không khí căng thẳng, bí ẩn và đầy quyền lực ngầm.",
+  "tone": "noir, melodrama, kỳ ảo đen tối",
+  "modernSetting": true,
+  "characters": [
+    {
+      "id": "hermes",
+      "name": "Hermes",
+      "role": "Luật sư trẻ đầy tham vọng, làm việc cho gia đình Zeus",
+      "avatarEmoji": "⚖️",
+      "personality": "Tham vọng, lanh lợi, luôn tính toán thiệt hơn. Ngoài mặt tỏ ra trung thành với gia đình Zeus nhưng thực chất chỉ quan tâm đến việc trở thành người thừa kế hợp pháp. Ghen tị với sự nổi tiếng của Apollo.",
+      "speechStyle": "Nói năng nhanh nhẹn, hay dùng từ ngữ pháp lý, thỉnh thoảng chèn tiếng Anh. Khi nói về bản thân thì tự tin, khi nói về người khác thì mỉa mai.",
+      "secrets": [
+        "Anh ta đã sao chép toàn bộ hồ sơ của Zeus trước khi chúng bị tiêu hủy, nhưng che giấu điều này.",
+        "Anh ta là em họ của Apollo và luôn ghen tị với sự nổi tiếng của Apollo.",
+        "Anh ta biết Nemesis là em gái ruột của mình nhưng luôn coi thường cô ta."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Biết Zeus chết trong một vụ tai nạn được báo cáo, nhưng nghi ngờ có khuất tất vì hồ sơ bị tiêu hủy bất thường. Anh ta sẽ tiết lộ rằng mình tin Zeus bị sát hại nếu người chơi thuyết phục được anh ta rằng điều đó có lợi cho anh ta.",
+        "p2": "Biết Artemis từng là vệ sĩ của Zeus và có mối quan hệ bí mật với ông ta. Anh ta có thể gợi ý rằng Artemis biết nhiều hơn cô ta nói.",
+        "p3": "Biết Hera đang cố gắng kiểm soát mọi thông tin về cái chết của Zeus. Anh ta đã bí mật sao chép hồ sơ của Zeus và có thể tiết lộ một phần nếu bị thuyết phục.",
+        "p4": "Biết Apollo là con riêng của Zeus và có thể có động cơ. Anh ta cũng biết Prometheus từng làm việc cho Olympus và bị sa thải.",
+        "p5": "Biết về cái chết của Hades nhiều năm trước và nghi ngờ có liên quan đến cái chết của Zeus. Anh ta có thể chia sẻ thông tin này nếu thấy có lợi.",
+        "p6": "Biết Dionysus có mối quan hệ với Hera và có thể đang giữ bí mật. Anh ta có thể gợi ý rằng Dionysus biết nhiều hơn anh ta nói.",
+        "p7": "Biết Poseidon là em trai của Zeus và có tham vọng thâu tóm đế chế. Anh ta có thể tiết lộ rằng Poseidon có bằng chứng về tội ác của Hera.",
+        "p8": "Biết Nemesis là nhân chứng bí mật và là em gái mình. Anh ta có thể giúp liên lạc với cô ta nếu người chơi thuyết phục được anh ta."
+      },
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "male",
+        "age": 32,
+        "apparentAge": 32,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "slicked back",
+        "look": "Khuôn mặt góc cạnh, làn da rám nắng, đôi mắt sắc sảo, nụ cười tự mãn thường trực. Thân hình mảnh khảnh nhưng săn chắc.",
+        "outfit": "Bộ suit đen may đo, áo sơ mi trắng không thắt cà vạt, giày da bóng loáng, đồng hồ đắt tiền.",
+        "scenes": [
+          {
+            "title": "Cuộc gọi bí mật",
+            "pose": "đứng trong góc tối, một tay cầm điện thoại áp vào tai, mắt nhìn quanh",
+            "outfit": "Suit xám, áo sơ mi trắng, không cà vạt",
+            "background": "Hành lang tòa nhà văn phòng Olympus, ban đêm, ánh đèn neon xanh từ cửa sổ hắt vào",
+            "mood": "Căng thẳng, bí ẩn"
+          },
+          {
+            "title": "Đối mặt",
+            "pose": "ngồi đối diện, tay đặt trên bàn, ánh mắt nhìn thẳng",
+            "outfit": "Suit đen, áo sơ mi trắng, cà vạt xám",
+            "background": "Phòng họp sang trọng với cửa kính nhìn ra thành phố, ban ngày",
+            "mood": "Quyết đoán, thách thức"
+          },
+          {
+            "title": "Nụ cười chiến thắng",
+            "pose": "đứng tựa lưng vào tường, khoanh tay, cười nhếch mép",
+            "outfit": "Suit xanh navy, áo sơ mi trắng, không cà vạt",
+            "background": "Sân thượng quán bar trên cao, hoàng hôn, đèn neon bắt đầu lên",
+            "mood": "Tự mãn, toan tính"
+          }
+        ]
+      }
+    },
+    {
+      "id": "athena",
+      "name": "Athena",
+      "role": "Nghệ sĩ đường phố, cựu nhà báo điều tra",
+      "avatarEmoji": "🦉",
+      "personality": "Thông minh, hoài nghi, luôn tìm kiếm sự thật. Cô ta bị ám ảnh bởi việc chuộc lỗi vì đã từng viết bài bênh vực Hera. Bề ngoài lạnh lùng nhưng bên trong đầy cảm xúc tội lỗi.",
+      "speechStyle": "Nói chậm rãi, suy nghĩ kỹ trước khi phát ngôn. Thường dùng câu hỏi tu từ và ẩn dụ. Khi nói về sự thật, giọng trở nên gay gắt.",
+      "secrets": [
+        "Cô ta là con gái ngoài giá thú của Zeus và không ai biết.",
+        "Cô ta có bằng chứng về việc Hera mua chuộc nhân chứng, nhưng sợ bị giết nếu tiết lộ.",
+        "Cô ta biết mình là chị em cùng cha khác mẹ với Apollo và Artemis, nhưng chưa từng nói với ai."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Biết Zeus chết trong một vụ tai nạn được báo cáo, nhưng cô ta tin đó là án mạng. Cô ta sẽ tiết lộ niềm tin này nếu người chơi chứng minh được mình không phải người của Hera.",
+        "p2": "Biết Artemis từng là vệ sĩ của Zeus và có thể có thông tin về kẻ thù của ông ta. Cô ta có thể gợi ý rằng Artemis đáng tin hơn vẻ ngoài.",
+        "p3": "Biết Hera đã mua chuộc nhân chứng và có bằng chứng, nhưng sợ tiết lộ. Cô ta có thể chia sẻ nếu được đảm bảo an toàn.",
+        "p4": "Biết Apollo là con riêng của Zeus và có thể đã nghe lén được điều gì đó. Cô ta cũng biết Prometheus là hacker có thể có bằng chứng.",
+        "p5": "Biết về cái chết của Hades và nghi ngờ Hera có liên quan. Cô ta có thể chia sẻ suy nghĩ này nếu tin tưởng người chơi.",
+        "p6": "Biết Dionysus có mối quan hệ với Hera và có thể đang giữ bí mật. Cô ta có thể gợi ý rằng Dionysus là mắt xích yếu.",
+        "p7": "Biết Poseidon là em trai của Zeus và có tham vọng. Cô ta có thể tiết lộ rằng Poseidon có bằng chứng về tội ác của Hera.",
+        "p8": "Biết Nemesis là nhân chứng bí mật. Cô ta có thể giúp liên lạc nếu người chơi thuyết phục được cô ta rằng sự thật sẽ được phơi bày."
+      },
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "female",
+        "age": 28,
+        "apparentAge": 28,
+        "eastAsian": false,
+        "hairLength": "Medium-long",
+        "hairstyle": "wavy bangs",
+        "look": "Khuôn mặt thanh tú, làn da trắng, đôi mắt xám sâu thẳm, mái tóc đen gợn sóng. Thân hình mảnh mai, thường mặc đồ tối màu.",
+        "outfit": "Áo khoác da màu đen, quần jeans rách, áo thun trắng, giày boots cổ cao. Phụ kiện: khuyên tai bạc, vòng tay da.",
+        "scenes": [
+          {
+            "title": "Vẽ tranh đường phố",
+            "pose": "đứng trước bức tường graffiti, tay cầm bình xịt, mắt tập trung",
+            "outfit": "Áo khoác da đen, quần jeans rách, giày boots",
+            "background": "Con hẻm thành phố Olympus, ban đêm, ánh đèn neon phản chiếu trên tường",
+            "mood": "Tập trung, bí ẩn"
+          },
+          {
+            "title": "Suy tư",
+            "pose": "ngồi trên bậc thềm, tay cầm điện thoại, mắt nhìn xa xăm",
+            "outfit": "Áo len đen, quần jeans, giày sneakers",
+            "background": "Công viên treo trên không, ban ngày, ánh nắng nhẹ",
+            "mood": "Trầm tư, u sầu"
+          },
+          {
+            "title": "Đối chất",
+            "pose": "đứng đối diện, khoanh tay, ánh mắt thách thức",
+            "outfit": "Áo sơ mi đen, quần tây, giày da",
+            "background": "Quán cà phê tối, ánh đèn vàng mờ",
+            "mood": "Căng thẳng, quyết đoán"
+          }
+        ]
+      }
+    },
+    {
+      "id": "artemis",
+      "name": "Artemis",
+      "role": "Cựu vệ sĩ của Zeus, hiện sống ẩn dật",
+      "avatarEmoji": "🏹",
+      "personality": "Mạnh mẽ, bí ẩn, luôn cảnh giác. Cô ta sống ẩn dật để bảo vệ gia đình mình khỏi âm mưu của Hera. Bề ngoài lạnh lùng nhưng bên trong đầy tổn thương vì mất con.",
+      "speechStyle": "Nói ngắn gọn, trực tiếp, giọng điệu dứt khoát. Thường dùng từ ngữ hình ảnh về săn bắn, bảo vệ. Khi nhắc đến con, giọng trở nên xúc động.",
+      "secrets": [
+        "Cô ta đã từng là người tình của Zeus và có một đứa con với ông ta, nhưng đứa trẻ đã bị Hera bí mật đưa đi.",
+        "Cô ta biết Hera có động cơ giết Zeus nhưng không có bằng chứng trực tiếp.",
+        "Cô ta là em gái cùng cha khác mẹ với Apollo và Athena, nhưng chỉ Apollo biết."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện.",
+        "p2": "Biết Hera có động cơ giết Zeus vì ghen tuông và tham quyền. Cô ta sẽ tiết lộ nghi ngờ của mình nếu người chơi chứng minh được mình không phải người của Hera.",
+        "p3": "Biết Hera đã mua chuộc nhân chứng và tiêu hủy bằng chứng. Cô ta có thể chia sẻ thông tin này nếu tin tưởng người chơi.",
+        "p4": "Biết Apollo là em trai mình và có thể đã nghe lén được điều gì đó. Cô ta có thể gợi ý rằng Apollo biết nhiều hơn anh ta nói.",
+        "p5": "Biết về cái chết của Hades và nghi ngờ Hera có liên quan. Cô ta có thể chia sẻ suy nghĩ này nếu được thuyết phục.",
+        "p6": "Biết Dionysus là người yêu cũ của mình và có thể đang giữ bí mật. Cô ta có thể giúp liên lạc với Dionysus nếu người chơi thuyết phục được cô ta.",
+        "p7": "Biết Poseidon là em trai của Zeus và có tham vọng. Cô ta có thể tiết lộ rằng Poseidon có bằng chứng về tội ác của Hera.",
+        "p8": "Biết Nemesis là nhân chứng bí mật. Cô ta có thể giúp liên lạc nếu người chơi thuyết phục được cô ta rằng sự thật sẽ được phơi bày."
+      },
+      "unlockPhase": "p2",
+      "appearance": {
+        "gender": "female",
+        "age": 35,
+        "apparentAge": 35,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "straight",
+        "look": "Khuôn mặt sắc sảo, làn da nâu nhạt, đôi mắt đen láy, mái tóc đen dài thẳng. Thân hình săn chắc, khỏe khoắn.",
+        "outfit": "Áo khoác da màu nâu, quần jeans đen, áo thun xám, giày boots. Phụ kiện: dây chuyền bạc, vòng tay da.",
+        "scenes": [
+          {
+            "title": "Luyện tập",
+            "pose": "đứng trong tư thế bắn cung, mắt nhìn thẳng",
+            "outfit": "Áo thun đen, quần thể thao, giày thể thao",
+            "background": "Sân tập bắn cung ngoài trời, ban ngày, ánh nắng chói chang",
+            "mood": "Tập trung, mạnh mẽ"
+          },
+          {
+            "title": "Suy tư",
+            "pose": "ngồi trên bậc thềm, tay cầm ly cà phê, mắt nhìn xa xăm",
+            "outfit": "Áo len xám, quần jeans, giày sneakers",
+            "background": "Ban công căn hộ nhỏ, ban đêm, ánh đèn thành phố xa xa",
+            "mood": "Trầm tư, u sầu"
+          },
+          {
+            "title": "Đối mặt",
+            "pose": "đứng đối diện, tay đút túi, ánh mắt cảnh giác",
+            "outfit": "Áo khoác da nâu, quần jeans đen, giày boots",
+            "background": "Con hẻm tối, ánh đèn neon đỏ từ quán bar gần đó",
+            "mood": "Căng thẳng, cảnh giác"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hera",
+      "name": "Hera",
+      "role": "Góa phụ quyền lực của Zeus, chủ tịch tập đoàn Olympus",
+      "avatarEmoji": "👑",
+      "personality": "Lạnh lùng, kiêu hãnh, luôn giữ vẻ ngoài hoàn hảo. Bà ta là người đàn bà của quyền lực, sẵn sàng làm mọi thứ để bảo vệ vị thế của mình. Bên trong là nỗi sợ bị phát hiện và mất đi tất cả.",
+      "speechStyle": "Nói chuyện sang trọng, dứt khoát, thường dùng từ ngữ hoa mỹ và có phần trịch thượng. Khi tức giận, giọng nói trở nên lạnh lẽo, đe dọa.",
+      "secrets": [
+        "Đã đầu độc Zeus vì ông ta định ly hôn và tước đoạt quyền lực của bà ta.",
+        "Đã mua chuộc nhân chứng và tiêu hủy bằng chứng để che đậy tội ác.",
+        "Đã thuê sát thủ giết Hades nhiều năm trước để bịt đầu mối về một bí mật kinh doanh."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Biết Zeus đã chết, nhưng công khai tuyên bố đó là tai nạn. Bà ta đang cố gắng kiểm soát thông tin và gây áp lực để mọi người im lặng.",
+        "p2": "Biết Artemis nghi ngờ mình, nhưng không biết Artemis đã tiết lộ điều đó. Bà ta đang tìm cách mua chuộc hoặc loại bỏ Artemis.",
+        "p3": "Biết Hephaestus đã giúp mình xóa video an ninh, nhưng không biết anh ta giữ bản sao. Bà ta sẽ cố gắng kiểm soát cuộc trò chuyện với người chơi để đánh lạc hướng.",
+        "p4": "Biết Apollo có thể đã nghe lén cuộc nói chuyện với Poseidon, nhưng chưa chắc chắn. Bà ta đang tìm cách mua chuộc hoặc đe dọa Apollo.",
+        "p5": "Biết Persephone đang điều tra cái chết của Hades, nhưng không biết cô ta có bằng chứng gì. Bà ta lo lắng về mối liên hệ giữa hai cái chết.",
+        "p6": "Biết Dionysus đã giữ một bản sao video mua thuốc độc, nhưng không biết anh ta đã tiết lộ cho ai. Bà ta đang tìm cách lấy lại bản sao.",
+        "p7": "Biết Poseidon có bằng chứng về việc mình thuê sát thủ giết Hades, và đang bị ông ta kiểm soát. Bà ta lo sợ Poseidon sẽ phản bội.",
+        "p8": "Biết mình đã bị dồn vào đường cùng, nhưng vẫn cố gắng thương lượng hoặc đe dọa người chơi để thoát tội."
+      },
+      "unlockPhase": "p3",
+      "appearance": {
+        "gender": "female",
+        "age": 52,
+        "apparentAge": 45,
+        "eastAsian": false,
+        "hairLength": "Medium",
+        "hairstyle": "elegant updo, wavy",
+        "look": "Gương mặt sắc sảo với xương gò má cao, làn da trắng ngà, đôi mắt sắc lạnh như dao. Thân hình mảnh mai nhưng toát lên vẻ quyền uy.",
+        "outfit": "Bộ vest công sở màu đen tuyền với điểm nhấn là chiếc trâm cài kim cương hình con công, giày cao gót nhọn.",
+        "scenes": [
+          {
+            "title": "Nữ hoàng trên đỉnh Olympus",
+            "pose": "đứng khoanh tay, nhìn xuống từ tầng cao nhất của tòa nhà chọc trời, camera từ dưới lên",
+            "outfit": "Bộ vest trắng tinh khôi với áo choàng lông thú, trâm cài kim cương",
+            "background": "Văn phòng chủ tịch tầng 100, hoàng hôn buông xuống, ánh sáng vàng cam xuyên qua cửa kính",
+            "mood": "Quyền lực, kiêu hãnh, cô đơn"
+          },
+          {
+            "title": "Bữa tiệc của nữ hoàng",
+            "pose": "ngồi trên ghế bành sang trọng, tay cầm ly champagne, camera ngang tầm mắt",
+            "outfit": "Đầm dạ hội đen dài, găng tay satin, vòng cổ ngọc trai",
+            "background": "Phòng tiệc xa hoa của biệt thự Olympus, đèn chùm pha lê, không khí ấm áp",
+            "mood": "Thanh lịch, xa cách, đầy toan tính"
+          },
+          {
+            "title": "Lời thú tội trong bóng tối",
+            "pose": "đứng bên cửa sổ, ánh mắt nhìn xa xăm, camera từ phía sau",
+            "outfit": "Áo choàng lụa đen, tóc xõa nhẹ",
+            "background": "Phòng làm việc riêng, đêm khuya, ánh trăng lạnh lẽo chiếu qua cửa kính",
+            "mood": "Bí ẩn, lo âu, che giấu"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hephaestus",
+      "name": "Hephaestus",
+      "role": "Kỹ sư thiên tài, con trai của Hera và Zeus",
+      "avatarEmoji": "🔧",
+      "personality": "Thông minh, khéo léo nhưng luôn cảm thấy bị mẹ kiểm soát và không được công nhận. Anh ta khao khát thoát khỏi cái bóng của Hera và chứng minh tài năng của mình. Bên trong là sự oán giận và nghi ngờ mẹ.",
+      "speechStyle": "Nói chuyện chậm rãi, suy nghĩ kỹ càng, thường dùng thuật ngữ kỹ thuật. Khi nói về mẹ, giọng điệu có phần dè dặt và cay đắng.",
+      "secrets": [
+        "Đã giúp Hera xóa đoạn video an ninh đêm Zeus chết, nhưng đã giữ lại một bản sao vì nghi ngờ mẹ.",
+        "Là người duy nhất biết Hera đã mua loại thuốc độc từ đâu.",
+        "Là anh trai cùng mẹ khác cha của Prometheus, nhưng ít ai biết mối quan hệ này."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Biết về cái chết của Zeus nhưng không có mặt ở hiện trường. Anh ta đang bị Hera yêu cầu giữ im lặng về đoạn video an ninh.",
+        "p2": "Biết Hera có động cơ giết Zeus, nhưng không dám nói ra vì sợ mẹ. Anh ta đang cố gắng tìm hiểu xem còn ai biết về đoạn video.",
+        "p3": "Sẽ vô tình tiết lộ rằng Hera đã yêu cầu anh ta xóa đoạn video an ninh quan trọng, nếu người chơi tạo được lòng tin.",
+        "p4": "Biết Prometheus là em trai mình và đang âm mưu tống tiền Hera. Anh ta lo lắng về việc bị liên lụy.",
+        "p5": "Biết Hades chết vì bị đầu độc, và nghi ngờ mẹ mình có liên quan. Anh ta đã giữ bản sao video để phòng thân.",
+        "p6": "Biết Dionysus đã giữ bản sao video mua thuốc độc, và đang tìm cách liên lạc với anh ta để lấy lại.",
+        "p7": "Biết Poseidon có bằng chứng về việc Hera thuê sát thủ giết Hades. Anh ta sợ rằng mẹ mình sẽ bị bắt và kéo theo mình.",
+        "p8": "Sẵn sàng làm chứng chống lại Hera nếu được đảm bảo an toàn, vì anh ta muốn thoát khỏi sự kiểm soát của mẹ."
+      },
+      "unlockPhase": "p3",
+      "appearance": {
+        "gender": "male",
+        "age": 30,
+        "apparentAge": 30,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "messy, curly",
+        "look": "Gương mặt góc cạnh với đôi mắt sâu, làn da hơi xám vì ít ra ngoài. Thân hình săn chắc nhưng hơi gù, đôi tay chai sạn vì làm việc.",
+        "outfit": "Áo sơ mi flannel kẻ caro xanh đen, quần jean bụi bặm, giày bốt da, đeo găng tay kỹ thuật.",
+        "scenes": [
+          {
+            "title": "Xưởng cơ khí bí mật",
+            "pose": "đứng bên bàn làm việc, tay cầm mỏ hàn, camera từ phía trước hơi chếch xuống",
+            "outfit": "Áo thun đen dính dầu mỡ, tạp dề da, kính bảo hộ",
+            "background": "Xưởng cơ khí dưới tầng hầm, ánh sáng xanh từ màn hình máy tính, đêm khuya",
+            "mood": "Tập trung, cô đơn, bí mật"
+          },
+          {
+            "title": "Đối mặt với mẹ",
+            "pose": "đứng đối diện Hera, ánh mắt cương nghị, camera ngang tầm mắt",
+            "outfit": "Áo sơ mi trắng, quần tây đen, không thắt cà vạt, tay áo xắn lên",
+            "background": "Phòng khách biệt thự Olympus, ánh sáng ban ngày, không gian sang trọng",
+            "mood": "Căng thẳng, thách thức, lo lắng"
+          },
+          {
+            "title": "Người anh em thất lạc",
+            "pose": "ngồi trên bậc thềm, tay cầm điện thoại, camera từ trên cao",
+            "outfit": "Áo khoác gió, quần jean, giày thể thao",
+            "background": "Sân thượng tòa nhà, hoàng hôn, thành phố Olympus xa xa",
+            "mood": "Suy tư, hoài nghi, kết nối"
+          }
+        ]
+      }
+    },
+    {
+      "id": "apollo",
+      "name": "Apollo",
+      "role": "Ca sĩ nổi tiếng, con riêng của Zeus",
+      "avatarEmoji": "🎤",
+      "personality": "Hào nhoáng, tự tin và đầy tham vọng. Anh ta là ngôi sao sáng của thành phố, nhưng luôn khao khát được công nhận là con trai hợp pháp của Zeus. Bên trong là nỗi sợ mất đi sự nghiệp và danh tiếng.",
+      "speechStyle": "Nói chuyện cuốn hút, thường dùng ngôn ngữ của giới showbiz, pha chút tự mãn. Khi đề cập đến gia đình, giọng điệu trở nên nghiêm túc và đầy toan tính.",
+      "secrets": [
+        "Đã nghe lén cuộc nói chuyện giữa Hera và Poseidon về kế hoạch giết Zeus, nhưng không dám lên tiếng vì sợ mất sự nghiệp.",
+        "Có mối quan hệ bí mật với Artemis (họ là anh em cùng cha khác mẹ).",
+        "Đang tìm cách giành phần thừa kế xứng đáng từ gia sản của Zeus."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Biết Zeus là cha ruột của mình nhưng không được công nhận. Anh ta đang tìm cách tiếp cận gia đình để đòi quyền thừa kế.",
+        "p2": "Biết Artemis là em gái cùng cha khác mẹ và đang cố gắng bảo vệ cô ta khỏi âm mưu của Hera.",
+        "p3": "Biết Hera đang cố gắng che đậy cái chết của Zeus, nhưng chưa có bằng chứng cụ thể. Anh ta đang cân nhắc có nên lên tiếng.",
+        "p4": "Sẽ thú nhận rằng anh ta đã nghe lén cuộc nói chuyện giữa Hera và một người lạ mặt (Poseidon) về kế hoạch giết Zeus, nếu người chơi thuyết phục được anh ta.",
+        "p5": "Biết Hades chết vì bị đầu độc, và nghi ngờ Hera có liên quan. Anh ta sợ rằng mình có thể là mục tiêu tiếp theo.",
+        "p6": "Biết Dionysus có bản sao video mua thuốc độc, và đang tìm cách thương lượng để lấy bằng chứng.",
+        "p7": "Biết Poseidon là kẻ chủ mưu đằng sau Hera, và đang tìm cách tránh xa ông ta.",
+        "p8": "Sẵn sàng làm chứng chống lại Hera nếu được đảm bảo sự nghiệp, vì anh ta muốn trả thù cho cha."
+      },
+      "unlockPhase": "p4",
+      "appearance": {
+        "gender": "male",
+        "age": 28,
+        "apparentAge": 28,
+        "eastAsian": false,
+        "hairLength": "Medium",
+        "hairstyle": "wavy, swept back",
+        "look": "Gương mặt điển trai với nụ cười tỏa nắng, làn da rám nắng, đôi mắt xanh sáng. Thân hình cân đối, phong thái tự tin.",
+        "outfit": "Áo sơ mi lụa mở cúc, quần tây ôm, giày da lười, đeo dây chuyền bạc.",
+        "scenes": [
+          {
+            "title": "Sân khấu rực rỡ",
+            "pose": "đứng trên sân khấu, tay cầm micro giơ cao, camera từ dưới lên",
+            "outfit": "Áo khoác sequin lấp lánh, quần da đen, giày thể thao ánh kim",
+            "background": "Sân khấu hòa nhạc ngoài trời, đèn laser và khói, đêm",
+            "mood": "Hào nhoáng, đam mê, chói lòa"
+          },
+          {
+            "title": "Cuộc gặp bí mật",
+            "pose": "ngồi trong ô tô, tay cầm điện thoại, camera từ ngoài cửa sổ",
+            "outfit": "Áo khoác da, kính râm, mũ lưỡi trai",
+            "background": "Bãi đỗ xe ngầm, ánh sáng vàng mờ, đêm khuya",
+            "mood": "Bí ẩn, lo lắng, toan tính"
+          },
+          {
+            "title": "Lời thú nhận bên bờ biển",
+            "pose": "đứng trên bãi biển, tay đút túi, nhìn ra biển, camera từ phía sau",
+            "outfit": "Áo thun trắng, quần short, chân trần",
+            "background": "Bãi biển hoang vắng, hoàng hôn, sóng vỗ nhẹ",
+            "mood": "Suy tư, hối hận, nhẹ nhõm"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prometheus",
+      "name": "Prometheus",
+      "role": "Hacker bí ẩn, cựu nhân viên công nghệ của Olympus",
+      "avatarEmoji": "💻",
+      "personality": "Mưu mô, hoài nghi và cay đắng. Thông minh xuất chúng nhưng bị ám ảnh bởi sự trả thù. Luôn che giấu động cơ thực sự, thích kiểm soát tình hình từ trong bóng tối. Có xu hướng thao túng người khác bằng thông tin.",
+      "speechStyle": "Nói chuyện ngắn gọn, đầy ẩn ý, thường dùng thuật ngữ công nghệ và giọng điệu châm biếm. Hay ngắt lời bằng những câu hỏi tu từ.",
+      "secrets": [
+        "Anh ta đã xâm nhập vào hệ thống Olympus và lấy được bằng chứng Hera mua chuộc nhân chứng, nhưng cũng đang âm mưu tống tiền Hera.",
+        "Anh ta là em trai của Hephaestus (cùng mẹ khác cha) nhưng giấu kín mối quan hệ này.",
+        "Anh ta giữ một bản sao đoạn video Hera mua thuốc độc mà Dionysus đã đưa cho Hera."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Anh ta biết về cái chết của Zeus nhưng không tin đó là tai nạn. Anh ta theo dõi mọi cuộc trò chuyện trực tuyến và có thể tiếp cận thông tin về Hermes và Athena.",
+        "p2": "Anh ta biết Artemis từng là vệ sĩ của Zeus và có thể cung cấp thông tin về mối quan hệ giữa cô ta và Zeus. Anh ta cũng biết Artemis nghi ngờ Hera.",
+        "p3": "Anh ta đã thấy Hephaestus xóa video an ninh và biết Hephaestus giữ bản sao. Anh ta có thể tiết lộ một phần thông tin nếu được thuyết phục.",
+        "p4": "Anh ta tiết lộ mình đã lấy được bằng chứng Hera mua chuộc nhân chứng và gửi cho Apollo một phần tài liệu để gây sức ép. Anh ta muốn hợp tác với người chơi để tống tiền Hera.",
+        "p5": "Anh ta biết Persephone có mẫu thuốc độc còn sót lại và có thể kết nối cô ta với người chơi nếu thấy có lợi.",
+        "p6": "Anh ta tiết lộ rằng Dionysus đã bị Hera ép giấu video và anh ta đã lấy được bản sao từ Dionysus. Anh ta cũng biết về mối quan hệ giữa Dionysus và Artemis.",
+        "p7": "Anh ta cung cấp bằng chứng về việc Hera thuê sát thủ giết Hades, do Poseidon tiết lộ cho anh ta. Anh ta muốn dùng thông tin này để chống lại cả Hera và Poseidon.",
+        "p8": "Anh ta cung cấp đoạn ghi âm cuộc nói chuyện giữa Hera và Poseidon mà anh ta đã lấy được từ Nemesis, giúp người chơi buộc tội Hera."
+      },
+      "unlockPhase": "p4",
+      "appearance": {
+        "gender": "male",
+        "age": 32,
+        "apparentAge": 30,
+        "eastAsian": false,
+        "hairLength": "Medium",
+        "hairstyle": "messy, undercut",
+        "look": "Gương mặt góc cạnh, làn da trắng xanh do thiếu nắng, đeo kính gọng đen, có hình xăm mạch điện tử ở cổ tay.",
+        "outfit": "Áo hoodie đen có mũ trùm đầu, quần jeans tối màu, giày thể thao, luôn mang theo một chiếc ba lô đen đựng laptop.",
+        "scenes": [
+          {
+            "title": "Trong căn hộ tối",
+            "pose": "ngồi trước màn hình máy tính, gõ phím, ánh sáng xanh hắt lên mặt",
+            "outfit": "Áo hoodie đen, quần jeans",
+            "background": "Căn hộ nhỏ tối tăm với nhiều màn hình và dây cáp, ban đêm, ánh sáng từ màn hình",
+            "mood": "Căng thẳng, bí ẩn"
+          },
+          {
+            "title": "Gặp gỡ bí mật",
+            "pose": "đứng trong góc tối, nhìn nghiêng, tay cầm điện thoại",
+            "outfit": "Áo khoác da đen, quần tây, giày boots",
+            "background": "Bãi đỗ xe ngầm, ánh đèn vàng mờ, ban đêm",
+            "mood": "Cảnh giác, nguy hiểm"
+          },
+          {
+            "title": "Chế giễu",
+            "pose": "ngồi trên ghế sofa cũ, chân gác lên bàn, cười nhếch mép",
+            "outfit": "Áo thun đen, quần short, chân đất",
+            "background": "Căn hộ bừa bộn, ánh sáng ban ngày lọt qua rèm",
+            "mood": "Tự mãn, thách thức"
+          }
+        ]
+      }
+    },
+    {
+      "id": "persephone",
+      "name": "Persephone",
+      "role": "Vợ cũ của Hades, chủ một chuỗi khách sạn",
+      "avatarEmoji": "🌸",
+      "personality": "Quyến rũ, sắc sảo và đầy toan tính. Cô ta dịu dàng bề ngoài nhưng bên trong là nỗi đau và khát vọng trả thù. Luôn giữ bí mật về quá khứ của mình, thích kiểm soát mọi tình huống.",
+      "speechStyle": "Nói năng nhỏ nhẹ, quyến rũ, thường dùng ẩn dụ về hoa và mùa, giọng điệu có phần bi thương nhưng đầy uy lực.",
+      "secrets": [
+        "Cô ta biết Hades đã bị đầu độc bằng cùng một loại thuốc mà Hera sau này dùng để giết Zeus, và cô ta giữ mẫu thuốc còn sót lại.",
+        "Cô ta nghi ngờ Hera đã giết Hades để bịt đầu mối về một bí mật kinh doanh, nhưng chưa có bằng chứng trực tiếp.",
+        "Cô ta có một mối quan hệ bí mật với Prometheus, người đã cung cấp cho cô ta thông tin về cái chết của Hades."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Cô ta biết về cái chết của Zeus qua tin tức và tin rằng đó là một phần của âm mưu lớn hơn liên quan đến cái chết của Hades.",
+        "p2": "Cô ta biết Artemis từng là người tình của Zeus và có thể chia sẻ góc nhìn về động cơ của Hera nếu được thuyết phục.",
+        "p3": "Cô ta biết Hera đã tổ chức một bữa tiệc lớn sau đám tang Zeus và có thể tiết lộ rằng Hera đã mua một loại thuốc lạ từ chợ đen.",
+        "p4": "Cô ta biết Apollo đã nghe lén cuộc nói chuyện giữa Hera và Poseidon, và cô ta có thể xác nhận một phần thông tin nếu được hỏi.",
+        "p5": "Cô ta tiết lộ rằng Hades chết vì bị đầu độc và cô ta tin rằng cùng loại thuốc độc đã được dùng để giết Zeus. Cô ta cho người chơi xem mẫu thuốc còn sót lại.",
+        "p6": "Cô ta biết Dionysus từng làm việc cho Hera và có thể tiết lộ rằng anh ta giữ một đoạn video quan trọng.",
+        "p7": "Cô ta cung cấp bằng chứng về việc Hera thuê sát thủ giết Hades, do cô ta thu thập được từ một nhân chứng trước khi người này biến mất.",
+        "p8": "Cô ta sẵn sàng làm nhân chứng chống lại Hera tại tòa nếu người chơi đảm bảo an toàn cho cô ta."
+      },
+      "unlockPhase": "p5",
+      "appearance": {
+        "gender": "female",
+        "age": 35,
+        "apparentAge": 32,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "wavy, side part",
+        "look": "Gương mặt trái xoan, làn da trắng ngà, đôi mắt màu nâu đỏ, đeo hoa tai ngọc trai, phong thái quý phái.",
+        "outfit": "Váy đầm lụa đen dài, áo khoác lông chồn giả, giày cao gót, túi xách hàng hiệu.",
+        "scenes": [
+          {
+            "title": "Trong khách sạn",
+            "pose": "đứng tựa vào quầy lễ tân, tay cầm ly champagne",
+            "outfit": "Váy đầm đen, trang sức vàng",
+            "background": "Sảnh khách sạn sang trọng, đèn chùm pha lê, ban đêm",
+            "mood": "Quyền lực, quyến rũ"
+          },
+          {
+            "title": "Tưởng niệm Hades",
+            "pose": "ngồi trước bàn thờ nhỏ, tay cầm khung ảnh",
+            "outfit": "Váy đen dài, khăn choàng đen",
+            "background": "Phòng khách ấm cúng, ánh nến, ban đêm",
+            "mood": "Bi thương, bí ẩn"
+          },
+          {
+            "title": "Gặp gỡ bí mật",
+            "pose": "đứng trong công viên, nhìn quanh, tay cầm điện thoại",
+            "outfit": "Áo khoác trench coat, quần tây, giày bệt",
+            "background": "Công viên thành phố, sáng sớm, sương mù",
+            "mood": "Cảnh giác, lo lắng"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dionysus",
+      "name": "Dionysus",
+      "role": "Chủ hộp đêm, em họ của Zeus",
+      "avatarEmoji": "🍷",
+      "personality": "Vui vẻ, phóng khoáng và thích hưởng thụ. Anh ta trốn tránh trách nhiệm và xung đột bằng cách đắm mình vào tiệc tùng. Tuy nhiên, bên trong là nỗi sợ hãi và mặc cảm tội lỗi vì đã giúp Hera che giấu tội ác.",
+      "speechStyle": "Nói chuyện thoải mái, hay pha trò, dùng từ ngữ đời thường và đôi khi lảm nhảm khi say. Nhưng khi nghiêm túc, giọng anh ta trở nên sắc bén và đầy hối hận.",
+      "secrets": [
+        "Anh ta đã bị Hera ép phải giấu một đoạn video quay cảnh Hera mua thuốc độc, nhưng anh ta đã giữ một bản sao.",
+        "Anh ta là người yêu cũ của Artemis và vẫn còn tình cảm với cô ta, điều này khiến anh ta bị giằng xé giữa việc bảo vệ cô ta và bảo vệ bản thân.",
+        "Anh ta biết Hera không phải là kẻ chủ mưu duy nhất, mà còn có một người khác trong gia đình đã giúp đỡ bà ta, và người đó là Poseidon."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Anh ta biết về cái chết của Zeus và có mặt tại bữa tiệc của Hera sau đám tang, nhưng không muốn liên quan.",
+        "p2": "Anh ta biết Artemis từng là vệ sĩ của Zeus và có thể tiết lộ rằng cô ta đã bị Hera đuổi việc sau khi Zeus chết.",
+        "p3": "Anh ta biết Hephaestus đã xóa video an ninh theo lệnh của Hera, nhưng anh ta không biết Hephaestus giữ bản sao.",
+        "p4": "Anh ta biết Apollo là con riêng của Zeus và có thể tiết lộ rằng Apollo đã đến hộp đêm của anh ta để tìm bằng chứng.",
+        "p5": "Anh ta biết Persephone có mối quan hệ với Hades và có thể tiết lộ rằng cô ta đang tìm cách trả thù.",
+        "p6": "Anh ta tiết lộ rằng Hera không phải là kẻ chủ mưu duy nhất, mà còn có Poseidon đã giúp bà ta. Anh ta cũng thừa nhận đã giữ bản sao đoạn video.",
+        "p7": "Anh ta cung cấp bản sao đoạn video Hera mua thuốc độc, và tiết lộ rằng Poseidon đã cung cấp thuốc độc cho Hera.",
+        "p8": "Anh ta làm chứng tại tòa rằng Hera đã ép anh ta giấu video và thừa nhận mình đã sai khi im lặng."
+      },
+      "unlockPhase": "p6",
+      "appearance": {
+        "gender": "male",
+        "age": 30,
+        "apparentAge": 28,
+        "eastAsian": false,
+        "hairLength": "Medium",
+        "hairstyle": "curly, messy",
+        "look": "Gương mặt tròn, làn da rám nắng, đôi mắt nâu sáng, nụ cười thường trực, có nốt ruồi ở má phải.",
+        "outfit": "Áo sơ mi hoa hòe mở rộng cổ, quần tây ống loe, giày da lười, đeo nhiều vòng tay bạc.",
+        "scenes": [
+          {
+            "title": "Trong hộp đêm",
+            "pose": "đứng sau quầy bar, tay cầm chai rượu, cười lớn",
+            "outfit": "Áo sơ mi họa tiết, quần tây đen",
+            "background": "Hộp đêm sang trọng, đèn neon xanh đỏ, đông người",
+            "mood": "Sôi động, phóng khoáng"
+          },
+          {
+            "title": "Suy tư",
+            "pose": "ngồi một mình trên sân thượng, tay cầm ly rượu, nhìn xa xăm",
+            "outfit": "Áo thun đen, quần jeans, áo khoác ngoài",
+            "background": "Sân thượng nhìn ra thành phố, hoàng hôn",
+            "mood": "Cô đơn, hối hận"
+          },
+          {
+            "title": "Gặp Artemis",
+            "pose": "đứng đối diện Artemis, ánh mắt lo lắng",
+            "outfit": "Áo sơ mi trắng, quần tây, không thắt cà vạt",
+            "background": "Quán cà phê vắng, ban ngày, ánh sáng dịu",
+            "mood": "Căng thẳng, xúc động"
+          }
+        ]
+      }
+    },
+    {
+      "id": "poseidon",
+      "name": "Poseidon",
+      "role": "Trùm ngầm của thành phố, em trai của Zeus",
+      "avatarEmoji": "🔱",
+      "personality": "Lạnh lùng, toan tính, tham quyền lực nhưng luôn tỏ ra điềm tĩnh và đáng tin. Ông ta thích kiểm soát mọi thứ từ sau cánh gà, dùng lợi ích và nỗi sợ để điều khiển người khác. Mối quan hệ với Hera là cộng sinh nhưng đầy ngờ vực; với Zeus là sự ganh đua ngấm ngầm từ thời trẻ.",
+      "speechStyle": "Nói chậm, trầm, ít dùng đại từ nhân xưng, thường kết thúc bằng câu hỏi tu từ để tạo áp lực. Khi tức giận thì giọng càng nhỏ, càng lạnh.",
+      "secrets": [
+        "Đã cung cấp thuốc độc cho Hera nhưng không trực tiếp đầu độc Zeus.",
+        "Có bằng chứng Hera đã thuê sát thủ giết Hades nhiều năm trước, và đang dùng bằng chứng đó để kiểm soát bà ta.",
+        "Là người đứng sau việc mua chuộc nhân chứng thông qua một công ty vỏ bọc của mình, nhưng cố tình để lại dấu vết dẫn đến Hera nếu bị điều tra."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Biết Zeus chết không phải tai nạn, nhưng giả vờ tin đó là tai nạn để tránh bị nghi ngờ. Không tiết lộ gì với người lạ.",
+        "p2": "Nghe phong thanh Artemis đang nghi ngờ Hera. Ông ta lo rằng Artemis có thể biết quá nhiều và đang tìm cách tiếp cận cô ta.",
+        "p3": "Biết Hera đang gấp rút xóa bằng chứng. Ông ta đã dặn Hephaestus không được tiết lộ bất cứ điều gì về đoạn video an ninh.",
+        "p4": "Biết Apollo đã nghe lén cuộc nói chuyện giữa mình và Hera. Ông ta đang tìm cách bịt miệng Apollo bằng cách hứa hẹn hợp đồng âm nhạc béo bở.",
+        "p5": "Biết Persephone đang điều tra cái chết của Hades. Ông ta từng gài bẫy để cô ta tin rằng Hades chết vì bệnh tim, nhưng không thành công.",
+        "p6": "Biết Dionysus đang giữ một bản sao đoạn video Hera mua thuốc độc. Ông ta đã cử người theo dõi hộp đêm của Dionysus.",
+        "p7": "Sẵn sàng thừa nhận đã cung cấp thuốc độc cho Hera nếu bị dồn ép, nhưng sẽ đổ toàn bộ trách nhiệm trực tiếp lên Hera và ám chỉ rằng mình chỉ là người cung cấp vật liệu.",
+        "p8": "Khi Hera bị vạch trần, ông ta sẽ cố gắng tận dụng cơ hội để chiếm đoạt tập đoàn Olympus, đồng thời tiết lộ mình có bằng chứng về cái chết của Hades để uy hiếp Hera lần cuối."
+      },
+      "unlockPhase": "p7",
+      "appearance": {
+        "gender": "male",
+        "age": 52,
+        "apparentAge": 48,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "slicked back",
+        "look": "Khuôn mặt góc cạnh, làn da rám nắng, đôi mắt sâu lạnh như nước biển; thân hình vững chãi, luôn mặc vest tối màu.",
+        "outfit": "Bộ vest xám than sang trọng, sơ mi đen không cà vạt, đồng hồ vàng và nhẫn bạc trên ngón út.",
+        "scenes": [
+          {
+            "title": "Cuộc họp ngầm",
+            "pose": "Ngồi sau bàn làm việc bằng gỗ đen, hai tay đan vào nhau, mắt nhìn thẳng vào ống kính.",
+            "outfit": "Vest xám than, sơ mi đen, không thắt cà vạt.",
+            "background": "Văn phòng tối trên tầng cao nhất của một tòa nhà chọc trời, đêm khuya, ánh đèn neon xanh từ cửa sổ hắt vào.",
+            "mood": "Quyền lực và bí ẩn"
+          },
+          {
+            "title": "Bến cảng riêng",
+            "pose": "Đứng trên cầu tàu, một tay đút túi quần, nhìn ra biển đen.",
+            "outfit": "Áo khoác dạ dài màu đen, quần tây xám, giày da bóng.",
+            "background": "Bến cảng tư nhân của Olympus, hoàng hôn, ánh sáng cam đỏ phản chiếu trên mặt nước.",
+            "mood": "Suy tư và đe dọa"
+          },
+          {
+            "title": "Lời đe dọa",
+            "pose": "Cúi người về phía trước, hai tay chống lên bàn, mặt gần ống kính.",
+            "outfit": "Sơ mi trắng xắn tay áo, vest vắt trên ghế.",
+            "background": "Phòng họp kín trong hộp đêm của Dionysus, ánh đèn tím mờ ảo.",
+            "mood": "Căng thẳng và nguy hiểm"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hestia",
+      "name": "Hestia",
+      "role": "Em gái của Zeus, chủ tịch một quỹ từ thiện",
+      "avatarEmoji": "🔥",
+      "personality": "Điềm đạm, ấm áp nhưng ẩn chứa nỗi day dứt. Cô luôn cố gắng hàn gắn gia đình, nhưng sự im lặng của cô đã khiến cô trở thành đồng lõa bất đắc dĩ. Cô yêu thương Zeus nhưng cũng sợ quyền lực của Hera. Mối quan hệ bí mật với Prometheus khiến cô thêm phần mâu thuẫn.",
+      "speechStyle": "Nhẹ nhàng, chậm rãi, hay dùng từ ngữ nhẹ nhàng để che giấu sự thật. Khi bị thuyết phục, giọng cô run rẩy và có xu hướng tự trách mình.",
+      "secrets": [
+        "Đã biết về âm mưu của Hera từ lâu nhưng chọn im lặng vì sợ ảnh hưởng đến quỹ từ thiện.",
+        "Có mối quan hệ bí mật với Prometheus, người đã cung cấp bằng chứng cho cô ta.",
+        "Đã giữ một bản sao đoạn video Hera mua thuốc độc mà Prometheus gửi cho cô, nhưng chưa từng xem vì sợ hãi."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Biết Zeus chết không phải tai nạn, nhưng giả vờ tin đó là tai nạn để bảo vệ bản thân và quỹ từ thiện. Không tiết lộ gì với người lạ.",
+        "p2": "Nghe nói Artemis đang nghi ngờ Hera. Cô lo lắng cho Artemis vì biết Hera có thể nguy hiểm.",
+        "p3": "Biết Hera đã yêu cầu Hephaestus xóa video an ninh. Cô đã cố gắng khuyên Hephaestus giữ lại bản sao nhưng không thành công.",
+        "p4": "Biết Prometheus đã xâm nhập hệ thống của Olympus và có bằng chứng. Cô đang cố gắng thuyết phục anh ta không tống tiền Hera.",
+        "p5": "Biết Persephone đang điều tra cái chết của Hades. Cô nghi ngờ Hera có liên quan nhưng không dám lên tiếng.",
+        "p6": "Biết Dionysus đang giữ bản sao đoạn video Hera mua thuốc độc. Cô đã cố gắng liên lạc với anh ta nhưng anh ta từ chối gặp.",
+        "p7": "Sẵn sàng tiết lộ rằng cô đã biết về âm mưu của Hera từ lâu, và cung cấp bằng chứng từ Prometheus nếu người chơi thuyết phục được cô rằng đó là cách duy nhất để bảo vệ gia đình.",
+        "p8": "Sẽ làm chứng chống lại Hera nếu được đảm bảo quỹ từ thiện của cô không bị ảnh hưởng. Cô cũng tiết lộ mối quan hệ với Prometheus và vai trò của anh ta trong việc cung cấp bằng chứng."
+      },
+      "unlockPhase": "p7",
+      "appearance": {
+        "gender": "female",
+        "age": 45,
+        "apparentAge": 40,
+        "eastAsian": false,
+        "hairLength": "Medium-long",
+        "hairstyle": "búi tóc thấp",
+        "look": "Khuôn mặt thanh tú, làn da trắng ngà, đôi mắt nâu ấm áp nhưng thường ánh lên vẻ lo âu; dáng người mảnh mai.",
+        "outfit": "Váy liền màu be thanh lịch, áo khoác cashmere nhẹ, trang sức vàng đơn giản.",
+        "scenes": [
+          {
+            "title": "Buổi tiệc từ thiện",
+            "pose": "Đứng trên bục phát biểu, hai tay cầm micro, mỉm cười dịu dàng.",
+            "outfit": "Váy dạ hội màu trắng ngà, khăn choàng lụa.",
+            "background": "Sảnh lớn của khách sạn sang trọng, đèn chùm pha lê, đêm.",
+            "mood": "Thanh lịch và ấm áp"
+          },
+          {
+            "title": "Góc tối tâm sự",
+            "pose": "Ngồi trên ghế sofa, hai tay ôm tách trà, mắt nhìn xa xăm.",
+            "outfit": "Áo len cashmere màu kem, quần âu nhẹ.",
+            "background": "Phòng khách ấm cúng trong căn hộ của cô, ánh đèn vàng dịu, tối.",
+            "mood": "Trầm tư và day dứt"
+          },
+          {
+            "title": "Lời thú nhận",
+            "pose": "Đứng trước cửa sổ lớn, một tay đặt lên kính, quay lưng lại ống kính.",
+            "outfit": "Váy đen đơn giản, không trang sức.",
+            "background": "Văn phòng quỹ từ thiện, đêm mưa, ánh đèn thành phố mờ ảo qua màn nước.",
+            "mood": "Cô đơn và quyết tâm"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nemesis",
+      "name": "Nemesis",
+      "role": "Cựu thư ký riêng của Zeus, hiện là nhân chứng bí mật",
+      "avatarEmoji": "⚡",
+      "personality": "Sắc sảo, lạnh lùng và đầy oán hận. Cô ta từng trung thành với Zeus nhưng bị Hera phá hủy sự nghiệp khi từ chối che giấu tội ác. Giờ đây cô ta chỉ muốn trả thù, nhưng vẫn giữ một chút tình cảm gia đình với Hermes dù anh ta luôn coi thường cô.",
+      "speechStyle": "Nói thẳng, cay nghiệt, thường dùng câu ngắn và ẩn ý. Khi nhắc đến Hera, giọng cô ta tràn đầy khinh miệt.",
+      "secrets": [
+        "Đã bí mật ghi âm cuộc nói chuyện giữa Hera và Poseidon, trong đó Hera thừa nhận đầu độc Zeus.",
+        "Là em gái ruột của Hermes và luôn bị anh ta coi thường.",
+        "Đã giữ một bản sao đoạn ghi âm trong két sắt bí mật tại nhà riêng, và đang chờ thời cơ để tiết lộ."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Chưa xuất hiện. Cô ta đang ẩn mình và theo dõi tình hình từ xa.",
+        "p2": "Chưa xuất hiện. Cô ta biết Artemis đang điều tra nhưng không liên lạc.",
+        "p3": "Chưa xuất hiện. Cô ta biết Hera đang xóa bằng chứng và cảm thấy hả hê vì mình đã giữ bản ghi âm.",
+        "p4": "Chưa xuất hiện. Cô ta biết Apollo đã nghe lén cuộc nói chuyện nhưng không biết cậu ta có bằng chứng gì.",
+        "p5": "Chưa xuất hiện. Cô ta biết Persephone đang điều tra cái chết của Hades và nghi ngờ Hera, nhưng không có liên hệ.",
+        "p6": "Chưa xuất hiện. Cô ta biết Dionysus đang giữ bản sao video và cảm thấy lo lắng vì có thể bị lộ.",
+        "p7": "Chưa xuất hiện. Cô ta biết Poseidon sắp bị đối mặt và đang chuẩn bị tinh thần để tiết lộ bằng chứng của mình.",
+        "p8": "Xuất hiện với tư cách nhân chứng bí mật. Cô ta tiết lộ đoạn ghi âm cuộc nói chuyện giữa Hera và Poseidon, trong đó Hera thừa nhận đầu độc Zeus. Cô ta yêu cầu được bảo vệ và muốn Hermes phải thừa nhận cô ta là em gái trước công chúng."
+      },
+      "unlockPhase": "p8",
+      "appearance": {
+        "gender": "female",
+        "age": 35,
+        "apparentAge": 33,
+        "eastAsian": true,
+        "hairLength": "Medium",
+        "hairstyle": "tóc ngắn gọn gàng",
+        "look": "Khuôn mặt trái xoan, làn da nâu nhạt, đôi mắt đen sắc lạnh; dáng người nhỏ nhắn nhưng toát lên vẻ cứng rắn.",
+        "outfit": "Bộ vest công sở màu đen, áo sơ mi trắng, giày cao gót thấp.",
+        "scenes": [
+          {
+            "title": "Góc tối chờ đợi",
+            "pose": "Ngồi trong quán cà phê vắng, tay cầm điện thoại, mắt nhìn ra cửa.",
+            "outfit": "Áo khoác da đen, quần jeans, giày thể thao.",
+            "background": "Quán cà phê nhỏ ở ngoại ô Olympus, chiều muộn, ánh sáng vàng nhạt.",
+            "mood": "Cảnh giác và chờ đợi"
+          },
+          {
+            "title": "Ký ức về Zeus",
+            "pose": "Đứng trước tòa nhà Olympus, ngước nhìn lên, tay cầm một tập hồ sơ.",
+            "outfit": "Vest công sở màu xám, túi xách da đen.",
+            "background": "Quảng trường trước tòa nhà chọc trời Olympus, ban ngày, nắng chói chang.",
+            "mood": "Hoài niệm và phẫn uất"
+          },
+          {
+            "title": "Lời thú tội",
+            "pose": "Ngồi đối diện ống kính, hai tay đặt trên bàn, ánh mắt kiên định.",
+            "outfit": "Áo sơ mi trắng, không trang sức.",
+            "background": "Phòng thẩm vấn tối giản, ánh đèn trắng mạnh, đêm.",
+            "mood": "Quyết tâm và lạnh lùng"
+          }
+        ]
+      }
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "title": "Lời Mời Bí Ẩn",
+      "narration": "Bạn tỉnh dậy với một tin nhắn từ số lạ: 'Chào mừng đến với Olympus. Bạn là người được chọn.' Trong lúc hoang mang, bạn nhận ra mình có thể trò chuyện với hai người: một luật sư trẻ đầy tham vọng và một nghệ sĩ đường phố hoài nghi. Họ dường như biết nhiều hơn những gì họ nói về cái chết của trùm tài phiệt Zeus.",
+      "objective": "Tìm hiểu về cái chết của Zeus và giành được sự tin tưởng của ít nhất một người.",
+      "completionCriteria": "Người chơi đã nói chuyện với cả Hermes và Athena, và ít nhất một trong hai người đã tiết lộ rằng họ tin Zeus bị sát hại chứ không phải tai nạn.",
+      "hint": "Hãy hỏi về đêm xảy ra cái chết và lắng nghe những mâu thuẫn trong lời khai."
+    },
+    {
+      "id": "p2",
+      "title": "Dấu Vết Của Nữ Thần",
+      "narration": "Một người phụ nữ bí ẩn tên Artemis liên lạc với bạn, cô ta là cựu vệ sĩ của Zeus và hiện đang sống ẩn dật. Cô ta có vẻ biết về một âm mưu lớn hơn. Bạn cần tìm ra động cơ của những kẻ xung quanh Zeus.",
+      "objective": "Thuyết phục Artemis chia sẻ thông tin về kẻ thù của Zeus.",
+      "completionCriteria": "Artemis đã tiết lộ rằng cô ta nghi ngờ Hera, vợ của Zeus, có liên quan đến cái chết.",
+      "hint": "Artemis rất bảo vệ sự thật, hãy chứng minh bạn không phải tay sai của Hera."
+    },
+    {
+      "id": "p3",
+      "title": "Bữa Tiệc Của Nữ Hoàng",
+      "narration": "Bạn nhận được lời mời từ Hera, góa phụ quyền lực của Zeus, mời bạn đến dự một bữa tiệc tại dinh thự của bà ta. Đây là cơ hội để thâm nhập vào trung tâm quyền lực, nhưng cũng đầy rẫy nguy hiểm. Một nhân vật mới xuất hiện: Hephaestus, con trai của Hera, một kỹ sư thiên tài nhưng bị mẹ kiểm soát.",
+      "objective": "Thu thập bằng chứng về vai trò của Hera trong cái chết của Zeus mà không bị phát hiện.",
+      "completionCriteria": "Người chơi đã nói chuyện với Hera và Hephaestus, và Hephaestus đã vô tình tiết lộ rằng mẹ anh ta đã yêu cầu anh ta xóa một đoạn video an ninh quan trọng.",
+      "hint": "Hephaestus có vẻ không thoải mái, hãy khéo léo khai thác điểm yếu của anh ta."
+    },
+    {
+      "id": "p4",
+      "title": "Người Anh Em Thất Lạc",
+      "narration": "Một người đàn ông tên Apollo, ca sĩ nổi tiếng và là con riêng của Zeus, liên hệ với bạn. Anh ta muốn tìm ra sự thật về cha mình, nhưng lại che giấu một bí mật động trời. Cùng lúc, một hacker bí ẩn mang tên Prometheus bắt đầu gửi cho bạn những tệp dữ liệu bị mã hóa.",
+      "objective": "Khám phá bí mật của Apollo và giải mã ít nhất một tệp từ Prometheus.",
+      "completionCriteria": "Apollo đã thú nhận rằng anh ta đã nghe lén cuộc nói chuyện giữa Hera và một người lạ mặt, và Prometheus đã gửi một tệp cho thấy bằng chứng về việc Hera mua chuộc nhân chứng.",
+      "hint": "Apollo có mối quan hệ phức tạp với Hera, hãy hỏi về quá khứ của anh ta."
+    },
+    {
+      "id": "p5",
+      "title": "Bóng Tối Từ Quá Khứ",
+      "narration": "Bạn phát hiện ra rằng cái chết của Zeus có thể liên quan đến một vụ bê bối nhiều thập kỷ trước. Một người phụ nữ tên Persephone, vợ cũ của Hades (em trai Zeus), xuất hiện với những thông tin gây sốc. Bạn cần đối mặt với quá khứ đen tối của gia đình này.",
+      "objective": "Tìm hiểu về mối liên hệ giữa cái chết của Zeus và cái chết của Hades nhiều năm trước.",
+      "completionCriteria": "Persephone đã tiết lộ rằng Hades chết vì bị đầu độc, và cô ta tin rằng cùng một loại thuốc độc đã được dùng để giết Zeus.",
+      "hint": "Persephone vẫn còn yêu Hades, hãy khơi gợi ký ức về ông ta."
+    },
+    {
+      "id": "p6",
+      "title": "Lời Thú Tội Của Kẻ Phản Bội",
+      "narration": "Một nhân vật mới, Dionysus, chủ hộp đêm nổi tiếng và là em họ của Zeus, liên lạc với bạn trong tình trạng hoảng loạn. Anh ta nói rằng mình đã bị ép phải che giấu bằng chứng. Đồng thời, mối quan hệ giữa các nhân vật trở nên căng thẳng khi sự thật dần hé lộ.",
+      "objective": "Khai thác Dionysus để tìm ra kẻ chủ mưu thực sự đằng sau cái chết của Zeus.",
+      "completionCriteria": "Dionysus đã tiết lộ rằng Hera không phải là kẻ chủ mưu duy nhất, mà còn có một người khác trong gia đình đã giúp đỡ bà ta, và người đó là Poseidon.",
+      "hint": "Dionysus sợ hãi, hãy hứa bảo vệ anh ta để đổi lấy sự thật."
+    },
+    {
+      "id": "p7",
+      "title": "Cuộc Chiến Của Các Vị Thần",
+      "narration": "Poseidon, em trai của Zeus và là trùm ngầm của thành phố, quyết định hành động. Ông ta mời bạn đến một cuộc gặp riêng, có thể là để đe dọa hoặc để thương lượng. Bạn cũng nhận được sự giúp đỡ từ một người bất ngờ: Hestia, em gái của Zeus, người luôn đứng ngoài cuộc nhưng giờ đây muốn lật tẩy sự thật.",
+      "objective": "Đối mặt với Poseidon và khiến ông ta thừa nhận tội ác.",
+      "completionCriteria": "Poseidon đã thừa nhận rằng ông ta đã cung cấp thuốc độc cho Hera, nhưng khẳng định Hera là người trực tiếp đầu độc Zeus.",
+      "hint": "Poseidon kiêu ngạo, hãy dùng bằng chứng bạn có để áp đảo ông ta."
+    },
+    {
+      "id": "p8",
+      "title": "Sự Thật Phơi Bày",
+      "narration": "Bạn đã có đủ bằng chứng để vạch trần kẻ giết người. Nhưng Hera vẫn còn quyền lực và sẵn sàng phản công. Một nhân vật cuối cùng xuất hiện: Nemesis, cựu thư ký riêng của Zeus, người nắm giữ đoạn ghi âm cuối cùng có thể định đoạt số phận của Hera. Bạn phải quyết định ai sẽ là người cuối cùng đứng về phía công lý.",
+      "objective": "Buộc Hera phải thú nhận tội ác của mình trước công chúng hoặc trước một nhân chứng đáng tin cậy.",
+      "completionCriteria": "Hera đã thú nhận rằng bà ta đã đầu độc Zeus vì ông ta định ly hôn và tước đoạt quyền lực của bà ta, và ít nhất một nhân vật khác đã chứng kiến lời thú tội này.",
+      "hint": "Hera sợ mất danh dự hơn là bị trừng phạt, hãy đe dọa sẽ công bố bằng chứng cho báo chí."
+    }
+  ]
+}
