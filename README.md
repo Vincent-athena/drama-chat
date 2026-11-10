@@ -9,7 +9,7 @@ DeepSeek plays every character and also writes new stories.
 
 ```bash
 npm install
-npm run setup          # paste your DeepSeek API key (hidden input), saved to .env.local
+npm run setup          # paste your model provider key(s) (hidden input), saved to .env.local
 npm run dev            # open http://localhost:3000
 ```
 
@@ -18,11 +18,12 @@ npm run dev            # open http://localhost:3000
 Other ways to set the key:
 
 ```bash
-npm run setup -- sk-xxxxxxxxxxxxxxxx               # non-interactive
+npm run setup -- sk-xxxxxxxxxxxxxxxx               # non-interactive, DeepSeek key only
+npm run setup -- --ark <key> --ark-chat-model <model-id> --deepseek <key>   # ByteDance primary, DeepSeek backup
 echo "DEEPSEEK_API_KEY=sk-xxxxxxxxxxxxxxxx" > .env.local
 ```
 
-Get a key at https://platform.deepseek.com/api_keys. Restart `npm run dev` after changing it.
+Get a DeepSeek key at https://platform.deepseek.com/api_keys. Restart `npm run dev` after changing keys.
 
 ## Accounts and saves
 
@@ -128,6 +129,43 @@ stories live in `./data` and survive rebuilds.
   shared "what happened so far" memory for every character.
 - A character locked until a later chapter (by the signed ticket) is shown as `???` and its chat API returns 403.
 
-Optional env vars: `DEEPSEEK_MODEL` (default `deepseek-chat`), `DEEPSEEK_BASE_URL` (default `https://api.deepseek.com`).
+## Model providers
+
+Every model call (character chat, group chat, speaker picker, director, story guide, story generation) goes
+through an ordered provider list: ByteDance (BytePlus ModelArk, OpenAI-compatible) first, DeepSeek as the backup.
+Only configured providers are used; with only a DeepSeek key the app runs on DeepSeek alone.
+
+| Variable | Default | Notes |
+|---|---|---|
+| `ARK_API_KEY` | unset | ByteDance is configured only when this **and** `ARK_CHAT_MODEL` are set |
+| `ARK_CHAT_MODEL` | unset | model id from the ModelArk console (character chat) |
+| `ARK_STORY_MODEL` | `ARK_CHAT_MODEL` | story generation |
+| `ARK_JUDGE_MODEL` | `ARK_CHAT_MODEL` | director, speaker picker, story guide |
+| `ARK_BASE_URL` | `https://ark.ap-southeast.bytepluses.com/api/v3` | China console (Volcano Engine Ark): set its base URL |
+| `ARK_THINKING` | `disabled` | `disabled`, `enabled`, `auto`, or `omit` (send no `thinking` field) |
+| `ARK_JSON_MODE` | `json_object` | `none` sends no `response_format` |
+| `DEEPSEEK_API_KEY` / `DEEPSEEK_MODEL` / `DEEPSEEK_BASE_URL` | unset / `deepseek-chat` / `https://api.deepseek.com` | backup |
+| `LLM_PRIMARY` | `bytedance` | `bytedance` or `deepseek` |
+
+**Fallback.** The backup takes over on a network error, a timeout (no first token within 15 s for chat; 45 s for
+a JSON call; 120 s for a story generation call), HTTP 401/403/408/409/429/5xx, a content-moderation refusal, or
+JSON that is still unusable after one retry. A chat stream falls back only before the first token reached the
+player; after that the failure is reported as "The reply was interrupted". After three consecutive failures
+the primary is skipped for 60 s, then tried again. If a provider rejects the `thinking` or `response_format`
+field (HTTP 400 naming it), the call is retried without it and remembered until restart. JSON replies are
+tolerantly parsed (code fences and surrounding prose are stripped).
+
+**Reading the log.** Each attempt prints one line, for example
+`{"evt":"llm","task":"chat","provider":"deepseek","model":"deepseek-chat","ms":812,"ok":true,"fallback":true}`.
+`fallback:true` means the backup answered; `ok:false` lines carry a short `error` (HTTP status or error name).
+`ms` is the time to the first token for streams. Prompts, replies and keys are never logged.
+
+**Quality check before making ByteDance the default.** Play the same five turns (Vietnamese and English) on
+`sample-midnight-manor` and `sai-gon-2077`, plus one 8-chapter generation, first with `LLM_PRIMARY=bytedance`
+and then with `LLM_PRIMARY=deepseek`. Compare voice, first-token latency (`ms` in the log) and JSON validity,
+and record the results in the PR description.
+
+Story generation streams progress (`POST /api/stories/generate` answers with NDJSON: `progress`, `ping`,
+then `done` or `error`) so a generation longer than 100 s is not cut off by Cloudflare.
 To restart a story, use **↺ Restart story** on the story page. To wipe the accounts, delete `data/`
 (browser saves stay in the browsers; clear site data to remove them).

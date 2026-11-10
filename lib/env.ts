@@ -29,3 +29,22 @@ export const adMinSeconds = () => num(process.env.AD_MIN_SECONDS, 15);
 export const adDailyCap = () => num(process.env.AD_DAILY_CAP, 10);
 export const dayTz = () => process.env.DAY_TZ || "Asia/Ho_Chi_Minh";
 export const isProduction = () => process.env.NODE_ENV === "production";
+
+/** Model providers. ByteDance (BytePlus ModelArk) counts as configured only with a key and a chat model id. */
+export const arkApiKey = () => process.env.ARK_API_KEY || "";
+export const arkBaseUrl = () => process.env.ARK_BASE_URL || "https://ark.ap-southeast.bytepluses.com/api/v3";
+export const arkChatModel = () => process.env.ARK_CHAT_MODEL || "";
+export const arkStoryModel = () => process.env.ARK_STORY_MODEL || arkChatModel();
+export const arkJudgeModel = () => process.env.ARK_JUDGE_MODEL || arkChatModel();
+export type ArkThinking = "disabled" | "enabled" | "auto" | "omit";
+export const arkThinking = (): ArkThinking => {
+  const v = (process.env.ARK_THINKING || "").trim().toLowerCase();
+  return v === "enabled" || v === "auto" || v === "omit" ? v : "disabled";
+};
+export const arkJsonMode = (): "json_object" | "none" =>
+  (process.env.ARK_JSON_MODE || "").trim().toLowerCase() === "none" ? "none" : "json_object";
+export const deepseekApiKey = () => process.env.DEEPSEEK_API_KEY || "";
+export const deepseekBaseUrl = () => process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com";
+export const deepseekModel = () => process.env.DEEPSEEK_MODEL || "deepseek-chat";
+export const llmPrimary = (): "bytedance" | "deepseek" =>
+  (process.env.LLM_PRIMARY || "").trim().toLowerCase() === "deepseek" ? "deepseek" : "bytedance";

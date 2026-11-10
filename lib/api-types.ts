@@ -96,3 +96,12 @@ export type StreamEvent =
   | { type: "replied" }
   | DoneEvent
   | { type: "error"; message: string; code?: "llm_failed" };
+
+export type GenerateProgress = { stage: "outline" | "characters" | "assembly"; attempt?: number; done?: number; total?: number };
+
+/** One line of the NDJSON stream of `POST /api/stories/generate`. */
+export type GenerateStreamEvent =
+  | ({ type: "progress" } & GenerateProgress)
+  | { type: "ping" }
+  | { type: "done"; id: string }
+  | { type: "error"; message: string };

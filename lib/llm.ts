@@ -1,5 +1,8 @@
-import OpenAI from "openai";
+import type OpenAI from "openai";
 import { z } from "zod";
+import { fixMismatchedBrackets } from "./json-repair";
+import type { GenerateProgress } from "./api-types";
+import { MissingApiKeyError, llm, type LlmTask } from "./llm-core";
 import {
   advanceGuidePrompt,
   characterBatchPrompt,
@@ -27,35 +30,12 @@ import {
   type TaggedMessage,
 } from "./schema";
 
-export class MissingApiKeyError extends Error {
-  constructor() {
-    super("DEEPSEEK_API_KEY is not set. Run `npm run setup` to add your DeepSeek API key.");
-  }
-}
+export { MissingApiKeyError, fixMismatchedBrackets };
 
 /** True when at least one model provider is configured. Routes call this instead of reading env. */
 export function hasApiKey(): boolean {
-  return Boolean(process.env.DEEPSEEK_API_KEY);
+  return llm().configured().length > 0;
 }
-
-/** Which kind of request a model call is. Ignored until providers are split per task. */
-type LlmTask = "chat" | "speakers" | "judge" | "guide" | "story";
-
-let client: OpenAI | null = null;
-
-function deepseek(): OpenAI {
-  const apiKey = process.env.DEEPSEEK_API_KEY;
-  if (!apiKey) throw new MissingApiKeyError();
-  if (!client) {
-    client = new OpenAI({
-      apiKey,
-      baseURL: process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com",
-    });
-  }
-  return client;
-}
-
-const model = () => process.env.DEEPSEEK_MODEL || "deepseek-chat";
 
 const HISTORY_WINDOW = 20;
 const GROUP_HISTORY_WINDOW = 30;
@@ -64,20 +44,11 @@ const MAX_GROUP_SPEAKERS = 3;
 const SpeakersSchema = z.object({ speakers: z.array(z.string()) });
 
 async function* streamReply(
-  _task: LlmTask,
+  task: LlmTask,
   messages: OpenAI.Chat.ChatCompletionMessageParam[],
   temperature = 1.1
 ): AsyncGenerator<string> {
-  const stream = await deepseek().chat.completions.create({
-    model: model(),
-    temperature,
-    stream: true,
-    messages,
-  });
-  for await (const chunk of stream) {
-    const delta = chunk.choices[0]?.delta?.content;
-    if (delta) yield delta;
-  }
+  yield* llm().streamText(task, messages, { temperature });
 }
 
 /** Streams a character's reply token by token. */
@@ -139,20 +110,13 @@ export async function pickSpeakers(
 
 /** The model's JSON reply; with `maxTokens` set, `truncated` says the reply hit that limit and was cut off. */
 async function jsonCompletionChecked(
-  _task: LlmTask,
+  task: LlmTask,
   messages: OpenAI.Chat.ChatCompletionMessageParam[],
   temperature: number,
   maxTokens?: number
 ): Promise<{ raw: string; truncated: boolean }> {
-  const res = await deepseek().chat.completions.create({
-    model: model(),
-    temperature,
-    response_format: { type: "json_object" },
-    messages,
-    ...(maxTokens ? { max_tokens: maxTokens } : {}),
-  });
-  const choice = res.choices[0];
-  return { raw: choice?.message?.content ?? "", truncated: choice?.finish_reason === "length" };
+  const { raw, truncated } = await llm().completeJson(task, messages, { temperature, maxTokens });
+  return { raw, truncated };
 }
 
 async function jsonCompletion(
@@ -204,31 +168,6 @@ export async function generateAdvanceGuide(
   return AdvanceGuideSchema.parse(JSON.parse(raw));
 }
 
-/**
- * Swaps closing brackets that don't match what they close, e.g. an object ended with "]".
- * Long generated stories occasionally contain this slip, which otherwise fails the whole story.
- */
-export function fixMismatchedBrackets(raw: string): string {
-  const out = raw.split("");
-  const stack: string[] = [];
-  let inString = false;
-  for (let i = 0; i < out.length; i++) {
-    const ch = out[i];
-    if (inString) {
-      if (ch === "\\") i++;
-      else if (ch === '"') inString = false;
-      continue;
-    }
-    if (ch === '"') inString = true;
-    else if (ch === "{" || ch === "[") stack.push(ch === "{" ? "}" : "]");
-    else if (ch === "}" || ch === "]") {
-      const expected = stack.pop();
-      if (expected && ch !== expected) out[i] = expected;
-    }
-  }
-  return out.join("");
-}
-
 /** Describes a JSON syntax error with the lines around it, so the model can find it. */
 function describeJsonError(raw: string, err: unknown): string {
   const message = err instanceof Error ? err.message : String(err);
@@ -254,11 +193,13 @@ type Checked<T> = { value: T; problems?: undefined } | { problems: string };
 async function generateChecked<T>(
   stage: string,
   prompt: string,
-  check: (json: unknown) => Checked<T>
+  check: (json: unknown) => Checked<T>,
+  onAttempt?: (attempt: number) => void
 ): Promise<T> {
   const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [{ role: "user", content: prompt }];
   let problems = "";
   for (let attempt = 0; attempt < STORY_ATTEMPTS; attempt++) {
+    onAttempt?.(attempt + 1);
     const { raw, truncated } = await jsonCompletionChecked("story", messages, 1.0, STORY_MAX_TOKENS);
     let json: unknown;
     if (truncated) {
@@ -376,7 +317,8 @@ const CharacterBatchSchema = z.object({ characters: z.array(z.unknown()) });
 async function generateCharacterBatch(
   premise: string,
   outline: StoryOutline,
-  ids: string[]
+  ids: string[],
+  onRetry?: (attempt: number) => void
 ): Promise<Character[]> {
   const roster = new Map(outline.characters.map((c) => [c.id, c]));
   return generateChecked(`character details (${ids.join(", ")})`, characterBatchPrompt(premise, outline, ids), (json): Checked<Character[]> => {
@@ -401,6 +343,8 @@ async function generateCharacterBatch(
       else problems.push(`Character "${id}":\n${zodProblems(parsed.error)}`);
     }
     return problems.length ? { problems: problems.join("\n") } : { value: characters };
+  }, (attempt) => {
+    if (attempt > 1) onRetry?.(attempt);
   });
 }
 
@@ -410,20 +354,46 @@ async function generateCharacterBatch(
  */
 export async function generateStory(
   premise: string,
-  { numPhases = 4, numCharacters = 6 }: { numPhases?: number; numCharacters?: number } = {}
+  {
+    numPhases = 4,
+    numCharacters = 6,
+    onProgress,
+  }: { numPhases?: number; numCharacters?: number; onProgress?: (p: GenerateProgress) => void } = {}
 ): Promise<Story> {
+  const progress = (p: GenerateProgress) => {
+    try {
+      onProgress?.(p);
+    } catch {
+      // progress reporting must never break generation
+    }
+  };
   const outline = await generateChecked("outline", storyOutlinePrompt(premise, numPhases, numCharacters), (json): Checked<StoryOutline> => {
     const parsed = StoryOutlineSchema.safeParse(json);
     if (!parsed.success) return { problems: zodProblems(parsed.error) };
     const trimmed = dropExtraCharacters(parsed.data, numCharacters);
     const problems = outlineProblems(trimmed, numPhases, numCharacters);
     return problems ? { problems } : { value: trimmed };
-  });
+  }, (attempt) => progress({ stage: "outline", attempt }));
 
   const ids = outline.characters.map((c) => c.id);
   const batches: string[][] = [];
   for (let i = 0; i < ids.length; i += CHARACTERS_PER_BATCH) batches.push(ids.slice(i, i + CHARACTERS_PER_BATCH));
-  const details = (await Promise.all(batches.map((batch) => generateCharacterBatch(premise, outline, batch)))).flat();
+  let done = 0;
+  const total = ids.length;
+  progress({ stage: "characters", done, total });
+  const details = (
+    await Promise.all(
+      batches.map(async (batch) => {
+        const chars = await generateCharacterBatch(premise, outline, batch, (attempt) =>
+          progress({ stage: "characters", attempt, done, total })
+        );
+        done += batch.length;
+        progress({ stage: "characters", done, total });
+        return chars;
+      })
+    )
+  ).flat();
+  progress({ stage: "assembly" });
   const byId = new Map(details.map((c) => [c.id, c]));
 
   const { characters: _roster, ...meta } = outline;
