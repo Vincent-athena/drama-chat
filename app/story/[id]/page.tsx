@@ -5,36 +5,55 @@ import { use, useCallback, useEffect, useState } from "react";
 import ApiKeyNotice from "@/components/ApiKeyNotice";
 import CharacterCard from "@/components/CharacterCard";
 import GroupChats from "@/components/GroupChats";
+import ItemsPanel from "@/components/ItemsPanel";
 import PhaseBanner from "@/components/PhaseBanner";
-import type { PublicStory } from "@/lib/schema";
+import TicketInvalidNotice from "@/components/TicketInvalidNotice";
+import type { PublicStory } from "@/lib/api-types";
+import { ApiError } from "@/lib/client/api";
+import { loadStoryView, restartStory } from "@/lib/client/story";
+import { useRequireUser } from "@/lib/save/useSave";
 
 export default function StoryHub({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
+  const { status, store } = useRequireUser();
   const [story, setStory] = useState<PublicStory | null>(null);
   const [hasApiKey, setHasApiKey] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{ message: string; code: string } | null>(null);
 
-  const load = useCallback(() => {
-    fetch(`/api/stories/${id}`)
-      .then(async (r) => {
-        const d = await r.json();
-        if (!r.ok) throw new Error(d.error);
-        setStory(d.story);
-        setHasApiKey(d.hasApiKey);
-      })
-      .catch((e) => setError(e.message));
-  }, [id]);
+  const load = useCallback(async () => {
+    if (!store) return;
+    try {
+      const v = await loadStoryView(store, id);
+      setStory(v.story);
+      setHasApiKey(v.hasApiKey);
+      setError(null);
+    } catch (e) {
+      setError({ message: e instanceof Error ? e.message : "Failed to load", code: e instanceof ApiError ? String(e.code) : "" });
+    }
+  }, [store, id]);
 
-  useEffect(load, [load]);
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  async function restart() {
+    if (!store) return;
+    await restartStory(store, id);
+    await load();
+  }
 
   async function reset() {
     if (!confirm("Restart this story? All chats and progress will be erased.")) return;
-    await fetch(`/api/stories/${id}/reset`, { method: "POST" });
-    load();
+    try {
+      await restart();
+    } catch (e) {
+      setError({ message: e instanceof Error ? e.message : "Restart failed", code: "" });
+    }
   }
 
-  if (error) return <p className="text-blood-500">{error}</p>;
-  if (!story) return <p className="text-white/50">Loading…</p>;
+  if (error?.code === "ticket_invalid") return <TicketInvalidNotice message={error.message} onRestart={restart} />;
+  if (error) return <p className="text-blood-500">{error.message}</p>;
+  if (status !== "ready" || !story) return <p className="text-white/50">Loading…</p>;
 
   const unlocked = story.characters.filter((c) => c.unlocked);
   const locked = story.characters.filter((c) => !c.unlocked);
@@ -54,7 +73,8 @@ export default function StoryHub({ params }: { params: Promise<{ id: string }> }
       </div>
 
       {!hasApiKey && <ApiKeyNotice />}
-      <PhaseBanner story={story} />
+      <PhaseBanner story={story} store={store} onChanged={load} />
+      <ItemsPanel story={story} store={store} onChanged={load} />
 
       {story.pastPhases.length > 0 && (
         <details className="rounded-xl border border-white/5 bg-stage-900/50 px-5 py-3 text-sm">
@@ -78,7 +98,7 @@ export default function StoryHub({ params }: { params: Promise<{ id: string }> }
         </div>
       </section>
 
-      <GroupChats key={`${story.id}-${story.phaseIndex}`} story={story} />
+      {store && <GroupChats key={`${story.id}-${story.phaseIndex}`} story={story} store={store} />}
     </div>
   );
 }

@@ -17,7 +17,7 @@
         "Bà biết cha của Linh không phải là người chồng quá cố mà là giám đốc dự án."
       ],
       "knowledgeByPhase": {
-        "p1": "Tiết lộ Linh bị bắt cóc bởi người máy Vinalink, nhưng giấu nguyên nhân thật sự. Cầu xin bạn tìm con.",
+        "p1": "Tiết lộ Linh bị bắt cóc bởi người máy Vinalink, nhưng giấu nguyên nhân thật sự. Cầu xin bạn tìm con. Linh để lại chiếc vòng tay ngọc bà tặng; bà trao nó cho người chơi nếu họ hứa đưa Linh về, và dặn: 'Con bé thấy nó là biết mẹ gửi người đến.'",
         "p2": "Nếu bị thuyết phục, thừa nhận Linh có mang theo một thiết bị ghi nhớ mà bà đưa cho cô bé.",
         "p3": "Không có mặt.",
         "p4": "Tiết lộ rằng cha của Linh là một nhà khoa học đã chết trong một vụ tai nạn bí ẩn.",
@@ -60,11 +60,12 @@
       "speechStyle": "Nói nhanh, hay chêm tiếng Anh, dùng thuật ngữ công nghệ.",
       "secrets": [
         "Cô đã bán thiết bị ghi nhớ cho Linh và biết nó chứa bằng chứng về dự án.",
-        "Cô là em gái cùng cha khác mẹ của kẻ phản bội (cựu đặc vụ)."
+        "Cô là em gái cùng cha khác mẹ của kẻ phản bội (cựu đặc vụ).",
+        "Cô đã lén sao lại chip ghi nhớ trước khi bán cho Linh và giấu bản sao dưới quầy hàng."
       ],
       "knowledgeByPhase": {
         "p1": "Không có mặt.",
-        "p2": "Tiết lộ Linh đã mua một thiết bị ghi nhớ và nói rằng cô bé đang bị truy đuổi. Đòi tiền để cung cấp thêm.",
+        "p2": "Tiết lộ Linh đã mua một thiết bị ghi nhớ và nói rằng cô bé đang bị truy đuổi. Đòi tiền để cung cấp thêm. Nếu người chơi cho cô thấy họ không phải người của Vinalink hay băng Long Mạch, hoặc trả giá xứng đáng, cô đưa ra bản sao chip ghi nhớ.",
         "p3": "Không có mặt.",
         "p4": "Không có mặt.",
         "p5": "Nếu bị thuyết phục, thừa nhận mối quan hệ với kẻ phản bội và tiết lộ hắn đang làm việc cho một thế lực bí ẩn.",
@@ -87,7 +88,7 @@
       ],
       "knowledgeByPhase": {
         "p1": "Không có mặt.",
-        "p2": "Xác nhận Long Mạch đang truy lùng Linh, nhưng không nói lý do. Đề nghị trao đổi thông tin nếu bạn làm một việc cho ông.",
+        "p2": "Xác nhận Long Mạch đang truy lùng Linh, nhưng không nói lý do. Đề nghị trao đổi thông tin nếu bạn làm một việc cho ông. Nếu người chơi đưa ra dấu ấn Long Mạch, ông coi họ là khách và nói thẳng rằng Linh đang bị cả Vinalink lẫn người của ông truy đuổi.",
         "p3": "Không có mặt.",
         "p4": "Không có mặt.",
         "p5": "Tiết lộ rằng ông biết kẻ phản bội và cảnh báo bạn đừng tin hắn, nhưng từ chối can thiệp.",
@@ -111,7 +112,7 @@
       "knowledgeByPhase": {
         "p1": "Không có mặt.",
         "p2": "Không có mặt.",
-        "p3": "Tiết lộ rằng Linh mang virus có thể phá hủy hệ thống Vinalink, và rằng cô đã giúp tạo ra nó. Cầu xin bạn giúp cô chuộc lỗi.",
+        "p3": "Tiết lộ rằng Linh mang virus có thể phá hủy hệ thống Vinalink, và rằng cô đã giúp tạo ra nó. Cầu xin bạn giúp cô chuộc lỗi. Khi người chơi đưa bản sao chip ghi nhớ, cô giải mã được một phần và thấy hồ sơ cho biết Linh là con của một cựu nhân viên Vinalink.",
         "p4": "Cung cấp thông tin về phòng thí nghiệm và cách vô hiệu hóa hệ thống an ninh.",
         "p5": "Liên lạc lại, tiết lộ rằng kẻ phản bội đang làm việc cho một tập đoàn khác muốn sử dụng virus.",
         "p6": "Hỗ trợ bạn từ xa bằng cách hack camera và hệ thống.",
@@ -134,7 +135,7 @@
       "knowledgeByPhase": {
         "p1": "Không có mặt.",
         "p2": "Không có mặt.",
-        "p3": "Tiết lộ rằng Linh là con gái của một cựu nhân viên, và rằng có người đã truy cập hồ sơ trước bạn. Nếu bạn đe dọa hoặc thuyết phục, ông đưa bạn bản sao hồ sơ.",
+        "p3": "Tiết lộ rằng Linh là con gái của một cựu nhân viên, và rằng có người đã truy cập hồ sơ trước bạn. Nếu bạn đe dọa hoặc thuyết phục, ông đưa bạn bản sao hồ sơ. Ông chỉ chịu nói chuyện thật lòng khi người chơi đưa thẻ thám tử tư. Ông giao bản sao hồ sơ dự án nếu người chơi hứa không bao giờ nhắc tên ông.",
         "p4": "Không có mặt.",
         "p5": "Có thể làm chứng về việc kẻ phản bội đã nhận tiền từ Vinalink.",
         "p6": "Không có mặt.",
@@ -205,7 +206,7 @@
         "p2": "Không có mặt.",
         "p3": "Không có mặt.",
         "p4": "Không có mặt.",
-        "p5": "Đối mặt và tiết lộ động cơ: hắn muốn trả thù Vinalink vì đã ruồng bỏ hắn, và muốn bán Linh cho tập đoàn đối thủ. Nếu bị thuyết phục, hắn tiết lộ rằng hắn là cha ruột của Linh.",
+        "p5": "Đối mặt và tiết lộ động cơ: hắn muốn trả thù Vinalink vì đã ruồng bỏ hắn, và muốn bán Linh cho tập đoàn đối thủ. Nếu bị thuyết phục, hắn tiết lộ rằng hắn là cha ruột của Linh. Thấy thẻ ra vào Vinalink cấp quản lý trong tay người chơi, hắn tưởng họ được giám đốc chống lưng và buột miệng về thế lực muốn dùng Linh làm vũ khí.",
         "p6": "Có thể cung cấp thông tin về phòng thí nghiệm nếu bạn hứa chia tiền.",
         "p7": "Xuất hiện để cản đường bạn, nhưng có thể bị thuyết phục để giúp nếu bạn hứa bảo vệ hắn khỏi Vinalink.",
         "p8": "Đưa ra lựa chọn: giết hắn, bắt hắn, hoặc để hắn đi."
@@ -229,7 +230,7 @@
         "p3": "Không có mặt.",
         "p4": "Không có mặt.",
         "p5": "Không có mặt.",
-        "p6": "Tiết lộ rằng Linh là tương lai của Vinalink, và rằng bà sẽ làm mọi thứ để giữ cô bé. Đề nghị bạn gia nhập nếu bạn muốn kiểm soát thành phố.",
+        "p6": "Tiết lộ rằng Linh là tương lai của Vinalink, và rằng bà sẽ làm mọi thứ để giữ cô bé. Đề nghị bạn gia nhập nếu bạn muốn kiểm soát thành phố. Khi bị đưa bản sao hồ sơ dự án, bà biết không thể chối và thừa nhận mục đích tạo ra binh lính siêu phàm.",
         "p7": "Có thể bị thuyết phục để cho Linh tự do nếu bạn đe dọa phát tán virus.",
         "p8": "Đưa ra lựa chọn: hợp tác với bà, hoặc chống lại bà."
       },
@@ -253,7 +254,7 @@
         "p4": "Không có mặt.",
         "p5": "Không có mặt.",
         "p6": "Không có mặt.",
-        "p7": "Tiết lộ rằng cô có thể cảm nhận được ai đó đang cố gắng liên lạc với mình qua thiết bị cấy ghép. Cô sợ hãi nhưng cũng tò mò. Nếu bạn thuyết phục, cô đồng ý đi theo bạn.",
+        "p7": "Tiết lộ rằng cô có thể cảm nhận được ai đó đang cố gắng liên lạc với mình qua thiết bị cấy ghép. Cô sợ hãi nhưng cũng tò mò. Nếu bạn thuyết phục, cô đồng ý đi theo bạn. Cô bé chỉ tin người lạ khi thấy chiếc vòng tay ngọc của mẹ Hoa; thấy nó, cô bật khóc và chịu nghe.",
         "p8": "Đưa ra lựa chọn: tin tưởng bạn, hoặc tự mình đối mặt với Vinalink."
       },
       "unlockPhase": "p7"
@@ -280,9 +281,12 @@
       "id": "p3",
       "title": "Bóng Ma Trong Hồ Sơ",
       "narration": "Bạn đột nhập vào văn phòng lưu trữ của Vinalink, nơi lưu giữ hồ sơ của mọi công dân. Nhưng bạn không đơn độc: một hacker trẻ tuổi đang cố xóa dấu vết của chính mình, và một cựu nhân viên bảo vệ già đang uống rượu trong góc. Hồ sơ của Linh bị khóa, nhưng có ai đó đã từng truy cập trước bạn.",
-      "objective": "Tìm hiểu lý do Linh bị nhắm đến bằng cách nói chuyện với những người trong văn phòng lưu trữ.",
+      "objective": "Tìm hiểu lý do Linh bị nhắm đến bằng cách nói chuyện với những người trong văn phòng lưu trữ. Mang theo thứ gì đó mà Kỳ Áo có thể giải mã.",
       "completionCriteria": "Người chơi đã nói chuyện với 'ky-ao' và 'chu-ba', và biết được rằng Linh là con gái của một cựu nhân viên Vinalink, hoặc rằng cô ấy đang mang trong mình một loại virus có thể phá hủy hệ thống của tập đoàn.",
-      "hint": "Hãy hỏi về quá khứ của Linh và những người có quyền truy cập hồ sơ."
+      "hint": "Hãy hỏi về quá khứ của Linh. Thứ Linh mua ở chợ đen có thể vẫn còn một bản sao.",
+      "requiredItems": [
+        "chip-ghi-nho"
+      ]
     },
     {
       "id": "p4",
@@ -297,7 +301,7 @@
       "title": "Kẻ Phản Bội",
       "narration": "Bạn nhận được tin nhắn từ một người bạn cũ: 'Đừng tin ai. Kể cả tôi.' Khi bạn đến điểm hẹn, bạn thấy xác của người bạn đó, và đứng bên cạnh là một người quen: một cựu đặc vụ mà bạn từng tin tưởng. Hắn ta cười nhạt: 'Cậu nên dừng lại trước khi quá muộn.' Nhưng bạn biết mình không thể dừng lại.",
       "objective": "Đối mặt với kẻ phản bội và tìm ra động cơ của hắn, đồng thời thu thập bằng chứng về âm mưu lớn hơn.",
-      "completionCriteria": "Người chơi đã nói chuyện với 'cuu-dac-vu' và 'ba-lan' (người đã liên lạc lại), và biết được rằng kẻ phản bội đang làm việc cho một thế lực bí ẩn muốn sử dụng Linh làm vũ khí, hoặc rằng mẹ của Linh đã che giấu sự thật về cái chết của cha cô.",
+      "completionCriteria": "Người chơi đã nói chuyện với 'cuu-dac-vu' và 'ba-lan' (người đã liên lạc lại), và biết được rằng kẻ phản bội đang làm việc cho một thế lực bí ẩn muốn sử dụng Linh làm vũ khí, hoặc rằng mẹ của Linh đã che giấu sự thật về cái chết của cha cô. Hoặc: người chơi đã cho Hắc Long thấy thẻ ra vào Vinalink và hắn thừa nhận đang làm việc cho thế lực muốn dùng Linh làm vũ khí.",
       "hint": "Hãy đặt câu hỏi về lòng trung thành và lợi ích của họ."
     },
     {
@@ -306,7 +310,10 @@
       "narration": "Bạn lần theo dấu vết đến một phòng thí nghiệm ngầm dưới lòng đất, nơi Linh đang bị giam giữ. Nhưng trước khi bạn tiếp cận, bạn bị chặn bởi một người phụ nữ lạnh lùng trong bộ đồ bảo hộ: giám đốc dự án của Vinalink. Bà ta cười: 'Anh không hiểu gì đâu. Con bé là tương lai của chúng ta.' Một giọng nói khác vang lên từ bóng tối: 'Hoặc là quá khứ bị chôn vùi.'",
       "objective": "Tìm hiểu về dự án bí mật của Vinalink và giành được sự giúp đỡ từ một người bên trong.",
       "completionCriteria": "Người chơi đã nói chuyện với 'giam-doc' và 'ky-ao' (người đã liên lạc lại), và biết được rằng dự án nhằm tạo ra binh lính siêu phàm, hoặc rằng Linh có khả năng điều khiển một loại vũ khí sinh học.",
-      "hint": "Hãy khai thác mâu thuẫn giữa các phe phái."
+      "hint": "Hãy khai thác mâu thuẫn giữa các phe phái. Giấy trắng mực đen khiến Bà Tuyết khó chối hơn lời nói.",
+      "requiredItems": [
+        "ho-so-du-an"
+      ]
     },
     {
       "id": "p7",
@@ -314,7 +321,10 @@
       "narration": "Bạn đột nhập vào phòng giam của Linh. Cô bé ngồi co ro trong góc, đôi mắt ánh lên màu xanh điện tử. 'Họ nói tôi là quái vật,' cô thì thầm. 'Nhưng tôi chỉ muốn về nhà.' Bên ngoài, tiếng báo động vang lên. Bạn nhận ra mình chỉ còn vài phút trước khi tất cả ập đến.",
       "objective": "Thuyết phục Linh tin tưởng bạn và tìm cách đưa cô bé ra ngoài an toàn.",
       "completionCriteria": "Người chơi đã nói chuyện với 'linh' và 'me-linh' (người đã liên lạc lại), và Linh đã đồng ý đi theo bạn, hoặc tiết lộ rằng cô bé có thể tự giải thoát bằng khả năng của mình.",
-      "hint": "Hãy kiên nhẫn và chân thành với cô bé."
+      "hint": "Hãy kiên nhẫn và chân thành với cô bé. Một món đồ của mẹ cô có thể nói thay bạn.",
+      "requiredItems": [
+        "vong-tay-ngoc"
+      ]
     },
     {
       "id": "p8",
@@ -323,6 +333,59 @@
       "objective": "Đưa ra quyết định cuối cùng về số phận của Linh và thành phố, dựa trên những gì bạn đã học được.",
       "completionCriteria": "Người chơi đã nói chuyện với ít nhất ba nhân vật trong số 'me-linh', 'giam-doc', 'ky-ao', và đã đưa ra một quyết định rõ ràng: hoặc giao Linh cho một bên, hoặc cùng cô bé phơi bày sự thật, hoặc trốn chạy khỏi thành phố.",
       "hint": "Không có lựa chọn nào là hoàn hảo. Hãy nghĩ về hậu quả."
+    }
+  ],
+  "items": [
+    {
+      "id": "the-tham-tu",
+      "name": "Thẻ thám tử tư",
+      "emoji": "🪪",
+      "description": "Giấy phép hành nghề thám tử của bạn, mép thẻ đã sờn nhưng con dấu Sở An Ninh vẫn còn sáng.",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "vong-tay-ngoc",
+      "name": "Vòng tay ngọc",
+      "emoji": "📿",
+      "description": "Chiếc vòng ngọc xanh khắc dòng chữ 'Mẹ thương con'. Linh không bao giờ tháo nó ra — trừ đêm cô mất tích.",
+      "source": "found",
+      "availablePhase": "p1",
+      "obtainCriteria": "Bà Hoa đã trao cho người chơi chiếc vòng tay ngọc mà Linh để lại ở nhà."
+    },
+    {
+      "id": "chip-ghi-nho",
+      "name": "Bản sao chip ghi nhớ",
+      "emoji": "💾",
+      "description": "Một con chip ghi nhớ chợ đen, vỏ trầy xước, dán nhãn tay 'L.' — bản sao của thứ Linh đã mua.",
+      "source": "found",
+      "availablePhase": "p2",
+      "obtainCriteria": "Mười Hồng đã đưa cho người chơi bản sao chip ghi nhớ mà cô lén giữ lại trước khi bán bản gốc cho Linh."
+    },
+    {
+      "id": "dau-an-long-mach",
+      "name": "Dấu ấn Long Mạch",
+      "emoji": "🐉",
+      "description": "Đồng xu đồng khắc hình rồng của băng Long Mạch, mua lại từ một tay chạy vặt. Ai cầm nó được coi là khách của Ông Trùm.",
+      "source": "ad",
+      "availablePhase": "p2"
+    },
+    {
+      "id": "ho-so-du-an",
+      "name": "Bản sao hồ sơ dự án",
+      "emoji": "📁",
+      "description": "Một xấp hồ sơ in trên giấy nhựa chống cháy, đóng dấu 'TUYỆT MẬT – VINALINK'.",
+      "source": "found",
+      "availablePhase": "p3",
+      "obtainCriteria": "Chú Bảy đã giao cho người chơi bản sao hồ sơ dự án mà ông giữ trong người."
+    },
+    {
+      "id": "the-ra-vao",
+      "name": "Thẻ ra vào Vinalink",
+      "emoji": "🔑",
+      "description": "Thẻ từ cấp quản lý mà một trợ lý của Luật Sư Bạc lén bán ở chợ đen — còn hiệu lực đến nửa đêm.",
+      "source": "ad",
+      "availablePhase": "p5"
     }
   ]
 }

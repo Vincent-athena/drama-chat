@@ -1,5 +1,5 @@
 /**
- * Generates a mock story with DeepSeek and saves it to stories/<id>.json.
+ * Generates a mock story with the configured model provider and saves it to $DATA_DIR/stories/<id>.json (default data/stories/).
  *
  *   npm run gen-story -- "a noble family feud in 1920s Shanghai"
  *   npm run gen-story -- "space station mutiny" --phases 5 --characters 8
@@ -7,7 +7,7 @@
 import { config } from "dotenv";
 config({ path: ".env.local", quiet: true });
 
-import { generateStory } from "../lib/deepseek";
+import { generateStory } from "../lib/llm";
 import { saveStory } from "../lib/stories";
 
 function arg(name: string, fallback: number): number {
@@ -24,9 +24,16 @@ async function main() {
     .join(" ");
 
   console.log(`Generating story${premise ? ` for: "${premise}"` : " (random premise)"} ...`);
-  const story = await generateStory(premise, { numPhases: arg("phases", 4), numCharacters: arg("characters", 6) });
+  const story = await generateStory(premise, {
+    numPhases: arg("phases", 4),
+    numCharacters: arg("characters", 6),
+    onProgress: (p) => {
+      const detail = p.total ? ` ${p.done ?? 0}/${p.total}` : p.attempt && p.attempt > 1 ? ` (try ${p.attempt})` : "";
+      console.log(`  ... ${p.stage}${detail}`);
+    },
+  });
   const id = saveStory(story);
-  console.log(`\n✔ "${story.title}" saved to stories/${id}.json`);
+  console.log(`\n✔ "${story.title}" saved as ${id} in the generated stories folder`);
   story.phases.forEach((p, i) => {
     const cast = story.characters.filter((c) => c.unlockPhase === p.id).map((c) => `${c.avatarEmoji} ${c.name}`);
     console.log(`  Phase ${i + 1}: ${p.title}  →  unlocks ${cast.join(", ") || "(none)"}`);

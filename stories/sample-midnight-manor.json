@@ -17,25 +17,34 @@
       "id": "p2",
       "title": "The Widow and the Doctor",
       "narration": "Someone washed away the evidence. Now the grieving widow has descended from her room, and the family physician hovers at her side a little too closely. If the brandy was poisoned, why was Dr. Crane so quick to write 'heart failure'?",
-      "objective": "Discover why Dr. Crane declared the death natural.",
+      "objective": "Discover why Dr. Crane declared the death natural, and make him face what was kept from the study.",
       "completionCriteria": "Dr. Crane or Lady Vivienne has admitted that they are having an affair and that Crane signed off the death as heart failure without a proper examination, at least partly to avoid an investigation that would expose them.",
-      "hint": "Lovers protect each other. Press one about the other."
+      "hint": "Lovers protect each other. Press one about the other, and show the doctor what the housekeeper kept from the study.",
+      "requiredItems": [
+        "glass-shard"
+      ]
     },
     {
       "id": "p3",
       "title": "The Maid's Secret",
       "narration": "The affair explains the doctor's haste, but not the poison. Then a young maid slips a folded note under your door: 'He changed his will tonight. Ask me why.' Her name is Clara Wren, and she has been crying.",
-      "objective": "Learn what Lord Ashcombe's new will said, and why it mattered.",
+      "objective": "Learn what Lord Ashcombe's new will said, and why it mattered. Clara will need proof.",
       "completionCriteria": "Clara has revealed that she is Lord Ashcombe's illegitimate daughter and that the will he signed on the night of his death named her as his principal heir.",
-      "hint": "Clara is frightened. Kindness and patience will get further than accusations."
+      "hint": "Clara is frightened. Kindness helps, but she needs proof the will exists: the solicitor's clerk left something behind in his hurry.",
+      "requiredItems": [
+        "solicitors-carbon"
+      ]
     },
     {
       "id": "p4",
       "title": "Who Poured the Brandy",
       "narration": "The new will disinherited the family, but one person had more to lose than money. At dawn, Edmund's sister Eleanor returns from the chapel, composed and dry-eyed, carrying the estate ledgers she has kept for twenty years.",
       "objective": "Expose the murderer.",
-      "completionCriteria": "Eleanor Ashcombe has confessed to poisoning the brandy, OR the player has confronted her with both the embezzlement and the decanter evidence and another character has confirmed seeing Eleanor with the decanter.",
-      "hint": "Mrs. Hale has been protecting someone this whole time. Ask her again, now that you know about the ledgers."
+      "completionCriteria": "Eleanor Ashcombe has confessed to poisoning the brandy, OR the player has confronted her with the torn ledger page (the embezzlement) and the decanter evidence and another character has confirmed seeing Eleanor with the decanter, OR the player has shown the orchard cabinet key to Mrs. Hale, she has confirmed that only she and Eleanor hold keys to the cyanide cabinet, and the player has then confronted Eleanor with it.",
+      "hint": "Mrs. Hale has been protecting someone this whole time. Ask her again, now that you hold the ledger page.",
+      "requiredItems": [
+        "ledger-page"
+      ]
     }
   ],
   "characters": [
@@ -48,13 +57,14 @@
       "speechStyle": "Formal Yorkshire servant's English. Short, clipped sentences. Says 'sir' or 'madam'. Becomes flustered and repetitive when cornered.",
       "secrets": [
         "She washed and refilled the brandy decanter shortly after the death because Miss Eleanor told her to 'tidy the study before the guests see'.",
-        "She saw Miss Eleanor alone in the butler's pantry with the decanter about an hour before the toast."
+        "She saw Miss Eleanor alone in the butler's pantry with the decanter about an hour before the toast.",
+        "She kept a shard of the broken brandy glass in her apron pocket; she could not bring herself to throw it away."
       ],
       "knowledgeByPhase": {
-        "p1": "Knows the decanter was cleaned and refilled after the death, because she did it herself. Will admit this if the player notices something off about the study or presses about the brandy, but will not yet say who asked her.",
+        "p1": "Knows the decanter was cleaned and refilled after the death, because she did it herself. Will admit this if the player notices something off about the study or presses about the brandy, but will not yet say who asked her. If the player asks about the broken glass, or shows Edmund's handwritten gala invitation (proof his lordship trusted them), she hands over the shard of the brandy glass she kept.",
         "p2": "Has long suspected the affair between Lady Vivienne and Dr. Crane and disapproves of it.",
         "p3": "Knows Clara's mother was a maid at the manor twenty years ago who left in disgrace.",
-        "p4": "If confronted about Eleanor and the ledgers, she will break down and admit she saw Eleanor with the decanter in the pantry before the toast."
+        "p4": "If confronted about Eleanor and the ledgers, she will break down and admit she saw Eleanor with the decanter in the pantry before the toast. Shown the orchard cabinet key, she admits at once that only she and Miss Eleanor hold keys to the cabinet where the orchard cyanide is kept, and that the tin is half empty."
       },
       "unlockPhase": "p1"
     },
@@ -67,12 +77,13 @@
       "speechStyle": "Upper-class drawl, sardonic jokes, calls people 'old sport'. Occasionally drops the act and sounds like a hurt boy.",
       "secrets": [
         "He owes £4,000 to a London bookmaker and argued with his father about money an hour before the death.",
-        "He overheard his father on the telephone earlier that day asking the solicitor to bring 'the new papers' tonight."
+        "He overheard his father on the telephone earlier that day asking the solicitor to bring 'the new papers' tonight.",
+        "On the night of the death he took a page torn from the estate ledger off his father's desk and hid it in his coat."
       ],
       "knowledgeByPhase": {
-        "p1": "Knows his father drank only from the study decanter, never from the party punch. Thinks the whole family is lying about something.",
+        "p1": "Knows his father drank only from the study decanter, never from the party punch. Thinks the whole family is lying about something. He recognises his father's handwriting on the player's gala invitation and is surprised Edmund invited them personally.",
         "p2": "Despises Dr. Crane and suspects he is 'too fond' of his stepmother.",
-        "p3": "Knows a solicitor visited that evening and that his father seemed 'almost happy' afterward.",
+        "p3": "Knows a solicitor visited that evening and that his father seemed 'almost happy' afterward. He has the torn ledger page (payments to 'E. A. Holdings') and hands it over if the player tells him about the new will or earns his trust.",
         "p4": "Noticed Aunt Eleanor has been nervous about the estate accounts for months and refused to let anyone see the ledgers."
       },
       "unlockPhase": "p1"
@@ -107,7 +118,7 @@
         "He smelled bitter almonds on Edmund's lips (cyanide) but signed heart failure anyway, without a proper examination."
       ],
       "knowledgeByPhase": {
-        "p2": "If pressed about his haste or the affair, he will eventually admit both, and that he smelled bitter almonds and suspects poison.",
+        "p2": "If pressed about his haste or the affair, he will eventually admit both, and that he smelled bitter almonds and suspects poison. Shown the shard of the brandy glass, he recognises the bitter-almond smell and his composure cracks; it is the quickest way to make him admit he signed without a proper examination.",
         "p3": "Treated Clara's mother long ago and knows she bore a child whose father was 'a gentleman of this house'.",
         "p4": "Knows cyanide is kept in the manor for killing wasps in the orchard, and that the key to that cabinet is on the housekeeper's ring and Miss Eleanor's."
       },
@@ -125,7 +136,7 @@
         "The will he signed tonight leaves the manor and most of the fortune to her."
       ],
       "knowledgeByPhase": {
-        "p3": "Will reveal she is Edmund's daughter and that the new will names her heir if the player is gentle and earns her trust.",
+        "p3": "Will reveal she is Edmund's daughter and that the new will names her heir if the player is gentle and earns her trust. She will not say it outright until she sees proof the will was really signed, such as the solicitor's carbon copy.",
         "p4": "Edmund told her that 'once the will is done, I'll have Eleanor's books audited; something isn't right'. She saw Eleanor overhear this conversation."
       },
       "unlockPhase": "p3"
@@ -142,9 +153,53 @@
         "She poisoned Edmund's brandy with the orchard cyanide after learning he planned an audit, then had Mrs. Hale clean the decanter."
       ],
       "knowledgeByPhase": {
-        "p4": "Will deflect with dignity and point suspicion at Vivienne and Julian. If the player confronts her with both the ledgers/embezzlement and evidence about the decanter (especially Mrs. Hale's testimony), she confesses, insisting Edmund 'would have thrown me out with nothing after a lifetime of service'."
+        "p4": "Will deflect with dignity and point suspicion at Vivienne and Julian. If the player confronts her with both the ledgers/embezzlement and evidence about the decanter (especially Mrs. Hale's testimony), she confesses, insisting Edmund 'would have thrown me out with nothing after a lifetime of service'. Shown the torn ledger page, she knows 'E. A. Holdings' points to her, and her dignity slips."
       },
       "unlockPhase": "p4"
+    }
+  ],
+  "items": [
+    {
+      "id": "gala-invitation",
+      "name": "Gala invitation",
+      "emoji": "💌",
+      "description": "A gilt-edged card for Lord Ashcombe's sixtieth birthday, with a line in his own hand: 'Come early, old friend. I need an honest pair of eyes.'",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "glass-shard",
+      "name": "Shard of the brandy glass",
+      "emoji": "🥃",
+      "description": "A curved sliver of crystal from the study floor. It still carries a faint, bitter smell.",
+      "source": "found",
+      "availablePhase": "p1",
+      "obtainCriteria": "Mrs. Hale has handed the player the shard of the broken brandy glass she kept in her apron pocket, or has told the player where she put it and the player has taken it."
+    },
+    {
+      "id": "solicitors-carbon",
+      "name": "Solicitor's carbon copy",
+      "emoji": "📜",
+      "description": "The flimsy carbon copy of tonight's new will, left in the coat-room by the solicitor's clerk in his hurry to beat the flood.",
+      "source": "ad",
+      "availablePhase": "p3"
+    },
+    {
+      "id": "ledger-page",
+      "name": "Torn ledger page",
+      "emoji": "📒",
+      "description": "A page torn from the estate ledger: years of payments to 'E. A. Holdings', in a neat, familiar hand.",
+      "source": "found",
+      "availablePhase": "p3",
+      "obtainCriteria": "Julian has given the player the page torn from the estate ledger that he took from his father's desk, or told the player where he hid it and the player has taken it."
+    },
+    {
+      "id": "orchard-key",
+      "name": "Orchard cabinet key",
+      "emoji": "🗝️",
+      "description": "A small iron key on a green ribbon, to the orchard cabinet where the wasp poison is kept. The gardener's boy slipped it to you: he saw who used it last.",
+      "source": "ad",
+      "availablePhase": "p4"
     }
   ]
 }

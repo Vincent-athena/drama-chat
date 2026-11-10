@@ -1,0 +1,769 @@
+{
+  "id": "reborn-archmage-21st-century",
+  "title": "Kiếp Phù Thuỷ Bị Ngờ Vực",
+  "synopsis": "Bạn chết vì té lầu ở thế kỷ 21, tái sinh thành phù thuỷ tối thượng ở một thế giới fantasy. Không ai tin bạn có siêu sức mạnh, và mọi bằng chứng bạn đưa ra đều bị coi là trùng hợp. Bạn phải dùng trí tuệ và sự kiên nhẫn để xoay chuyển niềm tin, trong khi những âm mưu và bí mật của các thế lực đang dần lộ diện.",
+  "setting": "Vương quốc Aetheria, nơi rồng lượn trên bầu trời và phép thuật là chuyện thường ngày. Thời đại hỗn mang sau chiến tranh, không khí nghi ngờ và sợ hãi bao trùm. Bạn tỉnh dậy trong thân xác của Archmage Malakar, kẻ bị cho là đã chết, tại tháp phù thuỷ cổ.",
+  "tone": "fantasy chính trị, u tối, hài hước đen tối",
+  "modernSetting": false,
+  "characters": [
+    {
+      "id": "seraphina",
+      "name": "Seraphina",
+      "role": "Nữ hiệp sĩ hộ vệ tháp phù thuỷ, trung thành với Malakar",
+      "avatarEmoji": "🛡️",
+      "personality": "Dũng cảm, chính trực nhưng đa nghi, luôn đặt nhiệm vụ lên trên tình cảm. Cô bị ám ảnh bởi việc bảo vệ danh dự của Malakar.",
+      "speechStyle": "Trang trọng, thẳng thắn, đôi khi gay gắt. Hay dùng từ 'thưa ngài' và 'danh dự'.",
+      "secrets": [
+        "Cô đã che giấu việc Malakar từng cứu mạng cô trong một trận chiến, và cô thầm yêu ông ta.",
+        "Cô biết một phần kế hoạch của kẻ phản bội nhưng im lặng vì bị đe dọa."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Tin rằng Malakar đã chết, nhưng khi thấy bạn tỉnh dậy, cô do dự. Cô sẽ yêu cầu bằng chứng về ký ức. Thấy nhẫn ấn của Malakar trên tay người chơi, cô dao động — chỉ Malakar đeo được nó — nhưng vẫn cần thêm một ký ức riêng để tin hẳn.",
+        "p2": "Cô vô tình nghe được một cuộc nói chuyện về tin đồn và có thể tiết lộ tên kẻ lan truyền nếu bạn thuyết phục.",
+        "p3": "Cô là người duy nhất nhìn thấy bạn cứu rồng từ xa, nhưng cô không chắc đó là phép thuật hay ảo giác. Cô thấy con rồng non trao vảy cho người chơi và sẵn lòng xác nhận điều đó.",
+        "p4": "Cô có mặt tại hội đồng với tư cách nhân chứng, nhưng bị buộc phải im lặng về một sự thật.",
+        "p5": "Cô tiết lộ rằng kẻ phản bội đã từng là người yêu của cô, và cô biết động cơ của hắn.",
+        "p6": "Cô nghi ngờ người tự nhận là con Malakar vì cô biết Malakar không thể có con.",
+        "p7": "Cô bị thương khi bảo vệ bạn, và thú nhận tình cảm của mình trước khi ngất đi.",
+        "p8": "Cô đứng về phía bạn, sẵn sàng chiến đấu đến cùng."
+      },
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "female",
+        "age": 32,
+        "apparentAge": 32,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "braided crown",
+        "look": "Sharp green eyes, strong jawline, fair skin with a scar on her left cheek, athletic build.",
+        "outfit": "Silver plate armor with blue tabard bearing the tower's sigil, sword at hip.",
+        "scenes": [
+          {
+            "title": "Canh gác đêm",
+            "pose": "Standing guard at the tower entrance, hand on sword hilt, looking into the distance.",
+            "outfit": "Full plate armor with helmet under arm, blue cloak.",
+            "background": "Stone steps of the wizard tower at night, torchlight flickering.",
+            "mood": "Vigilant, tense"
+          },
+          {
+            "title": "Đối mặt",
+            "pose": "Standing across a table from a hooded figure, leaning forward with a stern expression.",
+            "outfit": "Light chainmail with leather jerkin, sword sheathed.",
+            "background": "Dimly lit council chamber, maps and candles on the table.",
+            "mood": "Confrontational, suspicious"
+          },
+          {
+            "title": "Hồi tưởng",
+            "pose": "Sitting on a stone bench in a courtyard, looking down at a locket in her hand.",
+            "outfit": "Simple tunic and trousers, sword leaning against the bench.",
+            "background": "Courtyard of the tower at dusk, autumn leaves falling.",
+            "mood": "Melancholic, reflective"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mira",
+      "name": "Mira",
+      "role": "Người hầu cận trung thành của Malakar, chuyên gia về độc dược",
+      "avatarEmoji": "🧪",
+      "personality": "Thầm lặng, quan sát, trung thành tuyệt đối. Bà ta biết nhiều bí mật nhưng không bao giờ nói ra.",
+      "speechStyle": "Nhỏ nhẹ, ngắn gọn, hay dùng 'thưa ngài' và 'tôi hiểu'.",
+      "secrets": [
+        "Bà ta đã phát hiện ra Lysandra đầu độc Malakar nhưng bị đe dọa giết nếu nói ra.",
+        "Bà ta giữ một lọ thuốc giải độc có thể cứu Malakar nếu ông ta còn sống."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Bà ta là người đầu tiên xác nhận bạn là Malakar sau khi bạn kể lại một ký ức riêng tư. Bà đưa lọ thuốc tím của Mira (thuốc giải độc) cho người chơi nếu tin họ là Malakar, và dặn giữ nó làm bằng chứng ông từng bị đầu độc.",
+        "p2": "Bà ta tiết lộ rằng có người đã mua chuộc người hầu để lan tin đồn.",
+        "p4": "Bà ta cung cấp bằng chứng về việc Lysandra mua độc dược.",
+        "p6": "Bà ta giúp bạn kiểm tra ADN phép thuật của Elara."
+      },
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "female",
+        "age": 58,
+        "apparentAge": 30,
+        "eastAsian": false,
+        "hairLength": "Medium",
+        "hairstyle": "bun",
+        "look": "Wise grey eyes, wrinkles around eyes, olive skin, small stature, always wearing an apron.",
+        "outfit": "Dark woolen dress with a white apron, many pockets containing vials and herbs.",
+        "scenes": [
+          {
+            "title": "Pha chế độc dược",
+            "pose": "Standing at a cluttered workbench, grinding herbs with a mortar and pestle.",
+            "outfit": "Dark dress with apron, sleeves rolled up.",
+            "background": "Alchemy laboratory filled with bubbling flasks and shelves of ingredients, dim light.",
+            "mood": "Focused, secretive"
+          },
+          {
+            "title": "Quan sát",
+            "pose": "Standing in the shadow of a doorway, watching a group of people in the hall.",
+            "outfit": "Plain grey robe with hood pulled back.",
+            "background": "Corridor of the tower, light from a nearby window.",
+            "mood": "Watchful, knowing"
+          },
+          {
+            "title": "Chăm sóc",
+            "pose": "Bending over a wounded soldier, applying a poultice.",
+            "outfit": "Apron over a simple dress, hands stained with herbs.",
+            "background": "Infirmary with beds and medical supplies, soft candlelight.",
+            "mood": "Compassionate, efficient"
+          }
+        ]
+      }
+    },
+    {
+      "id": "finn",
+      "name": "Finn",
+      "role": "Học giả trẻ, chuyên gia về lịch sử phép thuật",
+      "avatarEmoji": "📚",
+      "personality": "Tò mò, hoài nghi, thông minh nhưng thiếu tự tin. Anh ta luôn tìm kiếm bằng chứng khoa học cho mọi hiện tượng.",
+      "speechStyle": "Nói nhanh, nhiều từ chuyên môn, hay tự sửa lời. Thường dùng 'theo lý thuyết' và 'dữ liệu cho thấy'.",
+      "secrets": [
+        "Anh ta là con ngoài giá thú của một thành viên hội đồng phù thuỷ, và luôn bị khinh thường.",
+        "Anh ta đã từng chứng kiến một phép thuật thật sự nhưng bị ép phải nói đó là trò lừa."
+      ],
+      "knowledgeByPhase": {
+        "p2": "Anh ta có mặt để ghi chép sự kiện, và yêu cầu bạn chứng minh bằng kiến thức học thuật. Nhìn vào tinh thể ký ức, anh không thể giả vờ đó là trò lừa nữa và thừa nhận người chơi có sức mạnh thật.",
+        "p3": "Anh ta phát hiện ra dấu vết của một loại phép thuật cổ đã bị thất truyền, nhưng không dám công bố.",
+        "p4": "Anh ta phân tích mẫu máu rồng và thấy dấu hiệu chữa lành kỳ lạ, bắt đầu nghi ngờ.",
+        "p5": "Anh ta vô tình tiết lộ một bí mật của hội đồng để bảo vệ bạn.",
+        "p6": "Anh ta tìm ra bằng chứng về kẻ phản bội trong tài liệu cổ.",
+        "p7": "Anh ta giúp bạn xác minh ADN phép thuật của người tự nhận là con Malakar.",
+        "p8": "Anh ta bị thương trong cuộc tấn công và thú nhận rằng anh ta đã biết bạn không phải Malakar thật từ lâu."
+      },
+      "unlockPhase": "p2",
+      "appearance": {
+        "gender": "male",
+        "age": 26,
+        "apparentAge": 26,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "messy",
+        "look": "Curious brown eyes, round glasses, pale skin, slender build, ink-stained fingers.",
+        "outfit": "Scholar's robe of dark blue with many pockets, carrying a satchel of books.",
+        "scenes": [
+          {
+            "title": "Nghiên cứu",
+            "pose": "Sitting at a desk covered with open books and scrolls, writing with a quill.",
+            "outfit": "Simple tunic and vest, glasses perched on nose.",
+            "background": "Library of the tower, tall bookshelves, sunlight streaming through a window.",
+            "mood": "Absorbed, inquisitive"
+          },
+          {
+            "title": "Thí nghiệm",
+            "pose": "Standing in front of a chalkboard covered with equations, pointing at a diagram.",
+            "outfit": "Robe with rolled-up sleeves, chalk dust on hands.",
+            "background": "Study with magical apparatus and floating orbs, bright magical light.",
+            "mood": "Excited, explanatory"
+          },
+          {
+            "title": "Hoài nghi",
+            "pose": "Leaning against a bookshelf, arms crossed, frowning at a piece of parchment.",
+            "outfit": "Casual robe, satchel slung over shoulder.",
+            "background": "Corner of the library, shadows and dust motes in the air.",
+            "mood": "Skeptical, thoughtful"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lysandra",
+      "name": "Lysandra",
+      "role": "Phù thuỷ trẻ đầy tham vọng, thành viên hội đồng",
+      "avatarEmoji": "🔮",
+      "personality": "Quyến rũ, toan tính, luôn tìm cách leo cao. Cô ta giả vờ thân thiện nhưng sẵn sàng phản bội bất kỳ ai.",
+      "speechStyle": "Ngọt ngào, mượt mà, hay dùng từ 'chúng ta' và 'cơ hội'. Đôi khi buông lời mỉa mai.",
+      "secrets": [
+        "Cô ta là người đã đầu độc Malakar để chiếm quyền lực, nhưng không ngờ bạn tái sinh.",
+        "Cô ta có quan hệ bí mật với kẻ chủ mưu cuối cùng và đang cố gắng che giấu."
+      ],
+      "knowledgeByPhase": {
+        "p2": "Cô ta là người lan truyền tin đồn rằng bạn là kẻ mạo danh, nhằm gây bất ổn.",
+        "p4": "Cô ta cố gắng thao túng hội đồng để kết án bạn, nhưng sơ hở khi bị chất vấn về cái chết của Malakar.",
+        "p5": "Cô ta cố gắng đổ tội cho kẻ phản bội khác để che giấu vai trò của mình.",
+        "p6": "Cô ta là người dàn dựng âm mưu 'con ruột' để làm phân tán sự chú ý.",
+        "p7": "Cô ta tiết lộ rằng cô ta đã đầu độc Malakar, nhưng nói rằng đó là lệnh của kẻ chủ mưu.",
+        "p8": "Cô ta quay sang cầu xin bạn tha mạng, tiết lộ tên kẻ chủ mưu thực sự."
+      },
+      "unlockPhase": "p2",
+      "appearance": {
+        "gender": "female",
+        "age": 29,
+        "apparentAge": 29,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "wavy",
+        "look": "Seductive violet eyes, flawless fair skin, red lips, curvaceous figure.",
+        "outfit": "Elegant dark purple gown with silver embroidery, low neckline, jeweled necklace.",
+        "scenes": [
+          {
+            "title": "Hội đồng",
+            "pose": "Standing at a podium in a grand hall, addressing the council with a charming smile.",
+            "outfit": "Formal purple robe with fur trim, intricate jewelry.",
+            "background": "Council chamber with high ceilings and stained glass windows, dramatic lighting.",
+            "mood": "Confident, manipulative"
+          },
+          {
+            "title": "Bí mật",
+            "pose": "Whispering to a hooded figure in a dark alcove, hand on their arm.",
+            "outfit": "Dark cloak over a simple dress, hood down.",
+            "background": "Shadowy corridor of the tower, moonlight filtering through a window.",
+            "mood": "Conspiratorial, sly"
+          },
+          {
+            "title": "Quyến rũ",
+            "pose": "Sitting on a velvet chaise, legs crossed, sipping wine from a goblet.",
+            "outfit": "Lavish gown with lace, hair loose.",
+            "background": "Opulent private chamber with silk drapes and candles, warm light.",
+            "mood": "Alluring, calculating"
+          }
+        ]
+      }
+    },
+    {
+      "id": "theron",
+      "name": "Theron",
+      "role": "Hiệp sĩ trưởng đội cận vệ của hội đồng, người yêu cũ của Seraphina",
+      "avatarEmoji": "⚔️",
+      "personality": "Cứng rắn, bảo thủ, trung thành với hội đồng hơn là với cá nhân. Bị giằng xé giữa nghĩa vụ và tình cảm.",
+      "speechStyle": "Ngắn gọn, mệnh lệnh, hay dùng 'theo luật' và 'nhiệm vụ'.",
+      "secrets": [
+        "Anh ta là kẻ phản bội đã phản bội Malakar vì Lysandra hứa sẽ cho anh ta địa vị cao hơn.",
+        "Anh ta vẫn còn yêu Seraphina và hối hận vì đã phản bội."
+      ],
+      "knowledgeByPhase": {
+        "p3": "Anh ta là người theo dõi bạn và chứng kiến bạn cứu rồng, nhưng báo cáo sai sự thật cho Lysandra. Hắn tận mắt thấy con rồng non tự rứt một chiếc vảy trao cho người chơi sau khi được cứu.",
+        "p4": "Anh ta bị buộc phải làm chứng chống lại bạn tại hội đồng, nhưng do dự khi nhìn thấy Seraphina.",
+        "p5": "Anh ta bị vạch trần là kẻ phản bội và thú nhận động cơ là tình yêu với Lysandra và lòng tham. Khi người chơi đưa bức thư của Lysandra ra trước mặt người khác, hắn không chối được và thú nhận.",
+        "p6": "Anh ta cung cấp thông tin về âm mưu 'con ruột' để chuộc lỗi.",
+        "p7": "Anh ta quay lại giúp bạn chống lại Lysandra sau khi bị cô ta phản bội.",
+        "p8": "Anh ta chiến đấu bên cạnh bạn và chết trong trận chiến cuối cùng, chuộc lại danh dự."
+      },
+      "unlockPhase": "p3",
+      "appearance": {
+        "gender": "male",
+        "age": 35,
+        "apparentAge": 35,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "neat",
+        "look": "Steely blue eyes, square jaw, stubble, muscular build, stern expression.",
+        "outfit": "Heavy plate armor with the council's crest, red cape, large sword.",
+        "scenes": [
+          {
+            "title": "Lãnh đạo",
+            "pose": "Standing at the head of a squad of guards, giving orders with a pointing gesture.",
+            "outfit": "Full plate armor with helmet under arm, red cape.",
+            "background": "Barracks courtyard, guards lined up, morning light.",
+            "mood": "Authoritative, disciplined"
+          },
+          {
+            "title": "Xung đột",
+            "pose": "Standing face to face with Seraphina, both tense, hands on sword hilts.",
+            "outfit": "Battle-worn armor, no helmet.",
+            "background": "Armory with racks of weapons, dim light.",
+            "mood": "Tense, conflicted"
+          },
+          {
+            "title": "Suy tư",
+            "pose": "Sitting alone at a table in a tavern, staring into a mug.",
+            "outfit": "Simple tunic and leather armor, sword leaning against the table.",
+            "background": "Dimly lit tavern, empty chairs, late night.",
+            "mood": "Brooding, regretful"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kael",
+      "name": "Kael",
+      "role": "Thủ lĩnh của một nhóm phù thuỷ nổi loạn, chống lại hội đồng",
+      "avatarEmoji": "🗡️",
+      "personality": "Lý tưởng, nóng nảy, căm thù giới cầm quyền. Anh ta tin rằng Malakar là nạn nhân của hội đồng.",
+      "speechStyle": "Nhiệt huyết, hay dùng từ 'tự do' và 'công lý'. Đôi khi mỉa mai chế độ.",
+      "secrets": [
+        "Anh ta là con trai bị thất lạc của một phù thuỷ già trong hội đồng, người đã bị giết để bịt đầu mối.",
+        "Anh ta đã từng được Malakar bí mật giúp đỡ trong quá khứ mà không biết."
+      ],
+      "knowledgeByPhase": {
+        "p4": "Anh ta xuất hiện tại hội đồng với tư cách người biểu tình, và có thể là đồng minh nếu bạn thuyết phục. Người của anh chặn được một bức thư Lysandra hứa ban địa vị cho Theron; anh đưa nó cho người chơi nếu họ hứa không đứng về phía hội đồng.",
+        "p5": "Anh ta cung cấp bằng chứng về mối liên hệ giữa Lysandra và kẻ chủ mưu.",
+        "p6": "Anh ta nghi ngờ người tự nhận là con Malakar là giả mạo và giúp bạn điều tra.",
+        "p7": "Anh ta chiến đấu bên cạnh bạn chống lại cuộc tấn công.",
+        "p8": "Anh ta tiết lộ danh tính thật của kẻ chủ mưu từ truyền thuyết của nhóm nổi loạn."
+      },
+      "unlockPhase": "p4",
+      "appearance": {
+        "gender": "male",
+        "age": 30,
+        "apparentAge": 30,
+        "eastAsian": false,
+        "hairLength": "Medium",
+        "hairstyle": "wild",
+        "look": "Fierce amber eyes, unkempt hair, stubble, lean build, burn scar on right arm.",
+        "outfit": "Rugged leather armor with rebel insignia, multiple daggers, worn cloak.",
+        "scenes": [
+          {
+            "title": "Tuyên truyền",
+            "pose": "Standing on a crate in a crowded square, raising a fist, speaking passionately.",
+            "outfit": "Leather armor with rebel patch, cloak billowing.",
+            "background": "Market square at dusk, crowd of rebels, torches.",
+            "mood": "Inspiring, defiant"
+          },
+          {
+            "title": "Ẩn náu",
+            "pose": "Crouching in the shadows of an alley, peering around a corner.",
+            "outfit": "Dark hooded cloak over leather armor.",
+            "background": "Narrow alley in the city, night, faint light from a lantern.",
+            "mood": "Alert, cautious"
+          },
+          {
+            "title": "Lên kế hoạch",
+            "pose": "Leaning over a map on a table with other rebels, pointing at a location.",
+            "outfit": "Simple tunic and vest, dagger at belt.",
+            "background": "Hideout with rough wooden walls, candles, maps.",
+            "mood": "Strategic, determined"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aldric",
+      "name": "Aldric",
+      "role": "Thành viên hội đồng phù thuỷ, chuyên gia về phong ấn",
+      "avatarEmoji": "🔗",
+      "personality": "Bảo thủ, cứng nhắc, nhưng công bằng. Ông ta tin vào luật lệ hơn là cảm xúc.",
+      "speechStyle": "Chậm rãi, rõ ràng, hay dùng 'theo luật' và 'cần bằng chứng'.",
+      "secrets": [
+        "Ông ta là cha ruột của Finn nhưng chưa từng thừa nhận vì sợ mất ghế.",
+        "Ông ta biết về âm mưu của Lysandra nhưng im lặng vì bị đe dọa."
+      ],
+      "knowledgeByPhase": {
+        "p4": "Ông ta chủ trì phiên điều trần và là người bạn cần thuyết phục. Khi thấy lọ thuốc tím của Mira (thuốc giải) và hiểu nó dành cho loại độc nào, ông có cớ đứng về phía người chơi mà không lộ việc mình bị đe doạ. Ông cũng giữ một bức thư của Lysandra gửi Theron và đưa nó nếu người chơi che chở được ông trước hội đồng.",
+        "p5": "Ông ta tiết lộ rằng mình đã bị Lysandra đe dọa, và cung cấp bằng chứng.",
+        "p7": "Ông ta công khai ủng hộ bạn sau khi chứng kiến sự thật."
+      },
+      "unlockPhase": "p4",
+      "appearance": {
+        "gender": "male",
+        "age": 60,
+        "apparentAge": 60,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "balding",
+        "look": "Grey eyes, deep wrinkles, white beard, frail build, always holding a staff.",
+        "outfit": "Formal black robe with silver trim, council medallion, carrying a runed staff.",
+        "scenes": [
+          {
+            "title": "Phán xét",
+            "pose": "Standing behind a high desk, looking down at a supplicant with a stern expression.",
+            "outfit": "Black robe with silver trim, medallion.",
+            "background": "Council chamber, high windows, solemn atmosphere.",
+            "mood": "Authoritative, unyielding"
+          },
+          {
+            "title": "Nghiên cứu phong ấn",
+            "pose": "Standing in a circle of runes, hands raised, casting a spell.",
+            "outfit": "Simple robe with runic embroidery, staff glowing.",
+            "background": "Sealed chamber with glowing runes on the floor, arcane light.",
+            "mood": "Focused, powerful"
+          },
+          {
+            "title": "Hồi tưởng",
+            "pose": "Sitting in a high-backed chair by a fireplace, looking at an old tome.",
+            "outfit": "Warm robe, slippers, staff leaning nearby.",
+            "background": "Private study with bookshelves and a fire, cozy light.",
+            "mood": "Reflective, weary"
+          }
+        ]
+      }
+    },
+    {
+      "id": "selene",
+      "name": "Selene",
+      "role": "Nữ tư tế của đền thờ Ánh Trăng, người có khả năng nhìn thấy linh hồn",
+      "avatarEmoji": "🌕",
+      "personality": "Huyền bí, điềm tĩnh, luôn nói những điều khó hiểu. Cô ta tìm kiếm sự cân bằng giữa các thế lực.",
+      "speechStyle": "Thì thầm, nhịp nhàng, hay dùng ẩn dụ về mặt trăng và nước.",
+      "secrets": [
+        "Cô ta biết bạn là linh hồn xuyên không ngay từ đầu, nhưng không nói ra vì tin đó là ý trời.",
+        "Cô ta là người đã gửi lời cầu cứu đến Malakar trong quá khứ, dẫn đến việc ông ta triệu hồi bạn."
+      ],
+      "knowledgeByPhase": {
+        "p5": "Cô ta xuất hiện và tiết lộ rằng con rồng là vật hiến tế của một thế lực đen tối.",
+        "p6": "Cô ta cung cấp nghi lễ để phát hiện kẻ phản bội. Cô biết vảy rồng non chỉ sáng khi chạm vào người cùng dòng máu với Malakar.",
+        "p7": "Cô ta giúp bạn triệu hồi linh hồn của Malakar để hỏi ý kiến.",
+        "p8": "Cô ta tiết lộ rằng cô ta đã biết về Corvus từ lâu và đang chờ bạn xuất hiện."
+      },
+      "unlockPhase": "p5",
+      "appearance": {
+        "gender": "female",
+        "age": 28,
+        "apparentAge": 28,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "straight",
+        "look": "Pale silver eyes, ethereal beauty, pale skin, slender, serene expression.",
+        "outfit": "White and silver priestess robe with moon motifs, silver circlet, barefoot.",
+        "scenes": [
+          {
+            "title": "Cầu nguyện",
+            "pose": "Kneeling before an altar, hands clasped, eyes closed.",
+            "outfit": "White robe with silver embroidery, circlet.",
+            "background": "Moonlit temple with a large statue of the moon goddess, candles.",
+            "mood": "Serene, devout"
+          },
+          {
+            "title": "Nhìn thấy linh hồn",
+            "pose": "Standing with arms outstretched, eyes glowing faintly, looking at something unseen.",
+            "outfit": "Flowing robe, circlet, barefoot.",
+            "background": "Garden of the temple at night, moonlight, mist.",
+            "mood": "Mystical, otherworldly"
+          },
+          {
+            "title": "Tư vấn",
+            "pose": "Sitting across from a troubled person, speaking softly with a gentle smile.",
+            "outfit": "Simple robe with moon pendant.",
+            "background": "Quiet chamber with soft lighting and incense smoke.",
+            "mood": "Compassionate, mysterious"
+          }
+        ]
+      }
+    },
+    {
+      "id": "elara",
+      "name": "Elara",
+      "role": "Người tự nhận là con gái của Malakar, xuất thân bí ẩn",
+      "avatarEmoji": "🌙",
+      "personality": "Lạnh lùng, bí ẩn, dường như biết nhiều hơn cô ta nói. Cô ta tìm kiếm sự thật về cha mình.",
+      "speechStyle": "Chậm rãi, thì thầm, hay dùng từ 'cha' và 'số phận'. Ánh mắt luôn nhìn xa xăm.",
+      "secrets": [
+        "Cô ta không phải con ruột của Malakar mà là con của kẻ chủ mưu, bị gửi đến để làm gián điệp.",
+        "Cô ta dần phát hiện ra sự thật và quyết định phản bội cha nuôi để giúp bạn."
+      ],
+      "knowledgeByPhase": {
+        "p6": "Cô ta xuất hiện và tuyên bố là con của Malakar, đưa ra một kỷ vật giả để chứng minh. Nếu người chơi đặt vảy rồng non lên tay cô và nó không sáng, cô không chối được nữa và thừa nhận mình không phải con ruột của Malakar.",
+        "p7": "Cô ta thú nhận rằng mình được gửi đến để do thám, nhưng đã hối hận.",
+        "p8": "Cô ta tiết lộ vị trí của kẻ chủ mưu và giúp bạn tiếp cận hắn."
+      },
+      "unlockPhase": "p6",
+      "appearance": {
+        "gender": "female",
+        "age": 22,
+        "apparentAge": 22,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "braided",
+        "look": "Ice-blue eyes, sharp features, pale skin, tall and slender, aloof expression.",
+        "outfit": "Dark blue and silver tunic with a high collar, leather pants, boots.",
+        "scenes": [
+          {
+            "title": "Quan sát",
+            "pose": "Standing on a balcony overlooking the city, hands on the railing.",
+            "outfit": "Dark blue tunic with silver embroidery, cloak.",
+            "background": "Balcony of the tower at twilight, city lights below.",
+            "mood": "Contemplative, distant"
+          },
+          {
+            "title": "Truy tìm",
+            "pose": "Kneeling to examine a footprint on the ground, focused.",
+            "outfit": "Practical tunic and pants, gloves.",
+            "background": "Forest clearing with soft sunlight filtering through trees.",
+            "mood": "Determined, curious"
+          },
+          {
+            "title": "Đối chất",
+            "pose": "Standing face to face with Malakar (the player), eyes narrowed.",
+            "outfit": "Formal dark attire with silver accents.",
+            "background": "Dimly lit chamber with a single window, tense atmosphere.",
+            "mood": "Accusatory, intense"
+          }
+        ]
+      }
+    },
+    {
+      "id": "draven",
+      "name": "Draven",
+      "role": "Thợ săn tiền thưởng, cựu thành viên đội cận vệ của Malakar",
+      "avatarEmoji": "🏹",
+      "personality": "Lạnh lùng, thực dụng, làm việc vì tiền nhưng có bộ luật riêng. Anh ta không tin vào phép thuật.",
+      "speechStyle": "Cộc lốc, hay dùng 'tao' và 'mày'. Không bao giờ nói nhiều hơn cần thiết.",
+      "secrets": [
+        "Anh ta đã từng được Malakar cứu sống và mang ơn, nhưng chưa bao giờ thừa nhận.",
+        "Anh ta đang bí mật điều tra cái chết của Malakar vì nghi ngờ có âm mưu."
+      ],
+      "knowledgeByPhase": {
+        "p6": "Anh ta xuất hiện với tư cách người được thuê để bảo vệ Elara, nhưng thực chất đang điều tra.",
+        "p7": "Anh ta cung cấp thông tin về cuộc tấn công sắp tới và giúp bạn phòng thủ.",
+        "p8": "Anh ta tiết lộ rằng mình đã tìm ra bằng chứng về cái chết của bạn ở thế kỷ 21."
+      },
+      "unlockPhase": "p6",
+      "appearance": {
+        "gender": "male",
+        "age": 40,
+        "apparentAge": 40,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "crew cut",
+        "look": "Cold grey eyes, scar across nose, stubbled jaw, rugged build, always wearing gloves.",
+        "outfit": "Worn leather armor with many pouches, a crossbow on his back, dark cloak.",
+        "scenes": [
+          {
+            "title": "Săn đuổi",
+            "pose": "Running through a forest, crossbow in hand, looking back over shoulder.",
+            "outfit": "Leather armor, cloak, boots.",
+            "background": "Dense forest with fog, early morning.",
+            "mood": "Focused, relentless"
+          },
+          {
+            "title": "Thương lượng",
+            "pose": "Sitting at a tavern table, counting coins, looking up with a raised eyebrow.",
+            "outfit": "Simple tunic and leather vest, gloves on table.",
+            "background": "Crowded tavern, dim light, smoky air.",
+            "mood": "Cynical, businesslike"
+          },
+          {
+            "title": "Hồi tưởng",
+            "pose": "Standing in front of a memorial stone, head bowed.",
+            "outfit": "Dark cloak over armor, hood down.",
+            "background": "Memorial site in a quiet field, overcast sky.",
+            "mood": "Somber, respectful"
+          }
+        ]
+      }
+    },
+    {
+      "id": "malakar",
+      "name": "Malakar",
+      "role": "Phù thuỷ tối thượng, linh hồn cũ trong cơ thể bạn",
+      "avatarEmoji": "💀",
+      "personality": "Kiêu ngạo, khôn ngoan, đầy toan tính. Ông ta không hoàn toàn biến mất mà còn sót lại trong tâm trí bạn.",
+      "speechStyle": "Trang trọng, cổ điển, hay dùng 'ngươi' và 'bổn toạ'. Giọng điệu châm biếm.",
+      "secrets": [
+        "Ông ta đã biết trước về cái chết của mình và cố tình để bạn chiếm xác.",
+        "Ông ta là người đã triệu hồi linh hồn bạn từ thế kỷ 21 để làm vật chứa."
+      ],
+      "knowledgeByPhase": {
+        "p1": "Xuất hiện trong giấc mơ, tiết lộ một phần ký ức để giúp bạn qua cửa ải đầu tiên.",
+        "p3": "Cảnh báo bạn về con rồng và kẻ theo dõi.",
+        "p5": "Tiết lộ tên kẻ phản bội trong ký ức của mình.",
+        "p7": "Tiết lộ rằng ông ta đã sắp đặt mọi thứ, và bạn phải hoàn thành sứ mệnh của mình. Ông biết Gương Ánh Trăng có thể buộc Corvus lộ chân tướng.",
+        "p8": "Ông ta biến mất vĩnh viễn, trao toàn bộ sức mạnh cho bạn."
+      },
+      "unlockPhase": "p7",
+      "appearance": {
+        "gender": "male",
+        "age": 70,
+        "apparentAge": 70,
+        "eastAsian": false,
+        "hairLength": "Long",
+        "hairstyle": "flowing",
+        "look": "Piercing dark eyes, sharp features, long white beard, tall and imposing, aged but powerful.",
+        "outfit": "Ornate black and gold robe with arcane symbols, a staff with a glowing crystal, many rings.",
+        "scenes": [
+          {
+            "title": "Trong tâm trí",
+            "pose": "Standing in a void, arms crossed, looking at the viewer with a knowing smirk.",
+            "outfit": "Ethereal version of his robe, slightly translucent.",
+            "background": "Abstract mindscape with swirling mists and floating runes.",
+            "mood": "Cunning, enigmatic"
+          },
+          {
+            "title": "Thời hoàng kim",
+            "pose": "Standing on a balcony, casting a powerful spell with staff raised.",
+            "outfit": "Full regalia, staff glowing brightly.",
+            "background": "Tower balcony at sunset, magical energy swirling.",
+            "mood": "Powerful, commanding"
+          },
+          {
+            "title": "Di sản",
+            "pose": "Sitting on a throne-like chair in a grand hall, looking down at supplicants.",
+            "outfit": "Formal robe with gold embroidery, crown-like circlet.",
+            "background": "Throne room of the tower, grand and ancient.",
+            "mood": "Regal, distant"
+          }
+        ]
+      }
+    },
+    {
+      "id": "corvus",
+      "name": "Corvus",
+      "role": "Kẻ chủ mưu cuối cùng, một thực thể cổ xưa mang hình dạng người",
+      "avatarEmoji": "🦅",
+      "personality": "Tàn nhẫn, kiên nhẫn, tin rằng mình đang làm điều đúng đắn. Hắn ta luôn hành động sau bức màn.",
+      "speechStyle": "Trầm, chậm, triết lý. Hay dùng 'định mệnh' và 'cân bằng'. Không bao giờ tỏ ra tức giận.",
+      "secrets": [
+        "Hắn ta là kẻ đã gây ra cái chết của bạn ở thế kỷ 21 bằng cách đẩy bạn khỏi tòa nhà để lấy linh hồn.",
+        "Hắn ta tin rằng mình đang duy trì sự cân bằng của thế giới bằng cách loại bỏ những linh hồn mạnh."
+      ],
+      "knowledgeByPhase": {
+        "p8": "Hắn ta xuất hiện trực tiếp và tiết lộ toàn bộ âm mưu, bao gồm cả cái chết của bạn ở thế kỷ 21. Nếu bị Gương Ánh Trăng chiếu vào, hắn không giữ được hình người và buộc phải nói thật về cái chết của người chơi."
+      },
+      "unlockPhase": "p8",
+      "appearance": {
+        "gender": "male",
+        "age": 45,
+        "apparentAge": 45,
+        "eastAsian": false,
+        "hairLength": "Short",
+        "hairstyle": "slicked back",
+        "look": "Dark eyes, pale skin, sharp cheekbones, thin lips, always wearing a black cloak with a high collar.",
+        "outfit": "Black high-collared robe with silver clasps, a ring with a black stone.",
+        "scenes": [
+          {
+            "title": "Bóng tối",
+            "pose": "Standing in a shadowy corner, only half of his face visible.",
+            "outfit": "Black cloak, hood up.",
+            "background": "Dark alley or chamber, minimal light.",
+            "mood": "Sinister, hidden"
+          },
+          {
+            "title": "Điều khiển",
+            "pose": "Sitting in a high-backed chair, fingers steepled, looking at a chessboard.",
+            "outfit": "Formal black robe with silver details.",
+            "background": "Private study with dark wood and candles, a fire in the hearth.",
+            "mood": "Calculating, patient"
+          },
+          {
+            "title": "Tiết lộ",
+            "pose": "Standing with arms spread, cloak billowing, a cruel smile.",
+            "outfit": "Black robe with silver clasps, ring glowing faintly.",
+            "background": "Ruined temple or ancient site, eerie green light.",
+            "mood": "Triumphant, menacing"
+          }
+        ]
+      }
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "title": "Thức Tỉnh Trong Thân Xác Lạ",
+      "narration": "Bạn mở mắt trong một cơ thể không phải của mình, giữa vòng tròn phép thuật dang dở. Ký ức của Malakar ùa về, và bạn nhận ra mình đã tái sinh. Tiếng gõ cửa dồn dập: những kẻ hầu cận và một hiệp sĩ đang tìm cách xác nhận cái chết của phù thuỷ.",
+      "objective": "Thuyết phục ít nhất hai người rằng bạn thực sự là Malakar và đang sống lại, đồng thời che giấu sự thật về linh hồn xuyên không.",
+      "completionCriteria": "Ít nhất hai nhân vật (trong số những người có mặt) nói rằng họ tin bạn là Malakar tái sinh hoặc chấp nhận bạn là phù thuỷ hợp pháp.",
+      "hint": "Hãy dùng ký ức của Malakar để chứng minh, nhưng đừng tiết lộ quá nhiều về thế giới cũ."
+    },
+    {
+      "id": "p2",
+      "title": "Bằng Chứng Bị Bẻ Lái",
+      "narration": "Bạn thử thi triển phép thuật để chứng minh, nhưng mọi người lại cho rằng đó là ảo thuật hoặc trùng hợp. Một học giả hoài nghi bắt đầu đặt câu hỏi. Bạn cần tìm đồng minh thực sự trước khi tin đồn lan ra.",
+      "objective": "Tìm ra ai là người đang âm thầm chống đối bạn và thuyết phục một nhân vật mới tin vào năng lực của bạn.",
+      "completionCriteria": "Một nhân vật tiết lộ tên kẻ chủ mưu đang lan tin đồn, và một nhân vật mới (chưa tin ở p1) thừa nhận bạn có sức mạnh siêu nhiên.",
+      "hint": "Đôi khi bằng chứng không nằm ở phép thuật, mà ở hành vi của con người."
+    },
+    {
+      "id": "p3",
+      "title": "Rồng Trên Tháp Cao",
+      "narration": "Một con rồng non bị thương rơi xuống sân tháp. Bạn cứu nó bằng phép thuật, nhưng không ai thấy. Khi bạn kể lại, mọi người cười nhạo. Tuy nhiên, có kẻ đã theo dõi bạn từ trong bóng tối.",
+      "objective": "Sử dụng con rồng để tạo dựng uy tín, đồng thời điều tra âm mưu của kẻ thù.",
+      "completionCriteria": "Một nhân vật thừa nhận đã chứng kiến bạn cứu rồng và hứa giữ bí mật, đồng thời tiết lộ một manh mối về kẻ đứng sau vụ tấn công rồng.",
+      "hint": "Rồng non có thể cảm nhận được ý định của con người. Hãy để nó dẫn đường."
+    },
+    {
+      "id": "p4",
+      "title": "Hội Đồng Phù Thuỷ",
+      "narration": "Hội đồng phù thuỷ triệu tập bạn để chất vấn về cái chết của Malakar. Các thành viên chia rẽ: kẻ muốn loại trừ bạn, kẻ muốn lợi dụng. Một phù thuỷ trẻ tỏ ra thân thiện nhưng ánh mắt đầy toan tính.",
+      "objective": "Sống sót qua phiên điều trần bằng cách vạch trần âm mưu của kẻ chống đối, đồng thời giành được sự ủng hộ của ít nhất một thành viên hội đồng. Mang theo bằng chứng Malakar từng bị đầu độc.",
+      "completionCriteria": "Bạn khiến hội đồng hoãn việc kết án, và một thành viên hội đồng công khai đứng về phía bạn (có thể là do bạn đe dọa hoặc thuyết phục).",
+      "hint": "Hội đồng sợ nhất là bí mật của chính họ bị phơi bày.",
+      "requiredItems": [
+        "lo-thuoc-giai"
+      ]
+    },
+    {
+      "id": "p5",
+      "title": "Bí Mật Của Kẻ Phản Bội",
+      "narration": "Bạn phát hiện ra rằng kẻ đứng sau vụ tấn công rồng và tin đồn chống lại bạn là một người thân cận. Kẻ đó đã phản bội Malakar vì một lý do cá nhân. Bạn quyết định đối đầu, nhưng hắn ta có đồng minh.",
+      "objective": "Vạch trần kẻ phản bội trước những người khác, và buộc hắn phải thú nhận động cơ.",
+      "completionCriteria": "Kẻ phản bội thừa nhận tội lỗi trước mặt ít nhất một nhân vật khác, và tiết lộ lý do phản bội (liên quan đến một mối quan hệ bí mật).",
+      "hint": "Kẻ phản bội không hành động một mình. Hãy tìm xem ai đã giúp hắn.",
+      "requiredItems": [
+        "thu-cua-lysandra"
+      ]
+    },
+    {
+      "id": "p6",
+      "title": "Đứa Con Bị Lãng Quên",
+      "narration": "Một người lạ mặt xuất hiện, tự nhận là con ruột của Malakar. Thông tin này gây chấn động. Bạn biết Malakar không có con, nhưng ký ức của ông ta có thể đã bị sửa đổi. Kẻ thù mới có thể đang lợi dụng người này.",
+      "objective": "Xác minh thân phận của người tự nhận là con Malakar và tìm ra ai đứng sau màn kịch này.",
+      "completionCriteria": "Bạn chứng minh được người đó không phải con ruột (hoặc phát hiện họ là con nuôi bí mật), và một nhân vật thừa nhận đã dàn dựng âm mưu này.",
+      "hint": "Ký ức có thể bị đánh tráo, nhưng dòng máu thì không. Thứ con rồng trao cho bạn biết phân biệt.",
+      "requiredItems": [
+        "vay-rong-non"
+      ]
+    },
+    {
+      "id": "p7",
+      "title": "Phản Bội Từ Trong Bóng Tối",
+      "narration": "Một trong những đồng minh thân cận nhất của bạn quay lưng, tiết lộ rằng họ đã bí mật phục vụ một thế lực đen tối từ đầu. Tháp phù thuỷ bị bao vây. Bạn buộc phải chọn giữa cứu người hay cứu bí mật của chính mình.",
+      "objective": "Thuyết phục kẻ phản bội đổi phe hoặc vô hiệu hoá âm mưu của hắn, đồng thời bảo vệ ít nhất một nhân vật trung thành.",
+      "completionCriteria": "Kẻ phản bội bị đánh bại hoặc quay lại giúp bạn, và một nhân vật trung thành xác nhận họ vẫn tin bạn sau khi chứng kiến sự thật.",
+      "hint": "Đôi khi lòng trung thành được mua bằng sự thật, không phải bằng quyền lực."
+    },
+    {
+      "id": "p8",
+      "title": "Sự Thật Về Cái Chết",
+      "narration": "Kẻ chủ mưu cuối cùng lộ diện: một thực thể cổ xưa đã âm mưu chiếm lấy cơ thể Malakar từ lâu, và cái chết của bạn ở thế kỷ 21 là một phần trong kế hoạch của hắn. Bạn phải đối mặt và đưa ra lựa chọn cuối cùng: trả thù hay tha thứ.",
+      "objective": "Đối chất với kẻ chủ mưu, buộc hắn thừa nhận sự thật trước tất cả, và đưa ra quyết định cuối cùng về số phận của hắn.",
+      "completionCriteria": "Kẻ chủ mưu thừa nhận đã gây ra cái chết của bạn ở thế kỷ 21 (tự nguyện, hoặc sau khi bị Gương Ánh Trăng chiếu vào), và bạn tuyên bố quyết định của mình (trả thù hoặc tha thứ) trước mặt ít nhất hai nhân vật.",
+      "hint": "Sức mạnh thực sự không nằm ở việc trừng phạt, mà ở việc lựa chọn."
+    }
+  ],
+  "items": [
+    {
+      "id": "nhan-an-malakar",
+      "name": "Nhẫn ấn của Malakar",
+      "emoji": "💍",
+      "description": "Chiếc nhẫn bạc khắc ấn tháp phù thuỷ, mắc chặt trên ngón tay bạn từ lúc tỉnh dậy — không ai khác đeo vừa.",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "lo-thuoc-giai",
+      "name": "Lọ thuốc tím của Mira",
+      "emoji": "🧪",
+      "description": "Lọ thuỷ tinh tím nút sáp, bên trong là thứ thuốc đặc sánh có mùi cỏ đắng.",
+      "source": "found",
+      "availablePhase": "p1",
+      "obtainCriteria": "Mira đã đưa cho người chơi lọ thuốc tím của Mira bà cất giữ."
+    },
+    {
+      "id": "tinh-the-ky-uc",
+      "name": "Tinh thể ký ức",
+      "emoji": "💎",
+      "description": "Tinh thể ký ức mua lại từ một thương nhân rong — ai nhìn vào cũng thấy lại một phép thuật thật, không thể gọi là trùng hợp.",
+      "source": "ad",
+      "availablePhase": "p2"
+    },
+    {
+      "id": "vay-rong-non",
+      "name": "Vảy rồng non",
+      "emoji": "🐲",
+      "description": "Chiếc vảy ấm như than hồng, ánh lên khi chạm vào người cùng dòng máu với chủ nhân tháp.",
+      "source": "found",
+      "availablePhase": "p3",
+      "obtainCriteria": "Một nhân vật đã xác nhận con rồng non tự rứt một chiếc vảy trao cho người chơi sau khi được cứu."
+    },
+    {
+      "id": "thu-cua-lysandra",
+      "name": "Thư của Lysandra",
+      "emoji": "✉️",
+      "description": "Bức thư niêm phong bằng sáp tím, chữ viết nghiêng đầy kiêu hãnh.",
+      "source": "found",
+      "availablePhase": "p4",
+      "obtainCriteria": "Kael hoặc Aldric đã đưa cho người chơi bức thư trong đó Lysandra hứa ban địa vị cho Theron."
+    },
+    {
+      "id": "guong-anh-trang",
+      "name": "Gương Ánh Trăng",
+      "emoji": "🌕",
+      "description": "Chiếc gương bạc của đền Ánh Trăng, mượn từ một nữ tu tập sự — nó phản chiếu linh hồn chứ không phải gương mặt.",
+      "source": "ad",
+      "availablePhase": "p7"
+    }
+  ]
+}

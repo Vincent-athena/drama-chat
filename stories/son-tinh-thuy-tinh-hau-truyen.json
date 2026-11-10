@@ -4,6 +4,7 @@
   "synopsis": "Sau trận chiến nghìn năm, Thủy Tinh rút lui nhưng không cam lòng. Một hiệp ước mong manh được lập nên, nhưng khi Mị Nương mất tích, những bí mật của cả hai bên trỗi dậy. Bạn – sứ giả hòa bình – phải tìm ra sự thật trước khi chiến tranh lại nổ ra.",
   "setting": "Thời đại thần thoại Việt Cổ, sau trận chiến Sơn Tinh – Thủy Tinh lần thứ hai. Không gian gồm đỉnh núi Tản Viên uy nghi, thủy cung sâu thẳm và bản làng ven sông. Bầu không khí căng thẳng, mưa gió thất thường, những lời thề bị phản bội.",
   "tone": "bi kịch thần thoại, chính trị cung đình, lãng mạn đen tối",
+  "modernSetting": false,
   "characters": [
     {
       "id": "son-tinh",
@@ -19,16 +20,49 @@
         "Đã từng tàn sát một ngôi làng của Thủy Tinh trong quá khứ."
       ],
       "knowledgeByPhase": {
-        "p1": "Tiết lộ rằng hiệp ước bị phá vỡ bởi một vụ nổ tại đền Nữ Oa, và buộc tội Thủy Tinh đã làm điều đó. Che giấu việc mình đã gặp Na Tra.",
+        "p1": "Tiết lộ rằng hiệp ước bị phá vỡ bởi một vụ nổ tại đền Nữ Oa, và buộc tội Thủy Tinh đã làm điều đó. Che giấu việc mình đã gặp Na Tra. Thấy cờ sứ giả hoà bình, ông buộc phải trả lời người chơi đàng hoàng, dù vẫn đổ lỗi cho Thủy Tinh.",
         "p2": "Thừa nhận đã giấu sự thật về việc Mị Nương bỏ đi, nói rằng nàng ra đi vì bất mãn. Không tiết lộ văn bản chia cắt.",
         "p3": "Không có mặt trong phase này (không thể nói chuyện).",
         "p4": "Thừa nhận Mị Nương đã bỏ đi với một người bí ẩn, nhưng không biết đó là ai. Bắt đầu nghi ngờ Long Nữ.",
         "p5": "Phủ nhận việc gặp Na Tra, nhưng lộ ra sự lo lắng khi nghe tên Na Tra.",
         "p6": "Tức giận khi biết Mị Nương làm chứng chống lại mình, nhưng cũng tỏ ra hối lỗi.",
-        "p7": "Thừa nhận đã phạm tội ác với dân làng trong quá khứ, đồng ý gặp Thủy Tinh.",
-        "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Thủy Tinh cũng làm vậy."
+        "p7": "Thừa nhận đã phạm tội ác với dân làng trong quá khứ, đồng ý gặp Thủy Tinh. Khi người chơi đặt tấm lụa ranh giới (văn bản chia cắt lãnh thổ) có dấu tay của ông ra trước mặt Thủy Tinh, ông không thể chối và đồng ý gặp mặt.",
+        "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Thủy Tinh cũng làm vậy. Lời thề trước Ngọc ấn Nữ Oa ràng buộc ông; nếu người chơi đặt ngọc ấn giữa hai vị thần, ông thề thật lòng."
       },
-      "unlockPhase": "p1"
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "male",
+        "age": 45,
+        "apparentAge": 45,
+        "eastAsian": true,
+        "hairLength": "Long",
+        "hairstyle": "topknot, loose strands",
+        "look": "Chiseled face with sharp jawline, deep-set piercing eyes, bronzed skin, muscular build, faint scars on arms, stern expression.",
+        "outfit": "Dark green brocade robe with mountain motifs, bronze belt, leather boots, and a heavy fur cloak.",
+        "scenes": [
+          {
+            "title": "Trên đỉnh Tản Viên",
+            "pose": "standing tall, looking down from mountain peak, arms crossed",
+            "outfit": "Dark green brocade robe with mountain motifs, bronze belt, fur cloak billowing",
+            "background": "Tản Viên mountain summit at dawn, mist swirling, golden light breaking through clouds",
+            "mood": "majestic and lonely"
+          },
+          {
+            "title": "Lời thề dưới mưa",
+            "pose": "kneeling on one knee, hand pressed to chest, head bowed",
+            "outfit": "Simple white ceremonial robe, unadorned, wet from rain",
+            "background": "Stone altar in a forest clearing, heavy rain, lightning in distance",
+            "mood": "solemn and sorrowful"
+          },
+          {
+            "title": "Nỗi đau của núi",
+            "pose": "sitting on a stone throne, leaning forward with head in hands",
+            "outfit": "Loose dark robe, barefoot, hair disheveled",
+            "background": "Dimly lit stone hall with flickering torches, night",
+            "mood": "anguished and vulnerable"
+          }
+        ]
+      }
     },
     {
       "id": "thuy-tinh",
@@ -44,16 +78,49 @@
         "Có một thỏa thuận bí mật với Nữ Oa để chống lại Sơn Tinh, nhưng Nữ Oa đã phản bội hắn."
       ],
       "knowledgeByPhase": {
-        "p1": "Phủ nhận việc phá hiệp ước, buộc tội Sơn Tinh tự dựng chuyện. Đe dọa sẽ tấn công nếu không tìm ra sự thật.",
+        "p1": "Phủ nhận việc phá hiệp ước, buộc tội Sơn Tinh tự dựng chuyện. Đe dọa sẽ tấn công nếu không tìm ra sự thật. Thấy cờ sứ giả hoà bình, hắn kìm cơn giận và chịu kể về đêm vụ nổ.",
         "p2": "Không có mặt trong phase này (không thể nói chuyện).",
         "p3": "Khẳng định không ra lệnh đặt bom, chỉ cử Na Tra đi do thám. Tiết lộ Long Nữ là con nuôi và có tình cảm với Sơn Tinh.",
         "p4": "Không có mặt trong phase này (không thể nói chuyện).",
         "p5": "Cử Na Tra đến đối chất. Tiết lộ Na Tra được lệnh bởi một người trong hàng ngũ Sơn Tinh, nhưng không biết là ai.",
         "p6": "Tức giận khi biết Mị Nương còn sống, nhưng cũng tỏ ra nhẹ nhõm. Thừa nhận đã từng yêu Mị Nương thật lòng.",
-        "p7": "Đồng ý gặp Sơn Tinh sau khi nghe về âm mưu của Nữ Oa. Thừa nhận tội ác với dân làng.",
-        "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Sơn Tinh cũng làm vậy."
+        "p7": "Đồng ý gặp Sơn Tinh sau khi nghe về âm mưu của Nữ Oa. Thừa nhận tội ác với dân làng. Thấy tấm lụa ranh giới (văn bản chia cắt lãnh thổ), hắn hiểu Sơn Tinh đã lừa cả hai bên và chịu gặp mặt.",
+        "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Sơn Tinh cũng làm vậy. Lời thề trước Ngọc ấn Nữ Oa ràng buộc hắn; nếu người chơi đặt ngọc ấn giữa hai vị thần, hắn thề thật lòng."
       },
-      "unlockPhase": "p1"
+      "unlockPhase": "p1",
+      "appearance": {
+        "gender": "male",
+        "age": 45,
+        "apparentAge": 45,
+        "eastAsian": true,
+        "hairLength": "Long",
+        "hairstyle": "slicked back, wet look",
+        "look": "Pale skin with a cold, handsome face, sharp cheekbones, narrow calculating eyes, lean but muscular build, always appears slightly damp.",
+        "outfit": "Deep blue and silver armor with wave patterns, a flowing cape, and a coral crown.",
+        "scenes": [
+          {
+            "title": "Ngai vàng thủy cung",
+            "pose": "sitting on a throne made of coral and pearl, fingers steepled",
+            "outfit": "Regal deep blue robe with silver embroidery, coral crown",
+            "background": "Thủy Tinh's underwater palace, bioluminescent lights, dark blue waters",
+            "mood": "calculating and cold"
+          },
+          {
+            "title": "Nỗi hận nghìn năm",
+            "pose": "standing with fists clenched, glaring at a mountain in the distance",
+            "outfit": "Battle armor with barnacles and seaweed, trident in hand",
+            "background": "Stormy sea shore, dark clouds, raging waves",
+            "mood": "vengeful and bitter"
+          },
+          {
+            "title": "Bí mật trong bóng tối",
+            "pose": "leaning against a pillar, half in shadow, smirking",
+            "outfit": "Dark blue tunic with silver trim, no armor",
+            "background": "Corridor of the underwater palace, dim lighting, shadows",
+            "mood": "scheming and sinister"
+          }
+        ]
+      }
     },
     {
       "id": "tieu-nga",
@@ -70,15 +137,48 @@
       ],
       "knowledgeByPhase": {
         "p1": "Không có mặt trong phase này (chưa xuất hiện).",
-        "p2": "Xuất hiện, tiết lộ đã thấy một người của Thủy Tinh đặt vật lạ gần đền. Thừa nhận giúp Mị Nương trốn đi nhưng không nói lý do.",
+        "p2": "Xuất hiện, tiết lộ đã thấy một người của Thủy Tinh đặt vật lạ gần đền. Thừa nhận giúp Mị Nương trốn đi nhưng không nói lý do. Cô nhặt được một mảnh bùa cháy dở gần đền Nữ Oa và giấu trong tay áo; cô đưa nó cho người chơi nếu họ hứa giữ bí mật cho cô.",
         "p3": "Không có mặt trong phase này (không thể nói chuyện).",
-        "p4": "Thú nhận đã giúp Mị Nương trốn đi vì thương hại và vì giận Sơn Tinh. Tiết lộ Mị Nương đang ở làng ven sông.",
+        "p4": "Thú nhận đã giúp Mị Nương trốn đi vì thương hại và vì giận Sơn Tinh. Tiết lộ Mị Nương đang ở làng ven sông. Cô giữ bức thư không gửi của Mị Nương; cô đưa nó cho người chơi khi họ nhắc đến lòng trung thành của cô với Mị Nương.",
         "p5": "Không có mặt trong phase này (không thể nói chuyện).",
         "p6": "Không có mặt trong phase này (không thể nói chuyện).",
         "p7": "Không có mặt trong phase này (không thể nói chuyện).",
         "p8": "Có mặt tại đền Nữ Oa, làm chứng cho Mị Nương và thừa nhận mình là con gái nuôi của Sơn Tinh."
       },
-      "unlockPhase": "p2"
+      "unlockPhase": "p2",
+      "appearance": {
+        "gender": "female",
+        "age": 22,
+        "apparentAge": 22,
+        "eastAsian": true,
+        "hairLength": "Medium-long",
+        "hairstyle": "braided, simple",
+        "look": "Delicate features, large doe eyes, pale skin, petite build, often looks downcast, with a faint scar on her left wrist.",
+        "outfit": "Simple brown linen tunic and skirt, a worn leather belt, and cloth shoes.",
+        "scenes": [
+          {
+            "title": "Người hầu trung thành",
+            "pose": "standing with head bowed, hands clasped in front",
+            "outfit": "Plain brown servant's tunic, apron",
+            "background": "Stone hall of Sơn Tinh's palace, morning light",
+            "mood": "submissive and sad"
+          },
+          {
+            "title": "Ký ức về mẹ",
+            "pose": "sitting on a rock, holding a small cloth doll, looking at it",
+            "outfit": "Simple green dress, barefoot",
+            "background": "Garden with blooming flowers, afternoon sunlight",
+            "mood": "nostalgic and longing"
+          },
+          {
+            "title": "Nỗi uất hận",
+            "pose": "standing in the rain, face upturned, tears mixing with rain",
+            "outfit": "Soaked brown tunic, hair plastered to face",
+            "background": "Courtyard at night, heavy rain, lightning",
+            "mood": "angry and hurt"
+          }
+        ]
+      }
     },
     {
       "id": "long-nu",
@@ -96,14 +196,47 @@
       "knowledgeByPhase": {
         "p1": "Không có mặt trong phase này (chưa xuất hiện).",
         "p2": "Không có mặt trong phase này (không thể nói chuyện).",
-        "p3": "Xuất hiện, tiết lộ mình là con nuôi của Thủy Tinh và có tình cảm với Sơn Tinh. Che giấu việc thấy Sơn Tinh gặp Na Tra.",
+        "p3": "Xuất hiện, tiết lộ mình là con nuôi của Thủy Tinh và có tình cảm với Sơn Tinh. Che giấu việc thấy Sơn Tinh gặp Na Tra. Thấy ngọc trai thủy cung, cô coi người chơi là khách quý của cha nuôi và dễ dàng kể về tình cảm của mình với Sơn Tinh.",
         "p4": "Không có mặt trong phase này (không thể nói chuyện).",
         "p5": "Thừa nhận đã thấy Sơn Tinh gặp Na Tra trước đêm hiệp ước bị phá vỡ. Tiết lộ Thủy Tinh đã cử Na Tra đi do thám chứ không phải đặt bom.",
         "p6": "Không có mặt trong phase này (không thể nói chuyện).",
         "p7": "Tham gia cuộc họp tại đền Nữ Oa, thừa nhận tình cảm với Sơn Tinh và vai trò của mình trong việc che giấu sự thật.",
         "p8": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin Nữ Oa tha thứ."
       },
-      "unlockPhase": "p3"
+      "unlockPhase": "p3",
+      "appearance": {
+        "gender": "female",
+        "age": 25,
+        "apparentAge": 25,
+        "eastAsian": true,
+        "hairLength": "Long",
+        "hairstyle": "wavy, flowing",
+        "look": "Ethereal beauty with sharp features, almond-shaped eyes, pale skin with a faint blue tint, graceful and strong build.",
+        "outfit": "Flowing aquamarine gown with pearl accents, silver jewelry, and a delicate coral tiara.",
+        "scenes": [
+          {
+            "title": "Công chúa thủy cung",
+            "pose": "standing on a balcony overlooking the sea, hand on railing",
+            "outfit": "Aquamarine gown with pearl embroidery, coral tiara",
+            "background": "Underwater palace balcony, glowing jellyfish, deep blue light",
+            "mood": "regal and contemplative"
+          },
+          {
+            "title": "Tình yêu giấu kín",
+            "pose": "sitting by a tide pool, tracing patterns in the water",
+            "outfit": "Simple white dress, barefoot, hair loose",
+            "background": "Rocky shore at twilight, calm sea, first stars",
+            "mood": "wistful and romantic"
+          },
+          {
+            "title": "Toan tính",
+            "pose": "leaning against a marble column, arms crossed, a sly smile",
+            "outfit": "Dark teal dress with silver accents",
+            "background": "Dimly lit corridor of the palace, shadows",
+            "mood": "scheming and confident"
+          }
+        ]
+      }
     },
     {
       "id": "na-tra",
@@ -123,12 +256,45 @@
         "p2": "Không có mặt trong phase này (không thể nói chuyện).",
         "p3": "Không có mặt trong phase này (không thể nói chuyện).",
         "p4": "Không có mặt trong phase này (không thể nói chuyện).",
-        "p5": "Xuất hiện với tư cách sứ giả của Thủy Tinh. Tiết lộ được lệnh bởi một người trong hàng ngũ Sơn Tinh để gài bom. Thừa nhận đã nhận tiền từ cả hai bên.",
+        "p5": "Xuất hiện với tư cách sứ giả của Thủy Tinh. Tiết lộ được lệnh bởi một người trong hàng ngũ Sơn Tinh để gài bom. Thừa nhận đã nhận tiền từ cả hai bên. Thấy mảnh bùa cháy dở mang ấn lửa của chính mình, hắn biết không thể đổ cho Thủy Tinh và khai rằng một người trong hàng ngũ Sơn Tinh đã thuê hắn.",
         "p6": "Không có mặt trong phase này (không thể nói chuyện).",
         "p7": "Bị triệu tập đến đền Nữ Oa, thừa nhận toàn bộ âm mưu và vai trò của Sơn Tinh.",
         "p8": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin giảm tội."
       },
-      "unlockPhase": "p5"
+      "unlockPhase": "p5",
+      "appearance": {
+        "gender": "male",
+        "age": 30,
+        "apparentAge": 30,
+        "eastAsian": true,
+        "hairLength": "Short",
+        "hairstyle": "messy, spiky",
+        "look": "Boyish face with a mischievous grin, bright eyes, athletic build, a small scar above his eyebrow.",
+        "outfit": "Light leather armor with red accents, fingerless gloves, and a short spear.",
+        "scenes": [
+          {
+            "title": "Sứ giả của Thủy Tinh",
+            "pose": "standing with a spear planted, confident smirk",
+            "outfit": "Leather armor with red sash, spear",
+            "background": "Beach at sunset, waves crashing",
+            "mood": "arrogant and cocky"
+          },
+          {
+            "title": "Gián điệp hai mang",
+            "pose": "hiding behind a tree, peeking out",
+            "outfit": "Dark hooded cloak over armor",
+            "background": "Forest at night, moonlight filtering through leaves",
+            "mood": "sneaky and alert"
+          },
+          {
+            "title": "Cơ hội",
+            "pose": "sitting at a tavern table, counting coins",
+            "outfit": "Casual tunic, no armor",
+            "background": "Rustic tavern, candlelight, evening",
+            "mood": "greedy and relaxed"
+          }
+        ]
+      }
     },
     {
       "id": "mi-nuong",
@@ -149,11 +315,44 @@
         "p3": "Không có mặt trong phase này (không thể nói chuyện).",
         "p4": "Không có mặt trong phase này (không thể nói chuyện).",
         "p5": "Không có mặt trong phase này (không thể nói chuyện).",
-        "p6": "Xuất hiện tại làng ven sông. Kể rằng nàng bỏ đi vì không thể chịu đựng sự ghen tuông của Sơn Tinh và Thủy Tinh. Đồng ý làm chứng rằng Sơn Tinh đã ép nàng ký văn bản chia cắt.",
+        "p6": "Xuất hiện tại làng ven sông. Kể rằng nàng bỏ đi vì không thể chịu đựng sự ghen tuông của Sơn Tinh và Thủy Tinh. Đồng ý làm chứng rằng Sơn Tinh đã ép nàng ký văn bản chia cắt. Thấy bức thư của chính mình trong tay sứ giả, nàng hiểu Tiểu Nga đã tin người chơi và kể hết. Nàng giữ văn bản chia cắt lãnh thổ, vẽ trên một tấm lụa ranh giới, và trao nó cho người chơi khi đồng ý làm chứng.",
         "p7": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin Nữ Oa tha thứ cho cả hai vị thần.",
         "p8": "Có mặt tại đền Nữ Oa, là nhân chứng chính trong cuộc đối thoại hòa giải."
       },
-      "unlockPhase": "p6"
+      "unlockPhase": "p6",
+      "appearance": {
+        "gender": "female",
+        "age": 35,
+        "apparentAge": 35,
+        "eastAsian": true,
+        "hairLength": "Long",
+        "hairstyle": "updo with loose strands",
+        "look": "Graceful and elegant, with a sorrowful expression, high cheekbones, dark eyes, slender build, and a small mole below her left eye.",
+        "outfit": "Elegant silk áo dài in pale pink with lotus embroidery, pearl necklace, and wooden clogs.",
+        "scenes": [
+          {
+            "title": "Nỗi buồn của Mị Nương",
+            "pose": "sitting by a window, looking out, hand on chin",
+            "outfit": "Pale pink áo dài with lotus embroidery",
+            "background": "Palace room, soft morning light, silk curtains",
+            "mood": "melancholic and longing"
+          },
+          {
+            "title": "Khao khát tự do",
+            "pose": "standing on a cliff edge, arms outstretched, eyes closed",
+            "outfit": "Simple white dress, hair loose",
+            "background": "Cliff overlooking the sea, windy, overcast",
+            "mood": "yearning and hopeful"
+          },
+          {
+            "title": "Kiên cường",
+            "pose": "standing tall, facing forward, determined expression",
+            "outfit": "Dark blue áo dài with silver patterns",
+            "background": "Throne room, dramatic lighting",
+            "mood": "resolute and strong"
+          }
+        ]
+      }
     }
   ],
   "phases": [
@@ -195,7 +394,10 @@
       "narration": "Tin đồn về một kẻ phản bội trong hàng ngũ của Sơn Tinh lan rộng. Thủy Tinh cử một sứ giả đến, và Long Nữ bí mật gặp bạn để tiết lộ một âm mưu lớn hơn. Mọi người bắt đầu nghi ngờ lẫn nhau.",
       "objective": "Đối chất với Na Tra – sứ giả của Thủy Tinh – và Long Nữ để tìm ra ai đã thực sự ra lệnh phá hiệp ước.",
       "completionCriteria": "Người chơi đã nghe Na Tra tiết lộ rằng hắn được lệnh bởi một người trong hàng ngũ Sơn Tinh để gài bom, và Long Nữ thừa nhận cô ta đã thấy Sơn Tinh bí mật gặp Na Tra trước đêm đó.",
-      "hint": "Na Tra có vẻ không trung thành với Thủy Tinh. Hãy hỏi hắn về động cơ của hắn."
+      "hint": "Na Tra có vẻ không trung thành với Thủy Tinh. Thứ Tiểu Nga nhặt được gần đền có thể khiến hắn hết đường chối.",
+      "requiredItems": [
+        "bua-chay-do"
+      ]
     },
     {
       "id": "p6",
@@ -203,7 +405,10 @@
       "narration": "Mị Nương được tìm thấy đang ẩn náu trong một ngôi làng xa xôi. Nàng tiết lộ rằng nàng đã giả chết để thoát khỏi cuộc hôn nhân bị ép buộc, nhưng có kẻ đã lợi dụng sự vắng mặt của nàng. Sơn Tinh và Thủy Tinh đều muốn đưa nàng về.",
       "objective": "Nói chuyện với Mị Nương để nghe toàn bộ câu chuyện của nàng và thuyết phục nàng làm chứng chống lại kẻ chủ mưu.",
       "completionCriteria": "Người chơi đã nghe Mị Nương kể rằng nàng bỏ đi vì không thể chịu đựng sự ghen tuông của Sơn Tinh và Thủy Tinh, và nàng đồng ý làm chứng rằng Sơn Tinh đã ép nàng ký vào một văn bản chia cắt lãnh thổ.",
-      "hint": "Mị Nương sợ cả hai vị thần. Hãy hỏi nàng về nỗi sợ lớn nhất của nàng."
+      "hint": "Mị Nương sợ cả hai vị thần. Bức thư nàng chưa gửi sẽ cho nàng biết bạn là người đáng tin.",
+      "requiredItems": [
+        "thu-mi-nuong"
+      ]
     },
     {
       "id": "p7",
@@ -211,15 +416,71 @@
       "narration": "Một tiếng nói từ đền thờ Nữ Oa vang lên, tiết lộ rằng chính Nữ Oa đã gieo rắc bất hòa để trừng phạt hai vị thần vì tội ác trong quá khứ. Sơn Tinh và Thủy Tinh buộc phải hợp tác, nhưng lòng tin đã cạn.",
       "objective": "Thuyết phục Sơn Tinh và Thủy Tinh gặp nhau để cùng đối mặt với Nữ Oa, sử dụng bằng chứng từ Mị Nương và Long Nữ.",
       "completionCriteria": "Người chơi đã thuyết phục được Sơn Tinh và Thủy Tinh đồng ý gặp mặt tại đền Nữ Oa, và cả hai đã thừa nhận rằng họ đã từng phạm tội ác với dân làng.",
-      "hint": "Cả hai đều sợ Nữ Oa hơn sợ nhau. Hãy nhắc họ về những gì họ đã làm với dân làng."
+      "hint": "Cả hai đều sợ Nữ Oa hơn sợ nhau. Hãy nhắc họ về những gì họ đã làm với dân làng.",
+      "requiredItems": [
+        "van-ban-chia-cat"
+      ]
     },
     {
       "id": "p8",
       "title": "Nước Mắt Của Núi",
       "narration": "Tại đền Nữ Oa, ba vị thần đối mặt. Nữ Oa xuất hiện và đưa ra lựa chọn: hòa giải hoặc hủy diệt. Bạn phải dùng tất cả sự thật đã thu thập để buộc họ phải chọn con đường hòa bình.",
       "objective": "Dẫn dắt cuộc đối thoại giữa Sơn Tinh, Thủy Tinh và Nữ Oa để đạt được thỏa thuận hòa bình.",
-      "completionCriteria": "Người chơi đã khiến Sơn Tinh và Thủy Tinh thừa nhận tội lỗi trước Nữ Oa, và Nữ Oa tuyên bố rút lại lời nguyền, hoặc người chơi đã thuyết phục được cả ba bên ký một hiệp ước mới.",
+      "completionCriteria": "Người chơi đã khiến Sơn Tinh và Thủy Tinh thừa nhận tội lỗi trước Nữ Oa và Nữ Oa tuyên bố rút lại lời nguyền, HOẶC Sơn Tinh và Thủy Tinh đã cùng thừa nhận tội lỗi và đồng ý ký một hiệp ước mới với Mị Nương làm chứng, HOẶC cả hai đã thề hoà bình trước Ngọc ấn Nữ Oa mà người chơi đặt giữa họ.",
       "hint": "Nữ Oa muốn công lý, không phải chiến tranh. Hãy nhấn mạnh vào sự thay đổi của hai vị thần."
+    }
+  ],
+  "items": [
+    {
+      "id": "co-su-gia",
+      "name": "Cờ sứ giả hoà bình",
+      "emoji": "🏳️",
+      "description": "Lá cờ trắng thêu hình núi và sóng; cả hai vị thần đã thề không làm hại người mang nó.",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "bua-chay-do",
+      "name": "Mảnh bùa cháy dở",
+      "emoji": "🔥",
+      "description": "Mảnh giấy bùa cháy sém, còn sót một nét ấn hình ngọn lửa.",
+      "source": "found",
+      "availablePhase": "p2",
+      "obtainCriteria": "Tiểu Nga đã đưa cho người chơi mảnh bùa cháy dở cô nhặt được gần đền Nữ Oa."
+    },
+    {
+      "id": "ngoc-trai-thuy-cung",
+      "name": "Ngọc trai thủy cung",
+      "emoji": "🦪",
+      "description": "Viên ngọc trai Long Vương ban cho khách quý, mua lại từ một ngư dân may mắn — cầm nó, cửa thủy cung tự mở.",
+      "source": "ad",
+      "availablePhase": "p3"
+    },
+    {
+      "id": "thu-mi-nuong",
+      "name": "Bức thư không gửi của Mị Nương",
+      "emoji": "✉️",
+      "description": "Lá thư gấp tư, nét chữ run run, chưa bao giờ được gửi đi.",
+      "source": "found",
+      "availablePhase": "p4",
+      "obtainCriteria": "Tiểu Nga đã đưa cho người chơi bức thư Mị Nương viết nhưng chưa gửi."
+    },
+    {
+      "id": "van-ban-chia-cat",
+      "name": "Tấm lụa ranh giới",
+      "emoji": "📜",
+      "description": "Tấm lụa vẽ ranh giới núi sông, có chữ ký của Mị Nương và dấu tay của Sơn Tinh.",
+      "source": "found",
+      "availablePhase": "p6",
+      "obtainCriteria": "Mị Nương đã trao cho người chơi tấm lụa ranh giới mà nàng giữ."
+    },
+    {
+      "id": "ngoc-an-nu-oa",
+      "name": "Ngọc ấn Nữ Oa",
+      "emoji": "🪷",
+      "description": "Ngọc ấn của đền Nữ Oa, một ngư dân vớt được dưới chân đền sau vụ nổ. Lời thề trước nó không thể nuốt lời.",
+      "source": "ad",
+      "availablePhase": "p7"
     }
   ]
 }
