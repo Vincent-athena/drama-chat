@@ -50,6 +50,13 @@ export const ItemsBodySchema = z.object({
   tickets: z.record(z.string().max(200), z.string().max(4000)).refine((r) => Object.keys(r).length <= 100, "too many tickets"),
 });
 
+export const AdStartBodySchema = z.union([
+  z.object({ rewardType: z.literal("item"), storyId: z.string().max(100), itemId: z.string().max(100) }),
+  z.object({ rewardType: z.literal("guide"), storyId: z.string().max(100) }),
+]);
+
+export const GuideBodySchema = z.object({ context: JudgeContextSchema });
+
 export const RequestCodeBodySchema = z.object({ email: z.string().max(300) });
 export const VerifyBodySchema = z.object({ email: z.string().max(300), code: z.string().max(20) });
 

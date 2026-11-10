@@ -24,5 +24,8 @@ export const appOrigin = () => process.env.APP_ORIGIN || "";
 export const resendApiKey = () => process.env.RESEND_API_KEY || "";
 export const mailFrom = () => process.env.MAIL_FROM || "Drama Chat <login@example.com>";
 export const dailyMessageCap = () => num(process.env.DAILY_MESSAGE_CAP, 200);
+export const guideFreePerDay = () => num(process.env.GUIDE_FREE_PER_DAY, 1);
+export const adMinSeconds = () => num(process.env.AD_MIN_SECONDS, 15);
+export const adDailyCap = () => num(process.env.AD_DAILY_CAP, 10);
 export const dayTz = () => process.env.DAY_TZ || "Asia/Ho_Chi_Minh";
 export const isProduction = () => process.env.NODE_ENV === "production";

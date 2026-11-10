@@ -1,4 +1,4 @@
-import type { ChatMessage, Group, TaggedMessage } from "@/lib/schema";
+import type { AdvanceGuide, ChatMessage, Group, TaggedMessage } from "@/lib/schema";
 
 /** Contracts 4.3: the downloadable copy of a browser save. Rows are the raw IndexedDB rows. */
 export type SaveFile = {
@@ -39,6 +39,9 @@ export interface SaveStore {
   addEvent(storyId: string, phaseIndex: number, summary: string): Promise<void>;
   getChapterNotes(storyId: string, phaseIndex: number): Promise<string>;
   setChapterNotes(storyId: string, phaseIndex: number, notes: string): Promise<void>;
+  // advance guide: the last one per chapter, reopened for free
+  getGuide(storyId: string, phaseIndex: number): Promise<AdvanceGuide | null>; // null when none or invalid
+  setGuide(storyId: string, phaseIndex: number, guide: AdvanceGuide): Promise<void>;
   // whole story
   resetStory(storyId: string): Promise<void>; // deletes messages, groups, events, notes, guides, progress of that story
   // whole save [WP2]

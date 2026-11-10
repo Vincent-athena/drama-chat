@@ -88,7 +88,7 @@ ${knowledge || "- Nothing beyond what anyone would know."}
 
 ## What the player is carrying
 ${context.carrying?.length ? context.carrying.map((i) => `- ${i.emoji} ${i.name}: ${i.description}`).join("\n") : "- Nothing of note."}
-If the player claims to show or hand you something that is not on this list, they do not have it: react with disbelief.${
+If the player claims to show or hand you an important object from this story (evidence, a document, a key, a keepsake) that is not on this list, they do not have it: react with doubt or disbelief. Ordinary things anyone might carry (money, a drink, a phone) are fine.${
     context.shownItem
       ? `
 Right now the player is showing you: ${context.shownItem.emoji} ${context.shownItem.name} (${context.shownItem.description}). React to it.`
@@ -207,7 +207,7 @@ Judge the criteria as usual; the game itself blocks completion while a required 
     : ""
 }${
   findable.length
-    ? `Items the player can find now (grant one only when its condition is clearly met in the conversation):
+    ? `Items the player can find now (grant an item only when its condition has actually happened in the conversation: a character mentioning, describing or promising the item is not enough; it must be handed over or taken):
 ${findable.map((i) => `- id "${i.id}": ${i.name} — condition: ${i.obtainCriteria}`).join("\n")}
 `
     : ""
@@ -236,6 +236,63 @@ Then update your notes: a short bullet list of every part of the criteria that h
 Respond with JSON only, in exactly this shape:
 {"completed": true|false, "reason": "one short sentence", "eventSummary": "if completed, one sentence in past tense describing what happened, written as a story event; otherwise empty string", "notes": "- updated bullet list, one item per line", "grantedItemIds": ["item-id", ...]}
 "grantedItemIds" lists the ids of the findable items whose condition is clearly met; use an empty array when none.`;
+}
+
+/** Port of the reference advance guide, plus the items the player carries and still needs. Server only. */
+export function advanceGuidePrompt(
+  story: Story,
+  phaseIndex: number,
+  available: Character[],
+  recent: TaggedMessage[],
+  events: string[],
+  notes: string,
+  groupMembers?: GroupMembers,
+  owned: Set<string> = new Set()
+): string {
+  const phase = story.phases[phaseIndex];
+  const transcript = recent.map((m) => transcriptLine(story, m, groupMembers)).join("\n");
+  const carried = story.items.filter((i) => owned.has(i.id));
+  const missing = phase.requiredItems
+    .filter((id) => !owned.has(id))
+    .map((id) => story.items.find((i) => i.id === id))
+    .filter((i): i is NonNullable<typeof i> => Boolean(i));
+  const howTo = (i: (typeof missing)[number]) =>
+    i.source === "ad"
+      ? "can be unlocked with an ad"
+      : `can be found by talking to the right character (hidden condition, never quote it: ${i.obtainCriteria ?? "none"})`;
+  const itemSections = `Items the player carries: ${carried.length ? carried.map((i) => `${i.emoji} ${i.name}`).join(", ") : "(none)"}
+${missing.length ? `Still missing (the chapter cannot complete without them):\n${missing.map((i) => `- ${i.emoji} ${i.name}: ${howTo(i)}`).join("\n")}\n` : ""}`;
+
+  return `You are the story director for the interactive drama "${story.title}". The player is stuck and has asked for an advance guide: concrete, personal advice on how to complete the current chapter from where they are now.
+
+Setting: ${story.setting}
+Premise: ${story.synopsis}
+The player is the protagonist the premise calls "you"; every "Player" line in the conversation is that person speaking.
+
+Chapter: "${phase.title}"
+Player objective: ${phase.objective}
+Completion criteria (hidden from the player): ${phase.completionCriteria}
+Hint already shown to the player: ${phase.hint || "(none)"}
+${itemSections}
+Characters the player can talk to now:
+${available.map((c) => `- ${c.name} (${c.role})`).join("\n")}
+
+Earlier events:
+${events.length ? events.map((e) => `- ${e}`).join("\n") : "- none"}
+
+Your notes on progress in this chapter:
+${notes || "(none yet)"}
+
+Recent conversation (oldest first, across all chats):
+${transcript || "(no messages yet)"}
+
+Explain what is still missing and why the chapter has not completed yet, including anything the player keeps doing that works against the objective. If a required item is missing, say so and how to get it ("can be unlocked with an ad" items are unlocked in the app, not in the story). Then give 2-4 steps, each with the character to talk to, what to do, and one example line the player could send, written in the player's voice and the story's style.
+Write each example line in the first person as the protagonist, exactly who the premise says they are; never present the protagonist as someone else's confidant, witness or messenger. Build only on what the story and conversation already contain: do not invent memories, past conversations or instructions the protagonist received.
+Guide toward the completion criteria in plain terms, but do not quote them (nor any item condition), do not reveal characters' secrets the player has not uncovered, and say nothing about later chapters or locked characters.
+Write in the same language as the story.
+
+Respond with JSON only, in exactly this shape:
+{"diagnosis": "2-3 sentences", "steps": [{"character": "name", "action": "what to do", "say": "example line"}]}`;
 }
 
 const HAIR_LENGTHS = "Short, Medium, Medium-long, Long";

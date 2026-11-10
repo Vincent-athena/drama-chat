@@ -82,6 +82,23 @@ describe("LocalSaveStore", () => {
     assert.equal(await s.getChapterNotes(S, 1), "ch2");
   });
 
+  it("guides: last guide per chapter, invalid rows read as null, reset clears them", async () => {
+    const s = fresh();
+    const g = { diagnosis: "d", steps: [{ character: "c", action: "a", say: "s" }] };
+    assert.equal(await s.getGuide(S, 0), null);
+    await s.setGuide(S, 0, g);
+    await s.setGuide(S, 0, { ...g, diagnosis: "newer" });
+    assert.equal((await s.getGuide(S, 0))?.diagnosis, "newer");
+    assert.equal(await s.getGuide(S, 1), null);
+    const file = await s.exportAll();
+    assert.equal(file.stores.guides.length, 1);
+    await s.importAll({ ...file, stores: { ...file.stores, guides: [{ storyId: S, phaseIndex: 2, guide: { diagnosis: 5 }, createdAt: 1 }] } });
+    assert.equal(await s.getGuide(S, 2), null);
+    await s.setGuide(S, 0, g);
+    await s.resetStory(S);
+    assert.equal(await s.getGuide(S, 0), null);
+  });
+
   it("resetStory removes only that story", async () => {
     const s = fresh();
     for (const story of [S, "story-b"]) {

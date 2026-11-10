@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { z } from "zod";
 import {
+  advanceGuidePrompt,
   characterBatchPrompt,
   characterSystemPrompt,
   groupChatMessages,
@@ -11,11 +12,13 @@ import {
   type GroupMembers,
 } from "./prompts";
 import {
+  AdvanceGuideSchema,
   CharacterSchema,
   JudgeResultSchema,
   StoryOutlineSchema,
   StorySchema,
   itemIssues,
+  type AdvanceGuide,
   type ChatMessage,
   type Character,
   type JudgeResult,
@@ -182,6 +185,24 @@ export async function judgePhase(
   }
 }
 
+
+export async function generateAdvanceGuide(
+  story: Story,
+  phaseIndex: number,
+  available: Character[],
+  recent: TaggedMessage[],
+  events: string[],
+  notes: string,
+  groupMembers?: GroupMembers,
+  owned: Set<string> = new Set()
+): Promise<AdvanceGuide> {
+  const raw = await jsonCompletion(
+    "guide",
+    [{ role: "user", content: advanceGuidePrompt(story, phaseIndex, available, recent, events, notes, groupMembers, owned) }],
+    0.4
+  );
+  return AdvanceGuideSchema.parse(JSON.parse(raw));
+}
 
 /**
  * Swaps closing brackets that don't match what they close, e.g. an object ended with "]".

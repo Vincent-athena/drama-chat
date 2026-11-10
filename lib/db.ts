@@ -58,6 +58,24 @@ export const MIGRATIONS: ((d: Database.Database) => void)[] = [
       );
     `);
   },
+  // v3 (WP4): rewarded ad sessions. A row is the server's proof that an ad was started, and when.
+  (d) => {
+    d.exec(`
+      CREATE TABLE ad_sessions (
+        id           TEXT PRIMARY KEY,
+        user_id      INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        reward_type  TEXT NOT NULL CHECK (reward_type IN ('item','guide')),
+        story_id     TEXT NOT NULL,
+        item_id      TEXT,
+        provider     TEXT NOT NULL,
+        started_at   INTEGER NOT NULL,
+        completed_at INTEGER,
+        redeemed_at  INTEGER,
+        status       TEXT NOT NULL CHECK (status IN ('started','completed','abandoned'))
+      );
+      CREATE INDEX idx_ad_sessions_user ON ad_sessions (user_id, status, completed_at);
+    `);
+  },
 ];
 
 function runMigrations(d: Database.Database): void {

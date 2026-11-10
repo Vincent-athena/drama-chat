@@ -138,8 +138,8 @@ describe("ownership and gates", () => {
   });
 
   it("migration v2 creates user_items", () => {
-    assert.equal(db().pragma("user_version", { simple: true }), 2);
-    assert.equal(MIGRATIONS.length, 2);
+    assert.equal(db().pragma("user_version", { simple: true }), MIGRATIONS.length);
+    assert.equal(MIGRATIONS.length, 3);
     assert.ok(db().prepare("SELECT 1 FROM sqlite_master WHERE name = 'user_items'").get());
   });
 
@@ -345,10 +345,15 @@ describe("prompts", () => {
       carrying: manor.items.filter((i) => i.source === "start").map(({ name, emoji, description }) => ({ name, emoji, description })),
     });
     assert.match(p, /## What the player is carrying\n- 💌 Gala invitation: A gilt-edged card/);
-    assert.match(p, /react with disbelief/);
+    assert.match(p, /important object from this story \(evidence, a document, a key, a keepsake\) that is not on this list, they do not have it: react with doubt or disbelief\. Ordinary things anyone might carry \(money, a drink, a phone\) are fine\./);
     assert.doesNotMatch(p, /Right now the player is showing you/);
     assert.ok(p.indexOf("What you know right now") < p.indexOf("What the player is carrying"));
     assert.match(characterSystemPrompt(manor, char, 0, []), /## What the player is carrying\n- Nothing of note\./);
+  });
+
+  it("judge prompt asks for an item to be handed over or taken, not just mentioned", () => {
+    const p = judgePrompt(manor, 0, [], [], "", undefined, new Set());
+    assert.match(p, /grant an item only when its condition has actually happened in the conversation: a character mentioning, describing or promising the item is not enough; it must be handed over or taken\)/);
   });
 
   it("a shown item adds the 'showing you' line", () => {

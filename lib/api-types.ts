@@ -1,5 +1,5 @@
 /** Request/response/stream types shared by the server routes and the browser. Types only. */
-import type { ChatMessage, PublicCharacter, TaggedMessage } from "./schema";
+import type { AdvanceGuide, ChatMessage, PublicCharacter, TaggedMessage } from "./schema";
 
 export type ErrorCode =
   | "unauthorized" | "forbidden" | "not_admin" | "locked" | "bad_origin" | "item_not_owned" // 401/403
@@ -17,7 +17,14 @@ export type MeResponse = {
   isAdmin: boolean;
   hasApiKey: boolean;
   messages: { usedToday: number; cap: number; resetsAt: number } | null; // null for guests
+  guide?: GuideQuota | null; // null for guests
 };
+
+export type GuideQuota = { freeLeftToday: number; credits: number; resetsAt: number };
+export type AdStartBody = { rewardType: "item"; storyId: string; itemId: string } | { rewardType: "guide"; storyId: string };
+export type AdSessionView = { id: string; provider: "standin"; rewardType: "item" | "guide"; minSeconds: number; startedAt: number };
+export type AdReward = { type: "item"; storyId: string; item: PublicItem } | { type: "guide"; quota: GuideQuota };
+export type GuideResponse = { guide: AdvanceGuide; source: "free" | "credit"; quota: GuideQuota };
 
 export type SessionView = { id: number; userAgent: string; createdAt: number; lastSeenAt: number; current: boolean };
 

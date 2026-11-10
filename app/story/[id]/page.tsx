@@ -73,8 +73,8 @@ export default function StoryHub({ params }: { params: Promise<{ id: string }> }
       </div>
 
       {!hasApiKey && <ApiKeyNotice />}
-      <PhaseBanner story={story} />
-      <ItemsPanel story={story} />
+      <PhaseBanner story={story} store={store} onChanged={load} />
+      <ItemsPanel story={story} store={store} onChanged={load} />
 
       {story.pastPhases.length > 0 && (
         <details className="rounded-xl border border-white/5 bg-stage-900/50 px-5 py-3 text-sm">

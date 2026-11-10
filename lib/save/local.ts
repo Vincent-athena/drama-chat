@@ -1,5 +1,5 @@
 /** The browser's save: one IndexedDB per signed-in user. Browser only; touch it from effects and handlers. */
-import type { ChatMessage, Group, TaggedMessage } from "@/lib/schema";
+import { AdvanceGuideSchema, type AdvanceGuide, type ChatMessage, type Group, type TaggedMessage } from "@/lib/schema";
 import { decodeTicketPayload, preferTicket } from "@/lib/ticket-payload";
 import { closeDb, collect, openDb, req, withTx } from "./idb";
 import type { SaveFile, SaveStore } from "./types";
@@ -214,6 +214,23 @@ export class LocalSaveStore implements SaveStore {
     const db = await this.db();
     await withTx(db, ["notes"], "readwrite", async (tx) => {
       await req(tx.objectStore("notes").put({ storyId, phaseIndex, notes, updatedAt: Date.now() } satisfies NotesRow));
+    });
+  }
+
+  // ---- advance guide
+  async getGuide(storyId: string, phaseIndex: number): Promise<AdvanceGuide | null> {
+    const db = await this.db();
+    const row = await withTx(db, ["guides"], "readonly", (tx) =>
+      req<{ guide: unknown } | undefined>(tx.objectStore("guides").get([storyId, phaseIndex]))
+    );
+    const parsed = AdvanceGuideSchema.safeParse(row?.guide);
+    return row && parsed.success ? parsed.data : null;
+  }
+
+  async setGuide(storyId: string, phaseIndex: number, guide: AdvanceGuide): Promise<void> {
+    const db = await this.db();
+    await withTx(db, ["guides"], "readwrite", async (tx) => {
+      await req(tx.objectStore("guides").put({ storyId, phaseIndex, guide, createdAt: Date.now() }));
     });
   }
 

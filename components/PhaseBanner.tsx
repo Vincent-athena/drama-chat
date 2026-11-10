@@ -1,11 +1,79 @@
 "use client";
 
-import { useState } from "react";
-import type { PublicStory } from "@/lib/api-types";
+import { useCallback, useEffect, useState } from "react";
+import type { GuideResponse, PublicStory } from "@/lib/api-types";
+import { ApiError, apiFetch } from "@/lib/client/api";
+import type { AdvanceGuide } from "@/lib/schema";
+import { judgeContext } from "@/lib/save/context";
+import type { SaveStore } from "@/lib/save/types";
+import AdUnlockModal, { UnlockItemButton } from "./AdUnlockModal";
+import { useMe } from "./MeProvider";
 
-export default function PhaseBanner({ story }: { story: PublicStory }) {
+const timeOf = (ms: number) => new Date(ms).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+
+export default function PhaseBanner({ story, store, onChanged }: { story: PublicStory; store: SaveStore | null; onChanged: () => void }) {
   const [showHint, setShowHint] = useState(false);
+  const [guide, setGuide] = useState<AdvanceGuide | null>(null);
+  const [showGuide, setShowGuide] = useState(false);
+  const [guideLoading, setGuideLoading] = useState(false);
+  const [guideError, setGuideError] = useState<string | null>(null);
+  const [adOpen, setAdOpen] = useState(false);
+  const [returnsAt, setReturnsAt] = useState<number | null>(null);
+  const { me, refresh } = useMe();
   const phase = story.currentPhase;
+  const quota = me?.guide ?? null;
+  const canAsk = !quota || quota.freeLeftToday > 0 || quota.credits > 0;
+
+  // The last guide of this chapter lives in the browser save; reopening it is free.
+  useEffect(() => {
+    let live = true;
+    setGuide(null);
+    setShowGuide(false);
+    if (store) store.getGuide(story.id, story.phaseIndex).then((g) => live && setGuide(g)).catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [store, story.id, story.phaseIndex]);
+
+  const fetchGuide = useCallback(async () => {
+    if (!store) return;
+    setShowGuide(true);
+    setGuideLoading(true);
+    setGuideError(null);
+    try {
+      const context = await judgeContext(store, story.id, story.phaseIndex);
+      const res = await apiFetch(`/api/stories/${story.id}/guide`, { method: "POST", json: { context }, ticket: { store, storyId: story.id } });
+      const d = (await res.json()) as GuideResponse;
+      setGuide(d.guide);
+      setReturnsAt(null);
+      await store.setGuide(story.id, story.phaseIndex, d.guide);
+    } catch (e) {
+      if (e instanceof ApiError && e.code === "needs_ad") {
+        setReturnsAt(typeof e.body.resetsAt === "number" ? e.body.resetsAt : null);
+        setShowGuide(false);
+      } else {
+        setGuideError(e instanceof Error ? e.message : "Could not load the guide");
+      }
+    } finally {
+      setGuideLoading(false);
+      await refresh();
+    }
+  }, [store, story.id, story.phaseIndex, refresh]);
+
+  /** Asks for a new guide: straight away when a free use or credit is left, otherwise after an ad. */
+  function requestGuide() {
+    if (canAsk) fetchGuide();
+    else setAdOpen(true);
+  }
+
+  const askLabel = !quota
+    ? "🧭 Advance guide"
+    : quota.freeLeftToday > 0
+      ? `🧭 Advance guide · ${quota.freeLeftToday} free today`
+      : quota.credits > 0
+        ? "🧭 Advance guide · 1 credit"
+        : "🧭 Advance guide · watch an ad";
+  const refreshCost = !quota || quota.freeLeftToday > 0 ? "uses 1 free guide" : quota.credits > 0 ? "uses 1 credit" : "needs an ad";
 
   if (!phase) {
     return (
@@ -51,6 +119,7 @@ export default function PhaseBanner({ story }: { story: PublicStory }) {
                 <li key={id} className={item.owned ? "text-gold-400" : "text-white/80"}>
                   {item.owned ? "✔" : "🔒"} {item.emoji} {item.name}
                   <span className="text-white/50"> — {item.owned ? "owned" : item.source === "ad" ? "unlock it with an ad" : "find it by talking to the cast"}</span>
+                  <UnlockItemButton item={item} storyId={story.id} store={store} onUnlocked={onChanged} className="ml-3" />
                 </li>
               );
             })}
@@ -64,6 +133,52 @@ export default function PhaseBanner({ story }: { story: PublicStory }) {
           </button>
           {showHint && <p className="mt-1 text-white/60">💡 {phase.hint}</p>}
         </div>
+      )}
+      <div className="mt-3 text-sm">
+        <button
+          onClick={() => (showGuide ? setShowGuide(false) : guide ? setShowGuide(true) : requestGuide())}
+          disabled={guideLoading || !store}
+          className="text-gold-500 hover:text-gold-400 disabled:opacity-50"
+        >
+          {showGuide ? "Hide advance guide" : guide ? "🧭 Show last guide" : askLabel}
+        </button>
+        {returnsAt && !canAsk && <p className="mt-1 text-xs text-white/50">Your free guide returns at {timeOf(returnsAt)}.</p>}
+        {showGuide && (
+          <div className="mt-2 rounded-lg border border-gold-500/20 bg-black/30 px-4 py-3">
+            {guideLoading && <p className="text-white/50">The director is reading your story so far…</p>}
+            {guideError && <p className="text-blood-500">{guideError}</p>}
+            {guide && !guideLoading && (
+              <>
+                <p className="text-white/80">{guide.diagnosis}</p>
+                <ol className="mt-3 list-decimal space-y-3 pl-5">
+                  {guide.steps.map((s, i) => (
+                    <li key={i} className="text-white/70">
+                      {s.character && <span className="font-semibold text-gold-400">{s.character}: </span>}
+                      {s.action}
+                      {s.say && <p className="mt-1 border-l-2 border-gold-500/40 pl-3 italic text-white/60">“{s.say}”</p>}
+                    </li>
+                  ))}
+                </ol>
+                <button onClick={requestGuide} className="mt-3 text-xs text-white/40 hover:text-white/70">
+                  ↻ Refresh after more chats ({refreshCost})
+                </button>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+      {adOpen && store && (
+        <AdUnlockModal
+          reward={{ type: "guide" }}
+          storyId={story.id}
+          store={store}
+          onClose={() => setAdOpen(false)}
+          onDone={async () => {
+            setAdOpen(false);
+            await refresh();
+            await fetchGuide();
+          }}
+        />
       )}
     </section>
   );

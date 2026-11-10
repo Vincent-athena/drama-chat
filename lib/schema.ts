@@ -193,6 +193,15 @@ export const JudgeResultSchema = z.object({
 });
 export type JudgeResult = z.infer<typeof JudgeResultSchema>;
 
+/** The advance guide: what is missing and 2-4 concrete steps. Written from hidden criteria, so it is model output only. */
+export const AdvanceGuideSchema = z.object({
+  diagnosis: z.string().default(""),
+  steps: z
+    .array(z.object({ character: z.string().default(""), action: z.string().default(""), say: z.string().default("") }))
+    .default([]),
+});
+export type AdvanceGuide = z.infer<typeof AdvanceGuideSchema>;
+
 // Shapes sent to the browser: no secrets, no judge criteria, no future knowledge.
 export type PublicCharacter = {
   id: string;

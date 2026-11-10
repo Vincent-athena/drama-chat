@@ -1,5 +1,6 @@
 /** Save file validation. Isomorphic: no IndexedDB here. */
 import { z } from "zod";
+import { AdvanceGuideSchema } from "../schema";
 import type { SaveFile } from "./types";
 
 const num = z.number().finite();
@@ -12,7 +13,7 @@ const message = z.object({
 const group = z.object({ id: z.number().int(), storyId: str, memberIds: z.array(str), createdAt: num });
 const event = z.object({ id: z.number().int(), storyId: str, phaseIndex: z.number().int(), summary: str, createdAt: num });
 const notes = z.object({ storyId: str, phaseIndex: z.number().int(), notes: str, updatedAt: num });
-const guide = z.object({ storyId: str, phaseIndex: z.number().int(), guide: z.unknown(), createdAt: num });
+const guide = z.object({ storyId: str, phaseIndex: z.number().int(), guide: AdvanceGuideSchema, createdAt: num });
 
 export const SaveFileSchema = z.object({
   format: z.literal("drama-chat-save"),
