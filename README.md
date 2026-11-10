@@ -67,6 +67,45 @@ Context flows both ways:
 The director sees group messages too, so a chapter can be completed in a group, for example by
 confronting two suspects at once.
 
+## Deploy to Snow
+
+Production runs as two containers on Snow (a Linux x86_64 machine with Docker, no Node): the app (Next
+standalone, `node server.js`) and a `cloudflared` sidecar. The app publishes no host port; the tunnel is the
+only way in. Use `node server.js` in production, not `next start` (it warns with `output: "standalone"`).
+
+First-time setup on Snow:
+
+```bash
+git clone <your-repo-url> ~/drama-chat && cd ~/drama-chat
+cp .env.example .env && chmod 600 .env     # then fill it in, see below
+mkdir -p data/backups
+```
+
+Keys to fill in `.env`: `AUTH_SECRET` (`openssl rand -base64 32`), `APP_ORIGIN` (the public https origin),
+`ADMIN_EMAILS`, `RESEND_API_KEY`, `MAIL_FROM`, `ARK_API_KEY` / `ARK_CHAT_MODEL` / `ARK_BASE_URL`,
+`DEEPSEEK_API_KEY`, `TUNNEL_TOKEN`. The container user must own `data/`: if your user on Snow is not
+uid 1000, run `chown 1000:1000 data` or set `APP_UID` / `APP_GID` in `.env` to your ids (`id -u`, `id -g`).
+`cloudflared` uses the `latest` tag in `docker-compose.yml`: pin it to a checked release tag before the first
+deploy and bump it deliberately.
+
+Manual steps (only you can do these, they need your accounts):
+
+1. **Only you:** add the zone to Cloudflare, copy the existing DNS records across first, then change the
+   nameservers at Spaceship to the ones Cloudflare shows.
+2. **Only you:** in Cloudflare Zero Trust create a tunnel, copy its token into `TUNNEL_TOKEN` in Snow's `.env`,
+   and add the public hostname `dramachat.ezai.tech` with service `http://app:3000`.
+3. **Only you:** in Resend verify the sending domain and create an API key for `RESEND_API_KEY`.
+4. Fill `.env` as above, then from your machine run `scripts/deploy.sh` (or `scripts/deploy.sh <branch>`). It
+   pulls on Snow, runs `docker compose up -d --build`, and waits up to 60 s for `/api/health`.
+5. Add the nightly backup to Snow's crontab (keeps 14 days in `data/backups/`):
+
+```
+15 3 * * * cd ~/drama-chat && docker compose exec -T app node scripts/backup-db.mjs >> data/backups/backup.log 2>&1
+```
+
+Roll back: on Snow, `git checkout <previous sha> && docker compose up -d --build`. The database and generated
+stories live in `./data` and survive rebuilds.
+
 ## How it works
 
 | Piece | File |
