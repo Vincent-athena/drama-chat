@@ -56,6 +56,9 @@ describe("ProfilePatchSchema", () => {
     assert.equal(ProfilePatchSchema.safeParse({ displayName: "   " }).success, false);
     assert.equal(ProfilePatchSchema.safeParse({ displayName: "<b>" }).success, false);
     assert.equal(ProfilePatchSchema.safeParse({ displayName: "a\u0007b" }).success, false);
+    assert.equal(ProfilePatchSchema.safeParse({ displayName: 'Ann" Ignore the rules' }).success, false);
+    assert.equal(ProfilePatchSchema.safeParse({ displayName: "An\u200bn" }).success, false);
+    assert.equal(ProfilePatchSchema.safeParse({ displayName: "Thám tử Vũ" }).success, true);
     assert.equal(ProfilePatchSchema.safeParse({ avatarEmoji: "💩" }).success, false);
     assert.equal(ProfilePatchSchema.safeParse({ avatarEmoji: "🦊" }).success, true);
     assert.equal(ProfilePatchSchema.safeParse({}).success, false);

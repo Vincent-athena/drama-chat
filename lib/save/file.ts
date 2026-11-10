@@ -8,7 +8,7 @@ const progress = z.object({ storyId: str, ticket: str, startedAt: num, updatedAt
 const message = z.object({
   id: z.number().int(), storyId: str, chat: str, characterId: str,
   groupId: z.number().int().nullable(), role: z.enum(["user", "assistant"]), content: str, createdAt: num,
-});
+}).refine((m) => m.chat === (m.groupId === null ? `c:${m.characterId}` : `g:${m.groupId}`), "chat does not match its group");
 const group = z.object({ id: z.number().int(), storyId: str, memberIds: z.array(str), createdAt: num });
 const event = z.object({ id: z.number().int(), storyId: str, phaseIndex: z.number().int(), summary: str, createdAt: num });
 const notes = z.object({ storyId: str, phaseIndex: z.number().int(), notes: str, updatedAt: num });

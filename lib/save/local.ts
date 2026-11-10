@@ -277,7 +277,9 @@ export class LocalSaveStore implements SaveStore {
       const r = indexedDB.deleteDatabase(name);
       r.onsuccess = () => resolve();
       r.onerror = () => reject(r.error);
-      // "blocked" only means another tab still holds it open; that tab closes on versionchange and this then succeeds.
+      // "blocked" means another tab still holds it open. That tab closes on versionchange and the delete then
+      // completes on its own, so do not keep the caller (account deletion) waiting for it.
+      r.onblocked = () => resolve();
     });
   }
 }
