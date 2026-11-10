@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { AdReward, AdSessionView, PublicItem } from "@/lib/api-types";
 import { adProviderFor } from "@/lib/ad-providers";
 import { ApiError, apiFetch } from "@/lib/client/api";
@@ -102,8 +103,10 @@ export default function AdUnlockModal({
     onClose();
   }
 
+  // Rendered on <body>: the chapter banner and item cards are animated (transformed) boxes, and a
+  // fixed overlay inside one is positioned against that box instead of the screen.
   if (error) {
-    return (
+    return createPortal(
       <div className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4">
         <div className="w-full max-w-sm rounded-2xl border border-gold-500/30 bg-stage-900 p-6 text-center">
           <p className="text-blood-500">{error}</p>
@@ -111,18 +114,20 @@ export default function AdUnlockModal({
             Close
           </button>
         </div>
-      </div>
+      </div>,
+      document.body
     );
   }
   if (!session || claiming) {
-    return (
+    return createPortal(
       <div className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4">
         <p className="font-serif italic text-white/70">{claiming ? "Confirming your reward…" : "Getting an ad ready…"}</p>
-      </div>
+      </div>,
+      document.body
     );
   }
   const { Component } = adProviderFor(session.provider);
-  return <Component minSeconds={session.minSeconds} onFinished={complete} onCancel={cancel} />;
+  return createPortal(<Component minSeconds={session.minSeconds} onFinished={complete} onCancel={cancel} />, document.body);
 }
 
 /** The "🎬 Watch an ad to unlock" button for an unowned ad item, with its modal. */

@@ -46,6 +46,17 @@ const sid = (r: ReturnType<typeof startItem>) => { assert.ok(r.ok); return r.ses
 describe("ad sessions", () => {
   before(() => { db(); });
 
+  it("starting a second ad abandons the first: only one open session per user", async () => {
+    const u = await newUser();
+    const a = startGuide(u.id, T0);
+    const b = startGuide(u.id, T0 + 1_000);
+    assert.ok(a.ok && b.ok);
+    if (!a.ok || !b.ok) return;
+    assert.deepEqual(completeAdSession(u.id, a.session.id, T0 + 20_000), { ok: false, error: "used" });
+    assert.ok(completeAdSession(u.id, b.session.id, T0 + 20_000).ok);
+    assert.equal(guideCredits(u.id), 1);
+  });
+
   it("completing before AD_MIN_SECONDS is too_early and grants nothing; later it works", async () => {
     const u = await newUser();
     const id = sid(startItem(u.id, T0));
@@ -97,9 +108,14 @@ describe("ad sessions", () => {
     assert.ok(!eleven.ok && eleven.resetsAt && eleven.resetsAt > T0);
     // A session started before the cap was reached cannot complete past it either.
     const u2 = await newUser();
-    const ids = Array.from({ length: 11 }, (_, i) => sid(startGuide(u2.id, T0 + i)));
-    for (let i = 0; i < 10; i++) assert.ok(completeAdSession(u2.id, ids[i], T0 + 20_000).ok);
-    assert.equal((completeAdSession(u2.id, ids[10], T0 + 20_000) as { error: string }).error, "ad_cap");
+    // (Only one session can be open per user, so the other ten are written as already completed.)
+    const open = sid(startGuide(u2.id, T0));
+    const insert = db().prepare(
+      `INSERT INTO ad_sessions (id, user_id, reward_type, story_id, item_id, provider, started_at, completed_at, status)
+       VALUES (?, ?, 'guide', ?, NULL, 'standin', ?, ?, 'completed')`
+    );
+    for (let i = 0; i < 10; i++) insert.run(`cap-${u2.id}-${i}`, u2.id, SID, T0 + i, T0 + 16_000 + i);
+    assert.equal((completeAdSession(u2.id, open, T0 + 20_000) as { error: string }).error, "ad_cap");
     // Next local day the cap is fresh.
     assert.ok(startGuide(u2.id, T0 + 24 * 3_600_000).ok);
   });

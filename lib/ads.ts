@@ -68,12 +68,17 @@ export function startAdSession(
   if (!rate.ok) return { ok: false, error: "rate_limited", retryAfter: rate.retryAfter };
 
   const id = crypto.randomBytes(16).toString("hex");
-  db()
-    .prepare(
-      `INSERT INTO ad_sessions (id, user_id, reward_type, story_id, item_id, provider, started_at, status)
-       VALUES (?, ?, ?, ?, ?, 'standin', ?, 'started')`
-    )
-    .run(id, userId, body.rewardType, story.id, itemId, now);
+  // One open session per user: starting an ad abandons any earlier unfinished one, so ten sessions
+  // started together cannot all be completed after a single wait.
+  db().transaction(() => {
+    db().prepare("UPDATE ad_sessions SET status = 'abandoned' WHERE user_id = ? AND status = 'started'").run(userId);
+    db()
+      .prepare(
+        `INSERT INTO ad_sessions (id, user_id, reward_type, story_id, item_id, provider, started_at, status)
+         VALUES (?, ?, ?, ?, ?, 'standin', ?, 'started')`
+      )
+      .run(id, userId, body.rewardType, story.id, itemId, now);
+  })();
   return { ok: true, session: { id, provider: "standin", rewardType: body.rewardType, minSeconds: adMinSeconds(), startedAt: now } };
 }
 
@@ -100,7 +105,8 @@ export function completeAdSession(
     if (completedAdsToday(userId, now) >= adDailyCap()) {
       return { ok: false, error: "ad_cap", resetsAt: nextDayStart(now) };
     }
-    if (row.reward_type === "item" && row.item_id) {
+    if (row.reward_type === "item") {
+      if (!row.item_id) return { ok: false, error: "not_found" };
       db().prepare("UPDATE ad_sessions SET status = 'completed', completed_at = ?, redeemed_at = ? WHERE id = ?").run(now, now, row.id);
       grantAdItem(userId, row.story_id, row.item_id, row.id, now);
       return { ok: true, reward: { type: "item", storyId: row.story_id, itemId: row.item_id } };

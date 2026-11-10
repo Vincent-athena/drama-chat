@@ -6,13 +6,17 @@
    shared by both rewards. Nothing is charged and no network is involved; the point is to prove the loop and
    learn how often players want these rewards.
 2. **Real network, once the site is live and approved.** Google rewarded web ads first (the app is a web app).
-   Alternatives to compare when approval or fill rate is a problem: Unity LevelPlay, AppLovin MAX, AdinMo, Kiip.
+   Alternatives for a web app, to verify for rewarded-format support before choosing: Google's Ad Placement API
+   for H5 games, and web-game ad networks such as AdinPlay or AppLixir.
    The seam is `lib/ad-providers/` (`AdProvider` in the browser, `AdServerVerifier` on the server): add a
    provider, send its completion evidence to `verifyCompletion`, keep the elapsed-time rule as a floor.
-3. **Later levers.** Paid story packs or a no-ads pass, supporter tier with extra daily guides, cosmetic avatar
-   emoji sets, seasonal stories, and a higher daily message cap for subscribers.
+3. **Later levers.** An ad for extra daily messages or hints, item packs, premium stories, an ad-free
+   subscription, and cloud saves as a signed-in or paid benefit.
 
 ## Metrics to watch
+The one that decides whether this pays: model cost per daily user (from the model-call log lines) against ad
+revenue per daily user.
+
 All come from `ad_sessions` (`started_at`, `completed_at` and `redeemed_at` are epoch milliseconds; shift to the
 `DAY_TZ` day with `+ 7*3600*1000` for Asia/Ho_Chi_Minh).
 
