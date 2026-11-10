@@ -51,6 +51,12 @@ function upsertEnv(key: string, value: string) {
   fs.chmodSync(ENV_FILE, 0o600);
 }
 
+/** A value already in .env.local, used as the default so only the key has to be typed. */
+function saved(key: string): string {
+  const line = readLines().find((l) => l.startsWith(`${key}=`));
+  return line ? line.slice(key.length + 1).trim() : "";
+}
+
 function ensureAuthSecret() {
   if (readLines().some((l) => /^AUTH_SECRET=.{32,}/.test(l.trim()))) return;
   upsertEnv("AUTH_SECRET", crypto.randomBytes(32).toString("base64url"));
@@ -94,10 +100,14 @@ async function main() {
   if (!nonInteractive) {
     ark = await promptHidden("ByteDance ModelArk API key (input hidden, Enter to skip): ");
     if (ark) {
-      arkBase = (await prompt(`Base URL [${ARK_DEFAULT_BASE}]: `)) || ARK_DEFAULT_BASE;
-      while (!arkChat) arkChat = await prompt("Chat model id (required, from the ModelArk console): ");
-      arkStory = await prompt("Story model id [same as chat]: ");
-      arkJudge = await prompt("Judge model id [same as chat]: ");
+      // Values already in .env.local are the defaults: Enter keeps them.
+      const base0 = saved("ARK_BASE_URL") || ARK_DEFAULT_BASE;
+      const chat0 = saved("ARK_CHAT_MODEL");
+      arkBase = (await prompt(`Base URL [${base0}]: `)) || base0;
+      const chatQuestion = chat0 ? `Chat model id [${chat0}]: ` : "Chat model id (required, from the ModelArk console): ";
+      while (!arkChat) arkChat = (await prompt(chatQuestion)) || chat0;
+      arkStory = await prompt(`Story model id [${saved("ARK_STORY_MODEL") || "same as chat"}]: `);
+      arkJudge = await prompt(`Judge model id [${saved("ARK_JUDGE_MODEL") || "same as chat"}]: `);
     }
     deepseek = await promptHidden("DeepSeek API key (optional backup, input hidden, Enter to skip): ");
   }
@@ -106,6 +116,8 @@ async function main() {
     console.error("No key given. Add a ByteDance ModelArk key or a DeepSeek key (https://platform.deepseek.com/api_keys).");
     process.exit(1);
   }
+  if (ark && !arkChat) arkChat = saved("ARK_CHAT_MODEL");
+  if (ark && !arkBase) arkBase = saved("ARK_BASE_URL");
   if (ark && !arkChat) {
     console.error("ByteDance needs a chat model id: pass --ark-chat-model <id>. Nothing was saved.");
     process.exit(1);
@@ -116,7 +128,7 @@ async function main() {
 
   if (ark) {
     upsertEnv("ARK_API_KEY", ark);
-    if (arkBase && arkBase !== ARK_DEFAULT_BASE) upsertEnv("ARK_BASE_URL", arkBase);
+    if (arkBase && (arkBase !== ARK_DEFAULT_BASE || saved("ARK_BASE_URL"))) upsertEnv("ARK_BASE_URL", arkBase);
     upsertEnv("ARK_CHAT_MODEL", arkChat);
     if (arkStory) upsertEnv("ARK_STORY_MODEL", arkStory);
     if (arkJudge) upsertEnv("ARK_JUDGE_MODEL", arkJudge);
