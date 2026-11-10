@@ -155,6 +155,8 @@ export const StorySchema = z
 
 /** Stage 1 of story generation: meta, phases and a roster of short character concepts. */
 export const StoryOutlineSchema = z.object({
+  /** The language the model says the premise is written in; passed on to the character step. */
+  language: z.string().nullish(),
   id: z.string().regex(/^[a-z0-9-]+$/, "id must be kebab-case"),
   title: z.string().min(1),
   synopsis: z.string().min(1),

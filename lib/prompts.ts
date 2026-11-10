@@ -317,7 +317,6 @@ const STORY_REQUIREMENTS = `- Exactly 2 characters unlock in the first phase. Sp
 - Each character needs secrets and knowledgeByPhase entries (keyed by phase id) that create twists and conflict between characters.
 - Drama: betrayal, hidden relationships, conflicting motives. Every character wants something.
 - ids are short kebab-case strings. avatarEmoji is a single emoji.
-- Write in the same language as the premise, except "appearance", which is in English.
 - modernSetting: true only if characters wear present-day clothing (roughly 1990 onwards, including near-future cities), false for historical, mythological or fantasy settings.`;
 
 const ITEM_RULES = `Items: the player carries objects that matter to the plot. Write "items" in the story's language, 4 to 6 of them:
@@ -332,21 +331,31 @@ Example of the pattern (do not copy): in a poisoning mystery, "gala-invitation" 
 
 const premiseLine = (premise: string) => `Premise from the user: ${premise || "Surprise me with an original, gripping drama."}`;
 
+/**
+ * The story's language comes from the words of the premise, never from where the story is set. Models
+ * otherwise drift to the setting's language (an English premise about Brittany came back in French).
+ */
+const LANGUAGE_RULE = `Language: write the whole story in the language the premise itself is written in, NOT the language of the place or culture where the story is set. An English premise about a French island gives a story written in English; a Vietnamese premise about London gives a story written in Vietnamese. Names of people and places keep their local form. If the premise is empty, write in English.`;
+
 /** Stage 1 of story generation: meta, phases and a roster of character concepts. */
 export function storyOutlinePrompt(premise: string, numPhases: number, numCharacters: number): string {
   return `${STORY_INTRO}
 
 ${premiseLine(premise)}
 
+${LANGUAGE_RULE}
+
 Design the OUTLINE of a story with exactly ${numPhases} phases and exactly ${numCharacters} characters. Characters get only a short concept now; their full details are written in a later step.
 Requirements:
 ${STORY_REQUIREMENTS}
+- "language" names the language the premise is written in. Every other text field (title, synopsis, setting, tone, phases, items, concepts) is written in that language.
 - Count carefully: the "phases" array has exactly ${numPhases} entries and the "characters" array has exactly ${numCharacters} entries, no more, no fewer.
 - Each character's "concept" is 1-2 sentences: what they want, their main secret or twist, and how they link to other characters.
 ${ITEM_RULES}
 
 Respond with JSON only, in exactly this shape:
 {
+  "language": "the language the premise is written in, e.g. English or Tiếng Việt",
   "id": "kebab-case-story-id",
   "title": "string",
   "synopsis": "2-3 sentences shown on the story card",
@@ -407,6 +416,7 @@ ${roster}
 Now write the full details of ONLY these characters: ${ids.map((id) => `"${id}"`).join(", ")}.
 Requirements:
 ${STORY_REQUIREMENTS}
+- Write in ${outline.language ? `${outline.language}, ` : ""}the language the outline above is written in, wherever the story is set. Only "appearance" is in English.
 - Keep each character's id, name, role, avatarEmoji and unlockPhase exactly as in the roster.
 - knowledgeByPhase must have an entry for every phase id (${outline.phases.map((p) => p.id).join(", ")}). Be concise: a sentence or two per phase.
 - Keep the secrets consistent with the other characters' concepts.

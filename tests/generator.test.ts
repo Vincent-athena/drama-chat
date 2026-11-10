@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { dropExtraCharacters, fixMismatchedBrackets, outlineProblems } from "../lib/llm";
+import { characterBatchPrompt, storyOutlinePrompt } from "../lib/prompts";
 import type { StoryOutline } from "../lib/schema";
 
 describe("fixMismatchedBrackets", () => {
@@ -131,5 +132,23 @@ describe("dropExtraCharacters", () => {
     const o = outline(["p1", "p2"], [["a", "p1"], ["b", "p1"], ["c", "p2"], ["d", "p2"]]);
     dropExtraCharacters(o, 3);
     assert.equal(o.characters.length, 4);
+  });
+});
+
+describe("story language", () => {
+  it("the outline prompt ties the language to the premise's words, not the setting, and asks for it first", () => {
+    const p = storyOutlinePrompt("A keeper vanishes on a Breton island.", 4, 6);
+    assert.match(p, /language the premise itself is written in, NOT the language of the place/);
+    assert.ok(p.indexOf('"language"') < p.indexOf('"id": "kebab-case-story-id"'), "language comes before the other fields");
+  });
+
+  it("the character prompt names the language the outline declared", () => {
+    const o = { ...outline(["p1", "p2"], [["a", "p1"], ["b", "p1"]]), language: "English" };
+    assert.match(characterBatchPrompt("premise", o, ["a"]), /Write in English, the language the outline above is written in/);
+  });
+
+  it("the character prompt still follows the outline when no language was declared", () => {
+    const o = outline(["p1", "p2"], [["a", "p1"], ["b", "p1"]]);
+    assert.match(characterBatchPrompt("premise", o, ["a"]), /Write in the language the outline above is written in/);
   });
 });
