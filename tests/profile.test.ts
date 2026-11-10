@@ -142,18 +142,15 @@ describe("deleteAccount", () => {
     try { await requestCode("gone@example.com", `ip-${++ipN}`, Date.now()); } finally { console.log = orig; }
     assert.equal((db().prepare("SELECT COUNT(*) n FROM login_codes WHERE email = 'gone@example.com'").get() as { n: number }).n, 1);
 
-    // child table cascade: use user_items when it exists
-    const hasItems = db().prepare("SELECT 1 FROM sqlite_master WHERE name = 'user_items'").get();
-    if (hasItems) {
-      db().prepare("INSERT INTO user_items (user_id, story_id, item_id, acquired_at) VALUES (?, 's', 'i', 1)").run(gone.user.id);
-    }
+    // child table cascade
+    db().prepare("INSERT INTO user_items (user_id, story_id, item_id, acquired_at) VALUES (?, 's', 'i', 1)").run(gone.user.id);
 
     deleteAccount(gone.user.id);
     const n = (sql: string, ...a: unknown[]) => (db().prepare(sql).get(...a) as { n: number }).n;
     assert.equal(n("SELECT COUNT(*) n FROM users WHERE id = ?", gone.user.id), 0);
     assert.equal(n("SELECT COUNT(*) n FROM sessions WHERE user_id = ?", gone.user.id), 0);
     assert.equal(n("SELECT COUNT(*) n FROM login_codes WHERE email = 'gone@example.com'"), 0);
-    if (hasItems) assert.equal(n("SELECT COUNT(*) n FROM user_items WHERE user_id = ?", gone.user.id), 0);
+    assert.equal(n("SELECT COUNT(*) n FROM user_items WHERE user_id = ?", gone.user.id), 0);
     assert.equal(n("SELECT COUNT(*) n FROM users WHERE id = ?", keep.user.id), 1);
     assert.equal(n("SELECT COUNT(*) n FROM sessions WHERE user_id = ?", keep.user.id), 1);
 

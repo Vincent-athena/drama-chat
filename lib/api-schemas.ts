@@ -32,15 +32,22 @@ export const GroupContextSchema = JudgeContextSchema.extend({
 
 const message = z.string().trim().min(1, "Message is empty").max(L.messageChars);
 
-export const ChatTurnBodySchema = z.object({ message, context: ChatContextSchema });
+const showItemId = z.string().max(100).optional();
+
+export const ChatTurnBodySchema = z.object({ message, showItemId, context: ChatContextSchema });
 
 export const GroupTurnBodySchema = z.object({
   message,
+  showItemId,
   group: z.object({
     id: z.number().int(),
     memberIds: z.array(z.string().max(100)).min(2).max(L.groupMembers),
   }),
   context: GroupContextSchema,
+});
+
+export const ItemsBodySchema = z.object({
+  tickets: z.record(z.string().max(200), z.string().max(4000)).refine((r) => Object.keys(r).length <= 100, "too many tickets"),
 });
 
 export const RequestCodeBodySchema = z.object({ email: z.string().max(300) });

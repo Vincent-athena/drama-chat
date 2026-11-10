@@ -50,6 +50,13 @@ describe("ticket", () => {
     assert.equal(reason(() => verifyTicket(done, 7, story)), "none");
     const withItems = signTicket({ uid: 7, sid: story.id, r: "r", p: 0, f: ["x"] });
     assert.equal(reason(() => verifyTicket(withItems, 7, story)), "range");
+    // known ids must be `found` items: a start or ad item in f is rejected, a found one is accepted
+    const startInF = signTicket({ uid: 7, sid: story.id, r: "r", p: 0, f: ["gala-invitation"] });
+    assert.equal(reason(() => verifyTicket(startInF, 7, story)), "range");
+    const adInF = signTicket({ uid: 7, sid: story.id, r: "r", p: 0, f: ["solicitors-carbon"] });
+    assert.equal(reason(() => verifyTicket(adInF, 7, story)), "range");
+    const foundInF = signTicket({ uid: 7, sid: story.id, r: "r", p: 0, f: ["glass-shard"] });
+    assert.equal(reason(() => verifyTicket(foundInF, 7, story)), "none");
   });
 
   it("preferTicket", () => {

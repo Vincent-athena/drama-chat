@@ -1,5 +1,7 @@
 /** Shared pieces of the chat and group-chat handlers. Server only. */
 import { jsonError } from "./http";
+import { ownedItemIds } from "./items";
+import type { ItemInfo } from "./prompts";
 import { dailyMessageCap } from "./env";
 import { dayKey, nextDayStart } from "./day";
 import { hasApiKey, MissingApiKeyError } from "./llm";
@@ -53,3 +55,22 @@ export function groupMembersMap(rec: Record<string, string[]>): Map<number, stri
 }
 
 export const NDJSON_HEADERS = { "Content-Type": "application/x-ndjson; charset=utf-8", "Cache-Control": "no-cache" };
+
+/**
+ * What the character prompt needs about items: the owned items (with descriptions, server side only) and the
+ * item being shown. A shown item the player does not own is the 403 to return.
+ */
+export function itemContext(
+  uid: number,
+  story: Story,
+  t: TicketPayload,
+  showItemId: string | undefined
+): { ok: true; owned: Set<string>; carrying: ItemInfo[]; shownItem?: ItemInfo } | { ok: false; response: Response } {
+  const owned = ownedItemIds(uid, story, t);
+  if (showItemId !== undefined && !owned.has(showItemId)) {
+    return { ok: false, response: jsonError(403, "item_not_owned", "You do not have that item.") };
+  }
+  const carrying = story.items.filter((i) => owned.has(i.id)).map(({ name, emoji, description }) => ({ name, emoji, description }));
+  const shown = showItemId === undefined ? undefined : story.items.find((i) => i.id === showItemId);
+  return { ok: true, owned, carrying, shownItem: shown && { name: shown.name, emoji: shown.emoji, description: shown.description } };
+}

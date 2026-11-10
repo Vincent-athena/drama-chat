@@ -61,6 +61,13 @@ export default function UserMenu() {
           >
             👤 Profile
           </Link>
+          <Link
+            href="/items"
+            onClick={() => setOpen(false)}
+            className="block w-full rounded-lg px-3 py-2 text-left text-white/80 hover:bg-white/5"
+          >
+            🎒 My items
+          </Link>
           <button onClick={signOut} className="w-full rounded-lg px-3 py-2 text-left text-white/80 hover:bg-white/5">
             Sign out
           </button>

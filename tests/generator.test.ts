@@ -32,23 +32,37 @@ describe("fixMismatchedBrackets", () => {
 });
 
 function phase(id: string) {
-  return { id, title: id, narration: "n", objective: "o", completionCriteria: "c", hint: "" };
+  return { id, title: id, narration: "n", objective: "o", completionCriteria: "c", hint: "", requiredItems: [] as string[] };
 }
 
 function character(id: string, unlockPhase: string) {
   return { id, name: id, role: "r", avatarEmoji: "x", unlockPhase, concept: "c" };
 }
 
+/** Four valid items (start, found, found, ad) and a requirement in the second phase. */
+function withItems(o: StoryOutline): StoryOutline {
+  const [first, second] = o.phases.map((p) => p.id);
+  o.items = [
+    { id: "card", name: "Card", emoji: "💌", description: "d", source: "start", availablePhase: first },
+    { id: "shard", name: "Shard", emoji: "🥃", description: "d", source: "found", availablePhase: first, obtainCriteria: "X has given the player the shard." },
+    { id: "page", name: "Page", emoji: "📒", description: "d", source: "found", availablePhase: second, obtainCriteria: "Y has given the player the page." },
+    { id: "carbon", name: "Carbon", emoji: "📜", description: "d", source: "ad", availablePhase: second },
+  ];
+  o.phases[1].requiredItems = ["shard"];
+  return o;
+}
+
 function outline(phaseIds: string[], chars: [string, string][]): StoryOutline {
-  return {
+  return withItems({
     id: "s",
     title: "t",
     synopsis: "s",
     setting: "s",
     tone: "t",
     phases: phaseIds.map(phase),
+    items: [],
     characters: chars.map(([id, p]) => character(id, p)),
-  };
+  });
 }
 
 const good = () =>

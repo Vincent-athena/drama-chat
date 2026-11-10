@@ -14,7 +14,7 @@ const story = StorySchema.parse(JSON.parse(readFileSync(join(__dirname, "..", "s
 const payloadAt = (p: number) => ({ ...decodeTicketPayload(freshTicket(1, story.id))!, p });
 const base = { story, recent: [], events: [], notes: "", groupMembers: new Map<number, string[]>() };
 const verdict = (v: Partial<JudgeResult>) => async (): Promise<JudgeResult> => ({
-  completed: false, reason: "", eventSummary: "", notes: "", ...v,
+  completed: false, reason: "", eventSummary: "", notes: "", grantedItemIds: [], ...v,
 });
 
 describe("judgeTurn", () => {
@@ -67,7 +67,7 @@ describe("judgeTurn", () => {
     let calls = 0;
     const d = await judgeTurn({ ...base, ticket: payloadAt(story.phases.length) }, async () => {
       calls++;
-      return { completed: true, reason: "", eventSummary: "", notes: "x" };
+      return { completed: true, reason: "", eventSummary: "", notes: "x", grantedItemIds: [] };
     });
     assert.equal(calls, 0);
     assert.equal(d.phaseAdvanced, false);

@@ -5,6 +5,7 @@ import { use, useCallback, useEffect, useState } from "react";
 import ApiKeyNotice from "@/components/ApiKeyNotice";
 import CharacterCard from "@/components/CharacterCard";
 import GroupChats from "@/components/GroupChats";
+import ItemsPanel from "@/components/ItemsPanel";
 import PhaseBanner from "@/components/PhaseBanner";
 import TicketInvalidNotice from "@/components/TicketInvalidNotice";
 import type { PublicStory } from "@/lib/api-types";
@@ -73,6 +74,7 @@ export default function StoryHub({ params }: { params: Promise<{ id: string }> }
 
       {!hasApiKey && <ApiKeyNotice />}
       <PhaseBanner story={story} />
+      <ItemsPanel story={story} />
 
       {story.pastPhases.length > 0 && (
         <details className="rounded-xl border border-white/5 bg-stage-900/50 px-5 py-3 text-sm">

@@ -6,11 +6,12 @@ import EmojiPicker from "@/components/EmojiPicker";
 import { useMe } from "@/components/MeProvider";
 import type { SessionView, StorySummary } from "@/lib/api-types";
 import { apiFetch, describeApiError } from "@/lib/client/api";
+import { loadOwnedItems } from "@/lib/client/items";
 import { DisplayNameSchema } from "@/lib/profile";
 import { parseSaveFile, saveFileName } from "@/lib/save/file";
 import { useSave } from "@/lib/save/useSave";
 
-type Stats = { started: number; finished: number; messages: number };
+type Stats = { started: number; finished: number; messages: number; items: number | null };
 
 function shortAgent(ua: string): string {
   if (!ua) return "Unknown device";
@@ -79,9 +80,10 @@ export default function ProfilePage() {
   const loadStats = useCallback(async () => {
     if (!store) return;
     try {
-      const [progress, messages, list] = await Promise.all([
+      const [progress, messages, owned, list] = await Promise.all([
         store.listProgress(),
         store.countUserMessages(),
+        loadOwnedItems(store).catch(() => null),
         fetch("/api/stories").then((r) => r.json() as Promise<{ stories: StorySummary[] }>),
       ]);
       const counts = new Map(list.stories.map((s) => [s.id, s.phaseCount]));
@@ -89,7 +91,7 @@ export default function ProfilePage() {
         const n = counts.get(p.storyId);
         return n !== undefined && p.phaseIndex >= n;
       }).length;
-      setStats({ started: progress.length, finished, messages });
+      setStats({ started: progress.length, finished, messages, items: owned ? owned.reduce((n, s) => n + s.items.length, 0) : null });
     } catch {
       setStats(null);
     }
@@ -267,11 +269,12 @@ export default function ProfilePage() {
       <section className={card}>
         <h2 className="font-serif text-xl text-gold-400">Your stats</h2>
         <p className="mt-1 text-sm text-white/60">Counted from the save on this device.</p>
-        <dl className="mt-4 grid grid-cols-3 gap-3 text-center">
+        <dl className="mt-4 grid grid-cols-2 gap-3 text-center sm:grid-cols-4">
           {[
             ["Stories started", stats?.started],
             ["Stories finished", stats?.finished],
             ["Messages sent", stats?.messages],
+            ["Items owned", stats?.items],
           ].map(([label, value]) => (
             <div key={label as string} className="rounded-xl border border-white/10 bg-black/30 p-3">
               <dd className="font-serif text-2xl text-gold-400">{value ?? "–"}</dd>

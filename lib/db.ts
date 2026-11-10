@@ -45,6 +45,19 @@ export const MIGRATIONS: ((d: Database.Database) => void)[] = [
       );
     `);
   },
+  // v2 (WP3): items the player owns for good (granted by ads). Found items live in the signed ticket.
+  (d) => {
+    d.exec(`
+      CREATE TABLE user_items (
+        user_id       INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        story_id      TEXT NOT NULL,
+        item_id       TEXT NOT NULL,
+        acquired_at   INTEGER NOT NULL,
+        ad_session_id TEXT,
+        PRIMARY KEY (user_id, story_id, item_id)
+      );
+    `);
+  },
 ];
 
 function runMigrations(d: Database.Database): void {

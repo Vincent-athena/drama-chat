@@ -6,7 +6,7 @@ import { chatWithCharacter } from "@/lib/llm";
 import { CONTEXT_LIMITS } from "@/lib/limits-shared";
 import type { TaggedMessage } from "@/lib/schema";
 import { getStory, isUnlocked } from "@/lib/stories";
-import { admit, groupMembersMap, lockedResponse, NDJSON_HEADERS, ticketFrom } from "@/lib/turn";
+import { admit, groupMembersMap, lockedResponse, NDJSON_HEADERS, itemContext, ticketFrom } from "@/lib/turn";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,11 +34,13 @@ export async function POST(req: Request, { params }: Params) {
   if (!raw.ok) return raw.response;
   const parsed = ChatTurnBodySchema.safeParse(raw.body);
   if (!parsed.success) return jsonError(400, "bad_request", "That message could not be read.");
-  const { message, context } = parsed.data;
+  const { message, showItemId, context } = parsed.data;
 
   const ticket = ticketFrom(req, auth.user.id, story);
   if (!ticket.ok) return ticket.response;
   const t = ticket.t;
+  const items = itemContext(auth.user.id, story, t, showItemId);
+  if (!items.ok) return items.response;
   if (!isUnlocked(story, character, t.p)) return lockedResponse();
   const blocked = admit(auth.user.id);
   if (blocked) return blocked;
@@ -54,6 +56,8 @@ export async function POST(req: Request, { params }: Params) {
           groupChats: context.groupChats,
           groupMembers,
           playerName: auth.user.displayName,
+          carrying: items.carrying,
+          shownItem: items.shownItem,
         })) {
           reply += delta;
           send({ type: "delta", text: delta });
@@ -68,6 +72,7 @@ export async function POST(req: Request, { params }: Params) {
             story,
             ticket: t,
             ticketString: ticket.raw,
+            owned: items.owned,
             recent: [...context.recent, ...thisTurn].slice(-CONTEXT_LIMITS.recent),
             events: context.events,
             notes: context.notes,

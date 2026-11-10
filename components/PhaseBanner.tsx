@@ -40,6 +40,23 @@ export default function PhaseBanner({ story }: { story: PublicStory }) {
         <p className="text-xs uppercase tracking-wider text-white/50">Objective</p>
         <p className="mt-0.5 text-white">{phase.objective}</p>
       </div>
+      {phase.requiredItemIds.length > 0 && (
+        <div className="mt-3 rounded-lg bg-black/30 px-4 py-3">
+          <p className="text-xs uppercase tracking-wider text-white/50">Required</p>
+          <ul className="mt-1 space-y-1 text-sm">
+            {phase.requiredItemIds.map((id) => {
+              const item = story.items.find((i) => i.id === id);
+              if (!item) return null;
+              return (
+                <li key={id} className={item.owned ? "text-gold-400" : "text-white/80"}>
+                  {item.owned ? "✔" : "🔒"} {item.emoji} {item.name}
+                  <span className="text-white/50"> — {item.owned ? "owned" : item.source === "ad" ? "unlock it with an ad" : "find it by talking to the cast"}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
       {phase.hint && (
         <div className="mt-3 text-sm">
           <button onClick={() => setShowHint((v) => !v)} className="text-gold-500 hover:text-gold-400">

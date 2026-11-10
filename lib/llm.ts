@@ -15,6 +15,7 @@ import {
   JudgeResultSchema,
   StoryOutlineSchema,
   StorySchema,
+  itemIssues,
   type ChatMessage,
   type Character,
   type JudgeResult,
@@ -166,17 +167,18 @@ export async function judgePhase(
   recent: TaggedMessage[],
   events: string[],
   notes: string,
-  groupMembers?: GroupMembers
+  groupMembers?: GroupMembers,
+  owned: Set<string> = new Set()
 ): Promise<JudgeResult> {
   const raw = await jsonCompletion(
     "judge",
-    [{ role: "user", content: judgePrompt(story, phaseIndex, recent, events, notes, groupMembers) }],
+    [{ role: "user", content: judgePrompt(story, phaseIndex, recent, events, notes, groupMembers, owned) }],
     0
   );
   try {
     return JudgeResultSchema.parse(JSON.parse(raw));
   } catch {
-    return { completed: false, reason: "judge returned invalid JSON", eventSummary: "", notes: "" };
+    return { completed: false, reason: "judge returned invalid JSON", eventSummary: "", notes: "", grantedItemIds: [] };
   }
 }
 
@@ -266,6 +268,36 @@ async function generateChecked<T>(
 const zodProblems = (error: z.ZodError) =>
   error.issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
 
+/** Item rules of the outline: the schema rules plus what the generator additionally demands. */
+function itemProblems(outline: StoryOutline): string[] {
+  const problems: string[] = [];
+  const items = outline.items;
+  const phaseIds = outline.phases.map((p) => p.id);
+  if (items.length < 4 || items.length > 6) problems.push(`Expected 4 to 6 items, got ${items.length}.`);
+  for (const source of ["start", "found", "ad"] as const) {
+    if (!items.some((i) => i.source === source)) problems.push(`There must be at least one "${source}" item.`);
+  }
+  for (const issue of itemIssues(items, outline.phases)) problems.push(`${issue.path.join(".")}: ${issue.message}.`);
+  const ads = new Set(items.filter((i) => i.source === "ad").map((i) => i.id));
+  outline.phases.forEach((p, pi) => {
+    for (const id of p.requiredItems) {
+      if (ads.has(id)) problems.push(`phases.${pi}.requiredItems: "${id}" is an ad item; ad items must never be required.`);
+    }
+  });
+  if (!outline.phases.slice(1).some((p) => p.requiredItems.length > 0)) {
+    problems.push("At least one phase from the second on must have requiredItems.");
+  }
+  for (const item of items) {
+    if (item.source !== "found") continue;
+    const at = phaseIds.indexOf(item.availablePhase);
+    if (at < 0) continue;
+    if (!outline.characters.some((c) => phaseIds.indexOf(c.unlockPhase) <= at)) {
+      problems.push(`Found item "${item.id}" is available from "${item.availablePhase}", but no character is unlocked by then to hand it over.`);
+    }
+  }
+  return problems;
+}
+
 /** Problems with the outline's counts, ids and unlock phases, or "" when it is fine. */
 export function outlineProblems(outline: StoryOutline, numPhases: number, numCharacters: number): string {
   const problems: string[] = [];
@@ -291,6 +323,7 @@ export function outlineProblems(outline: StoryOutline, numPhases: number, numCha
     const empty = phaseIds.slice(1).filter((id) => !outline.characters.some((c) => c.unlockPhase === id));
     if (empty.length) problems.push(`Each later phase should unlock at least one character; none unlock in: ${empty.join(", ")}.`);
   }
+  problems.push(...itemProblems(outline));
   return problems.join("\n");
 }
 

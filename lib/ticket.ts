@@ -38,11 +38,14 @@ export function verifyTicket(ticket: string | null, uid: number, story: Story): 
   if (given.length !== expected.length || !crypto.timingSafeEqual(given, expected)) throw new TicketError("signature");
   if (payload.uid !== uid) throw new TicketError("user");
   if (payload.sid !== story.id) throw new TicketError("story");
-  // Found items arrive with WP3; until then `f` must be empty.
-  if (payload.p > story.phases.length || payload.f.length > 0) throw new TicketError("range");
+  if (payload.p > story.phases.length) throw new TicketError("range");
+  // Found items: every id must be a `found` item of this story.
+  const found = new Set(story.items.filter((i) => i.source === "found").map((i) => i.id));
+  if (payload.f.some((id) => !found.has(id))) throw new TicketError("range");
   return payload;
 }
 
 export function reissue(t: TicketPayload, change: { p?: number; f?: string[] }, now: number = Date.now()): string {
-  return signTicket({ uid: t.uid, sid: t.sid, r: t.r, p: change.p ?? t.p, f: change.f ?? t.f }, now);
+  const f = change.f ? [...new Set(change.f)].sort() : t.f;
+  return signTicket({ uid: t.uid, sid: t.sid, r: t.r, p: change.p ?? t.p, f }, now);
 }

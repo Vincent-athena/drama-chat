@@ -22,7 +22,7 @@ export type MeResponse = {
 export type SessionView = { id: number; userAgent: string; createdAt: number; lastSeenAt: number; current: boolean };
 
 export type StorySummary = { id: string; title: string; synopsis: string; phaseCount: number; characterCount: number };
-export type PublicPhase = { id: string; title: string; narration: string; objective: string; hint: string };
+export type PublicPhase = { id: string; title: string; narration: string; objective: string; hint: string; requiredItemIds: string[] };
 export type PublicStory = {
   id: string;
   title: string;
@@ -35,9 +35,10 @@ export type PublicStory = {
   currentPhase: PublicPhase | null;
   pastPhases: PublicPhase[];
   characters: PublicCharacter[];
+  items: PublicItem[];
 };
 
-/** [WP3] Declared now so DoneEvent has its final shape; WP1 never produces one. */
+/** Never carries obtainCriteria. Items from a later chapter are left out unless owned. */
 export type PublicItem = {
   id: string;
   name: string;
@@ -47,6 +48,8 @@ export type PublicItem = {
   availablePhaseIndex: number;
   owned: boolean;
 };
+/** POST /api/items: the owned items of one story. */
+export type OwnedStoryItems = { storyId: string; title: string; items: PublicItem[] };
 
 export type JudgeContext = {
   recent: TaggedMessage[]; // story-wide, oldest first, BEFORE this turn
@@ -63,8 +66,8 @@ export type GroupContext = JudgeContext & {
   privateChats: Record<string, ChatMessage[]>; // memberId -> one-on-one chat
 };
 
-export type ChatTurnBody = { message: string; context: ChatContext };
-export type GroupTurnBody = { message: string; group: { id: number; memberIds: string[] }; context: GroupContext };
+export type ChatTurnBody = { message: string; showItemId?: string; context: ChatContext };
+export type GroupTurnBody = { message: string; showItemId?: string; group: { id: number; memberIds: string[] }; context: GroupContext };
 
 export type DoneEvent = {
   type: "done";
@@ -77,8 +80,8 @@ export type DoneEvent = {
   finished?: boolean;
   newPhase?: { title: string; narration: string; objective: string } | null;
   unlocked?: { id: string; name: string; avatarEmoji: string }[];
-  itemsFound: PublicItem[]; // [WP3]; WP1 sends []
-  blockedByItemIds?: string[]; // [WP3]
+  itemsFound: PublicItem[]; // items the player obtained this turn
+  blockedByItemIds?: string[]; // the judge said complete but these required items are missing
 };
 export type StreamEvent =
   | { type: "speaker"; characterId: string }

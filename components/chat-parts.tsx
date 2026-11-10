@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment } from "react";
-import type { DoneEvent } from "@/lib/api-types";
+import type { DoneEvent, PublicItem } from "@/lib/api-types";
 
 export type PhaseAdvance = {
   completedPhaseTitle: string;
@@ -90,4 +90,29 @@ export function PhaseAdvanceModal({
       </div>
     </div>
   );
+}
+
+/** Gold card shown under the conversation when the director grants an item. */
+export function ItemFoundNotice({ item }: { item: PublicItem }) {
+  return (
+    <div className="mx-auto max-w-md animate-rise rounded-xl border border-gold-500/50 bg-stage-900 px-4 py-3 text-center">
+      <p className="text-sm text-gold-400">🎁 You found: {item.emoji} {item.name}</p>
+      {item.description && <p className="mt-1 text-xs text-white/60">{item.description}</p>}
+    </div>
+  );
+}
+
+/** Shown when the director would close the chapter but a required item is missing. */
+export function ItemBlockedNotice({ names }: { names: string[] }) {
+  return (
+    <p className="mx-auto max-w-md rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-center text-sm text-white/70">
+      The chapter cannot close yet: you still need {names.join(", ")}.
+    </p>
+  );
+}
+
+/** Notices for one finished turn: found items and the blocked-chapter message. */
+export function toTurnNotices(evt: DoneEvent, items: PublicItem[]): { found: PublicItem[]; blocked: string[] } {
+  const name = (id: string) => items.find((i) => i.id === id)?.name ?? id;
+  return { found: evt.itemsFound, blocked: (evt.blockedByItemIds ?? []).map(name) };
 }

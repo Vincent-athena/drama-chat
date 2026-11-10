@@ -14,7 +14,13 @@ export type CharacterContext = {
   groupMembers?: GroupMembers;
   /** The player's display name; the character may use it. Character prompts only. */
   playerName?: string;
+  /** What the player carries (full descriptions: this prompt stays on the server). */
+  carrying?: ItemInfo[];
+  /** The item the player is showing in this very message. */
+  shownItem?: ItemInfo;
 };
+
+export type ItemInfo = { name: string; emoji: string; description: string };
 
 function nameOf(story: Story, id: string): string {
   return story.characters.find((c) => c.id === id)?.name ?? id;
@@ -79,6 +85,15 @@ ${others}
 
 ## What you know right now
 ${knowledge || "- Nothing beyond what anyone would know."}
+
+## What the player is carrying
+${context.carrying?.length ? context.carrying.map((i) => `- ${i.emoji} ${i.name}: ${i.description}`).join("\n") : "- Nothing of note."}
+If the player claims to show or hand you something that is not on this list, they do not have it: react with disbelief.${
+    context.shownItem
+      ? `
+Right now the player is showing you: ${context.shownItem.emoji} ${context.shownItem.name} (${context.shownItem.description}). React to it.`
+      : ""
+  }
 
 ## Your secrets
 ${character.secrets.map((s) => `- ${s}`).join("\n") || "- None."}
@@ -171,10 +186,32 @@ export function judgePrompt(
   recent: TaggedMessage[],
   events: string[],
   notes: string,
-  groupMembers?: GroupMembers
+  groupMembers?: GroupMembers,
+  owned: Set<string> = new Set()
 ): string {
   const phase = story.phases[phaseIndex];
   const transcript = recent.map((m) => transcriptLine(story, m, groupMembers)).join("\n");
+  const carried = story.items.filter((i) => owned.has(i.id));
+  const required = phase.requiredItems
+    .map((id) => story.items.find((i) => i.id === id))
+    .filter((i): i is NonNullable<typeof i> => Boolean(i));
+  const findable = story.items.filter(
+    (i) => i.source === "found" && !owned.has(i.id) && story.phases.findIndex((p) => p.id === i.availablePhase) <= phaseIndex
+  );
+  const itemSections = `Items the player carries: ${carried.length ? carried.map((i) => `${i.emoji} ${i.name}`).join(", ") : "(none)"}
+${
+  required.length
+    ? `Required to finish this chapter: ${required.map((i) => `${i.name} (${owned.has(i.id) ? "carried" : "missing"})`).join(", ")}
+Judge the criteria as usual; the game itself blocks completion while a required item is missing.
+`
+    : ""
+}${
+  findable.length
+    ? `Items the player can find now (grant one only when its condition is clearly met in the conversation):
+${findable.map((i) => `- id "${i.id}": ${i.name} — condition: ${i.obtainCriteria}`).join("\n")}
+`
+    : ""
+}`;
 
   return `You are the story director for the interactive drama "${story.title}".
 Decide whether the player has completed the current chapter.
@@ -182,7 +219,7 @@ Decide whether the player has completed the current chapter.
 Chapter: "${phase.title}"
 Player objective: ${phase.objective}
 Completion criteria: ${phase.completionCriteria}
-
+${itemSections}
 Earlier events:
 ${events.length ? events.map((e) => `- ${e}`).join("\n") : "- none"}
 
@@ -197,7 +234,8 @@ Judge strictly but fairly: the criteria must be clearly met, in the conversation
 Then update your notes: a short bullet list of every part of the criteria that has clearly been achieved so far in this chapter, with who said or did it. Keep everything from your earlier notes unless the conversation contradicts it, and add only what clearly happened. Leave out guesses and things that were only hinted at.
 
 Respond with JSON only, in exactly this shape:
-{"completed": true|false, "reason": "one short sentence", "eventSummary": "if completed, one sentence in past tense describing what happened, written as a story event; otherwise empty string", "notes": "- updated bullet list, one item per line"}`;
+{"completed": true|false, "reason": "one short sentence", "eventSummary": "if completed, one sentence in past tense describing what happened, written as a story event; otherwise empty string", "notes": "- updated bullet list, one item per line", "grantedItemIds": ["item-id", ...]}
+"grantedItemIds" lists the ids of the findable items whose condition is clearly met; use an empty array when none.`;
 }
 
 const HAIR_LENGTHS = "Short, Medium, Medium-long, Long";
@@ -224,6 +262,13 @@ const STORY_REQUIREMENTS = `- Exactly 2 characters unlock in the first phase. Sp
 - Write in the same language as the premise, except "appearance", which is in English.
 - modernSetting: true only if characters wear present-day clothing (roughly 1990 onwards, including near-future cities), false for historical, mythological or fantasy settings.`;
 
+const ITEM_RULES = `Items: the player carries objects that matter to the plot. Write "items" in the story's language, 4 to 6 of them:
+- at least one with "source": "start", one "found" and one "ad". Each item has an id (kebab-case), a name, a single emoji, a spoiler-safe "description" the player can read, a "source" and an "availablePhase" (a phase id).
+- "start" items are available in the first phase and have no "obtainCriteria". The player owns them from the beginning.
+- every "found" item has an "obtainCriteria": a hidden condition that a chat transcript can prove, such as "X has given the player Y" or "X has told the player where Y is and the player took it". It must be obtainable from a character who is unlocked by its "availablePhase".
+- "ad" items are a shortcut or an advantage with a story reason: a character reacts to it, or it is an alternative path written into a phase's completionCriteria with "OR". They have no "obtainCriteria" and are never required.
+- at least one phase from the second on has "requiredItems": ids the player must carry before that chapter can end. "requiredItems" only name "start" or "found" items that are available by that phase.`;
+
 const premiseLine = (premise: string) => `Premise from the user: ${premise || "Surprise me with an original, gripping drama."}`;
 
 /** Stage 1 of story generation: meta, phases and a roster of character concepts. */
@@ -237,6 +282,7 @@ Requirements:
 ${STORY_REQUIREMENTS}
 - Count carefully: the "phases" array has exactly ${numPhases} entries and the "characters" array has exactly ${numCharacters} entries, no more, no fewer.
 - Each character's "concept" is 1-2 sentences: what they want, their main secret or twist, and how they link to other characters.
+${ITEM_RULES}
 
 Respond with JSON only, in exactly this shape:
 {
@@ -247,7 +293,10 @@ Respond with JSON only, in exactly this shape:
   "tone": "e.g. noir, melodrama, gothic romance",
   "modernSetting": false,
   "phases": [
-    {"id": "p1", "title": "string", "narration": "2-4 sentences read when the chapter opens, second person", "objective": "what the player must do, shown to player", "completionCriteria": "hidden, precise condition for the director", "hint": "a gentle nudge"}
+    {"id": "p1", "title": "string", "narration": "2-4 sentences read when the chapter opens, second person", "objective": "what the player must do, shown to player", "completionCriteria": "hidden, precise condition for the director", "hint": "a gentle nudge", "requiredItems": []}
+  ],
+  "items": [
+    {"id": "kebab-item-id", "name": "string", "emoji": "🗝️", "description": "what the player sees", "source": "start|found|ad", "availablePhase": "p1", "obtainCriteria": "only for found items: the hidden condition"}
   ],
   "characters": [
     {"id": "kebab-id", "name": "string", "role": "string", "avatarEmoji": "🎭", "unlockPhase": "p1", "concept": "1-2 sentences"}
@@ -263,6 +312,14 @@ export function characterBatchPrompt(premise: string, outline: StoryOutline, ids
   const phases = outline.phases
     .map((p) => `- ${p.id} "${p.title}": ${p.objective} (hidden criteria: ${p.completionCriteria})`)
     .join("\n");
+  const items = outline.items.length
+    ? outline.items
+        .map(
+          (i) =>
+            `- id "${i.id}": ${i.emoji} ${i.name} (${i.source}, available from ${i.availablePhase})${i.obtainCriteria ? `, obtained when: ${i.obtainCriteria}` : ""}`
+        )
+        .join("\n")
+    : "- none";
   return `${STORY_INTRO}
 
 ${premiseLine(premise)}
@@ -277,6 +334,9 @@ modernSetting: ${outline.modernSetting ?? false}
 Phases:
 ${phases}
 
+Items in the story:
+${items}
+
 All characters (concepts, so secrets and relationships stay consistent across the cast):
 ${roster}
 
@@ -286,6 +346,7 @@ ${STORY_REQUIREMENTS}
 - Keep each character's id, name, role, avatarEmoji and unlockPhase exactly as in the roster.
 - knowledgeByPhase must have an entry for every phase id (${outline.phases.map((p) => p.id).join(", ")}). Be concise: a sentence or two per phase.
 - Keep the secrets consistent with the other characters' concepts.
+- A character who holds, wants or recognises an item must mention it BY NAME (exactly as listed above) in "knowledgeByPhase" and/or "secrets". The character who hands over a found item says when and why they would.
 
 ${APPEARANCE_RULES}
 

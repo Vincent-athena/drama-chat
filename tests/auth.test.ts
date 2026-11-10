@@ -40,12 +40,12 @@ afterEach(() => {
 });
 
 describe("auth", () => {
-  it("migrates a fresh DB to version 1 with the account tables only", () => {
+  it("migrates a fresh DB to the latest version with the account and item tables only", () => {
     assert.equal(db().pragma("user_version", { simple: true }), MIGRATIONS.length);
-    assert.equal(MIGRATIONS.length, 1);
+    assert.equal(MIGRATIONS.length, 2);
     const tables = (db().prepare("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").all() as { name: string }[])
       .map((t) => t.name).sort();
-    assert.deepEqual(tables, ["counters", "login_codes", "sessions", "users"]);
+    assert.deepEqual(tables, ["counters", "login_codes", "sessions", "user_items", "users"]);
   });
 
   it("normalises emails", () => {

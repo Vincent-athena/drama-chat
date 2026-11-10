@@ -1,5 +1,6 @@
 import { requireUser } from "@/lib/auth";
 import { jsonError } from "@/lib/http";
+import { ownedItemIds } from "@/lib/items";
 import { hasApiKey } from "@/lib/llm";
 import { getStory, toPublicStory } from "@/lib/stories";
 import { freshTicket, TicketError, verifyTicket } from "@/lib/ticket";
@@ -17,17 +18,13 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
 
   const given = req.headers.get(TICKET_HEADER);
   let ticket: string;
-  let phaseIndex = 0;
-  if (!given) {
-    ticket = freshTicket(auth.user.id, story.id);
-  } else {
-    try {
-      phaseIndex = verifyTicket(given, auth.user.id, story).p;
-      ticket = given;
-    } catch (err) {
-      if (err instanceof TicketError) return jsonError(400, "ticket_invalid", TICKET_INVALID_MESSAGE);
-      throw err;
-    }
+  try {
+    ticket = given ?? freshTicket(auth.user.id, story.id);
+    const t = verifyTicket(ticket, auth.user.id, story);
+    const owned = ownedItemIds(auth.user.id, story, t);
+    return Response.json({ story: toPublicStory(story, t.p, owned), ticket, hasApiKey: hasApiKey() });
+  } catch (err) {
+    if (err instanceof TicketError) return jsonError(400, "ticket_invalid", TICKET_INVALID_MESSAGE);
+    throw err;
   }
-  return Response.json({ story: toPublicStory(story, phaseIndex), ticket, hasApiKey: hasApiKey() });
 }

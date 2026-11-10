@@ -6,7 +6,7 @@ import { chatInGroup, pickSpeakers } from "@/lib/llm";
 import { CONTEXT_LIMITS } from "@/lib/limits-shared";
 import type { TaggedMessage } from "@/lib/schema";
 import { getStory } from "@/lib/stories";
-import { admit, charactersLocked, groupMembersMap, lockedResponse, NDJSON_HEADERS, ticketFrom } from "@/lib/turn";
+import { admit, charactersLocked, groupMembersMap, lockedResponse, NDJSON_HEADERS, itemContext, ticketFrom } from "@/lib/turn";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,7 +32,7 @@ export async function POST(req: Request, { params }: Params) {
   if (!raw.ok) return raw.response;
   const parsed = GroupTurnBodySchema.safeParse(raw.body);
   if (!parsed.success) return jsonError(400, "bad_request", "That message could not be read.");
-  const { message, group, context } = parsed.data;
+  const { message, showItemId, group, context } = parsed.data;
   if (new Set(group.memberIds).size !== group.memberIds.length) {
     return jsonError(400, "bad_request", "A group cannot list the same character twice.");
   }
@@ -43,6 +43,8 @@ export async function POST(req: Request, { params }: Params) {
   const ticket = ticketFrom(req, auth.user.id, story);
   if (!ticket.ok) return ticket.response;
   const t = ticket.t;
+  const items = itemContext(auth.user.id, story, t, showItemId);
+  if (!items.ok) return items.response;
   if (charactersLocked(story, group.memberIds, t.p)) return lockedResponse();
   const blocked = admit(auth.user.id);
   if (blocked) return blocked;
@@ -64,6 +66,8 @@ export async function POST(req: Request, { params }: Params) {
             groupWith: members.filter((c) => c.id !== speaker.id),
             privateChat: context.privateChats[speaker.id] ?? [],
             playerName: auth.user.displayName,
+            carrying: items.carrying,
+            shownItem: items.shownItem,
           })) {
             reply += delta;
             send({ type: "delta", text: delta });
@@ -76,6 +80,7 @@ export async function POST(req: Request, { params }: Params) {
             story,
             ticket: t,
             ticketString: ticket.raw,
+            owned: items.owned,
             recent: [...context.recent, ...round].slice(-CONTEXT_LIMITS.recent),
             events: context.events,
             notes: context.notes,

@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ApiKeyNotice from "./ApiKeyNotice";
-import { PhaseAdvanceModal, Rich, toPhaseAdvance, type PhaseAdvance } from "./chat-parts";
+import { ItemBlockedNotice, ItemFoundNotice, PhaseAdvanceModal, Rich, toPhaseAdvance, toTurnNotices, type PhaseAdvance } from "./chat-parts";
+import ItemPicker from "./ItemPicker";
 import TicketInvalidNotice from "./TicketInvalidNotice";
-import type { PublicStory, StreamEvent } from "@/lib/api-types";
+import type { PublicItem, PublicStory, StreamEvent } from "@/lib/api-types";
 import { apiFetch, ApiError, describeApiError, readNdjson } from "@/lib/client/api";
+import { showItemLine } from "@/lib/items-shared";
 import { applyDone, currentRun, loadStoryView, restartStory } from "@/lib/client/story";
 import { groupContext } from "@/lib/save/context";
 import { useRequireUser } from "@/lib/save/useSave";
@@ -27,6 +29,9 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
   const [error, setError] = useState<string | null>(null);
   const [ticketInvalid, setTicketInvalid] = useState(false);
   const [advance, setAdvance] = useState<PhaseAdvance | null>(null);
+  const [shown, setShown] = useState<PublicItem | null>(null);
+  const [picking, setPicking] = useState(false);
+  const [notices, setNotices] = useState<{ found: PublicItem[]; blocked: string[] }>({ found: [], blocked: [] });
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const loadStory = useCallback(async () => {
@@ -80,9 +85,15 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
 
   async function send(e: React.FormEvent) {
     e.preventDefault();
-    const text = input.trim();
-    if (!text || busy || !store || !group) return;
+    const typed = input.trim();
+    const item = shown;
+    if ((!typed && !item) || busy || !store || !group) return;
+    // The line that announces a shown item is part of the message; the server only checks ownership.
+    const text = item ? (typed ? `${showItemLine(item)}\n${typed}` : showItemLine(item)) : typed;
     setInput("");
+    setShown(null);
+    setPicking(false);
+    setNotices({ found: [], blocked: [] });
     setError(null);
     setBusy("typing");
     setMessages((m) => [...m, { role: "user", content: text, characterId: "" }]);
@@ -104,7 +115,7 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
       const context = await groupContext(store, storyId, group);
       const res = await apiFetch(`/api/stories/${storyId}/group-chat`, {
         method: "POST",
-        json: { message: text, group: { id: group.id, memberIds: group.memberIds }, context },
+        json: { message: text, ...(item ? { showItemId: item.id } : {}), group: { id: group.id, memberIds: group.memberIds }, context },
         ticket: { store, storyId },
       });
       await readNdjson<StreamEvent>(res, async (evt) => {
@@ -128,7 +139,8 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
         } else if (evt.type === "done") {
           await applyDone(store, storyId, sentRun, evt);
           if (evt.phaseAdvanced) setAdvance(toPhaseAdvance(evt));
-          await loadStory();
+          const view = await loadStory();
+          setNotices(toTurnNotices(evt, view?.items ?? []));
         } else if (evt.type === "error") {
           throw new Error(evt.message);
         }
@@ -147,7 +159,10 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
         const lastUser = trimmed.map((x) => x.role).lastIndexOf("user");
         return lastUser >= 0 ? trimmed.slice(0, lastUser) : trimmed;
       });
-      if (!keep) setInput(text);
+      if (!keep) {
+        setInput(typed);
+        setShown(item);
+      }
     } finally {
       setBusy(false);
     }
@@ -247,6 +262,8 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
           })}
           {waitingForFirstReply && <p className="text-center text-xs text-white/30">The room falls quiet…</p>}
           {busy === "judging" && <p className="text-center text-xs text-white/30">The story is unfolding…</p>}
+          {notices.found.map((i) => <ItemFoundNotice key={i.id} item={i} />)}
+          {notices.blocked.length > 0 && <ItemBlockedNotice names={notices.blocked} />}
           <div ref={bottomRef} />
         </div>
 
@@ -257,7 +274,20 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
           ) : (
             error && <p className="mb-2 text-sm text-blood-500">{error}</p>
           )}
+          {picking && <ItemPicker items={story.items} onPick={(i) => { setShown(i); setPicking(false); }} onClose={() => setPicking(false)} />}
+          {shown && (
+            <div className="mb-2 flex items-center gap-2 text-sm">
+              <span className="rounded-full border border-gold-500/40 bg-black/40 px-3 py-1">Showing {shown.emoji} {shown.name}</span>
+              <button type="button" onClick={() => setShown(null)} aria-label="Stop showing the item" className="text-white/50 hover:text-white">✕</button>
+            </div>
+          )}
           <form onSubmit={send} className="flex gap-3">
+            <button
+              type="button" onClick={() => setPicking((v) => !v)} disabled={!!busy} title="Show an item"
+              className="rounded-xl border border-white/10 px-3 text-xl hover:border-gold-500 disabled:opacity-50"
+            >
+              🎒
+            </button>
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -266,7 +296,7 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
               className="flex-1 rounded-xl border border-white/10 bg-black/40 px-4 py-3 outline-none focus:border-gold-500 disabled:opacity-60"
             />
             <button
-              type="submit" disabled={!!busy || !input.trim()}
+              type="submit" disabled={!!busy || (!input.trim() && !shown)}
               className="rounded-xl bg-blood-500 px-5 font-semibold hover:bg-blood-600 disabled:opacity-50"
             >
               Send

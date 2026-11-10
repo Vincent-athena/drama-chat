@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { dataDir } from "./env";
 import type { PublicPhase, PublicStory, StorySummary } from "./api-types";
+import { toPublicItems } from "./items";
 import { StorySchema, type Character, type Phase, type Story } from "./schema";
 
 export const STORIES_DIR = path.join(process.cwd(), "stories");
@@ -63,11 +64,11 @@ export function charactersUnlockedAt(story: Story, phaseIndex: number): Characte
 }
 
 function publicPhase(p: Phase): PublicPhase {
-  return { id: p.id, title: p.title, narration: p.narration, objective: p.objective, hint: p.hint };
+  return { id: p.id, title: p.title, narration: p.narration, objective: p.objective, hint: p.hint, requiredItemIds: p.requiredItems };
 }
 
-/** The secret-free view of a story at `phaseIndex` (taken from the verified save ticket). */
-export function toPublicStory(story: Story, phaseIndex: number): PublicStory {
+/** The secret-free view of a story at `phaseIndex` and the owned items (both taken from the verified save ticket). */
+export function toPublicStory(story: Story, phaseIndex: number, owned?: Set<string>): PublicStory {
   const finished = phaseIndex >= story.phases.length;
   return {
     id: story.id,
@@ -92,6 +93,7 @@ export function toPublicStory(story: Story, phaseIndex: number): PublicStory {
         unlockPhaseTitle: story.phases[phaseIndexOf(story, c.unlockPhase)]?.title ?? "",
       };
     }),
+    items: toPublicItems(story, phaseIndex, owned ?? new Set(story.items.filter((i) => i.source === "start").map((i) => i.id))),
   };
 }
 
