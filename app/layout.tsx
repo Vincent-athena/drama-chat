@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <UserMenu />
             </div>
           </header>
-          <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+          <main className="mx-auto max-w-6xl px-4 py-5 sm:py-8">{children}</main>
         </MeProvider>
       </body>
     </html>

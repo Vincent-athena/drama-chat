@@ -127,18 +127,18 @@ export default function PhaseBanner({ story, store, onChanged }: { story: Public
         </div>
       )}
       {phase.hint && (
-        <div className="mt-3 text-sm">
-          <button onClick={() => setShowHint((v) => !v)} className="text-gold-500 hover:text-gold-400">
+        <div className="mt-1 text-sm">
+          <button onClick={() => setShowHint((v) => !v)} className="py-2 text-gold-500 hover:text-gold-400">
             {showHint ? "Hide hint" : "Need a hint?"}
           </button>
           {showHint && <p className="mt-1 text-white/60">💡 {phase.hint}</p>}
         </div>
       )}
-      <div className="mt-3 text-sm">
+      <div className="mt-1 text-sm">
         <button
           onClick={() => (showGuide ? setShowGuide(false) : guide ? setShowGuide(true) : requestGuide())}
           disabled={guideLoading || !store}
-          className="text-gold-500 hover:text-gold-400 disabled:opacity-50"
+          className="py-2 text-left text-gold-500 hover:text-gold-400 disabled:opacity-50"
         >
           {showGuide ? "Hide advance guide" : guide ? "🧭 Show last guide" : askLabel}
         </button>

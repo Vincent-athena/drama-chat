@@ -45,11 +45,11 @@ export default function GenerateStoryModal({ onClose }: { onClose: () => void })
   }
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 p-4" onClick={loading ? undefined : onClose}>
+    <div className="fixed inset-0 z-50 flex overflow-y-auto bg-black/70 p-4" onClick={loading ? undefined : onClose}>
       <form
         onSubmit={submit}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-lg animate-rise rounded-2xl border border-gold-500/30 bg-stage-900 p-6"
+        className="m-auto w-full max-w-lg animate-rise rounded-2xl border border-gold-500/30 bg-stage-900 p-6"
       >
         <h2 className="font-serif text-2xl text-gold-400">Write a new drama</h2>
         <p className="mt-1 text-sm text-white/60">The AI will invent the cast, chapters, and secrets.</p>

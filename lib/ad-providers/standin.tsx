@@ -15,7 +15,7 @@ function StandinAd({ minSeconds, onFinished, onCancel }: { minSeconds: number; o
 
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-stage-950 p-4">
-      <button onClick={onCancel} className="absolute right-4 top-4 text-sm text-white/60 underline hover:text-white">
+      <button onClick={onCancel} className="absolute right-2 top-2 p-2 text-sm text-white/60 underline hover:text-white">
         Close
       </button>
       <div className="w-full max-w-md rounded-2xl border border-gold-500/30 bg-stage-900 p-8 text-center">
