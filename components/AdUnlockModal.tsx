@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import type { AdReward, AdSessionView, PublicItem } from "@/lib/api-types";
+import type { AdReward, AdSessionView, AdShown, PublicItem } from "@/lib/api-types";
 import { adProviderFor } from "@/lib/ad-providers";
 import { ApiError, apiFetch } from "@/lib/client/api";
 import type { SaveStore } from "@/lib/save/types";
@@ -75,19 +75,19 @@ export default function AdUnlockModal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function complete() {
+  async function complete(shown: AdShown) {
     const id = sessionId.current;
     if (!id) return;
     setClaiming(true);
     try {
       let res: Response;
       try {
-        res = await apiFetch(`/api/ads/sessions/${id}/complete`, { method: "POST" });
+        res = await apiFetch(`/api/ads/sessions/${id}/complete`, { method: "POST", json: { shown } });
       } catch (e) {
         if (!(e instanceof ApiError) || e.code !== "too_early") throw e;
         const wait = typeof e.body.retryAfter === "number" ? e.body.retryAfter : 1;
         await sleep(Math.min(wait, 30) * 1000);
-        res = await apiFetch(`/api/ads/sessions/${id}/complete`, { method: "POST" });
+        res = await apiFetch(`/api/ads/sessions/${id}/complete`, { method: "POST", json: { shown } });
       }
       finished.current = true;
       const { reward: granted } = (await res.json()) as { reward: AdReward };
@@ -127,7 +127,7 @@ export default function AdUnlockModal({
     );
   }
   const { Component } = adProviderFor(session.provider);
-  return createPortal(<Component minSeconds={session.minSeconds} onFinished={complete} onCancel={cancel} />, document.body);
+  return createPortal(<Component minSeconds={session.minSeconds} google={session.google} onFinished={complete} onCancel={cancel} />, document.body);
 }
 
 /** The "🎬 Watch an ad to unlock" button for an unowned ad item, with its modal. */

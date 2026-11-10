@@ -78,8 +78,11 @@ found items do not.
 
 The **story guide** (on the chapter banner) is one free per day, then one per ad watched. Env (see `.env.example`):
 `GUIDE_FREE_PER_DAY` (default 1), `AD_MIN_SECONDS` (default 15, the server times it), `AD_DAILY_CAP` (default 10
-completed ads per account per day, shared by item and guide rewards). The ad is a labelled placeholder with no network;
-see `docs/monetization.md` for the plan to swap in a real network.
+completed ads per account per day, shared by item and guide rewards). By default the ad is a labelled placeholder
+with no network. Google rewarded ads switch on with env only, no code change: `AD_PROVIDER=google` plus
+`GOOGLE_AD_UNIT_PATH` (the ad unit), optionally `GOOGLE_PUBLISHER_ID` (`pub-…`, serves `/ads.txt` and the AdSense
+meta tag), `AD_NO_FILL=house|deny` (what to show when Google has no ad) and `CONTACT_EMAIL` (shown on the legal
+pages). Public pages: `/privacy`, `/terms`, `/ads.txt`. Owner steps and metrics: `docs/monetization.md`.
 
 ## Profile
 
@@ -126,7 +129,7 @@ Manual steps (only you can do these, they need your accounts):
 1. **Only you:** add the zone to Cloudflare, copy the existing DNS records across first, then change the
    nameservers at Spaceship to the ones Cloudflare shows.
 2. **Only you:** in Cloudflare Zero Trust create a tunnel, copy its token into `TUNNEL_TOKEN` in Snow's `.env`,
-   and add the public hostname `dramachat.ezai.tech` with service `http://app:3000`.
+   and add your public hostname (for example `chat.example.com`) with service `http://app:3000`.
 3. **Only you:** in Resend verify the sending domain and create an API key for `RESEND_API_KEY`.
 4. Fill `.env` as above, then from your machine run `scripts/deploy.sh` (or `scripts/deploy.sh <branch>`). It
    pulls on Snow, runs `docker compose up -d --build`, and waits up to 60 s for `/api/health`.

@@ -1,9 +1,9 @@
 /** Rewarded ad sessions. Server only. The browser can ask for a session; only the server decides it was watched. */
 import crypto from "node:crypto";
-import type { AdSessionView, AdStartBody } from "./api-types";
+import type { AdSessionView, AdShown, AdStartBody } from "./api-types";
 import { db } from "./db";
 import { dayKey, nextDayStart } from "./day";
-import { adDailyCap, adMinSeconds } from "./env";
+import { adDailyCap, adMinSeconds, adNoFill, adProvider, googleAdUnitPath } from "./env";
 import { grantAdItem, ownedItemIds } from "./items";
 import { hit } from "./limits";
 import type { Story } from "./schema";
@@ -23,6 +23,7 @@ type Row = {
   item_id: string | null;
   started_at: number;
   status: "started" | "completed" | "abandoned";
+  provider: string;
 };
 
 /** Completed ad sessions of the user within the current DAY_TZ day (both rewards share this). */
@@ -68,6 +69,7 @@ export function startAdSession(
   if (!rate.ok) return { ok: false, error: "rate_limited", retryAfter: rate.retryAfter };
 
   const id = crypto.randomBytes(16).toString("hex");
+  const provider = adProvider();
   // One open session per user: starting an ad abandons any earlier unfinished one, so ten sessions
   // started together cannot all be completed after a single wait.
   db().transaction(() => {
@@ -75,22 +77,30 @@ export function startAdSession(
     db()
       .prepare(
         `INSERT INTO ad_sessions (id, user_id, reward_type, story_id, item_id, provider, started_at, status)
-         VALUES (?, ?, ?, ?, ?, 'standin', ?, 'started')`
+         VALUES (?, ?, ?, ?, ?, ?, ?, 'started')`
       )
-      .run(id, userId, body.rewardType, story.id, itemId, now);
+      .run(id, userId, body.rewardType, story.id, itemId, provider, now);
   })();
-  return { ok: true, session: { id, provider: "standin", rewardType: body.rewardType, minSeconds: adMinSeconds(), startedAt: now } };
+  const session: AdSessionView = { id, provider, rewardType: body.rewardType, minSeconds: adMinSeconds(), startedAt: now };
+  if (provider === "google") session.google = { adUnitPath: googleAdUnitPath(), noFill: adNoFill() };
+  return { ok: true, session };
 }
 
 /**
  * Completes a session in one transaction. The row must belong to the caller (anything else is `not_found`,
  * so another user's id looks like an unknown one), be unused, old enough by the SERVER clock, and the user
  * must be under the daily cap. An item is granted here; a guide leaves one unredeemed credit.
+ *
+ * `shown` is the browser's claim about what played, kept only for fill-rate numbers. It is NOT proof. Google
+ * offers optional server-side verification for rewarded web (an SSV URL set on the ad unit); it is not wired
+ * up here yet, so until it is the time floor and the daily cap are the only guard.
+ * A stand-in session is always recorded as 'house'; a google session without a claim stays NULL.
  */
 export function completeAdSession(
   userId: number,
   sessionId: string,
-  now: number = Date.now()
+  now: number = Date.now(),
+  shown?: AdShown
 ):
   | { ok: true; reward: { type: "item"; storyId: string; itemId: string } | { type: "guide" } }
   | AdFailure {
@@ -105,13 +115,14 @@ export function completeAdSession(
     if (completedAdsToday(userId, now) >= adDailyCap()) {
       return { ok: false, error: "ad_cap", resetsAt: nextDayStart(now) };
     }
+    const seen = row.provider === "google" ? shown ?? null : "house";
     if (row.reward_type === "item") {
       if (!row.item_id) return { ok: false, error: "not_found" };
-      db().prepare("UPDATE ad_sessions SET status = 'completed', completed_at = ?, redeemed_at = ? WHERE id = ?").run(now, now, row.id);
+      db().prepare("UPDATE ad_sessions SET status = 'completed', completed_at = ?, redeemed_at = ?, shown = ? WHERE id = ?").run(now, now, seen, row.id);
       grantAdItem(userId, row.story_id, row.item_id, row.id, now);
       return { ok: true, reward: { type: "item", storyId: row.story_id, itemId: row.item_id } };
     }
-    db().prepare("UPDATE ad_sessions SET status = 'completed', completed_at = ? WHERE id = ?").run(now, row.id);
+    db().prepare("UPDATE ad_sessions SET status = 'completed', completed_at = ?, shown = ? WHERE id = ?").run(now, seen, row.id);
     return { ok: true, reward: { type: "guide" } };
   })();
 }

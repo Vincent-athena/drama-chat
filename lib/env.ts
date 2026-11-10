@@ -27,6 +27,29 @@ export const dailyMessageCap = () => num(process.env.DAILY_MESSAGE_CAP, 200);
 export const guideFreePerDay = () => num(process.env.GUIDE_FREE_PER_DAY, 1);
 export const adMinSeconds = () => num(process.env.AD_MIN_SECONDS, 15);
 export const adDailyCap = () => num(process.env.AD_DAILY_CAP, 10);
+
+/** Ad network switch. "google" needs a valid GOOGLE_AD_UNIT_PATH; anything else plays the stand-in. */
+export function googleAdUnitPath(): string {
+  const v = (process.env.GOOGLE_AD_UNIT_PATH ?? "").trim();
+  return v.startsWith("/") && v.length <= 200 && !/\s/.test(v) ? v : "";
+}
+let warnedNoPath = false;
+export function adProvider(): "standin" | "google" {
+  if ((process.env.AD_PROVIDER ?? "").trim().toLowerCase() !== "google") return "standin";
+  if (googleAdUnitPath()) return "google";
+  if (!warnedNoPath) {
+    warnedNoPath = true;
+    console.warn("AD_PROVIDER=google but GOOGLE_AD_UNIT_PATH is missing or invalid: using the stand-in ad.");
+  }
+  return "standin";
+}
+export function googlePublisherId(): string {
+  const v = (process.env.GOOGLE_PUBLISHER_ID ?? "").trim();
+  return /^pub-\d{10,20}$/.test(v) ? v : "";
+}
+/** What to show when Google has no ad: the house ad (default) or nothing. */
+export const adNoFill = (): "house" | "deny" => ((process.env.AD_NO_FILL ?? "").trim().toLowerCase() === "deny" ? "deny" : "house");
+export const contactEmail = () => (process.env.CONTACT_EMAIL ?? "").trim();
 export const dayTz = () => process.env.DAY_TZ || "Asia/Ho_Chi_Minh";
 export const isProduction = () => process.env.NODE_ENV === "production";
 

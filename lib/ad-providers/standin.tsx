@@ -1,10 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { AdShown } from "../api-types";
 import type { AdProvider } from "./types";
 
 /** The placeholder ad: a labelled house card with a countdown. The countdown is cosmetic; the server checks the time. */
-function StandinAd({ minSeconds, onFinished, onCancel }: { minSeconds: number; onFinished(): void; onCancel(): void }) {
+export function StandinAd({
+  minSeconds,
+  onFinished,
+  onCancel,
+  fallback = false,
+}: {
+  minSeconds: number;
+  onFinished(shown: AdShown): void;
+  onCancel(): void;
+  /** True when it stands in for a network ad that could not be shown: the label must not promise "real ads later". */
+  fallback?: boolean;
+}) {
   const [left, setLeft] = useState(minSeconds);
 
   useEffect(() => {
@@ -19,7 +31,9 @@ function StandinAd({ minSeconds, onFinished, onCancel }: { minSeconds: number; o
         Close
       </button>
       <div className="w-full max-w-md rounded-2xl border border-gold-500/30 bg-stage-900 p-8 text-center">
-        <p className="text-xs uppercase tracking-[0.3em] text-white/50">Placeholder ad — real ads come later</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-white/50">
+          {fallback ? "No ad available right now" : "Placeholder ad — real ads come later"}
+        </p>
         <p className="mt-6 text-6xl">🎭</p>
         <h2 className="mt-3 font-serif text-3xl text-gold-400">House ad</h2>
         <p className="mt-2 text-white/70">Thank you for supporting Drama Chat. Stay for the whole ad to claim your reward.</p>
@@ -28,7 +42,7 @@ function StandinAd({ minSeconds, onFinished, onCancel }: { minSeconds: number; o
         </p>
         <button
           disabled={left > 0}
-          onClick={onFinished}
+          onClick={() => onFinished("house")}
           className="mt-4 rounded-lg bg-gold-500 px-5 py-2 font-semibold text-stage-950 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Claim reward

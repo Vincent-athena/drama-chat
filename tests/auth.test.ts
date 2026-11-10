@@ -42,7 +42,7 @@ afterEach(() => {
 describe("auth", () => {
   it("migrates a fresh DB to the latest version with the account, item and ad tables only", () => {
     assert.equal(db().pragma("user_version", { simple: true }), MIGRATIONS.length);
-    assert.equal(MIGRATIONS.length, 3);
+    assert.equal(MIGRATIONS.length, 4);
     const tables = (db().prepare("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").all() as { name: string }[])
       .map((t) => t.name).sort();
     assert.deepEqual(tables, ["ad_sessions", "counters", "login_codes", "sessions", "user_items", "users"]);
