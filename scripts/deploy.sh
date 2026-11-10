@@ -4,6 +4,10 @@
 set -euo pipefail
 
 BRANCH="${1:-main}"
+if [[ ! "$BRANCH" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+  echo "Invalid branch name: $BRANCH" >&2
+  exit 1
+fi
 QUOTED="$(printf %q "$BRANCH")"
 
 ssh snow "BRANCH=$QUOTED bash -s" <<'REMOTE'

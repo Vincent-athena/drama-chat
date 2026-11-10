@@ -85,8 +85,7 @@ Keys to fill in `.env`: `AUTH_SECRET` (`openssl rand -base64 32`), `APP_ORIGIN` 
 `ADMIN_EMAILS`, `RESEND_API_KEY`, `MAIL_FROM`, `ARK_API_KEY` / `ARK_CHAT_MODEL` / `ARK_BASE_URL`,
 `DEEPSEEK_API_KEY`, `TUNNEL_TOKEN`. The container user must own `data/`: if your user on Snow is not
 uid 1000, run `chown 1000:1000 data` or set `APP_UID` / `APP_GID` in `.env` to your ids (`id -u`, `id -g`).
-`cloudflared` uses the `latest` tag in `docker-compose.yml`: pin it to a checked release tag before the first
-deploy and bump it deliberately.
+`cloudflared` is pinned to release `2026.10.7` in `docker-compose.yml`; bump it deliberately.
 
 Manual steps (only you can do these, they need your accounts):
 
