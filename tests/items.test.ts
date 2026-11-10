@@ -44,14 +44,12 @@ describe("story files with items", () => {
     assert.equal(listStories().length, 8);
   });
 
-  it("Midnight Manor and Sài Gòn 2077 have three items and one requirement each", () => {
-    for (const [story, required] of [[manor, "solicitors-carbon"], [saigon, "chip-ghi-nho"]] as const) {
-      assert.equal(story.items.length, 3);
-      assert.deepEqual(story.items.map((i) => i.source).sort(), ["ad", "found", "start"]);
-      const withReq = story.phases.filter((p) => p.requiredItems.length > 0);
-      assert.equal(withReq.length, 1);
-      assert.equal(withReq[0].id, "p3");
-      assert.deepEqual(withReq[0].requiredItems, [required]);
+  it("Midnight Manor keeps its ad-gated chapter 3; Sài Gòn 2077 requires only start and found items", () => {
+    const required = (story: Story) => story.phases.flatMap((p) => p.requiredItems.map((id) => [p.id, id]));
+    assert.deepEqual(required(manor), [["p2", "glass-shard"], ["p3", "solicitors-carbon"], ["p4", "ledger-page"]]);
+    assert.deepEqual(required(saigon), [["p3", "chip-ghi-nho"], ["p6", "ho-so-du-an"], ["p7", "vong-tay-ngoc"]]);
+    for (const story of [manor, saigon]) {
+      assert.deepEqual([...new Set(story.items.map((i) => i.source))].sort(), ["ad", "found", "start"]);
     }
   });
 });
@@ -172,10 +170,10 @@ describe("ownership and gates", () => {
 
   it("findableItems: found only, available by now, not owned", () => {
     assert.deepEqual(findableItems(manor, 0, startIds(manor)).map((i) => i.id), ["glass-shard"]);
-    assert.deepEqual(findableItems(manor, 3, new Set(["glass-shard"])).map((i) => i.id), []);
+    assert.deepEqual(findableItems(manor, 3, new Set(["glass-shard", "ledger-page"])).map((i) => i.id), []);
     // chip-ghi-nho is available from p2: not findable in p1
-    assert.deepEqual(findableItems(saigon, 0, startIds(saigon)).map((i) => i.id), []);
-    assert.deepEqual(findableItems(saigon, 1, startIds(saigon)).map((i) => i.id), ["chip-ghi-nho"]);
+    assert.deepEqual(findableItems(saigon, 0, startIds(saigon)).map((i) => i.id), ["vong-tay-ngoc"]);
+    assert.deepEqual(findableItems(saigon, 1, startIds(saigon)).map((i) => i.id), ["vong-tay-ngoc", "chip-ghi-nho"]);
   });
 
   it("toPublicItems hides future items and unowned found descriptions, never obtainCriteria", () => {
@@ -237,7 +235,7 @@ describe("judgeTurn with items", () => {
     assert.match(prompt, /- id "glass-shard": Shard of the brandy glass — condition: Mrs\. Hale has handed/);
     assert.match(prompt, /"grantedItemIds"/);
     // no item sections noise when nothing applies
-    const plain = judgePrompt(manor, 1, [], [], "", undefined, new Set(["glass-shard", ...startIds(manor)]));
+    const plain = judgePrompt(manor, 0, [], [], "", undefined, new Set(["glass-shard", ...startIds(manor)]));
     assert.match(plain, /Items the player carries: 💌 Gala invitation, 🥃 Shard of the brandy glass/);
     assert.doesNotMatch(plain, /Required to finish/);
     assert.doesNotMatch(plain, /Items the player can find now/);
@@ -628,7 +626,7 @@ describe("item routes", () => {
 
 describe("generated stories keep items", () => {
   it("getStory still serves the bundled sets with items", () => {
-    assert.equal(getStory("sample-midnight-manor")!.items.length, 3);
-    assert.equal(getStory("sai-gon-2077")!.items.length, 3);
+    assert.equal(getStory("sample-midnight-manor")!.items.length, 5);
+    assert.equal(getStory("sai-gon-2077")!.items.length, 6);
   });
 });

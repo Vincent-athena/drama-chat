@@ -1,3 +1,4 @@
+import { holdersOf } from "./story-checks";
 import type { ChatMessage, Character, Story, StoryOutline, TaggedMessage } from "./schema";
 
 /** Member ids of each group chat, keyed by group id. */
@@ -322,9 +323,12 @@ const STORY_REQUIREMENTS = `- Exactly 2 characters unlock in the first phase. Sp
 const ITEM_RULES = `Items: the player carries objects that matter to the plot. Write "items" in the story's language, 4 to 6 of them:
 - at least one with "source": "start", one "found" and one "ad". Each item has an id (kebab-case), a name, a single emoji, a spoiler-safe "description" the player can read, a "source" and an "availablePhase" (a phase id).
 - "start" items are available in the first phase and have no "obtainCriteria". The player owns them from the beginning.
-- every "found" item has an "obtainCriteria": a hidden condition that a chat transcript can prove, such as "X has given the player Y" or "X has told the player where Y is and the player took it". It must be obtainable from a character who is unlocked by its "availablePhase".
+- every "found" item has an "obtainCriteria": a hidden condition that a chat transcript can prove, such as "X has given the player Y" or "X has told the player where Y is and the player took it". Name the giver in the obtainCriteria (by character name); that character must be unlocked by the item's "availablePhase".
 - "ad" items are a shortcut or an advantage with a story reason: a character reacts to it, or it is an alternative path written into a phase's completionCriteria with "OR". They have no "obtainCriteria" and are never required.
-- at least one phase from the second on has "requiredItems": ids the player must carry before that chapter can end. "requiredItems" only name "start" or "found" items that are available by that phase.`;
+- at least one phase from the second on has "requiredItems": ids the player must carry before that chapter can end. "requiredItems" only name "start" or "found" items that are available by that phase.
+- Write item names and descriptions in the story's language. Descriptions are shown to the player: they must not give away a twist.
+
+Example of the pattern (do not copy): in a poisoning mystery, "gala-invitation" is a start item (available in p1). "glass-shard" ("Shard of the brandy glass") is a found item in p1 with obtainCriteria "Mrs. Hale has handed the player the shard of the broken brandy glass she kept in her apron pocket, or has told the player where she put it and the player has taken it." Phase p2 has "requiredItems": ["glass-shard"]. "orchard-key" is an ad item in p4, never required: p4's completionCriteria reads "... OR the player has shown the orchard cabinet key to Mrs. Hale, she has confirmed that only she and Eleanor hold keys to the cyanide cabinet, and the player has then confronted Eleanor with it."`;
 
 const premiseLine = (premise: string) => `Premise from the user: ${premise || "Surprise me with an original, gripping drama."}`;
 
@@ -371,10 +375,13 @@ export function characterBatchPrompt(premise: string, outline: StoryOutline, ids
     .join("\n");
   const items = outline.items.length
     ? outline.items
-        .map(
-          (i) =>
-            `- id "${i.id}": ${i.emoji} ${i.name} (${i.source}, available from ${i.availablePhase})${i.obtainCriteria ? `, obtained when: ${i.obtainCriteria}` : ""}`
-        )
+        .map((i) => {
+          const holders = holdersOf(i, outline.characters).map((c) => `${c.name} (${c.id})`);
+          return (
+            `- id "${i.id}": ${i.emoji} ${i.name} (${i.source}, available from ${i.availablePhase})${i.obtainCriteria ? `, obtained when: ${i.obtainCriteria}` : ""}` +
+            (holders.length ? `. Held, wanted or recognised by: ${holders.join(", ")}` : "")
+          );
+        })
         .join("\n")
     : "- none";
   return `${STORY_INTRO}
@@ -403,7 +410,7 @@ ${STORY_REQUIREMENTS}
 - Keep each character's id, name, role, avatarEmoji and unlockPhase exactly as in the roster.
 - knowledgeByPhase must have an entry for every phase id (${outline.phases.map((p) => p.id).join(", ")}). Be concise: a sentence or two per phase.
 - Keep the secrets consistent with the other characters' concepts.
-- A character who holds, wants or recognises an item must mention it BY NAME (exactly as listed above) in "knowledgeByPhase" and/or "secrets". The character who hands over a found item says when and why they would.
+- A character who holds, wants or recognises an item must mention it BY NAME (exactly as listed above) in "knowledgeByPhase" and/or "secrets". For each item above that names holders, that character's "knowledgeByPhase" entry for the item's availablePhase must say when and why they hand it over (found item) or how they react to it (ad item), using the item's exact name.
 
 ${APPEARANCE_RULES}
 

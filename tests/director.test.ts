@@ -57,7 +57,7 @@ describe("judgeTurn", () => {
 
   it("completing the last chapter finishes the story", async () => {
     const last = story.phases.length - 1;
-    const d = await judgeTurn({ ...base, ticket: payloadAt(last) }, verdict({ completed: true }));
+    const d = await judgeTurn({ ...base, ticket: payloadAt(last), owned: new Set(["ledger-page"]) }, verdict({ completed: true }));
     assert.equal(d.finished, true);
     assert.equal(d.newPhase, null);
     assert.equal(verifyTicket(d.ticket, 1, story).p, story.phases.length);

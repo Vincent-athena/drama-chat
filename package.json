@@ -9,6 +9,7 @@
     "setup": "tsx scripts/setup.ts",
     "gen-story": "tsx scripts/gen-story.ts",
     "typecheck": "tsc --noEmit",
+    "validate-stories": "tsx scripts/validate-stories.ts",
     "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {

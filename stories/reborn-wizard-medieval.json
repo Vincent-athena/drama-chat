@@ -18,7 +18,7 @@
         "He keeps a hidden journal of his doubts about the church’s teachings."
       ],
       "knowledgeByPhase": {
-        "p1": "He will reveal that he knows you have real magic (not just superstition) if you demonstrate a minor controlled act or speak of knowledge from your old world that no one could fake. He will agree to delay the execution if you promise to help him understand magic.",
+        "p1": "He will reveal that he knows you have real magic (not just superstition) if you demonstrate a minor controlled act or speak of knowledge from your old world that no one could fake. He will agree to delay the execution if you promise to help him understand magic. If the player shows the page of their grimoire and reads a rune that makes a flame bend, he recognises the miracle he saw as a child.",
         "p2": "He knows the hidden chamber under the chapel but will not reveal it unless you convince him it is for holy study.",
         "p3": "He can confirm that the king’s illness is natural if you describe symptoms in modern terms, but he will demand you keep it secret to avoid panic.",
         "p4": "He has heard rumors of Duke Aldric’s coup but dismisses them until you show evidence.",
@@ -42,7 +42,7 @@
         "He has a daughter who was executed for petty theft, and he blames the church."
       ],
       "knowledgeByPhase": {
-        "p1": "He knows you are not a threat if you speak to him about your old-world knowledge (e.g., how to treat infections). He will help you escape if you promise to expose the duke’s corruption.",
+        "p1": "He knows you are not a threat if you speak to him about your old-world knowledge (e.g., how to treat infections). He will help you escape if you promise to expose the duke’s corruption. Once he believes the player's magic is real and that they hate the duke as he does, he hands over his tunnel map.",
         "p2": "He can reveal the hidden chamber in the undercroft, which he uses for contraband.",
         "p3": "He knows the court healer is incompetent and can confirm the king’s illness is natural.",
         "p4": "He has a letter from Duke Aldric offering him gold to poison the king—he will give it to you if you promise to protect his remaining family.",
@@ -66,7 +66,7 @@
         "She is in love with the disgraced knight, Sir Rowan, but has never told him."
       ],
       "knowledgeByPhase": {
-        "p2": "She will reveal the location of a safe house in the village if you help her hide stolen documents.",
+        "p2": "She will reveal the location of a safe house in the village if you help her hide stolen documents. Shown Brutus's tunnel map, she points out the forgotten chamber under the chapel where magic could be practised unseen. Once she trusts the player, she gives them one of the duke's letters she stole from his study.",
         "p3": "She overheard the queen’s advisor plotting to blame you for the king’s illness.",
         "p4": "Her brother was arrested by the duke’s men, and she will reveal the duke’s hideout if you promise to save him.",
         "p5": "She can confirm the prince is alive and being held in the monastery.",
@@ -112,7 +112,7 @@
         "He has a gambling debt to a crime lord who is actually the duke’s agent."
       ],
       "knowledgeByPhase": {
-        "p3": "He will reveal the king’s illness is natural (though he lies about the cause) if you threaten to expose his incompetence.",
+        "p3": "He will reveal the king’s illness is natural (though he lies about the cause) if you threaten to expose his incompetence. Shown his own gambling marker, he panics and agrees to help administer a treatment in exchange for the player's silence.",
         "p4": "He can testify that Duke Aldric’s agent delivered a strange candle to the king’s chamber.",
         "p5": "He knows the duke’s hideout is the old monastery because he was brought there once blindfolded.",
         "p6": "He will confess to the poisoning if you promise to protect him from the duke.",
@@ -134,10 +134,10 @@
         "She is infertile and the prince is actually the son of her sister, who died in childbirth."
       ],
       "knowledgeByPhase": {
-        "p4": "She will reveal her suspicion that the duke is behind the king’s illness if you bring her proof.",
+        "p4": "She will reveal her suspicion that the duke is behind the king’s illness if you bring her proof. Shown the duke's letter, she finally has the proof she lacked against him.",
         "p5": "She will grant you a pardon if you rescue the prince.",
         "p6": "She will confirm the prince is safe if you bring him to her.",
-        "p7": "She will preside over your trial and can be swayed if you reveal the church’s corruption.",
+        "p7": "She will preside over your trial and can be swayed if you reveal the church’s corruption. Shown her son's signet ring, given freely, she believes the player saved him and is ready to pardon them.",
         "p8": "She will support legalizing magic if you promise to protect her son’s claim to the throne."
       },
       "unlockPhase": "p4"
@@ -155,7 +155,7 @@
         "He has a hidden son who is a powerful latent magic user."
       ],
       "knowledgeByPhase": {
-        "p4": "He will offer you a position if you join him, revealing his plan to overthrow the king.",
+        "p4": "He will offer you a position if you join him, revealing his plan to overthrow the king. Shown his own letter, he knows he is exposed and tries to buy the player instead.",
         "p5": "He will taunt you with the prince’s location if you confront him.",
         "p6": "He will offer to spare you if you join him, but his sorcerer will try to kill you anyway.",
         "p7": "He will testify against you if captured, but can be blackmailed with his hidden son’s secret.",
@@ -196,7 +196,7 @@
         "He dreams of becoming a wizard himself."
       ],
       "knowledgeByPhase": {
-        "p6": "He will reveal the sorcerer’s weakness (a phobia of fire) if you befriend him.",
+        "p6": "He will reveal the sorcerer’s weakness (a phobia of fire) if you befriend him. After he is freed, he gives the player his signet ring as a pledge of thanks.",
         "p7": "He will testify that you saved his life, which sways the queen.",
         "p8": "He will beg you to stay and teach him magic."
       },
@@ -215,7 +215,7 @@
         "He knows magic is real but suppresses it to maintain power."
       ],
       "knowledgeByPhase": {
-        "p7": "He will testify against you, but can be blackmailed with his secret treasury.",
+        "p7": "He will testify against you, but can be blackmailed with his secret treasury. Shown the copy of his treasury ledger, he understands that the bribe paid to the chief witness can be traced.",
         "p8": "He will oppose legalizing magic unless you threaten to expose his corruption."
       },
       "unlockPhase": "p7"
@@ -253,7 +253,10 @@
       "narration": "You are free, but under watch, lodged in a servant’s chamber of the royal keep. The court is a nest of knives, and the king’s health is failing. A maid named Elara has taken an interest in you—and so has a hooded stranger who leaves cryptic notes. You need allies before the next full moon.",
       "objective": "Secure a hiding place for your magical studies and learn who in the castle might secretly support you.",
       "completionCriteria": "A character has revealed the location of a hidden chamber or safe house where magic can be practiced, AND a character has revealed that at least one noble secretly sympathizes with magic users.",
-      "hint": "Servants hear everything. The stranger might be testing you before revealing themselves."
+      "hint": "Servants hear everything. The jailer's tunnels go further than he admits.",
+      "requiredItems": [
+        "tunnel-map"
+      ]
     },
     {
       "id": "p3",
@@ -269,7 +272,10 @@
       "narration": "The king is recovering, but his brother, Duke Aldric, has begun rallying troops. Whispers say Aldric has the church’s blessing and plans a coup. A mysterious figure offers you a deal: power in exchange for a favor that could destroy your soul. Meanwhile, Elara’s loyalty is tested when her brother is arrested.",
       "objective": "Expose the duke’s conspiracy to the king—or decide to join it—while protecting your allies from the fallout.",
       "completionCriteria": "A character has revealed concrete evidence (e.g., a letter or witness) that Duke Aldric is planning the coup, AND you have either given that evidence to a loyalist or made a pact with the duke.",
-      "hint": "The mysterious figure might be the duke’s agent—or a third faction. Elara’s brother could be a bargaining chip."
+      "hint": "The mysterious figure might be the duke’s agent—or a third faction. Elara’s brother could be a bargaining chip.",
+      "requiredItems": [
+        "dukes-letter"
+      ]
     },
     {
       "id": "p5",
@@ -292,8 +298,11 @@
       "title": "The Trial of Heresy",
       "narration": "The duke is captured, but the church demands a scapegoat. You are put on trial for heresy, and the evidence is damning. Your allies are barred from speaking, but the queen herself presides. Old enemies return to testify against you, and a figure from your past world appears in a dream—or is it a vision?",
       "objective": "Survive the trial by discrediting the church’s evidence or by convincing the queen to spare you.",
-      "completionCriteria": "A character has revealed that the church’s chief witness was bribed or lied, AND the queen has declared you innocent or pardoned you.",
-      "hint": "The jailer might have seen something in the cells. The queen’s faith is shaken by her son’s rescue."
+      "completionCriteria": "A character has revealed that the church's chief witness was bribed or lied (for example after the player showed the High Priest's treasury ledger), AND the queen has declared you innocent or pardoned you.",
+      "hint": "The jailer might have seen something in the cells. The queen's faith is shaken by her son's rescue: bring proof of it.",
+      "requiredItems": [
+        "prince-signet"
+      ]
     },
     {
       "id": "p8",
@@ -302,6 +311,59 @@
       "objective": "Decide the fate of magic in Valdoria: either help establish a new law that protects magic users, or destroy the church’s power, or abdicate and leave the kingdom to its fate.",
       "completionCriteria": "A character has confirmed that a new law or decree has been passed (or will be passed) that legalizes magic, OR the church’s leader has been overthrown, OR you have told a character you are leaving and they have acknowledged it.",
       "hint": "The queen owes you a debt. The church’s leader might be blackmailed. Some allies may not want you to leave."
+    }
+  ],
+  "items": [
+    {
+      "id": "grimoire-page",
+      "name": "Page of your grimoire",
+      "emoji": "📄",
+      "description": "A scorched page in your own handwriting, from a life you don't remember living, covered in runes only you can read.",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "tunnel-map",
+      "name": "Tunnel map",
+      "emoji": "🗺️",
+      "description": "A greasy scrap of hide with charcoal lines: the old smuggling tunnels under the castle.",
+      "source": "found",
+      "availablePhase": "p1",
+      "obtainCriteria": "Jailer Brutus has given the player his map of the tunnels beneath the castle, or drawn it for them."
+    },
+    {
+      "id": "dukes-letter",
+      "name": "The duke's letter",
+      "emoji": "✉️",
+      "description": "A letter in a heavy, sloping hand, sealed with a wolf's head.",
+      "source": "found",
+      "availablePhase": "p2",
+      "obtainCriteria": "Elara has given the player one of the letters she stole from Duke Aldric's study."
+    },
+    {
+      "id": "aldous-marker",
+      "name": "Gambling marker",
+      "emoji": "🎲",
+      "description": "A debt marker signed by the Court Healer, bought from a crime lord's runner who wanted quick coin.",
+      "source": "ad",
+      "availablePhase": "p3"
+    },
+    {
+      "id": "prince-signet",
+      "name": "Signet ring",
+      "emoji": "💍",
+      "description": "A small gold ring with the royal crest, warm from the hand of the boy who gave it.",
+      "source": "found",
+      "availablePhase": "p6",
+      "obtainCriteria": "Prince Theron has given the player his signet ring after being freed."
+    },
+    {
+      "id": "treasury-ledger",
+      "name": "Treasury ledger",
+      "emoji": "📕",
+      "description": "A copy of the church's secret treasury accounts, sold to you by an acolyte who has stopped believing.",
+      "source": "ad",
+      "availablePhase": "p7"
     }
   ]
 }

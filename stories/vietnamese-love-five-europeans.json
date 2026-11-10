@@ -19,9 +19,9 @@
         "Cô vẫn còn tình cảm với Jacques và đang do dự có nên quay lại với anh ta không."
       ],
       "knowledgeByPhase": {
-        "p1": "Tiết lộ cô đến Việt Nam để tìm bức tranh 'Mùa Thu Hà Nội' bị thất lạc, nhưng không nói ai đã lấy.",
+        "p1": "Tiết lộ cô đến Việt Nam để tìm bức tranh 'Mùa Thu Hà Nội' bị thất lạc, nhưng không nói ai đã lấy. Nếu người chơi cho xem tấm ảnh cũ ở Paris, cô sững người: bức tranh trong góc ảnh chính là bức tranh cô đang tìm.",
         "p2": "Thừa nhận Sofia là bạn thân và đã nhờ Sofia để mắt đến Minh.",
-        "p6": "Thú nhận Jacques là chồng cũ và bức tranh là của cô, bị Jacques đánh cắp. Cô cũng thừa nhận đã nghi ngờ Greta."
+        "p6": "Thú nhận Jacques là chồng cũ và bức tranh là của cô, bị Jacques đánh cắp. Cô cũng thừa nhận đã nghi ngờ Greta. Thấy chiếc nhẫn cưới khắc 'J & E', cô không thể chối Jacques là chồng cũ."
       },
       "unlockPhase": "p1",
       "appearance": {
@@ -74,7 +74,7 @@
         "p1": "Tiết lộ cô đang tìm kiếm một đối tác kinh doanh bí ẩn, nhưng không nói tên.",
         "p3": "Được Carmen tiết lộ là người đứng sau ép buộc cô viết bài.",
         "p5": "Thừa nhận đang gặp khó khăn tài chính và đã gặp Jacques ở Đà Lạt để thuyết phục đầu tư.",
-        "p7": "Thú nhận âm mưu trả thù Elodie và việc thuê Carmen, mua chuộc Anneke."
+        "p7": "Thú nhận âm mưu trả thù Elodie và việc thuê Carmen, mua chuộc Anneke. Bị đưa bản hợp đồng đầu tư giả, cô hiểu mình đã bị lật tẩy."
       },
       "unlockPhase": "p1",
       "appearance": {
@@ -124,7 +124,7 @@
         "Cô đã chụp được bằng chứng Greta gặp Carmen và Anneke."
       ],
       "knowledgeByPhase": {
-        "p2": "Thừa nhận là bạn thân của Elodie và đã theo dõi Minh, nhưng nói cô bắt đầu nghi ngờ Elodie.",
+        "p2": "Thừa nhận là bạn thân của Elodie và đã theo dõi Minh, nhưng nói cô bắt đầu nghi ngờ Elodie. Cô có bức ảnh chụp Greta gặp Carmen; cô gửi nó cho người chơi khi tin họ không đứng về phía Greta.",
         "p7": "Tiết lộ đã tìm thấy bằng chứng về âm mưu của Greta và cung cấp bằng chứng."
       },
       "unlockPhase": "p2",
@@ -175,7 +175,7 @@
         "Cô thực sự muốn giúp Minh nếu anh bảo vệ cô khỏi Greta."
       ],
       "knowledgeByPhase": {
-        "p3": "Thú nhận bị Greta ép buộc viết bài và tiết lộ Greta là người đứng sau.",
+        "p3": "Thú nhận bị Greta ép buộc viết bài và tiết lộ Greta là người đứng sau. Thấy ảnh Greta gặp Carmen, cô biết không giấu được nữa và thú nhận mình bị ép viết bài.",
         "p7": "Cung cấp bằng chứng Greta đã thuê cô và mua chuộc Anneke."
       },
       "unlockPhase": "p3",
@@ -226,7 +226,7 @@
         "Cô muốn sử dụng thông tin này để thăng tiến trong công việc, không hoàn toàn vì công lý."
       ],
       "knowledgeByPhase": {
-        "p4": "Tiết lộ cô theo dõi Greta và cho xem bằng chứng Greta gặp một người đàn ông bí ẩn ở Đà Lạt.",
+        "p4": "Tiết lộ cô theo dõi Greta và cho xem bằng chứng Greta gặp một người đàn ông bí ẩn ở Đà Lạt. Nhìn lá thư nặc danh, cô nhận ra loại giấy tiêu đề của quỹ từ thiện Greta quản lý, và cho người chơi xem bằng chứng Greta gặp một người đàn ông ở Đà Lạt.",
         "p7": "Hỗ trợ pháp lý để vạch trần Greta nếu cần."
       },
       "unlockPhase": "p4",
@@ -277,7 +277,7 @@
         "Cô cảm thấy tội lỗi và muốn chuộc lỗi bằng cách giúp Minh."
       ],
       "knowledgeByPhase": {
-        "p5": "Tiết lộ người đàn ông bí ẩn là Jacques và Greta đã gặp anh ta để thuyết phục đầu tư.",
+        "p5": "Tiết lộ người đàn ông bí ẩn là Jacques và Greta đã gặp anh ta để thuyết phục đầu tư. Thấy trang sổ đăng ký homestay của chính mình, cô hiểu không giấu được và nói ngay vị khách đó là Jacques.",
         "p7": "Thú nhận đã được Greta trả tiền để theo dõi Minh và cung cấp bằng chứng."
       },
       "unlockPhase": "p5",
@@ -328,7 +328,7 @@
         "Anh ta muốn quay lại với Elodie và sẵn sàng trả lại bức tranh để chuộc lỗi."
       ],
       "knowledgeByPhase": {
-        "p6": "Xuất hiện gián tiếp qua lời kể của Elodie; sau đó có thể liên lạc được với Minh qua điện thoại.",
+        "p6": "Xuất hiện gián tiếp qua lời kể của Elodie; sau đó có thể liên lạc được với Minh qua điện thoại. Anh muốn chuộc lỗi với Elodie; nếu người chơi hứa giúp anh gặp lại cô, anh đưa bản hợp đồng đầu tư giữa anh và Greta.",
         "p8": "Có thể xuất hiện trực tiếp để đưa ra lời đề nghị với Minh và Elodie."
       },
       "unlockPhase": "p6",
@@ -379,7 +379,7 @@
         "Bà muốn Minh tìm được hạnh phúc nhưng sợ con bị tổn thương."
       ],
       "knowledgeByPhase": {
-        "p2": "Gọi điện hỏi thăm và tiết lộ bà đã nhận được thư nặc danh cảnh báo.",
+        "p2": "Gọi điện hỏi thăm và tiết lộ bà đã nhận được thư nặc danh cảnh báo. Bà đưa lá thư nặc danh cho người chơi nếu họ kể thật với bà về các cô gái.",
         "p4": "Cung cấp thêm chi tiết về lá thư và khuyên Minh cẩn thận."
       },
       "unlockPhase": "p2",
@@ -430,7 +430,7 @@
         "Anh có cảm tình với Sofia và muốn bảo vệ cô."
       ],
       "knowledgeByPhase": {
-        "p3": "Cung cấp thông tin về cuộc gặp giữa Greta và Carmen.",
+        "p3": "Cung cấp thông tin về cuộc gặp giữa Greta và Carmen. Anh cũng có ảnh Greta gặp Carmen ở quán kín và sẵn lòng gửi cho người chơi.",
         "p5": "Chia sẻ nghi ngờ về Beatrice và cảm xúc với Sofia."
       },
       "unlockPhase": "p3",
@@ -592,7 +592,10 @@
       "narration": "Tin đồn về mối quan hệ của bạn với các cô gái châu Âu bắt đầu lan truyền. Một cô gái người Tây Ban Nha tên là Carmen xuất hiện, làm việc tại một tạp chí lá cải địa phương. Cô ấy muốn phỏng vấn bạn, nhưng có vẻ cô ấy biết nhiều hơn những gì cô ấy viết.",
       "objective": "Ngăn chặn Carmen viết bài bôi nhọ bạn bằng cách tìm ra bí mật của cô ấy.",
       "completionCriteria": "Carmen thú nhận cô đang bị ép buộc bởi một người giấu mặt để viết bài, và cô tiết lộ người đó có liên hệ với Greta.",
-      "hint": "Hỏi Carmen về nguồn tin của cô ấy và ai đang đe dọa cô ấy."
+      "hint": "Hỏi Carmen về nguồn tin của cô ấy. Một bức ảnh sẽ nói nhiều hơn lời buộc tội.",
+      "requiredItems": [
+        "anh-greta-carmen"
+      ]
     },
     {
       "id": "p4",
@@ -600,7 +603,10 @@
       "narration": "Bạn nhận được một bức thư nặc danh cảnh báo rằng một trong những cô gái đang âm mưu hại bạn. Cùng lúc đó, một luật sư người Anh tên là Beatrice liên hệ với bạn, nói rằng cô ấy đang điều tra về một vụ lừa đảo tài chính có liên quan đến Greta. Cô ấy muốn hợp tác với bạn.",
       "objective": "Điều tra âm mưu đứng sau bức thư nặc danh và quyết định có nên tin Beatrice hay không.",
       "completionCriteria": "Beatrice tiết lộ cô đã theo dõi Greta vì nghi ngờ cô ta biển thủ tiền từ một quỹ từ thiện, và cô cho bạn xem bằng chứng Greta đã gặp một người đàn ông bí ẩn tại Đà Lạt.",
-      "hint": "Hỏi Beatrice về bằng chứng cô ấy có và về mối liên hệ với Greta."
+      "hint": "Hỏi Beatrice về bằng chứng cô ấy có. Lá thư mẹ bạn nhận được có thể là manh mối.",
+      "requiredItems": [
+        "thu-nac-danh"
+      ]
     },
     {
       "id": "p5",
@@ -624,7 +630,10 @@
       "narration": "Bạn tập hợp tất cả các cô gái tại một buổi gặp mặt. Căng thẳng lên đến đỉnh điểm khi Sofia tiết lộ rằng cô đã tìm thấy bằng chứng về một âm mưu lớn hơn. Hóa ra, Greta không chỉ muốn tiền mà còn muốn trả thù Elodie vì một chuyện trong quá khứ. Anneke và Carmen cũng bị cuốn vào vòng xoáy này.",
       "objective": "Vạch trần âm mưu của Greta và tìm ra động cơ thực sự của cô ta.",
       "completionCriteria": "Greta thừa nhận cô muốn phá hoại Elodie vì Elodie đã từng khiến bạn trai cũ của Greta phá sản. Sofia cung cấp bằng chứng Greta đã thuê Carmen viết bài bôi nhọ và đã cố gắng mua chuộc Anneke để theo dõi bạn.",
-      "hint": "Khuyến khích các cô gái đối chất với Greta và đưa ra bằng chứng."
+      "hint": "Khuyến khích các cô gái đối chất với Greta, và đặt bản hợp đồng lên bàn.",
+      "requiredItems": [
+        "hop-dong-dau-tu"
+      ]
     },
     {
       "id": "p8",
@@ -633,6 +642,59 @@
       "objective": "Đưa ra quyết định cuối cùng về mối quan hệ của bạn với từng cô gái và kết thúc câu chuyện.",
       "completionCriteria": "Bạn tuyên bố lựa chọn của mình với ít nhất một cô gái và giải quyết mâu thuẫn với những người còn lại (tha thứ hoặc từ biệt).",
       "hint": "Hãy nói chuyện với từng người để hiểu rõ cảm xúc của họ trước khi quyết định."
+    }
+  ],
+  "items": [
+    {
+      "id": "anh-paris",
+      "name": "Tấm ảnh cũ ở Paris",
+      "emoji": "📷",
+      "description": "Tấm ảnh bạn chụp ở Paris năm năm trước. Góc ảnh có một bức tranh treo tường mà bạn chưa từng để ý.",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "anh-greta-carmen",
+      "name": "Ảnh Greta gặp Carmen",
+      "emoji": "🖼️",
+      "description": "Ảnh chụp lén qua cửa kính một quán kín: hai người phụ nữ cúi sát vào nhau.",
+      "source": "found",
+      "availablePhase": "p2",
+      "obtainCriteria": "Sofia hoặc Lucas đã gửi cho người chơi bức ảnh chụp Greta gặp Carmen."
+    },
+    {
+      "id": "thu-nac-danh",
+      "name": "Lá thư nặc danh",
+      "emoji": "✉️",
+      "description": "Lá thư đánh máy không ký tên, cảnh báo về 'những cô gái ngoại quốc quanh con trai bà'.",
+      "source": "found",
+      "availablePhase": "p2",
+      "obtainCriteria": "Bà Lan đã đưa cho người chơi lá thư nặc danh bà nhận được."
+    },
+    {
+      "id": "so-dang-ky-homestay",
+      "name": "Trang sổ đăng ký homestay",
+      "emoji": "📒",
+      "description": "Một trang sổ đăng ký khách của homestay ở Đà Lạt, do người dọn phòng bán lại — có tên một vị khách người Pháp.",
+      "source": "ad",
+      "availablePhase": "p5"
+    },
+    {
+      "id": "nhan-cuoi-cu",
+      "name": "Nhẫn cưới khắc 'J & E'",
+      "emoji": "💍",
+      "description": "Chiếc nhẫn cưới khắc 'J & E', bạn đấu giá được trong lô đồ cũ của một nhà sưu tập người Bỉ.",
+      "source": "ad",
+      "availablePhase": "p6"
+    },
+    {
+      "id": "hop-dong-dau-tu",
+      "name": "Hợp đồng đầu tư giả",
+      "emoji": "📑",
+      "description": "Bản hợp đồng đầu tư dày cộp với những con số đẹp đến mức đáng ngờ.",
+      "source": "found",
+      "availablePhase": "p6",
+      "obtainCriteria": "Jacques đã đưa cho người chơi bản hợp đồng đầu tư giữa anh ta và Greta."
     }
   ]
 }

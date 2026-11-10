@@ -18,9 +18,9 @@
         "Cô biết một phần kế hoạch của kẻ phản bội nhưng im lặng vì bị đe dọa."
       ],
       "knowledgeByPhase": {
-        "p1": "Tin rằng Malakar đã chết, nhưng khi thấy bạn tỉnh dậy, cô do dự. Cô sẽ yêu cầu bằng chứng về ký ức.",
+        "p1": "Tin rằng Malakar đã chết, nhưng khi thấy bạn tỉnh dậy, cô do dự. Cô sẽ yêu cầu bằng chứng về ký ức. Thấy nhẫn ấn của Malakar trên tay người chơi, cô dao động — chỉ Malakar đeo được nó — nhưng vẫn cần thêm một ký ức riêng để tin hẳn.",
         "p2": "Cô vô tình nghe được một cuộc nói chuyện về tin đồn và có thể tiết lộ tên kẻ lan truyền nếu bạn thuyết phục.",
-        "p3": "Cô là người duy nhất nhìn thấy bạn cứu rồng từ xa, nhưng cô không chắc đó là phép thuật hay ảo giác.",
+        "p3": "Cô là người duy nhất nhìn thấy bạn cứu rồng từ xa, nhưng cô không chắc đó là phép thuật hay ảo giác. Cô thấy con rồng non trao vảy cho người chơi và sẵn lòng xác nhận điều đó.",
         "p4": "Cô có mặt tại hội đồng với tư cách nhân chứng, nhưng bị buộc phải im lặng về một sự thật.",
         "p5": "Cô tiết lộ rằng kẻ phản bội đã từng là người yêu của cô, và cô biết động cơ của hắn.",
         "p6": "Cô nghi ngờ người tự nhận là con Malakar vì cô biết Malakar không thể có con.",
@@ -74,7 +74,7 @@
         "Bà ta giữ một lọ thuốc giải độc có thể cứu Malakar nếu ông ta còn sống."
       ],
       "knowledgeByPhase": {
-        "p1": "Bà ta là người đầu tiên xác nhận bạn là Malakar sau khi bạn kể lại một ký ức riêng tư.",
+        "p1": "Bà ta là người đầu tiên xác nhận bạn là Malakar sau khi bạn kể lại một ký ức riêng tư. Bà đưa lọ thuốc giải độc cho người chơi nếu tin họ là Malakar, và dặn giữ nó làm bằng chứng ông từng bị đầu độc.",
         "p2": "Bà ta tiết lộ rằng có người đã mua chuộc người hầu để lan tin đồn.",
         "p4": "Bà ta cung cấp bằng chứng về việc Lysandra mua độc dược.",
         "p6": "Bà ta giúp bạn kiểm tra ADN phép thuật của Elara."
@@ -126,7 +126,7 @@
         "Anh ta đã từng chứng kiến một phép thuật thật sự nhưng bị ép phải nói đó là trò lừa."
       ],
       "knowledgeByPhase": {
-        "p2": "Anh ta có mặt để ghi chép sự kiện, và yêu cầu bạn chứng minh bằng kiến thức học thuật.",
+        "p2": "Anh ta có mặt để ghi chép sự kiện, và yêu cầu bạn chứng minh bằng kiến thức học thuật. Nhìn vào tinh thể ký ức, anh không thể giả vờ đó là trò lừa nữa và thừa nhận người chơi có sức mạnh thật.",
         "p3": "Anh ta phát hiện ra dấu vết của một loại phép thuật cổ đã bị thất truyền, nhưng không dám công bố.",
         "p4": "Anh ta phân tích mẫu máu rồng và thấy dấu hiệu chữa lành kỳ lạ, bắt đầu nghi ngờ.",
         "p5": "Anh ta vô tình tiết lộ một bí mật của hội đồng để bảo vệ bạn.",
@@ -235,9 +235,9 @@
         "Anh ta vẫn còn yêu Seraphina và hối hận vì đã phản bội."
       ],
       "knowledgeByPhase": {
-        "p3": "Anh ta là người theo dõi bạn và chứng kiến bạn cứu rồng, nhưng báo cáo sai sự thật cho Lysandra.",
+        "p3": "Anh ta là người theo dõi bạn và chứng kiến bạn cứu rồng, nhưng báo cáo sai sự thật cho Lysandra. Hắn tận mắt thấy con rồng non tự rứt một chiếc vảy trao cho người chơi sau khi được cứu.",
         "p4": "Anh ta bị buộc phải làm chứng chống lại bạn tại hội đồng, nhưng do dự khi nhìn thấy Seraphina.",
-        "p5": "Anh ta bị vạch trần là kẻ phản bội và thú nhận động cơ là tình yêu với Lysandra và lòng tham.",
+        "p5": "Anh ta bị vạch trần là kẻ phản bội và thú nhận động cơ là tình yêu với Lysandra và lòng tham. Khi người chơi đưa bức thư của Lysandra ra trước mặt người khác, hắn không chối được và thú nhận.",
         "p6": "Anh ta cung cấp thông tin về âm mưu 'con ruột' để chuộc lỗi.",
         "p7": "Anh ta quay lại giúp bạn chống lại Lysandra sau khi bị cô ta phản bội.",
         "p8": "Anh ta chiến đấu bên cạnh bạn và chết trong trận chiến cuối cùng, chuộc lại danh dự."
@@ -289,7 +289,7 @@
         "Anh ta đã từng được Malakar bí mật giúp đỡ trong quá khứ mà không biết."
       ],
       "knowledgeByPhase": {
-        "p4": "Anh ta xuất hiện tại hội đồng với tư cách người biểu tình, và có thể là đồng minh nếu bạn thuyết phục.",
+        "p4": "Anh ta xuất hiện tại hội đồng với tư cách người biểu tình, và có thể là đồng minh nếu bạn thuyết phục. Người của anh chặn được một bức thư Lysandra hứa ban địa vị cho Theron; anh đưa nó cho người chơi nếu họ hứa không đứng về phía hội đồng.",
         "p5": "Anh ta cung cấp bằng chứng về mối liên hệ giữa Lysandra và kẻ chủ mưu.",
         "p6": "Anh ta nghi ngờ người tự nhận là con Malakar là giả mạo và giúp bạn điều tra.",
         "p7": "Anh ta chiến đấu bên cạnh bạn chống lại cuộc tấn công.",
@@ -342,7 +342,7 @@
         "Ông ta biết về âm mưu của Lysandra nhưng im lặng vì bị đe dọa."
       ],
       "knowledgeByPhase": {
-        "p4": "Ông ta chủ trì phiên điều trần và là người bạn cần thuyết phục.",
+        "p4": "Ông ta chủ trì phiên điều trần và là người bạn cần thuyết phục. Khi thấy lọ thuốc giải và hiểu nó dành cho loại độc nào, ông có cớ đứng về phía người chơi mà không lộ việc mình bị đe doạ. Ông cũng giữ một bức thư của Lysandra gửi Theron và đưa nó nếu người chơi che chở được ông trước hội đồng.",
         "p5": "Ông ta tiết lộ rằng mình đã bị Lysandra đe dọa, và cung cấp bằng chứng.",
         "p7": "Ông ta công khai ủng hộ bạn sau khi chứng kiến sự thật."
       },
@@ -394,7 +394,7 @@
       ],
       "knowledgeByPhase": {
         "p5": "Cô ta xuất hiện và tiết lộ rằng con rồng là vật hiến tế của một thế lực đen tối.",
-        "p6": "Cô ta cung cấp nghi lễ để phát hiện kẻ phản bội.",
+        "p6": "Cô ta cung cấp nghi lễ để phát hiện kẻ phản bội. Cô biết vảy rồng non chỉ sáng khi chạm vào người cùng dòng máu với Malakar.",
         "p7": "Cô ta giúp bạn triệu hồi linh hồn của Malakar để hỏi ý kiến.",
         "p8": "Cô ta tiết lộ rằng cô ta đã biết về Corvus từ lâu và đang chờ bạn xuất hiện."
       },
@@ -445,7 +445,7 @@
         "Cô ta dần phát hiện ra sự thật và quyết định phản bội cha nuôi để giúp bạn."
       ],
       "knowledgeByPhase": {
-        "p6": "Cô ta xuất hiện và tuyên bố là con của Malakar, đưa ra một kỷ vật giả để chứng minh.",
+        "p6": "Cô ta xuất hiện và tuyên bố là con của Malakar, đưa ra một kỷ vật giả để chứng minh. Nếu người chơi đặt vảy rồng non lên tay cô và nó không sáng, cô không chối được nữa và thừa nhận mình không phải con ruột của Malakar.",
         "p7": "Cô ta thú nhận rằng mình được gửi đến để do thám, nhưng đã hối hận.",
         "p8": "Cô ta tiết lộ vị trí của kẻ chủ mưu và giúp bạn tiếp cận hắn."
       },
@@ -550,7 +550,7 @@
         "p1": "Xuất hiện trong giấc mơ, tiết lộ một phần ký ức để giúp bạn qua cửa ải đầu tiên.",
         "p3": "Cảnh báo bạn về con rồng và kẻ theo dõi.",
         "p5": "Tiết lộ tên kẻ phản bội trong ký ức của mình.",
-        "p7": "Tiết lộ rằng ông ta đã sắp đặt mọi thứ, và bạn phải hoàn thành sứ mệnh của mình.",
+        "p7": "Tiết lộ rằng ông ta đã sắp đặt mọi thứ, và bạn phải hoàn thành sứ mệnh của mình. Ông biết Gương Ánh Trăng có thể buộc Corvus lộ chân tướng.",
         "p8": "Ông ta biến mất vĩnh viễn, trao toàn bộ sức mạnh cho bạn."
       },
       "unlockPhase": "p7",
@@ -600,7 +600,7 @@
         "Hắn ta tin rằng mình đang duy trì sự cân bằng của thế giới bằng cách loại bỏ những linh hồn mạnh."
       ],
       "knowledgeByPhase": {
-        "p8": "Hắn ta xuất hiện trực tiếp và tiết lộ toàn bộ âm mưu, bao gồm cả cái chết của bạn ở thế kỷ 21."
+        "p8": "Hắn ta xuất hiện trực tiếp và tiết lộ toàn bộ âm mưu, bao gồm cả cái chết của bạn ở thế kỷ 21. Nếu bị Gương Ánh Trăng chiếu vào, hắn không giữ được hình người và buộc phải nói thật về cái chết của người chơi."
       },
       "unlockPhase": "p8",
       "appearance": {
@@ -667,9 +667,12 @@
       "id": "p4",
       "title": "Hội Đồng Phù Thuỷ",
       "narration": "Hội đồng phù thuỷ triệu tập bạn để chất vấn về cái chết của Malakar. Các thành viên chia rẽ: kẻ muốn loại trừ bạn, kẻ muốn lợi dụng. Một phù thuỷ trẻ tỏ ra thân thiện nhưng ánh mắt đầy toan tính.",
-      "objective": "Sống sót qua phiên điều trần bằng cách vạch trần âm mưu của kẻ chống đối, đồng thời giành được sự ủng hộ của ít nhất một thành viên hội đồng.",
+      "objective": "Sống sót qua phiên điều trần bằng cách vạch trần âm mưu của kẻ chống đối, đồng thời giành được sự ủng hộ của ít nhất một thành viên hội đồng. Mang theo bằng chứng Malakar từng bị đầu độc.",
       "completionCriteria": "Bạn khiến hội đồng hoãn việc kết án, và một thành viên hội đồng công khai đứng về phía bạn (có thể là do bạn đe dọa hoặc thuyết phục).",
-      "hint": "Hội đồng sợ nhất là bí mật của chính họ bị phơi bày."
+      "hint": "Hội đồng sợ nhất là bí mật của chính họ bị phơi bày.",
+      "requiredItems": [
+        "lo-thuoc-giai"
+      ]
     },
     {
       "id": "p5",
@@ -677,7 +680,10 @@
       "narration": "Bạn phát hiện ra rằng kẻ đứng sau vụ tấn công rồng và tin đồn chống lại bạn là một người thân cận. Kẻ đó đã phản bội Malakar vì một lý do cá nhân. Bạn quyết định đối đầu, nhưng hắn ta có đồng minh.",
       "objective": "Vạch trần kẻ phản bội trước những người khác, và buộc hắn phải thú nhận động cơ.",
       "completionCriteria": "Kẻ phản bội thừa nhận tội lỗi trước mặt ít nhất một nhân vật khác, và tiết lộ lý do phản bội (liên quan đến một mối quan hệ bí mật).",
-      "hint": "Kẻ phản bội không hành động một mình. Hãy tìm xem ai đã giúp hắn."
+      "hint": "Kẻ phản bội không hành động một mình. Hãy tìm xem ai đã giúp hắn.",
+      "requiredItems": [
+        "thu-cua-lysandra"
+      ]
     },
     {
       "id": "p6",
@@ -685,7 +691,10 @@
       "narration": "Một người lạ mặt xuất hiện, tự nhận là con ruột của Malakar. Thông tin này gây chấn động. Bạn biết Malakar không có con, nhưng ký ức của ông ta có thể đã bị sửa đổi. Kẻ thù mới có thể đang lợi dụng người này.",
       "objective": "Xác minh thân phận của người tự nhận là con Malakar và tìm ra ai đứng sau màn kịch này.",
       "completionCriteria": "Bạn chứng minh được người đó không phải con ruột (hoặc phát hiện họ là con nuôi bí mật), và một nhân vật thừa nhận đã dàn dựng âm mưu này.",
-      "hint": "Ký ức có thể bị đánh tráo, nhưng dòng máu thì không."
+      "hint": "Ký ức có thể bị đánh tráo, nhưng dòng máu thì không. Thứ con rồng trao cho bạn biết phân biệt.",
+      "requiredItems": [
+        "vay-rong-non"
+      ]
     },
     {
       "id": "p7",
@@ -700,8 +709,61 @@
       "title": "Sự Thật Về Cái Chết",
       "narration": "Kẻ chủ mưu cuối cùng lộ diện: một thực thể cổ xưa đã âm mưu chiếm lấy cơ thể Malakar từ lâu, và cái chết của bạn ở thế kỷ 21 là một phần trong kế hoạch của hắn. Bạn phải đối mặt và đưa ra lựa chọn cuối cùng: trả thù hay tha thứ.",
       "objective": "Đối chất với kẻ chủ mưu, buộc hắn thừa nhận sự thật trước tất cả, và đưa ra quyết định cuối cùng về số phận của hắn.",
-      "completionCriteria": "Kẻ chủ mưu thừa nhận đã gây ra cái chết của bạn ở thế kỷ 21, và bạn tuyên bố quyết định của mình (trả thù hoặc tha thứ) trước mặt ít nhất hai nhân vật.",
+      "completionCriteria": "Kẻ chủ mưu thừa nhận đã gây ra cái chết của bạn ở thế kỷ 21 (tự nguyện, hoặc sau khi bị Gương Ánh Trăng chiếu vào), và bạn tuyên bố quyết định của mình (trả thù hoặc tha thứ) trước mặt ít nhất hai nhân vật.",
       "hint": "Sức mạnh thực sự không nằm ở việc trừng phạt, mà ở việc lựa chọn."
+    }
+  ],
+  "items": [
+    {
+      "id": "nhan-an-malakar",
+      "name": "Nhẫn ấn của Malakar",
+      "emoji": "💍",
+      "description": "Chiếc nhẫn bạc khắc ấn tháp phù thuỷ, mắc chặt trên ngón tay bạn từ lúc tỉnh dậy — không ai khác đeo vừa.",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "lo-thuoc-giai",
+      "name": "Lọ thuốc giải độc",
+      "emoji": "🧪",
+      "description": "Lọ thuỷ tinh tím nút sáp, bên trong là thứ thuốc đặc sánh có mùi cỏ đắng.",
+      "source": "found",
+      "availablePhase": "p1",
+      "obtainCriteria": "Mira đã đưa cho người chơi lọ thuốc giải độc bà cất giữ."
+    },
+    {
+      "id": "tinh-the-ky-uc",
+      "name": "Tinh thể ký ức",
+      "emoji": "💎",
+      "description": "Tinh thể ký ức mua lại từ một thương nhân rong — ai nhìn vào cũng thấy lại một phép thuật thật, không thể gọi là trùng hợp.",
+      "source": "ad",
+      "availablePhase": "p2"
+    },
+    {
+      "id": "vay-rong-non",
+      "name": "Vảy rồng non",
+      "emoji": "🐲",
+      "description": "Chiếc vảy ấm như than hồng, ánh lên khi chạm vào người cùng dòng máu với chủ nhân tháp.",
+      "source": "found",
+      "availablePhase": "p3",
+      "obtainCriteria": "Một nhân vật đã xác nhận con rồng non tự rứt một chiếc vảy trao cho người chơi sau khi được cứu."
+    },
+    {
+      "id": "thu-cua-lysandra",
+      "name": "Thư của Lysandra",
+      "emoji": "✉️",
+      "description": "Bức thư niêm phong bằng sáp tím, chữ viết nghiêng đầy kiêu hãnh.",
+      "source": "found",
+      "availablePhase": "p4",
+      "obtainCriteria": "Kael hoặc Aldric đã đưa cho người chơi bức thư trong đó Lysandra hứa ban địa vị cho Theron."
+    },
+    {
+      "id": "guong-anh-trang",
+      "name": "Gương Ánh Trăng",
+      "emoji": "🌕",
+      "description": "Chiếc gương bạc của đền Ánh Trăng, mượn từ một nữ tu tập sự — nó phản chiếu linh hồn chứ không phải gương mặt.",
+      "source": "ad",
+      "availablePhase": "p7"
     }
   ]
 }

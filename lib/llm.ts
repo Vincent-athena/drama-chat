@@ -1,6 +1,7 @@
 import type OpenAI from "openai";
 import { z } from "zod";
 import { fixMismatchedBrackets } from "./json-repair";
+import { giversOf } from "./story-checks";
 import type { GenerateProgress } from "./api-types";
 import { MissingApiKeyError, llm, type LlmTask } from "./llm-core";
 import {
@@ -253,8 +254,11 @@ function itemProblems(outline: StoryOutline): string[] {
     if (item.source !== "found") continue;
     const at = phaseIds.indexOf(item.availablePhase);
     if (at < 0) continue;
-    if (!outline.characters.some((c) => phaseIds.indexOf(c.unlockPhase) <= at)) {
-      problems.push(`Found item "${item.id}" is available from "${item.availablePhase}", but no character is unlocked by then to hand it over.`);
+    const givers = giversOf(item, outline.characters);
+    if (!givers.length) {
+      problems.push(`Found item "${item.id}": its obtainCriteria must name the character who hands it over (by name or id).`);
+    } else if (!givers.some((c) => phaseIds.indexOf(c.unlockPhase) <= at)) {
+      problems.push(`Found item "${item.id}" is available from "${item.availablePhase}", but the character named in its obtainCriteria is not unlocked by then.`);
     }
   }
   return problems;

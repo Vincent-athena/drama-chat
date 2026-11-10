@@ -17,7 +17,7 @@
         "Ông biết về mối quan hệ giữa Sa Tăng và Thiên Bồng nhưng chưa từng nói ra."
       ],
       "knowledgeByPhase": {
-        "p1": "Thừa nhận kinh thư có thể đã bị đánh tráo từ trước khi về Trường An.",
+        "p1": "Thừa nhận kinh thư có thể đã bị đánh tráo từ trước khi về Trường An. Thấy bùa hộ thân của Quan Âm, ông tin người chơi được Bồ Tát gửi đến, kể về lần mở kinh đầu tiên và đưa cho họ một trang kinh giả làm bằng chứng.",
         "p2": "Lo lắng cho Bát Giới, nhưng giấu việc mình biết Bát Giới có món nợ cũ.",
         "p3": "Thú nhận đã giấu nửa kinh thư thật.",
         "p4": "Nghi ngờ Bát Giới, nhưng vẫn muốn cho hắn cơ hội.",
@@ -40,7 +40,7 @@
         "Hắn biết Thiên Bồng Nguyên Soái có liên hệ với Bát Giới nhưng chưa nói vì sợ Bát Giới bị tổn thương."
       ],
       "knowledgeByPhase": {
-        "p1": "Tiết lộ nghi ngờ có kẻ trong đoàn tiếp tay cho yêu quái.",
+        "p1": "Tiết lộ nghi ngờ có kẻ trong đoàn tiếp tay cho yêu quái. Hắn ngửi thấy yêu khí trên trang kinh giả và sẵn lòng xé một trang đưa người chơi nếu họ hỏi.",
         "p2": "Thừa nhận đã thấy Bát Giới lén rời trại đêm qua nhưng không ngăn cản.",
         "p3": "Muốn giết Bạch Cốt Tinh ngay, nhưng bị Đường Tăng ngăn cản.",
         "p4": "Đánh hơi thấy mùi yêu khí trên người Bát Giới.",
@@ -60,13 +60,14 @@
       "speechStyle": "Thô lỗ, hay pha trò, nhưng đôi khi lộ vẻ chua chát.",
       "secrets": [
         "Hắn tự nguyện đến gặp Bạch Cốt Tinh để đòi món nợ cũ (một phần ký ức của Thiên Bồng).",
-        "Hắn lấy trộm nửa kinh thư thật của Đường Tăng để đưa cho Bạch Cốt Tinh, nhưng sau đó hối hận."
+        "Hắn lấy trộm nửa kinh thư thật của Đường Tăng để đưa cho Bạch Cốt Tinh, nhưng sau đó hối hận.",
+        "Hắn mang về từ hang Bạch Cốt Tinh một cây trâm xương trắng mà ả bảo là 'của người cũ', không biết đó chính là quà Thiên Bồng tặng ả."
       ],
       "knowledgeByPhase": {
         "p1": "Chưa xuất hiện.",
         "p2": "Mất tích, không thể nói chuyện.",
         "p3": "Bị giam trong hang Bạch Cốt Tinh, không thể nói chuyện.",
-        "p4": "Nói dối về việc bị bắt cóc, che giấu việc tự nguyện đến gặp Bạch Cốt Tinh.",
+        "p4": "Nói dối về việc bị bắt cóc, che giấu việc tự nguyện đến gặp Bạch Cốt Tinh. Hắn đưa cây trâm xương trắng cho người chơi nếu họ hứa không kể với Ngộ Không.",
         "p5": "Tiết lộ kẻ giả mạo lệnh Ngọc Hoàng là Thiên Bồng Nguyên Soái – tiền kiếp của hắn.",
         "p6": "Lo lắng khi Sa Tăng bị phát hiện, sợ bí mật của mình cũng bị lộ.",
         "p7": "Tuyên bố sẽ chống lại tiền kiếp của mình, đứng về phía đoàn thỉnh kinh.",
@@ -87,7 +88,7 @@
       ],
       "knowledgeByPhase": {
         "p1": "Chưa xuất hiện.",
-        "p2": "Giấu việc Bát Giới từng nhắc đến món nợ cũ với yêu quái phương Bắc.",
+        "p2": "Giấu việc Bát Giới từng nhắc đến món nợ cũ với yêu quái phương Bắc. Khi người chơi đưa trang kinh giả, hắn tái mặt vì nhận ra nét chữ của người hầu cũ của Thiên Bồng, và buột miệng về 'món nợ cũ' của Bát Giới với yêu quái phương Bắc.",
         "p3": "Không có mặt trong hang động, nhưng lo lắng cho Bát Giới.",
         "p4": "Thừa nhận đã thấy Bát Giới lén lấy nửa kinh thư thật.",
         "p5": "Im lặng, sợ bị phát hiện.",
@@ -111,7 +112,7 @@
       "knowledgeByPhase": {
         "p1": "Chưa xuất hiện.",
         "p2": "Chưa xuất hiện.",
-        "p3": "Giữ Bát Giới để đổi lấy một nửa kinh thư thật.",
+        "p3": "Giữ Bát Giới để đổi lấy một nửa kinh thư thật. Nếu được tặng quả đào tiên, ả dịu giọng và nói thẳng điều kiện: một nửa kinh thư thật để đổi lấy Bát Giới.",
         "p4": "Không xuất hiện trực tiếp, nhưng Bát Giới nhắc đến ả.",
         "p5": "Không xuất hiện.",
         "p6": "Không xuất hiện.",
@@ -138,7 +139,7 @@
         "p4": "Chưa xuất hiện.",
         "p5": "Được Bát Giới tiết lộ là kẻ giả mạo lệnh Ngọc Hoàng.",
         "p6": "Được Sa Tăng nhắc đến là kẻ đã ép buộc hắn.",
-        "p7": "Xuất hiện, thừa nhận đã đánh tráo kinh thư, tiết lộ nơi giấu nửa kinh thư thật còn lại.",
+        "p7": "Xuất hiện, thừa nhận đã đánh tráo kinh thư, tiết lộ nơi giấu nửa kinh thư thật còn lại. Thấy cây trâm xương trắng — quà hắn tặng Bạch Cốt Tinh thuở trước — hắn nghẹn lời và chịu nói nơi giấu nửa kinh thư thật.",
         "p8": "Đối đầu với Bát Giới, bị thuyết phục hoặc bị đánh bại."
       },
       "unlockPhase": "p7"
@@ -159,7 +160,7 @@
         "p2": "Chưa xuất hiện.",
         "p3": "Chưa xuất hiện.",
         "p4": "Chưa xuất hiện.",
-        "p5": "Thừa nhận lệnh Ngọc Hoàng không có thật, do một kẻ khác trong thiên đình giả mạo.",
+        "p5": "Thừa nhận lệnh Ngọc Hoàng không có thật, do một kẻ khác trong thiên đình giả mạo. Khi người chơi đặt dấu ấn thật của Ngọc Hoàng cạnh lệnh của hắn, hắn biết không diễn được nữa và thừa nhận lệnh là giả.",
         "p6": "Không xuất hiện.",
         "p7": "Không xuất hiện.",
         "p8": "Không xuất hiện."
@@ -225,7 +226,7 @@
       ],
       "knowledgeByPhase": {
         "p1": "Chưa xuất hiện.",
-        "p2": "Được nhắc đến qua mảnh vải đen dấu hiệu yêu quái phương Bắc.",
+        "p2": "Được nhắc đến qua mảnh vải đen dấu hiệu yêu quái phương Bắc. Nhìn trang kinh giả, hắn nhận ra văn tự của yêu quái phương Bắc và cười khẩy rằng có kẻ trên trời đã thuê chúng viết.",
         "p3": "Chưa xuất hiện.",
         "p4": "Chưa xuất hiện.",
         "p5": "Chưa xuất hiện.",
@@ -253,7 +254,7 @@
         "p4": "Chưa xuất hiện.",
         "p5": "Chưa xuất hiện.",
         "p6": "Chưa xuất hiện.",
-        "p7": "Chưa xuất hiện.",
+        "p7": "Chưa xuất hiện. Hắn sẵn lòng đưa người chơi đến nơi Thiên Bồng chỉ và giúp lấy nửa kinh thư thật.",
         "p8": "Chưa xuất hiện."
       },
       "unlockPhase": "p7"
@@ -297,7 +298,10 @@
       "narration": "Sáng hôm sau, Bát Giới không còn ở trại. Trong chăn của hắn có một mảnh vải đen thêu hình đầu lợn rừng – dấu hiệu của yêu quái phương Bắc. Sa Tăng lo lắng, Ngộ Không cười nhạt. Ngươi cần tìm manh mối trước khi quá muộn.",
       "objective": "Điều tra sự mất tích của Bát Giới bằng cách nói chuyện với Sa Tăng và Ngộ Không, đồng thời tìm dấu vết của yêu quái phương Bắc.",
       "completionCriteria": "Người chơi đã biết Sa Tăng giấu việc Bát Giới từng nhắc đến một 'món nợ cũ' với yêu quái phương Bắc, và Ngộ Không thừa nhận đã thấy Bát Giới lén lút rời trại đêm qua nhưng không ngăn cản.",
-      "hint": "Sa Tăng có vẻ giấu giếm điều gì đó về Bát Giới. Hãy hỏi Ngộ Không về đêm qua."
+      "hint": "Sa Tăng có vẻ giấu giếm điều gì đó về Bát Giới. Cho hắn xem trang kinh giả, và hỏi Ngộ Không về đêm qua.",
+      "requiredItems": [
+        "trang-kinh-gia"
+      ]
     },
     {
       "id": "p3",
@@ -337,15 +341,74 @@
       "narration": "Thiên Bồng Nguyên Soái xuất hiện, thừa nhận đã đánh tráo kinh thư để trả thù việc bị đày xuống trần. Hắn muốn dùng kinh thư thật để hồi sinh Bạch Cốt Tinh, người yêu cũ của hắn. Bát Giới phản đối kịch liệt, vì hắn chính là hậu kiếp của Thiên Bồng và không muốn sống trong bóng tối của quá khứ. Ngộ Không sẵn sàng đánh, Đường Tăng muốn thuyết phục.",
       "objective": "Đàm phán với Thiên Bồng Nguyên Soái, khai thác mâu thuẫn giữa hắn và Bát Giới để tìm cách lấy lại kinh thư thật.",
       "completionCriteria": "Người chơi đã khiến Thiên Bồng Nguyên Soái tiết lộ nơi giấu nửa kinh thư thật còn lại, và Bát Giới tuyên bố sẽ đứng về phía đoàn thỉnh kinh chống lại tiền kiếp của mình.",
-      "hint": "Thiên Bồng và Bát Giới là một. Hãy khai thác nỗi sợ của Bát Giới về việc bị tiền kiếp chi phối."
+      "hint": "Thiên Bồng và Bát Giới là một. Một kỷ vật của người hắn từng yêu có thể làm hắn mềm lòng.",
+      "requiredItems": [
+        "tram-xuong-trang"
+      ]
     },
     {
       "id": "p8",
       "title": "Kinh thư phục hồi",
       "narration": "Với vị trí kinh thư thật được tiết lộ, đoàn thỉnh kinh phải đối mặt với Bạch Cốt Tinh lần cuối. Ả ta đã hồi sinh nhờ một nửa kinh thư, và giờ muốn đoạt nốt nửa còn lại. Ngộ Không chiến đấu, Sa Tăng bảo vệ Đường Tăng, Bát Giới đối đầu với chính tiền kiếp của mình. Ngươi là người đưa ra lời cuối cùng để hàn gắn hoặc chia rẽ.",
-      "objective": "Thuyết phục Bạch Cốt Tinh từ bỏ hận thù, hoặc giúp đoàn thỉnh kinh đánh bại ả bằng cách đoàn kết các thành viên.",
+      "objective": "Thuyết phục Bạch Cốt Tinh từ bỏ hận thù, hoặc giúp đoàn thỉnh kinh đánh bại ả bằng cách đoàn kết các thành viên. Mang nửa kinh thư thật đến để bộ kinh được phục hồi.",
       "completionCriteria": "Người chơi đã khiến Bạch Cốt Tinh thừa nhận nỗi đau của ả bắt nguồn từ sự phản bội của Thiên Bồng, và Đường Tăng tuyên bố tha thứ cho Sa Tăng và Bát Giới, qua đó đoàn thỉnh kinh được hàn gắn và kinh thư thật được phục hồi.",
-      "hint": "Bạch Cốt Tinh không chỉ muốn trả thù – ả muốn được thừa nhận. Hãy nói về sự tha thứ."
+      "hint": "Bạch Cốt Tinh không chỉ muốn trả thù – ả muốn được thừa nhận. Hãy nói về sự tha thứ.",
+      "requiredItems": [
+        "nua-kinh-that"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "bua-ho-than",
+      "name": "Bùa hộ thân của Quan Âm",
+      "emoji": "🧧",
+      "description": "Lá bùa vàng Bồ Tát ban cho người đồng hành của đoàn thỉnh kinh; yêu quái ngửi thấy là chùn bước.",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "trang-kinh-gia",
+      "name": "Trang kinh giả",
+      "emoji": "📜",
+      "description": "Một trang kinh nhìn thì như chữ Phạn, nhưng dưới ánh đèn các nét chữ ngoằn ngoèo như rắn.",
+      "source": "found",
+      "availablePhase": "p1",
+      "obtainCriteria": "Đường Tăng hoặc Tôn Ngộ Không đã đưa cho người chơi một trang kinh giả viết bằng văn tự yêu ma."
+    },
+    {
+      "id": "qua-dao-tien",
+      "name": "Quả đào tiên",
+      "emoji": "🍑",
+      "description": "Quả đào tiên lén mang ra từ vườn Bàn Đào — yêu quái nào cũng thèm khát một miếng trường sinh.",
+      "source": "ad",
+      "availablePhase": "p3"
+    },
+    {
+      "id": "tram-xuong-trang",
+      "name": "Trâm xương trắng",
+      "emoji": "🦴",
+      "description": "Cây trâm chạm từ xương trắng, mảnh và lạnh, có khắc một chữ 'Bồng' rất nhỏ.",
+      "source": "found",
+      "availablePhase": "p4",
+      "obtainCriteria": "Trư Bát Giới đã đưa cho người chơi cây trâm xương trắng mà hắn mang về từ hang Bạch Cốt Tinh."
+    },
+    {
+      "id": "an-ngoc-hoang",
+      "name": "Dấu ấn thật của Ngọc Hoàng",
+      "emoji": "🏮",
+      "description": "Bản in ấn ngọc tỉ thật mà một tiên đồng lén đưa ra khỏi Lăng Tiêu Điện — đặt cạnh lệnh giả là thấy ngay chỗ sai.",
+      "source": "ad",
+      "availablePhase": "p5"
+    },
+    {
+      "id": "nua-kinh-that",
+      "name": "Nửa kinh thư thật",
+      "emoji": "📖",
+      "description": "Nửa bộ kinh thư thật, giấy vàng thơm mùi trầm, chữ sáng lên khi người có lòng thành chạm vào.",
+      "source": "found",
+      "availablePhase": "p7",
+      "obtainCriteria": "Thiên Bồng Nguyên Soái đã tiết lộ nơi giấu, và người chơi (cùng Bát Giới hoặc Tiểu Bạch Long) đã lấy được nửa kinh thư thật còn lại."
     }
   ]
 }

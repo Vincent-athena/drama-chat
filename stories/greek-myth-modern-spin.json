@@ -19,7 +19,7 @@
         "Anh ta biết Nemesis là em gái ruột của mình nhưng luôn coi thường cô ta."
       ],
       "knowledgeByPhase": {
-        "p1": "Biết Zeus chết trong một vụ tai nạn được báo cáo, nhưng nghi ngờ có khuất tất vì hồ sơ bị tiêu hủy bất thường. Anh ta sẽ tiết lộ rằng mình tin Zeus bị sát hại nếu người chơi thuyết phục được anh ta rằng điều đó có lợi cho anh ta.",
+        "p1": "Biết Zeus chết trong một vụ tai nạn được báo cáo, nhưng nghi ngờ có khuất tất vì hồ sơ bị tiêu hủy bất thường. Anh ta sẽ tiết lộ rằng mình tin Zeus bị sát hại nếu người chơi thuyết phục được anh ta rằng điều đó có lợi cho anh ta. Nếu người chơi cho xem lời mời từ ứng dụng bí ẩn, anh nhận ra định dạng mã hoá của văn phòng Zeus và hiểu người gửi là người trong nhà. Anh đưa ổ cứng hồ sơ của Zeus cho người chơi khi tin rằng họ không làm cho Hera.",
         "p2": "Biết Artemis từng là vệ sĩ của Zeus và có mối quan hệ bí mật với ông ta. Anh ta có thể gợi ý rằng Artemis biết nhiều hơn cô ta nói.",
         "p3": "Biết Hera đang cố gắng kiểm soát mọi thông tin về cái chết của Zeus. Anh ta đã bí mật sao chép hồ sơ của Zeus và có thể tiết lộ một phần nếu bị thuyết phục.",
         "p4": "Biết Apollo là con riêng của Zeus và có thể có động cơ. Anh ta cũng biết Prometheus từng làm việc cho Olympus và bị sa thải.",
@@ -76,7 +76,7 @@
         "Cô ta biết mình là chị em cùng cha khác mẹ với Apollo và Artemis, nhưng chưa từng nói với ai."
       ],
       "knowledgeByPhase": {
-        "p1": "Biết Zeus chết trong một vụ tai nạn được báo cáo, nhưng cô ta tin đó là án mạng. Cô ta sẽ tiết lộ niềm tin này nếu người chơi chứng minh được mình không phải người của Hera.",
+        "p1": "Biết Zeus chết trong một vụ tai nạn được báo cáo, nhưng cô ta tin đó là án mạng. Cô ta sẽ tiết lộ niềm tin này nếu người chơi chứng minh được mình không phải người của Hera. Cô nhận ra con mắt trong lời mời là dấu hiệu cô từng thấy trên các tệp rò rỉ từ Olympus.",
         "p2": "Biết Artemis từng là vệ sĩ của Zeus và có thể có thông tin về kẻ thù của ông ta. Cô ta có thể gợi ý rằng Artemis đáng tin hơn vẻ ngoài.",
         "p3": "Biết Hera đã mua chuộc nhân chứng và có bằng chứng, nhưng sợ tiết lộ. Cô ta có thể chia sẻ nếu được đảm bảo an toàn.",
         "p4": "Biết Apollo là con riêng của Zeus và có thể đã nghe lén được điều gì đó. Cô ta cũng biết Prometheus là hacker có thể có bằng chứng.",
@@ -134,7 +134,7 @@
       ],
       "knowledgeByPhase": {
         "p1": "Chưa xuất hiện.",
-        "p2": "Biết Hera có động cơ giết Zeus vì ghen tuông và tham quyền. Cô ta sẽ tiết lộ nghi ngờ của mình nếu người chơi chứng minh được mình không phải người của Hera.",
+        "p2": "Biết Hera có động cơ giết Zeus vì ghen tuông và tham quyền. Cô ta sẽ tiết lộ nghi ngờ của mình nếu người chơi chứng minh được mình không phải người của Hera. Cô chỉ tin người chơi khi thấy ổ cứng hồ sơ của Zeus — thứ mà tay sai của Hera đã cố tiêu huỷ.",
         "p3": "Biết Hera đã mua chuộc nhân chứng và tiêu hủy bằng chứng. Cô ta có thể chia sẻ thông tin này nếu tin tưởng người chơi.",
         "p4": "Biết Apollo là em trai mình và có thể đã nghe lén được điều gì đó. Cô ta có thể gợi ý rằng Apollo biết nhiều hơn anh ta nói.",
         "p5": "Biết về cái chết của Hades và nghi ngờ Hera có liên quan. Cô ta có thể chia sẻ suy nghĩ này nếu được thuyết phục.",
@@ -197,7 +197,7 @@
         "p5": "Biết Persephone đang điều tra cái chết của Hades, nhưng không biết cô ta có bằng chứng gì. Bà ta lo lắng về mối liên hệ giữa hai cái chết.",
         "p6": "Biết Dionysus đã giữ một bản sao video mua thuốc độc, nhưng không biết anh ta đã tiết lộ cho ai. Bà ta đang tìm cách lấy lại bản sao.",
         "p7": "Biết Poseidon có bằng chứng về việc mình thuê sát thủ giết Hades, và đang bị ông ta kiểm soát. Bà ta lo sợ Poseidon sẽ phản bội.",
-        "p8": "Biết mình đã bị dồn vào đường cùng, nhưng vẫn cố gắng thương lượng hoặc đe dọa người chơi để thoát tội."
+        "p8": "Biết mình đã bị dồn vào đường cùng, nhưng vẫn cố gắng thương lượng hoặc đe dọa người chơi để thoát tội. Khi người chơi đưa ra bản sao video an ninh và đe doạ công bố, bà biết danh dự của mình đã hết đường cứu."
       },
       "unlockPhase": "p3",
       "appearance": {
@@ -249,7 +249,7 @@
       "knowledgeByPhase": {
         "p1": "Biết về cái chết của Zeus nhưng không có mặt ở hiện trường. Anh ta đang bị Hera yêu cầu giữ im lặng về đoạn video an ninh.",
         "p2": "Biết Hera có động cơ giết Zeus, nhưng không dám nói ra vì sợ mẹ. Anh ta đang cố gắng tìm hiểu xem còn ai biết về đoạn video.",
-        "p3": "Sẽ vô tình tiết lộ rằng Hera đã yêu cầu anh ta xóa đoạn video an ninh quan trọng, nếu người chơi tạo được lòng tin.",
+        "p3": "Sẽ vô tình tiết lộ rằng Hera đã yêu cầu anh ta xóa đoạn video an ninh quan trọng, nếu người chơi tạo được lòng tin. Anh giấu bản sao video an ninh trong xưởng; anh đưa nó cho người chơi nếu họ cho anh thấy mẹ anh cũng đang lừa anh.",
         "p4": "Biết Prometheus là em trai mình và đang âm mưu tống tiền Hera. Anh ta lo lắng về việc bị liên lụy.",
         "p5": "Biết Hades chết vì bị đầu độc, và nghi ngờ mẹ mình có liên quan. Anh ta đã giữ bản sao video để phòng thân.",
         "p6": "Biết Dionysus đã giữ bản sao video mua thuốc độc, và đang tìm cách liên lạc với anh ta để lấy lại.",
@@ -364,7 +364,7 @@
         "p1": "Anh ta biết về cái chết của Zeus nhưng không tin đó là tai nạn. Anh ta theo dõi mọi cuộc trò chuyện trực tuyến và có thể tiếp cận thông tin về Hermes và Athena.",
         "p2": "Anh ta biết Artemis từng là vệ sĩ của Zeus và có thể cung cấp thông tin về mối quan hệ giữa cô ta và Zeus. Anh ta cũng biết Artemis nghi ngờ Hera.",
         "p3": "Anh ta đã thấy Hephaestus xóa video an ninh và biết Hephaestus giữ bản sao. Anh ta có thể tiết lộ một phần thông tin nếu được thuyết phục.",
-        "p4": "Anh ta tiết lộ mình đã lấy được bằng chứng Hera mua chuộc nhân chứng và gửi cho Apollo một phần tài liệu để gây sức ép. Anh ta muốn hợp tác với người chơi để tống tiền Hera.",
+        "p4": "Anh ta tiết lộ mình đã lấy được bằng chứng Hera mua chuộc nhân chứng và gửi cho Apollo một phần tài liệu để gây sức ép. Anh ta muốn hợp tác với người chơi để tống tiền Hera. Nếu người chơi có khoá giải mã đúng loại của anh, anh coi họ là người trong nghề và gửi tệp ngay, không mặc cả.",
         "p5": "Anh ta biết Persephone có mẫu thuốc độc còn sót lại và có thể kết nối cô ta với người chơi nếu thấy có lợi.",
         "p6": "Anh ta tiết lộ rằng Dionysus đã bị Hera ép giấu video và anh ta đã lấy được bản sao từ Dionysus. Anh ta cũng biết về mối quan hệ giữa Dionysus và Artemis.",
         "p7": "Anh ta cung cấp bằng chứng về việc Hera thuê sát thủ giết Hades, do Poseidon tiết lộ cho anh ta. Anh ta muốn dùng thông tin này để chống lại cả Hera và Poseidon.",
@@ -422,7 +422,7 @@
         "p2": "Cô ta biết Artemis từng là người tình của Zeus và có thể chia sẻ góc nhìn về động cơ của Hera nếu được thuyết phục.",
         "p3": "Cô ta biết Hera đã tổ chức một bữa tiệc lớn sau đám tang Zeus và có thể tiết lộ rằng Hera đã mua một loại thuốc lạ từ chợ đen.",
         "p4": "Cô ta biết Apollo đã nghe lén cuộc nói chuyện giữa Hera và Poseidon, và cô ta có thể xác nhận một phần thông tin nếu được hỏi.",
-        "p5": "Cô ta tiết lộ rằng Hades chết vì bị đầu độc và cô ta tin rằng cùng loại thuốc độc đã được dùng để giết Zeus. Cô ta cho người chơi xem mẫu thuốc còn sót lại.",
+        "p5": "Cô ta tiết lộ rằng Hades chết vì bị đầu độc và cô ta tin rằng cùng loại thuốc độc đã được dùng để giết Zeus. Cô ta cho người chơi xem mẫu thuốc còn sót lại. Cô đưa mẫu thuốc độc của Hades cho người chơi nếu họ hứa dùng nó để tìm ra kẻ đã giết ông.",
         "p6": "Cô ta biết Dionysus từng làm việc cho Hera và có thể tiết lộ rằng anh ta giữ một đoạn video quan trọng.",
         "p7": "Cô ta cung cấp bằng chứng về việc Hera thuê sát thủ giết Hades, do cô ta thu thập được từ một nhân chứng trước khi người này biến mất.",
         "p8": "Cô ta sẵn sàng làm nhân chứng chống lại Hera tại tòa nếu người chơi đảm bảo an toàn cho cô ta."
@@ -480,7 +480,7 @@
         "p3": "Anh ta biết Hephaestus đã xóa video an ninh theo lệnh của Hera, nhưng anh ta không biết Hephaestus giữ bản sao.",
         "p4": "Anh ta biết Apollo là con riêng của Zeus và có thể tiết lộ rằng Apollo đã đến hộp đêm của anh ta để tìm bằng chứng.",
         "p5": "Anh ta biết Persephone có mối quan hệ với Hades và có thể tiết lộ rằng cô ta đang tìm cách trả thù.",
-        "p6": "Anh ta tiết lộ rằng Hera không phải là kẻ chủ mưu duy nhất, mà còn có Poseidon đã giúp bà ta. Anh ta cũng thừa nhận đã giữ bản sao đoạn video.",
+        "p6": "Anh ta tiết lộ rằng Hera không phải là kẻ chủ mưu duy nhất, mà còn có Poseidon đã giúp bà ta. Anh ta cũng thừa nhận đã giữ bản sao đoạn video. Nếu người chơi có thẻ VIP hộp đêm và hẹn gặp ở phòng riêng, anh tin mình được an toàn và nói ra tên Poseidon nhanh hơn.",
         "p7": "Anh ta cung cấp bản sao đoạn video Hera mua thuốc độc, và tiết lộ rằng Poseidon đã cung cấp thuốc độc cho Hera.",
         "p8": "Anh ta làm chứng tại tòa rằng Hera đã ép anh ta giấu video và thừa nhận mình đã sai khi im lặng."
       },
@@ -538,7 +538,7 @@
         "p4": "Biết Apollo đã nghe lén cuộc nói chuyện giữa mình và Hera. Ông ta đang tìm cách bịt miệng Apollo bằng cách hứa hẹn hợp đồng âm nhạc béo bở.",
         "p5": "Biết Persephone đang điều tra cái chết của Hades. Ông ta từng gài bẫy để cô ta tin rằng Hades chết vì bệnh tim, nhưng không thành công.",
         "p6": "Biết Dionysus đang giữ một bản sao đoạn video Hera mua thuốc độc. Ông ta đã cử người theo dõi hộp đêm của Dionysus.",
-        "p7": "Sẵn sàng thừa nhận đã cung cấp thuốc độc cho Hera nếu bị dồn ép, nhưng sẽ đổ toàn bộ trách nhiệm trực tiếp lên Hera và ám chỉ rằng mình chỉ là người cung cấp vật liệu.",
+        "p7": "Sẵn sàng thừa nhận đã cung cấp thuốc độc cho Hera nếu bị dồn ép, nhưng sẽ đổ toàn bộ trách nhiệm trực tiếp lên Hera và ám chỉ rằng mình chỉ là người cung cấp vật liệu. Khi thấy mẫu thuốc độc của Hades, ông biết loại thuốc mình cung cấp đã bị truy ra; ông thừa nhận đã cung cấp nó nhưng đổ việc đầu độc cho Hera.",
         "p8": "Khi Hera bị vạch trần, ông ta sẽ cố gắng tận dụng cơ hội để chiếm đoạt tập đoàn Olympus, đồng thời tiết lộ mình có bằng chứng về cái chết của Hades để uy hiếp Hera lần cuối."
       },
       "unlockPhase": "p7",
@@ -706,7 +706,10 @@
       "narration": "Một người phụ nữ bí ẩn tên Artemis liên lạc với bạn, cô ta là cựu vệ sĩ của Zeus và hiện đang sống ẩn dật. Cô ta có vẻ biết về một âm mưu lớn hơn. Bạn cần tìm ra động cơ của những kẻ xung quanh Zeus.",
       "objective": "Thuyết phục Artemis chia sẻ thông tin về kẻ thù của Zeus.",
       "completionCriteria": "Artemis đã tiết lộ rằng cô ta nghi ngờ Hera, vợ của Zeus, có liên quan đến cái chết.",
-      "hint": "Artemis rất bảo vệ sự thật, hãy chứng minh bạn không phải tay sai của Hera."
+      "hint": "Artemis rất bảo vệ sự thật. Hãy chứng minh bạn không phải tay sai của Hera bằng chính thứ Hera muốn huỷ.",
+      "requiredItems": [
+        "o-cung-zeus"
+      ]
     },
     {
       "id": "p3",
@@ -746,7 +749,10 @@
       "narration": "Poseidon, em trai của Zeus và là trùm ngầm của thành phố, quyết định hành động. Ông ta mời bạn đến một cuộc gặp riêng, có thể là để đe dọa hoặc để thương lượng. Bạn cũng nhận được sự giúp đỡ từ một người bất ngờ: Hestia, em gái của Zeus, người luôn đứng ngoài cuộc nhưng giờ đây muốn lật tẩy sự thật.",
       "objective": "Đối mặt với Poseidon và khiến ông ta thừa nhận tội ác.",
       "completionCriteria": "Poseidon đã thừa nhận rằng ông ta đã cung cấp thuốc độc cho Hera, nhưng khẳng định Hera là người trực tiếp đầu độc Zeus.",
-      "hint": "Poseidon kiêu ngạo, hãy dùng bằng chứng bạn có để áp đảo ông ta."
+      "hint": "Poseidon kiêu ngạo. Bằng chứng từ cái chết của Hades sẽ khiến ông ta mất bình tĩnh.",
+      "requiredItems": [
+        "mau-thuoc-doc"
+      ]
     },
     {
       "id": "p8",
@@ -754,7 +760,63 @@
       "narration": "Bạn đã có đủ bằng chứng để vạch trần kẻ giết người. Nhưng Hera vẫn còn quyền lực và sẵn sàng phản công. Một nhân vật cuối cùng xuất hiện: Nemesis, cựu thư ký riêng của Zeus, người nắm giữ đoạn ghi âm cuối cùng có thể định đoạt số phận của Hera. Bạn phải quyết định ai sẽ là người cuối cùng đứng về phía công lý.",
       "objective": "Buộc Hera phải thú nhận tội ác của mình trước công chúng hoặc trước một nhân chứng đáng tin cậy.",
       "completionCriteria": "Hera đã thú nhận rằng bà ta đã đầu độc Zeus vì ông ta định ly hôn và tước đoạt quyền lực của bà ta, và ít nhất một nhân vật khác đã chứng kiến lời thú tội này.",
-      "hint": "Hera sợ mất danh dự hơn là bị trừng phạt, hãy đe dọa sẽ công bố bằng chứng cho báo chí."
+      "hint": "Hera sợ mất danh dự hơn là bị trừng phạt. Hãy cho bà thấy đoạn video và đe doạ công bố cho báo chí.",
+      "requiredItems": [
+        "video-an-ninh"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "loi-moi-bi-an",
+      "name": "Lời mời từ ứng dụng bí ẩn",
+      "emoji": "📱",
+      "description": "Tin nhắn mã hoá mời bạn 'giải mã gia đình Olympus', ký tên bằng một con mắt nhỏ.",
+      "source": "start",
+      "availablePhase": "p1"
+    },
+    {
+      "id": "o-cung-zeus",
+      "name": "Ổ cứng hồ sơ của Zeus",
+      "emoji": "🗂️",
+      "description": "Ổ cứng mỏng như thẻ bài, chứa bản sao hồ sơ lẽ ra đã bị tiêu huỷ sau cái chết của Zeus.",
+      "source": "found",
+      "availablePhase": "p1",
+      "obtainCriteria": "Hermes đã thừa nhận đã sao chép hồ sơ của Zeus và đưa cho người chơi ổ cứng chứa bản sao."
+    },
+    {
+      "id": "video-an-ninh",
+      "name": "Bản sao video an ninh",
+      "emoji": "📹",
+      "description": "Đoạn video an ninh đêm Zeus chết — bản lẽ ra đã bị xoá vĩnh viễn.",
+      "source": "found",
+      "availablePhase": "p3",
+      "obtainCriteria": "Hephaestus đã thừa nhận giữ lại bản sao đoạn video an ninh đêm Zeus chết và đưa nó cho người chơi."
+    },
+    {
+      "id": "khoa-giai-ma",
+      "name": "Khoá giải mã",
+      "emoji": "🔑",
+      "description": "Khoá giải mã mua lại từ một chợ dữ liệu ngầm — đúng loại Prometheus dùng để khoá các tệp của mình.",
+      "source": "ad",
+      "availablePhase": "p4"
+    },
+    {
+      "id": "mau-thuoc-doc",
+      "name": "Mẫu thuốc độc của Hades",
+      "emoji": "🧪",
+      "description": "Một lọ thủy tinh nhỏ, niêm phong từ nhiều năm trước, đựng vài giọt chất lỏng không màu.",
+      "source": "found",
+      "availablePhase": "p5",
+      "obtainCriteria": "Persephone đã đưa cho người chơi mẫu thuốc độc còn sót lại từ cái chết của Hades."
+    },
+    {
+      "id": "the-vip",
+      "name": "Thẻ VIP hộp đêm",
+      "emoji": "🍷",
+      "description": "Thẻ đen mạ vàng mở phòng riêng dưới tầng hầm hộp đêm của Dionysus — nơi anh ta nói thật khi tưởng không ai nghe.",
+      "source": "ad",
+      "availablePhase": "p6"
     }
   ]
 }
