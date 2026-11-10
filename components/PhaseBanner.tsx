@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { PublicStory } from "@/lib/schema";
+import type { PublicStory } from "@/lib/api-types";
 
 export default function PhaseBanner({ story }: { story: PublicStory }) {
   const [showHint, setShowHint] = useState(false);

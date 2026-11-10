@@ -1,6 +1,5 @@
 import OpenAI from "openai";
 import { z } from "zod";
-import type { TaggedMessage } from "./db";
 import {
   characterBatchPrompt,
   characterSystemPrompt,
@@ -21,6 +20,7 @@ import {
   type JudgeResult,
   type Story,
   type StoryOutline,
+  type TaggedMessage,
 } from "./schema";
 
 export class MissingApiKeyError extends Error {
@@ -28,6 +28,14 @@ export class MissingApiKeyError extends Error {
     super("DEEPSEEK_API_KEY is not set. Run `npm run setup` to add your DeepSeek API key.");
   }
 }
+
+/** True when at least one model provider is configured. Routes call this instead of reading env. */
+export function hasApiKey(): boolean {
+  return Boolean(process.env.DEEPSEEK_API_KEY);
+}
+
+/** Which kind of request a model call is. Ignored until providers are split per task. */
+type LlmTask = "chat" | "speakers" | "judge" | "guide" | "story";
 
 let client: OpenAI | null = null;
 
@@ -51,10 +59,14 @@ const MAX_GROUP_SPEAKERS = 3;
 
 const SpeakersSchema = z.object({ speakers: z.array(z.string()) });
 
-async function* streamReply(messages: OpenAI.Chat.ChatCompletionMessageParam[]): AsyncGenerator<string> {
+async function* streamReply(
+  _task: LlmTask,
+  messages: OpenAI.Chat.ChatCompletionMessageParam[],
+  temperature = 1.1
+): AsyncGenerator<string> {
   const stream = await deepseek().chat.completions.create({
     model: model(),
-    temperature: 1.1,
+    temperature,
     stream: true,
     messages,
   });
@@ -74,7 +86,7 @@ export function chatWithCharacter(
   userMsg: string,
   context: CharacterContext = {}
 ): AsyncGenerator<string> {
-  return streamReply([
+  return streamReply("chat", [
     { role: "system", content: characterSystemPrompt(story, character, phaseIndex, events, context) },
     ...history.slice(-HISTORY_WINDOW),
     { role: "user", content: userMsg },
@@ -93,7 +105,7 @@ export function chatInGroup(
   history: TaggedMessage[],
   context: CharacterContext
 ): AsyncGenerator<string> {
-  return streamReply([
+  return streamReply("chat", [
     { role: "system", content: characterSystemPrompt(story, character, phaseIndex, events, context) },
     ...groupChatMessages(story, character, history.slice(-GROUP_HISTORY_WINDOW)),
   ]);
@@ -108,7 +120,7 @@ export async function pickSpeakers(
 ): Promise<Character[]> {
   const fallback = members.slice(0, MAX_GROUP_SPEAKERS);
   try {
-    const raw = await jsonCompletion([{ role: "user", content: speakerPrompt(story, members, history, userMsg) }], 0.3);
+    const raw = await jsonCompletion("speakers", [{ role: "user", content: speakerPrompt(story, members, history, userMsg) }], 0.3);
     const ids = SpeakersSchema.parse(JSON.parse(raw)).speakers;
     const picked = [...new Set(ids)]
       .map((id) => members.find((c) => c.id === id))
@@ -123,6 +135,7 @@ export async function pickSpeakers(
 
 /** The model's JSON reply; with `maxTokens` set, `truncated` says the reply hit that limit and was cut off. */
 async function jsonCompletionChecked(
+  _task: LlmTask,
   messages: OpenAI.Chat.ChatCompletionMessageParam[],
   temperature: number,
   maxTokens?: number
@@ -139,11 +152,12 @@ async function jsonCompletionChecked(
 }
 
 async function jsonCompletion(
+  task: LlmTask,
   messages: OpenAI.Chat.ChatCompletionMessageParam[],
   temperature: number,
   maxTokens?: number
 ): Promise<string> {
-  return (await jsonCompletionChecked(messages, temperature, maxTokens)).raw;
+  return (await jsonCompletionChecked(task, messages, temperature, maxTokens)).raw;
 }
 
 export async function judgePhase(
@@ -155,6 +169,7 @@ export async function judgePhase(
   groupMembers?: GroupMembers
 ): Promise<JudgeResult> {
   const raw = await jsonCompletion(
+    "judge",
     [{ role: "user", content: judgePrompt(story, phaseIndex, recent, events, notes, groupMembers) }],
     0
   );
@@ -221,7 +236,7 @@ async function generateChecked<T>(
   const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [{ role: "user", content: prompt }];
   let problems = "";
   for (let attempt = 0; attempt < STORY_ATTEMPTS; attempt++) {
-    const { raw, truncated } = await jsonCompletionChecked(messages, 1.0, STORY_MAX_TOKENS);
+    const { raw, truncated } = await jsonCompletionChecked("story", messages, 1.0, STORY_MAX_TOKENS);
     let json: unknown;
     if (truncated) {
       problems = TRUNCATED_PROBLEM;

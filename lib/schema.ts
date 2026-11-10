@@ -137,41 +137,13 @@ export type PublicCharacter = {
   unlockPhaseTitle: string;
 };
 
-export type PublicPhase = {
-  id: string;
-  title: string;
-  narration: string;
-  objective: string;
-  hint: string;
-};
-
-export type PublicStory = {
-  id: string;
-  title: string;
-  synopsis: string;
-  setting: string;
-  tone: string;
-  phaseIndex: number;
-  phaseCount: number;
-  finished: boolean;
-  currentPhase: PublicPhase | null;
-  pastPhases: PublicPhase[];
-  characters: PublicCharacter[];
-};
-
-export type StorySummary = {
-  id: string;
-  title: string;
-  synopsis: string;
-  phaseIndex: number;
-  phaseCount: number;
-  finished: boolean;
-  characterCount: number;
-};
-
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
-export type PublicGroup = { id: number; memberIds: string[] };
+/**
+ * A message with its context. In a one-on-one chat, characterId is the character talked to;
+ * in a group (groupId set), it is the speaker, or "" when the player spoke.
+ */
+export type TaggedMessage = ChatMessage & { characterId: string; groupId: number | null };
 
-/** A group chat message; characterId is the speaker, or "" when the player spoke. */
-export type GroupChatMessage = ChatMessage & { characterId: string };
+/** A group chat, kept in the player's browser. */
+export type Group = { id: number; storyId: string; memberIds: string[] };

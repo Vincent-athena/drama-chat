@@ -1,9 +1,11 @@
 /**
- * Saves your DeepSeek API key to .env.local and checks that it works.
+ * Saves your DeepSeek API key to .env.local and checks that it works. Also creates AUTH_SECRET
+ * (signs sessions, login codes and save tickets) there if it is missing. The secret is never printed.
  *
  *   npm run setup                 # prompts for the key (input hidden)
  *   npm run setup -- sk-xxxxxxxx  # non-interactive
  */
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
@@ -37,7 +39,16 @@ function upsertEnv(key: string, value: string) {
   fs.writeFileSync(ENV_FILE, kept.join("\n") + "\n", { mode: 0o600 });
 }
 
+function ensureAuthSecret() {
+  const lines = fs.existsSync(ENV_FILE) ? fs.readFileSync(ENV_FILE, "utf8").split(/\r?\n/) : [];
+  const has = lines.some((l) => /^AUTH_SECRET=.{32,}/.test(l.trim()));
+  if (has) return;
+  upsertEnv("AUTH_SECRET", crypto.randomBytes(32).toString("base64url"));
+  console.log("Created AUTH_SECRET in .env.local (not shown).");
+}
+
 async function main() {
+  ensureAuthSecret();
   const key = process.argv[2]?.trim() || (await promptHidden("Paste your DeepSeek API key (input hidden): "));
   if (!key) {
     console.error("No key entered. Get one at https://platform.deepseek.com/api_keys");

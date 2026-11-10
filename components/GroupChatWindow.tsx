@@ -3,47 +3,67 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ApiKeyNotice from "./ApiKeyNotice";
-import { PhaseAdvanceModal, readChatStream, Rich, type PhaseAdvance } from "./chat-parts";
-import type { GroupChatMessage, PublicCharacter, PublicStory } from "@/lib/schema";
+import { PhaseAdvanceModal, Rich, toPhaseAdvance, type PhaseAdvance } from "./chat-parts";
+import TicketInvalidNotice from "./TicketInvalidNotice";
+import type { PublicStory, StreamEvent } from "@/lib/api-types";
+import { apiFetch, ApiError, describeApiError, readNdjson } from "@/lib/client/api";
+import { applyDone, currentRun, loadStoryView, restartStory } from "@/lib/client/story";
+import { groupContext } from "@/lib/save/context";
+import { useRequireUser } from "@/lib/save/useSave";
+import type { ChatMessage, Group, PublicCharacter } from "@/lib/schema";
+
+/** A line in the room; characterId is the speaker, or "" when the player spoke. */
+type Line = ChatMessage & { characterId: string };
 
 export default function GroupChatWindow({ storyId, groupId }: { storyId: string; groupId: string }) {
+  const { store } = useRequireUser();
   const [story, setStory] = useState<PublicStory | null>(null);
+  const [group, setGroup] = useState<Group | null>(null);
   const [members, setMembers] = useState<PublicCharacter[]>([]);
   const [hasApiKey, setHasApiKey] = useState(true);
-  const [messages, setMessages] = useState<GroupChatMessage[]>([]);
+  const [messages, setMessages] = useState<Line[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState<false | "typing" | "judging">(false);
   const [error, setError] = useState<string | null>(null);
+  const [ticketInvalid, setTicketInvalid] = useState(false);
   const [advance, setAdvance] = useState<PhaseAdvance | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const loadStory = useCallback(async () => {
-    const r = await fetch(`/api/stories/${storyId}`);
-    const d = await r.json();
-    if (!r.ok) throw new Error(d.error);
-    setStory(d.story);
-    setHasApiKey(d.hasApiKey);
-    return d.story as PublicStory;
-  }, [storyId]);
+    if (!store) return null;
+    const v = await loadStoryView(store, storyId);
+    setStory(v.story);
+    setHasApiKey(v.hasApiKey);
+    return v.story;
+  }, [store, storyId]);
+
+  const fail = useCallback((e: unknown) => {
+    if (e instanceof ApiError && e.code === "ticket_invalid") setTicketInvalid(true);
+    setError(describeApiError(e));
+  }, []);
 
   useEffect(() => {
+    if (!store) return;
     (async () => {
       try {
+        const g = await store.getGroup(storyId, Number(groupId));
+        if (!g) throw new Error("Group chat not found");
         const s = await loadStory();
-        const r = await fetch(`/api/stories/${storyId}/groups/${groupId}`);
-        const d = await r.json();
-        if (!r.ok) throw new Error(d.error);
-        setMembers(
-          (d.group.memberIds as string[])
-            .map((id) => s.characters.find((c) => c.id === id))
-            .filter((c): c is PublicCharacter => Boolean(c))
-        );
-        setMessages(d.messages);
+        if (!s) return;
+        const found = g.memberIds
+          .map((id) => s.characters.find((c) => c.id === id))
+          .filter((c): c is PublicCharacter => Boolean(c));
+        if (found.length !== g.memberIds.length || found.some((c) => !c.unlocked)) {
+          throw new Error("This group includes a locked character");
+        }
+        setGroup(g);
+        setMembers(found);
+        setMessages((await store.getGroupHistory(storyId, g.id)).map(({ role, content, characterId }) => ({ role, content, characterId })));
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Failed to load");
+        fail(e);
       }
     })();
-  }, [storyId, groupId, loadStory]);
+  }, [store, storyId, groupId, loadStory, fail]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -51,26 +71,49 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
 
   const memberById = (id: string) => members.find((c) => c.id === id);
 
+  async function restart() {
+    if (!store) return;
+    await restartStory(store, storyId);
+    // The group itself is gone with the rest of the save.
+    window.location.assign(`/story/${storyId}`);
+  }
+
   async function send(e: React.FormEvent) {
     e.preventDefault();
     const text = input.trim();
-    if (!text || busy) return;
+    if (!text || busy || !store || !group) return;
     setInput("");
     setError(null);
     setBusy("typing");
     setMessages((m) => [...m, { role: "user", content: text, characterId: "" }]);
 
-    let saved = false;
+    // Replies that have finished (a reply is finished when the next speaker or `replied` arrives).
+    const finished: { speakerId: string; text: string }[] = [];
+    let current: { speakerId: string; text: string } | null = null;
+    let sentRun: string | null = null;
+    let savedRound = false;
+    const saveRound = async () => {
+      if (savedRound || finished.length === 0) return;
+      savedRound = true;
+      if ((await currentRun(store, storyId)) !== sentRun) return;
+      await store.addGroupMessage(storyId, group.id, "", { role: "user", content: text });
+      for (const r of finished) await store.addGroupMessage(storyId, group.id, r.speakerId, { role: "assistant", content: r.text });
+    };
     try {
-      const res = await fetch(`/api/stories/${storyId}/groups/${groupId}`, {
+      sentRun = await currentRun(store, storyId);
+      const context = await groupContext(store, storyId, group);
+      const res = await apiFetch(`/api/stories/${storyId}/group-chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
+        json: { message: text, group: { id: group.id, memberIds: group.memberIds }, context },
+        ticket: { store, storyId },
       });
-      await readChatStream(res, (evt) => {
+      await readNdjson<StreamEvent>(res, async (evt) => {
         if (evt.type === "speaker") {
-          setMessages((m) => [...m, { role: "assistant", content: "", characterId: String(evt.characterId) }]);
+          if (current) finished.push(current);
+          current = { speakerId: evt.characterId, text: "" };
+          setMessages((m) => [...m, { role: "assistant", content: "", characterId: evt.characterId }]);
         } else if (evt.type === "delta") {
+          if (current) current.text += evt.text;
           setMessages((m) => {
             const copy = m.slice();
             const last = copy[copy.length - 1];
@@ -78,34 +121,47 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
             return copy;
           });
         } else if (evt.type === "replied") {
+          if (current) finished.push(current);
+          current = null;
+          await saveRound();
           setBusy("judging");
         } else if (evt.type === "done") {
-          if (evt.phaseAdvanced) {
-            setAdvance(evt as unknown as PhaseAdvance);
-            loadStory();
-          }
+          await applyDone(store, storyId, sentRun, evt);
+          if (evt.phaseAdvanced) setAdvance(toPhaseAdvance(evt));
+          await loadStory();
         } else if (evt.type === "error") {
-          saved = Boolean(evt.saved);
-          throw new Error(String(evt.message));
+          throw new Error(evt.message);
         }
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      fail(err);
+      const keep = finished.length > 0;
+      // Keep the replies that finished before the failure.
+      await saveRound().catch(() => undefined);
+      const unfinished = current as { speakerId: string; text: string } | null;
       setMessages((m) => {
-        // Drop a reply that never got any text.
-        const trimmed = m[m.length - 1]?.role === "assistant" && !m[m.length - 1].content ? m.slice(0, -1) : m;
-        if (saved) return trimmed;
-        // Nothing was saved: drop the player's line too and give it back to them.
+        // Drop a reply that never finished.
+        const trimmed = unfinished && m[m.length - 1]?.role === "assistant" ? m.slice(0, -1) : m;
+        if (keep) return trimmed;
+        // Nothing finished: drop the player's line too and give it back to them.
         const lastUser = trimmed.map((x) => x.role).lastIndexOf("user");
         return lastUser >= 0 ? trimmed.slice(0, lastUser) : trimmed;
       });
-      if (!saved) setInput(text);
+      if (!keep) setInput(text);
     } finally {
       setBusy(false);
     }
   }
 
   if (error && !story) {
+    return (
+      <div className="space-y-4">
+        <Link href={`/story/${storyId}`} className="text-sm text-white/50 hover:text-white">← Back to story</Link>
+        {ticketInvalid ? <TicketInvalidNotice message={error} onRestart={restart} /> : <p className="text-blood-500">{error}</p>}
+      </div>
+    );
+  }
+  if (error && members.length === 0) {
     return (
       <div className="space-y-4">
         <Link href={`/story/${storyId}`} className="text-sm text-white/50 hover:text-white">← Back to story</Link>
@@ -196,7 +252,11 @@ export default function GroupChatWindow({ storyId, groupId }: { storyId: string;
 
         <div className="border-t border-white/10 p-4">
           {!hasApiKey && <div className="mb-3"><ApiKeyNotice /></div>}
-          {error && <p className="mb-2 text-sm text-blood-500">{error}</p>}
+          {ticketInvalid && error ? (
+            <div className="mb-3"><TicketInvalidNotice message={error} onRestart={restart} /></div>
+          ) : (
+            error && <p className="mb-2 text-sm text-blood-500">{error}</p>
+          )}
           <form onSubmit={send} className="flex gap-3">
             <input
               value={input}

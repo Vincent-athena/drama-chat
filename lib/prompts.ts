@@ -1,5 +1,4 @@
-import type { ChatMessage, Character, Story, StoryOutline } from "./schema";
-import type { TaggedMessage } from "./db";
+import type { ChatMessage, Character, Story, StoryOutline, TaggedMessage } from "./schema";
 
 /** Member ids of each group chat, keyed by group id. */
 export type GroupMembers = Map<number, string[]>;

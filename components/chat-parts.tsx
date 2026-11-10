@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Fragment } from "react";
+import type { DoneEvent } from "@/lib/api-types";
 
 export type PhaseAdvance = {
   completedPhaseTitle: string;
@@ -26,25 +27,15 @@ export function Rich({ text }: { text: string }) {
   );
 }
 
-/** Reads an NDJSON chat stream, calling `onEvent` for each line. Throws on HTTP errors. */
-export async function readChatStream(res: Response, onEvent: (evt: Record<string, unknown>) => void): Promise<void> {
-  if (!res.ok || !res.body) {
-    const d = await res.json().catch(() => ({}));
-    throw new Error(d.error || `Request failed (${res.status})`);
-  }
-  const reader = res.body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = "";
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buffer += decoder.decode(value, { stream: true });
-    const lines = buffer.split("\n");
-    buffer = lines.pop() ?? "";
-    for (const line of lines) {
-      if (line.trim()) onEvent(JSON.parse(line));
-    }
-  }
+/** The `done` event of a turn, in the shape the chapter-complete modal shows. */
+export function toPhaseAdvance(evt: DoneEvent): PhaseAdvance {
+  return {
+    completedPhaseTitle: evt.completedPhaseTitle ?? "",
+    eventSummary: evt.eventSummary,
+    finished: Boolean(evt.finished),
+    newPhase: evt.newPhase ?? null,
+    unlocked: evt.unlocked ?? [],
+  };
 }
 
 export function PhaseAdvanceModal({

@@ -1,25 +1,21 @@
 import fs from "node:fs";
 import path from "node:path";
-import { getPhaseIndex } from "./db";
-import {
-  StorySchema,
-  type Character,
-  type Phase,
-  type PublicPhase,
-  type PublicStory,
-  type Story,
-  type StorySummary,
-} from "./schema";
+import { dataDir } from "./env";
+import type { PublicPhase, PublicStory, StorySummary } from "./api-types";
+import { StorySchema, type Character, type Phase, type Story } from "./schema";
 
 export const STORIES_DIR = path.join(process.cwd(), "stories");
 
-export function listStories(): Story[] {
-  if (!fs.existsSync(STORIES_DIR)) return [];
+/** Generated stories live under DATA_DIR so the bundled set stays read-only. */
+export const generatedStoriesDir = () => path.join(dataDir(), "stories");
+
+function readDir(dir: string): Story[] {
+  if (!fs.existsSync(dir)) return [];
   const stories: Story[] = [];
-  for (const file of fs.readdirSync(STORIES_DIR).sort()) {
+  for (const file of fs.readdirSync(dir).sort()) {
     if (!file.endsWith(".json")) continue;
     try {
-      const raw = JSON.parse(fs.readFileSync(path.join(STORIES_DIR, file), "utf8"));
+      const raw = JSON.parse(fs.readFileSync(path.join(dir, file), "utf8"));
       stories.push(StorySchema.parse(raw));
     } catch (err) {
       console.warn(`Skipping invalid story file ${file}:`, err instanceof Error ? err.message : err);
@@ -28,17 +24,28 @@ export function listStories(): Story[] {
   return stories;
 }
 
+/** Bundled stories first, then generated ones. A bundled id wins over a generated one with the same id. */
+export function listStories(): Story[] {
+  const bundled = readDir(STORIES_DIR);
+  const seen = new Set(bundled.map((s) => s.id));
+  return [...bundled, ...readDir(generatedStoriesDir()).filter((s) => !seen.has(s.id))];
+}
+
 export function getStory(id: string): Story | null {
   return listStories().find((s) => s.id === id) ?? null;
 }
 
-export function saveStory(story: Story): string {
-  fs.mkdirSync(STORIES_DIR, { recursive: true });
+/** Writes the story under a unique id (unique across the bundled and generated sets) and returns the id. */
+export function saveStory(story: Story, dir: string = generatedStoriesDir()): string {
+  fs.mkdirSync(dir, { recursive: true });
+  const taken = (id: string) =>
+    fs.existsSync(path.join(dir, `${id}.json`)) || fs.existsSync(path.join(STORIES_DIR, `${id}.json`)) ||
+    fs.existsSync(path.join(generatedStoriesDir(), `${id}.json`));
   let id = story.id;
   let n = 2;
-  while (fs.existsSync(path.join(STORIES_DIR, `${id}.json`))) id = `${story.id}-${n++}`;
+  while (taken(id)) id = `${story.id}-${n++}`;
   const final = { ...story, id };
-  fs.writeFileSync(path.join(STORIES_DIR, `${id}.json`), JSON.stringify(final, null, 2) + "\n");
+  fs.writeFileSync(path.join(dir, `${id}.json`), JSON.stringify(final, null, 2) + "\n");
   return id;
 }
 
@@ -59,8 +66,8 @@ function publicPhase(p: Phase): PublicPhase {
   return { id: p.id, title: p.title, narration: p.narration, objective: p.objective, hint: p.hint };
 }
 
-export function toPublicStory(story: Story): PublicStory {
-  const phaseIndex = getPhaseIndex(story.id);
+/** The secret-free view of a story at `phaseIndex` (taken from the verified save ticket). */
+export function toPublicStory(story: Story, phaseIndex: number): PublicStory {
   const finished = phaseIndex >= story.phases.length;
   return {
     id: story.id,
@@ -89,14 +96,11 @@ export function toPublicStory(story: Story): PublicStory {
 }
 
 export function toStorySummary(story: Story): StorySummary {
-  const phaseIndex = getPhaseIndex(story.id);
   return {
     id: story.id,
     title: story.title,
     synopsis: story.synopsis,
-    phaseIndex,
     phaseCount: story.phases.length,
-    finished: phaseIndex >= story.phases.length,
     characterCount: story.characters.length,
   };
 }

@@ -3,10 +3,17 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ApiKeyNotice from "./ApiKeyNotice";
-import { PhaseAdvanceModal, readChatStream, Rich, type PhaseAdvance } from "./chat-parts";
-import type { ChatMessage, PublicCharacter, PublicStory } from "@/lib/schema";
+import { PhaseAdvanceModal, Rich, toPhaseAdvance, type PhaseAdvance } from "./chat-parts";
+import TicketInvalidNotice from "./TicketInvalidNotice";
+import type { PublicStory, StreamEvent } from "@/lib/api-types";
+import { apiFetch, ApiError, describeApiError, readNdjson } from "@/lib/client/api";
+import { applyDone, currentRun, loadStoryView, restartStory } from "@/lib/client/story";
+import { chatContext } from "@/lib/save/context";
+import { useRequireUser } from "@/lib/save/useSave";
+import type { ChatMessage, PublicCharacter } from "@/lib/schema";
 
 export default function ChatWindow({ storyId, characterId }: { storyId: string; characterId: string }) {
+  const { store } = useRequireUser();
   const [story, setStory] = useState<PublicStory | null>(null);
   const [character, setCharacter] = useState<PublicCharacter | null>(null);
   const [hasApiKey, setHasApiKey] = useState(true);
@@ -14,53 +21,74 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState<false | "typing" | "judging">(false);
   const [error, setError] = useState<string | null>(null);
+  const [ticketInvalid, setTicketInvalid] = useState(false);
   const [advance, setAdvance] = useState<PhaseAdvance | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const loadStory = useCallback(async () => {
-    const r = await fetch(`/api/stories/${storyId}`);
-    const d = await r.json();
-    if (!r.ok) throw new Error(d.error);
-    setStory(d.story);
-    setHasApiKey(d.hasApiKey);
-    setCharacter(d.story.characters.find((c: PublicCharacter) => c.id === characterId) ?? null);
-  }, [storyId, characterId]);
+    if (!store) return;
+    const v = await loadStoryView(store, storyId);
+    const c = v.story.characters.find((x) => x.id === characterId) ?? null;
+    if (!c) throw new Error("Character not found");
+    if (!c.unlocked) throw new Error("This character is still locked");
+    setStory(v.story);
+    setHasApiKey(v.hasApiKey);
+    setCharacter(c);
+  }, [store, storyId, characterId]);
+
+  const fail = useCallback((e: unknown) => {
+    if (e instanceof ApiError && e.code === "ticket_invalid") setTicketInvalid(true);
+    setError(describeApiError(e));
+  }, []);
 
   useEffect(() => {
+    if (!store) return;
     (async () => {
       try {
         await loadStory();
-        const r = await fetch(`/api/stories/${storyId}/chat/${characterId}`);
-        const d = await r.json();
-        if (!r.ok) throw new Error(d.error);
-        setMessages(d.messages);
+        setMessages(await store.getHistory(storyId, characterId));
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Failed to load");
+        fail(e);
       }
     })();
-  }, [storyId, characterId, loadStory]);
+  }, [store, storyId, characterId, loadStory, fail]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, busy]);
 
+  async function restart() {
+    if (!store) return;
+    await restartStory(store, storyId);
+    setTicketInvalid(false);
+    setError(null);
+    setMessages([]);
+    await loadStory().catch(fail);
+  }
+
   async function send(e: React.FormEvent) {
     e.preventDefault();
     const text = input.trim();
-    if (!text || busy) return;
+    if (!text || busy || !store) return;
     setInput("");
     setError(null);
     setBusy("typing");
     setMessages((m) => [...m, { role: "user", content: text }, { role: "assistant", content: "" }]);
 
+    let reply = "";
+    let saved = false;
     try {
-      const res = await fetch(`/api/stories/${storyId}/chat/${characterId}`, {
+      // The ticket is read from the store at send time, never held in component state.
+      const sentRun = await currentRun(store, storyId);
+      const context = await chatContext(store, storyId, characterId);
+      const res = await apiFetch(`/api/stories/${storyId}/chat/${characterId}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
+        json: { message: text, context },
+        ticket: { store, storyId },
       });
-      await readChatStream(res, (evt) => {
+      await readNdjson<StreamEvent>(res, async (evt) => {
         if (evt.type === "delta") {
+          reply += evt.text;
           setMessages((m) => {
             const copy = m.slice();
             const last = copy[copy.length - 1];
@@ -68,21 +96,29 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
             return copy;
           });
         } else if (evt.type === "replied") {
+          // Save the exchange now, unless the story was restarted while the reply was streaming.
+          if ((await currentRun(store, storyId)) === sentRun) {
+            await store.addMessage(storyId, characterId, { role: "user", content: text });
+            await store.addMessage(storyId, characterId, { role: "assistant", content: reply });
+          }
+          saved = true;
           setBusy("judging");
         } else if (evt.type === "done") {
-          if (evt.phaseAdvanced) {
-            setAdvance(evt as unknown as PhaseAdvance);
-            loadStory();
-          }
+          await applyDone(store, storyId, sentRun, evt);
+          if (evt.phaseAdvanced) setAdvance(toPhaseAdvance(evt));
+          await loadStory();
         } else if (evt.type === "error") {
-          throw new Error(String(evt.message));
+          throw new Error(evt.message);
         }
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
-      // Drop the unanswered turn; the server only saves completed exchanges.
-      setMessages((m) => (m[m.length - 1]?.role === "assistant" && !m[m.length - 1].content ? m.slice(0, -2) : m));
-      setInput(text);
+      fail(err);
+      if (!saved) {
+        // Drop the unsaved turn (the player's line and the reply, even a partial one), so the screen
+        // matches the saved chat and a retry does not show the line twice.
+        setMessages((m) => (m[m.length - 1]?.role === "assistant" ? m.slice(0, -2) : m));
+        setInput(text);
+      }
     } finally {
       setBusy(false);
     }
@@ -92,7 +128,7 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
     return (
       <div className="space-y-4">
         <Link href={`/story/${storyId}`} className="text-sm text-white/50 hover:text-white">← Back to story</Link>
-        <p className="text-blood-500">{error}</p>
+        {ticketInvalid ? <TicketInvalidNotice message={error} onRestart={restart} /> : <p className="text-blood-500">{error}</p>}
       </div>
     );
   }
@@ -148,7 +184,11 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
 
         <div className="border-t border-white/10 p-4">
           {!hasApiKey && <div className="mb-3"><ApiKeyNotice /></div>}
-          {error && <p className="mb-2 text-sm text-blood-500">{error}</p>}
+          {ticketInvalid && error ? (
+            <div className="mb-3"><TicketInvalidNotice message={error} onRestart={restart} /></div>
+          ) : (
+            error && <p className="mb-2 text-sm text-blood-500">{error}</p>
+          )}
           <form onSubmit={send} className="flex gap-3">
             <input
               value={input}

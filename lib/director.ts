@@ -1,59 +1,54 @@
-import {
-  addEvent,
-  getChapterNotes,
-  getPhaseIndex,
-  getRecentStoryMessages,
-  listGroups,
-  setChapterNotes,
-  setPhaseIndex,
-} from "./db";
-import { judgePhase } from "./deepseek";
+import type { DoneEvent } from "./api-types";
+import { judgePhase } from "./llm";
 import type { GroupMembers } from "./prompts";
-import type { Story } from "./schema";
+import type { Story, TaggedMessage } from "./schema";
 import { charactersUnlockedAt } from "./stories";
+import { reissue } from "./ticket";
+import type { TicketPayload } from "./ticket-payload";
 
-export function groupMembersOf(storyId: string): GroupMembers {
-  return new Map(listGroups(storyId).map((g) => [g.id, g.memberIds]));
-}
+export type { DoneEvent };
 
-/** The final {"type":"done"} stream event, sent after the director has judged the turn. */
-export type DoneEvent = {
-  type: "done";
-  phaseAdvanced: boolean;
-  completedPhaseTitle?: string;
-  eventSummary?: string;
-  finished?: boolean;
-  newPhase?: { title: string; narration: string; objective: string } | null;
-  unlocked?: { id: string; name: string; avatarEmoji: string }[];
-};
+/**
+ * Asks the director whether the current chapter is complete. Stateless: everything it needs comes in
+ * as arguments, and the new progress comes back as a reissued ticket.
+ */
+export async function judgeTurn(
+  args: {
+    story: Story;
+    ticket: TicketPayload;
+    ticketString?: string;
+    recent: TaggedMessage[];
+    events: string[];
+    notes: string;
+    groupMembers: GroupMembers;
+  },
+  judge: typeof judgePhase = judgePhase
+): Promise<DoneEvent> {
+  const { story, ticket: t, recent, events, notes, groupMembers } = args;
+  const echo = () => args.ticketString ?? reissue(t, {});
+  const p = t.p;
 
-/** Asks the director whether the current chapter is complete and advances the story if so. */
-export async function judgeTurn(story: Story, phaseIndex: number, events: string[]): Promise<DoneEvent> {
-  if (phaseIndex >= story.phases.length) return { type: "done", phaseAdvanced: false };
+  if (p >= story.phases.length) {
+    return { type: "done", ticket: echo(), phaseIndex: p, notes: null, phaseAdvanced: false, itemsFound: [] };
+  }
 
-  const verdict = await judgePhase(
-    story,
-    phaseIndex,
-    getRecentStoryMessages(story.id),
-    events,
-    getChapterNotes(story.id, phaseIndex),
-    groupMembersOf(story.id)
-  );
-  // Another request may have advanced the phase while this one was streaming.
-  if (getPhaseIndex(story.id) !== phaseIndex) return { type: "done", phaseAdvanced: false };
-  // An empty result means the judge failed; keep the old notes rather than wiping them.
-  if (verdict.notes.trim()) setChapterNotes(story.id, phaseIndex, verdict.notes.trim());
-  if (!verdict.completed) return { type: "done", phaseAdvanced: false };
+  const verdict = await judge(story, p, recent, events, notes, groupMembers);
+  // An empty result means the judge failed; null tells the browser to keep its old notes.
+  const newNotes = verdict.notes.trim() || null;
+  if (!verdict.completed) {
+    return { type: "done", ticket: echo(), phaseIndex: p, notes: newNotes, phaseAdvanced: false, itemsFound: [] };
+  }
 
-  const next = phaseIndex + 1;
-  addEvent(story.id, phaseIndex, verdict.eventSummary || `${story.phases[phaseIndex].title} was resolved.`);
-  setPhaseIndex(story.id, next);
+  const next = p + 1;
   const nextPhase = story.phases[next];
   return {
     type: "done",
+    ticket: reissue(t, { p: next }),
+    phaseIndex: p,
+    notes: newNotes,
     phaseAdvanced: true,
-    completedPhaseTitle: story.phases[phaseIndex].title,
-    eventSummary: verdict.eventSummary,
+    completedPhaseTitle: story.phases[p].title,
+    eventSummary: verdict.eventSummary || `${story.phases[p].title} was resolved.`,
     finished: !nextPhase,
     newPhase: nextPhase
       ? { title: nextPhase.title, narration: nextPhase.narration, objective: nextPhase.objective }
@@ -61,5 +56,6 @@ export async function judgeTurn(story: Story, phaseIndex: number, events: string
     unlocked: nextPhase
       ? charactersUnlockedAt(story, next).map((c) => ({ id: c.id, name: c.name, avatarEmoji: c.avatarEmoji }))
       : [],
+    itemsFound: [],
   };
 }

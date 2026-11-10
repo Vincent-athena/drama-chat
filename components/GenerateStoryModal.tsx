@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { apiFetch } from "@/lib/client/api";
 
 export default function GenerateStoryModal({ onClose }: { onClose: () => void }) {
   const router = useRouter();
@@ -16,13 +17,8 @@ export default function GenerateStoryModal({ onClose }: { onClose: () => void })
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/stories/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ premise, numPhases, numCharacters }),
-      });
+      const res = await apiFetch("/api/stories/generate", { method: "POST", json: { premise, numPhases, numCharacters } });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Generation failed");
       router.push(`/story/${data.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Generation failed");

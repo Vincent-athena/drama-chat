@@ -3,24 +3,25 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import type { PublicGroup, PublicStory } from "@/lib/schema";
+import type { PublicStory } from "@/lib/api-types";
+import type { Group } from "@/lib/schema";
+import type { SaveStore } from "@/lib/save/types";
 
-export default function GroupChats({ story }: { story: PublicStory }) {
+export default function GroupChats({ story, store }: { story: PublicStory; store: SaveStore }) {
   const router = useRouter();
-  const [groups, setGroups] = useState<PublicGroup[]>([]);
+  const [groups, setGroups] = useState<Group[]>([]);
   const [picking, setPicking] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`/api/stories/${story.id}/groups`)
-      .then(async (r) => {
-        const d = await r.json();
-        if (!r.ok) throw new Error(d.error);
-        setGroups(d.groups);
-      })
-      .catch((e) => setError(e.message));
-  }, [story.id]);
+    let live = true;
+    store
+      .listGroups(story.id)
+      .then((g) => live && setGroups(g))
+      .catch((e) => live && setError(e instanceof Error ? e.message : "Could not load group chats"));
+    return () => { live = false; };
+  }, [store, story.id]);
 
   const unlocked = story.characters.filter((c) => c.unlocked);
   if (unlocked.length < 2) return null;
@@ -30,14 +31,12 @@ export default function GroupChats({ story }: { story: PublicStory }) {
 
   async function create() {
     setError(null);
-    const r = await fetch(`/api/stories/${story.id}/groups`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ memberIds: selected }),
-    });
-    const d = await r.json();
-    if (!r.ok) return setError(d.error);
-    router.push(`/story/${story.id}/group/${d.group.id}`);
+    try {
+      const group = await store.createGroup(story.id, selected);
+      router.push(`/story/${story.id}/group/${group.id}`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Could not create the group chat");
+    }
   }
 
   return (

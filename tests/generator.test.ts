@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { dropExtraCharacters, fixMismatchedBrackets, outlineProblems } from "../lib/deepseek";
+import { dropExtraCharacters, fixMismatchedBrackets, outlineProblems } from "../lib/llm";
 import type { StoryOutline } from "../lib/schema";
 
 describe("fixMismatchedBrackets", () => {
