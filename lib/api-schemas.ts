@@ -51,3 +51,5 @@ export const GenerateBodySchema = z.object({
   numPhases: z.number().optional(),
   numCharacters: z.number().optional(),
 });
+
+export { ProfilePatchSchema, DeleteAccountSchema } from "./profile";

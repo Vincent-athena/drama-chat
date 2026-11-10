@@ -63,6 +63,7 @@ export async function POST(req: Request, { params }: Params) {
           for await (const delta of chatInGroup(story, speaker, t.p, context.events, [...context.history, ...round], {
             groupWith: members.filter((c) => c.id !== speaker.id),
             privateChat: context.privateChats[speaker.id] ?? [],
+            playerName: auth.user.displayName,
           })) {
             reply += delta;
             send({ type: "delta", text: delta });

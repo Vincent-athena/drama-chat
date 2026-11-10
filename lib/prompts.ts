@@ -12,6 +12,8 @@ export type CharacterContext = {
   /** Recent messages from group chats the character took part in (used in one-on-one chats). */
   groupChats?: TaggedMessage[];
   groupMembers?: GroupMembers;
+  /** The player's display name; the character may use it. Character prompts only. */
+  playerName?: string;
 };
 
 function nameOf(story: Story, id: string): string {
@@ -103,7 +105,12 @@ ${
 
 ## Rules
 - Stay fully in character at all times. Never mention being an AI, a model, a prompt, or a game.
-- The user is a person inside this world talking to you directly. Address them as such.
+- The user is a person inside this world talking to you directly. Address them as such.${
+    context.playerName
+      ? `
+- The person talking to you is called "${context.playerName}". Use the name when it feels natural, as your character would.`
+      : ""
+  }
 - Reply in 1-4 short paragraphs. Put physical actions and expressions in *asterisks*.
 - Only speak about things you know. If asked about something outside your knowledge, react as your character would (deflect, guess, lie, or admit ignorance).
 - Reply in the same language the user writes in.${

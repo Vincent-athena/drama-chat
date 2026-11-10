@@ -1,8 +1,10 @@
 /** The browser's save: one IndexedDB per signed-in user. Browser only; touch it from effects and handlers. */
 import type { ChatMessage, Group, TaggedMessage } from "@/lib/schema";
 import { decodeTicketPayload, preferTicket } from "@/lib/ticket-payload";
-import { collect, openDb, req, withTx } from "./idb";
-import type { SaveStore } from "./types";
+import { closeDb, collect, openDb, req, withTx } from "./idb";
+import type { SaveFile, SaveStore } from "./types";
+
+const FILE_STORES = ["progress", "messages", "groups", "events", "notes", "guides"] as const;
 
 type MessageRow = {
   id: number;
@@ -228,6 +230,54 @@ export class LocalSaveStore implements SaveStore {
       const range = IDBKeyRange.bound([storyId, -Infinity], [storyId, Infinity]);
       await req(tx.objectStore("notes").delete(range));
       await req(tx.objectStore("guides").delete(range));
+    });
+  }
+
+  // ---- whole save
+  async countUserMessages(): Promise<number> {
+    const db = await this.db();
+    const rows = await withTx(db, ["messages"], "readonly", (tx) =>
+      collect<MessageRow>(tx.objectStore("messages"), undefined, "next", Infinity, (m) => m.role === "user")
+    );
+    return rows.length;
+  }
+
+  async exportAll(): Promise<SaveFile> {
+    const db = await this.db();
+    const stores = await withTx(db, [...FILE_STORES], "readonly", async (tx) => {
+      const out: Record<string, unknown[]> = {};
+      for (const name of FILE_STORES) out[name] = await req(tx.objectStore(name).getAll());
+      return out;
+    });
+    return {
+      format: "drama-chat-save",
+      version: 1,
+      exportedAt: Date.now(),
+      userId: this.userId,
+      stores: stores as SaveFile["stores"],
+    };
+  }
+
+  /** The file must already be parsed and checked (parseSaveFile). Clears every store, then puts the rows back. */
+  async importAll(file: SaveFile): Promise<void> {
+    const db = await this.db();
+    await withTx(db, [...FILE_STORES], "readwrite", async (tx) => {
+      for (const name of FILE_STORES) await req(tx.objectStore(name).clear());
+      for (const name of FILE_STORES) {
+        const store = tx.objectStore(name);
+        for (const row of file.stores[name]) await req(store.put(row));
+      }
+    });
+  }
+
+  async destroy(): Promise<void> {
+    const name = dbNameFor(this.userId);
+    await closeDb(name);
+    await new Promise<void>((resolve, reject) => {
+      const r = indexedDB.deleteDatabase(name);
+      r.onsuccess = () => resolve();
+      r.onerror = () => reject(r.error);
+      // "blocked" only means another tab still holds it open; that tab closes on versionchange and this then succeeds.
     });
   }
 }

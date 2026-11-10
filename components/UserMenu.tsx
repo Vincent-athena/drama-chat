@@ -54,6 +54,13 @@ export default function UserMenu() {
       </button>
       {open && (
         <div className="absolute right-0 mt-2 w-48 animate-rise rounded-xl border border-white/10 bg-stage-900 p-1.5 text-sm shadow-lg">
+          <Link
+            href="/profile"
+            onClick={() => setOpen(false)}
+            className="block w-full rounded-lg px-3 py-2 text-left text-white/80 hover:bg-white/5"
+          >
+            👤 Profile
+          </Link>
           <button onClick={signOut} className="w-full rounded-lg px-3 py-2 text-left text-white/80 hover:bg-white/5">
             Sign out
           </button>

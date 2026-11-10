@@ -1,5 +1,21 @@
 import type { ChatMessage, Group, TaggedMessage } from "@/lib/schema";
 
+/** Contracts 4.3: the downloadable copy of a browser save. Rows are the raw IndexedDB rows. */
+export type SaveFile = {
+  format: "drama-chat-save";
+  version: 1;
+  exportedAt: number;
+  userId: number;
+  stores: {
+    progress: unknown[];
+    messages: unknown[];
+    groups: unknown[];
+    events: unknown[];
+    notes: unknown[];
+    guides: unknown[];
+  };
+};
+
 export interface SaveStore {
   readonly userId: number;
   // progress
@@ -25,4 +41,9 @@ export interface SaveStore {
   setChapterNotes(storyId: string, phaseIndex: number, notes: string): Promise<void>;
   // whole story
   resetStory(storyId: string): Promise<void>; // deletes messages, groups, events, notes, guides, progress of that story
+  // whole save [WP2]
+  countUserMessages(): Promise<number>; // messages the player sent (role "user"), all stories
+  exportAll(): Promise<SaveFile>;
+  importAll(file: SaveFile): Promise<void>; // replaces everything in one transaction
+  destroy(): Promise<void>; // closes the connection and deletes the whole database
 }

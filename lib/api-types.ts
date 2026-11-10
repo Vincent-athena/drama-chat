@@ -19,6 +19,8 @@ export type MeResponse = {
   messages: { usedToday: number; cap: number; resetsAt: number } | null; // null for guests
 };
 
+export type SessionView = { id: number; userAgent: string; createdAt: number; lastSeenAt: number; current: boolean };
+
 export type StorySummary = { id: string; title: string; synopsis: string; phaseCount: number; characterCount: number };
 export type PublicPhase = { id: string; title: string; narration: string; objective: string; hint: string };
 export type PublicStory = {

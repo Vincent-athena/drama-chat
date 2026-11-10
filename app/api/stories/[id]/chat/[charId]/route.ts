@@ -53,6 +53,7 @@ export async function POST(req: Request, { params }: Params) {
         for await (const delta of chatWithCharacter(story, character, t.p, context.events, context.history, message, {
           groupChats: context.groupChats,
           groupMembers,
+          playerName: auth.user.displayName,
         })) {
           reply += delta;
           send({ type: "delta", text: delta });

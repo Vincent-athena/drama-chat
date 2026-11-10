@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import type { ErrorCode } from "./api-types";
+import type { ErrorCode, SessionView } from "./api-types";
 import { db } from "./db";
 import { adminEmails, authSecret, isProduction } from "./env";
 import { checkOrigin, jsonError } from "./http";
@@ -199,4 +199,43 @@ export function sessionCookie(token: string): string {
 
 export function clearSessionCookie(): string {
   return `${SESSION_COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0${isProduction() ? "; Secure" : ""}`;
+}
+
+export function updateProfile(userId: number, patch: { displayName?: string; avatarEmoji?: string }): User {
+  const d = db();
+  if (patch.displayName !== undefined) d.prepare("UPDATE users SET display_name = ? WHERE id = ?").run(patch.displayName, userId);
+  if (patch.avatarEmoji !== undefined) d.prepare("UPDATE users SET avatar_emoji = ? WHERE id = ?").run(patch.avatarEmoji, userId);
+  return toUser(d.prepare("SELECT * FROM users WHERE id = ?").get(userId) as UserRow);
+}
+
+/** The user's unexpired sessions, most recently seen first. Never exposes a token or its hash. */
+export function listSessions(userId: number, currentSessionId: number, now: number = Date.now()): SessionView[] {
+  const rows = db()
+    .prepare(
+      `SELECT id, user_agent, created_at, last_seen_at FROM sessions
+       WHERE user_id = ? AND expires_at > ? ORDER BY last_seen_at DESC, id DESC`
+    )
+    .all(userId, now) as { id: number; user_agent: string; created_at: number; last_seen_at: number }[];
+  return rows.map((r) => ({
+    id: r.id,
+    userAgent: r.user_agent,
+    createdAt: r.created_at,
+    lastSeenAt: r.last_seen_at,
+    current: r.id === currentSessionId,
+  }));
+}
+
+export function deleteAllSessions(userId: number): void {
+  db().prepare("DELETE FROM sessions WHERE user_id = ?").run(userId);
+}
+
+/** One transaction: the login code row, then the user (FK cascade removes sessions and other child rows). */
+export function deleteAccount(userId: number): void {
+  const d = db();
+  d.transaction(() => {
+    const u = d.prepare("SELECT email FROM users WHERE id = ?").get(userId) as { email: string } | undefined;
+    if (!u) return;
+    d.prepare("DELETE FROM login_codes WHERE email = ?").run(u.email);
+    d.prepare("DELETE FROM users WHERE id = ?").run(userId);
+  })();
 }
