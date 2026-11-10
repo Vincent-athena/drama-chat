@@ -32,7 +32,14 @@ export type ProviderConfig = {
   extraBody: Record<string, unknown>;
 };
 export type LlmLog = { task: LlmTask; provider: string; model: string; ms: number; ok: boolean; fallback: boolean; error?: string };
-export type Timeouts = { firstTokenMs: number; jsonMs: number; storyMs: number };
+export type Timeouts = {
+  firstTokenMs: number; // chat, while another provider remains
+  jsonMs: number;
+  storyMs: number; // story stage, while another provider remains
+  lastFirstTokenMs: number; // chat, when this is the last provider
+  lastStoryMs: number; // story stage, when this is the last provider
+  idleMs: number; // silence between tokens after the first one
+};
 export type JsonResult = { raw: string; truncated: boolean; provider: string; model: string; fallback: boolean };
 
 export interface Llm {
@@ -76,8 +83,15 @@ export function isFallbackError(err: unknown): boolean {
   if (typeof e.code === "string" && CONNECTION_CODES.has(e.code)) return true;
   const status = typeof e.status === "number" ? e.status : undefined;
   if (status !== undefined) {
-    if (status === 401 || status === 403 || status === 408 || status === 409 || status === 429 || status >= 500) return true;
-    if (status === 400) return REFUSAL.test(String(e.message ?? "")) || (typeof e.code === "string" && REFUSAL.test(e.code));
+    if (status === 401 || status === 403 || status === 404 || status === 408 || status === 409 || status === 429 || status >= 500) return true;
+    if (status === 400) {
+      const msg = String(e.message ?? "");
+      return (
+        REFUSAL.test(msg) ||
+        (/model|endpoint/i.test(msg) && /not ?found|not exist|does not exist|invalid/i.test(msg)) ||
+        (typeof e.code === "string" && (REFUSAL.test(e.code) || /NotFound|InvalidEndpoint|ModelNotOpen/i.test(e.code)))
+      );
+    }
   }
   return false;
 }
@@ -119,7 +133,7 @@ export function extractJson(raw: string): string | null {
   }
 }
 
-const DEFAULT_TIMEOUTS: Timeouts = { firstTokenMs: 15_000, jsonMs: 45_000, storyMs: 120_000 };
+const DEFAULT_TIMEOUTS: Timeouts = { firstTokenMs: 15_000, jsonMs: 45_000, storyMs: 120_000, lastFirstTokenMs: 60_000, lastStoryMs: 290_000, idleMs: 60_000 };
 
 function describeError(err: unknown): string {
   const e = (err ?? {}) as ErrLike;
@@ -205,8 +219,8 @@ export function createLlm(o: {
     }
   }
 
-  async function jsonOnce(p: ProviderConfig, task: LlmTask, messages: Msg[], opts: { temperature: number; maxTokens?: number }) {
-    const ms = task === "story" ? timeouts.storyMs : timeouts.jsonMs;
+  async function jsonOnce(p: ProviderConfig, task: LlmTask, messages: Msg[], opts: { temperature: number; maxTokens?: number }, isLast: boolean) {
+    const ms = task === "story" ? (isLast ? timeouts.lastStoryMs : timeouts.storyMs) : timeouts.jsonMs;
     const ac = new AbortController();
     let timer: ReturnType<typeof setTimeout> | undefined;
     const deadline = new Promise<never>((_, reject) => {
@@ -238,7 +252,7 @@ export function createLlm(o: {
       for (let attempt = 0; attempt < 2; attempt++) {
         const started = now();
         try {
-          const r = await jsonOnce(p, task, messages, opts);
+          const r = await jsonOnce(p, task, messages, opts, p === list[list.length - 1]);
           const fallback = p !== providers[0];
           if (r.truncated) {
             succeeded(p);
@@ -280,11 +294,12 @@ export function createLlm(o: {
       const started = now();
       const ac = new AbortController();
       let timer: ReturnType<typeof setTimeout> | undefined;
+      const firstMs = idx === list.length - 1 ? timeouts.lastFirstTokenMs : timeouts.firstTokenMs;
       const deadline = new Promise<never>((_, reject) => {
         timer = setTimeout(() => {
           ac.abort();
-          reject(new LlmTimeoutError(timeouts.firstTokenMs));
-        }, timeouts.firstTokenMs);
+          reject(new LlmTimeoutError(firstMs));
+        }, firstMs);
       });
       deadline.catch(() => {});
       let iterator: AsyncIterator<any> | undefined;
@@ -336,7 +351,20 @@ export function createLlm(o: {
       try {
         yield first;
         for (;;) {
-          const r: IteratorResult<any> = await live.next();
+          let idle: ReturnType<typeof setTimeout> | undefined;
+          const silence = new Promise<never>((_, reject) => {
+            idle = setTimeout(() => {
+              ac.abort();
+              reject(new LlmTimeoutError(timeouts.idleMs));
+            }, timeouts.idleMs);
+          });
+          silence.catch(() => {});
+          let r: IteratorResult<any>;
+          try {
+            r = await Promise.race([live.next(), silence]);
+          } finally {
+            clearTimeout(idle);
+          }
           if (r.done) break;
           const d = r.value?.choices?.[0]?.delta?.content;
           if (d) yield d;

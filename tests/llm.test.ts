@@ -46,7 +46,7 @@ const provider = (name: "bytedance" | "deepseek", client: ChatClient, extra: Par
   ...extra,
 });
 const never = () => new Promise(() => {});
-const T = { firstTokenMs: 30, jsonMs: 30, storyMs: 30 };
+const T = { firstTokenMs: 30, jsonMs: 30, storyMs: 30, lastFirstTokenMs: 30, lastStoryMs: 30, idleMs: 30 };
 async function collect(g: AsyncGenerator<string>) {
   let out = "";
   for await (const s of g) out += s;
@@ -93,6 +93,8 @@ describe("completeJson fallback", () => {
     ["429", () => apiError(429)],
     ["503", () => apiError(503)],
     ["401", () => apiError(401)],
+    ["404", () => apiError(404, "not found")],
+    ["a 400 saying the model was not found", () => apiError(400, "The model ep-123 does not exist")],
     ["moderation refusal", () => apiError(400, "content_filter triggered")],
   ] as [string, () => Error][]) {
     it(`falls back on ${label}`, async () => {
@@ -120,9 +122,25 @@ describe("completeJson fallback", () => {
     assert.equal(a.calls[0].opts.timeout, 30);
   });
 
+  it("the last provider gets the long story timeout, a non-last provider the short one", async () => {
+    const a = fake(() => completion(OK));
+    const b = fake(() => completion(OK));
+    const tm = { jsonMs: 5, storyMs: 77, lastStoryMs: 999 };
+    await createLlm({ providers: [provider("bytedance", a), provider("deepseek", b)], timeouts: tm }).completeJson("story", MSGS, opts);
+    assert.equal(a.calls[0].opts.timeout, 77);
+    await createLlm({ providers: [provider("deepseek", b)], timeouts: tm }).completeJson("story", MSGS, opts);
+    assert.equal(b.calls[0].opts.timeout, 999);
+  });
+
+  it("a single slow story provider answers after the short limit but before the long one", async () => {
+    const a = fake(() => new Promise((r) => setTimeout(() => r(completion(OK)), 60)));
+    const llm = createLlm({ providers: [provider("deepseek", a)], timeouts: { storyMs: 20, lastStoryMs: 500 } });
+    assert.equal((await llm.completeJson("story", MSGS, opts)).raw, OK);
+  });
+
   it("story tasks use the story timeout", async () => {
     const a = fake(() => completion(OK));
-    await createLlm({ providers: [provider("deepseek", a)], timeouts: { jsonMs: 5, storyMs: 77 } }).completeJson("story", MSGS, opts);
+    await createLlm({ providers: [provider("deepseek", a)], timeouts: { jsonMs: 5, lastStoryMs: 77 } }).completeJson("story", MSGS, opts);
     assert.equal(a.calls[0].opts.timeout, 77);
   });
 
@@ -240,6 +258,32 @@ describe("streamText fallback", () => {
     const a = fake(() => ({ [Symbol.asyncIterator]: () => ({ next: never }) }));
     const b = fake(() => chunks(["late but there"]));
     assert.equal(await collect(two(a, b).streamText("chat", MSGS, opts)), "late but there");
+    assert.equal(a.calls[0].opts.signal.aborted, true);
+  });
+
+  it("a single slow-starting stream gets the long first-token limit", async () => {
+    const a = fake(async () => { await new Promise((r) => setTimeout(r, 60)); return chunks(["slow"]); });
+    const llm = createLlm({ providers: [provider("deepseek", a)], timeouts: { firstTokenMs: 20, lastFirstTokenMs: 500 } });
+    assert.equal(await collect(llm.streamText("chat", MSGS, opts)), "slow");
+    const p = fake(async () => { await new Promise((r) => setTimeout(r, 60)); return chunks(["slow"]); });
+    const b = fake(() => chunks(["backup"]));
+    const two = createLlm({ providers: [provider("bytedance", p), provider("deepseek", b)], timeouts: { firstTokenMs: 20, lastFirstTokenMs: 500 } });
+    assert.equal(await collect(two.streamText("chat", MSGS, opts)), "backup");
+  });
+
+  it("silence after the first token aborts with an error and never switches provider", async () => {
+    const a = fake(() => ({
+      [Symbol.asyncIterator]: () => {
+        let n = 0;
+        return { next: () => (n++ === 0 ? Promise.resolve({ done: false, value: { choices: [{ delta: { content: "Hi" } }] } }) : never()) };
+      },
+    }));
+    const b = fake(() => chunks(["x"]));
+    const g = two(a, b).streamText("chat", MSGS, opts);
+    const got: string[] = [];
+    await assert.rejects(async () => { for await (const s of g) got.push(s); }, /did not answer/);
+    assert.deepEqual(got, ["Hi"]);
+    assert.equal(b.calls.length, 0);
     assert.equal(a.calls[0].opts.signal.aborted, true);
   });
 

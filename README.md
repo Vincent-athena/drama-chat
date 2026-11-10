@@ -82,7 +82,7 @@ cp .env.example .env && chmod 600 .env     # then fill it in, see below
 mkdir -p data/backups
 ```
 
-Keys to fill in `.env`: `AUTH_SECRET` (`openssl rand -base64 32`), `APP_ORIGIN` (the public https origin),
+Keys to uncomment and fill in `.env` (the provider lines in `.env.example` are commented out): `AUTH_SECRET` (`openssl rand -base64 32`), `APP_ORIGIN` (the public https origin),
 `ADMIN_EMAILS`, `RESEND_API_KEY`, `MAIL_FROM`, `ARK_API_KEY` / `ARK_CHAT_MODEL` / `ARK_BASE_URL`,
 `DEEPSEEK_API_KEY`, `TUNNEL_TOKEN`. The container user must own `data/`: if your user on Snow is not
 uid 1000, run `chown 1000:1000 data` or set `APP_UID` / `APP_GID` in `.env` to your ids (`id -u`, `id -g`).
@@ -148,9 +148,11 @@ Only configured providers are used; with only a DeepSeek key the app runs on Dee
 | `LLM_PRIMARY` | `bytedance` | `bytedance` or `deepseek` |
 
 **Fallback.** The backup takes over on a network error, a timeout (no first token within 15 s for chat; 45 s for
-a JSON call; 120 s for a story generation call), HTTP 401/403/408/409/429/5xx, a content-moderation refusal, or
+a JSON call; 120 s for a story generation call; these short limits apply only while another provider remains: the
+last provider gets 60 s for the first token and 290 s for a story call), a wrong model id (HTTP 404, or a 400 saying
+the model or endpoint does not exist), HTTP 401/403/408/409/429/5xx, a content-moderation refusal, or
 JSON that is still unusable after one retry. A chat stream falls back only before the first token reached the
-player; after that the failure is reported as "The reply was interrupted". After three consecutive failures
+player; after that the failure is reported as "The reply was interrupted" (this includes 60 s of silence between tokens). After three consecutive failures
 the primary is skipped for 60 s, then tried again. If a provider rejects the `thinking` or `response_format`
 field (HTTP 400 naming it), the call is retried without it and remembered until restart. JSON replies are
 tolerantly parsed (code fences and surrounding prose are stripped).
