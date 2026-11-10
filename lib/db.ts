@@ -76,6 +76,10 @@ export const MIGRATIONS: ((d: Database.Database) => void)[] = [
       CREATE INDEX idx_ad_sessions_user ON ad_sessions (user_id, status, completed_at);
     `);
   },
+  // v4: what the viewer actually saw, as claimed by the browser: 'network' or 'house'. Informational (fill rate).
+  (d) => {
+    d.exec("ALTER TABLE ad_sessions ADD COLUMN shown TEXT");
+  },
 ];
 
 function runMigrations(d: Database.Database): void {

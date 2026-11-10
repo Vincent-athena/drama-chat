@@ -1,9 +1,10 @@
 import type { AdReward } from "@/lib/api-types";
+import { AdCompleteBodySchema } from "@/lib/api-schemas";
 import { completeAdSession } from "@/lib/ads";
 import { adErrorResponse } from "@/lib/ads-http";
 import { requireUser } from "@/lib/auth";
 import { guideQuota } from "@/lib/guide";
-import { jsonError } from "@/lib/http";
+import { jsonError, readJsonBody } from "@/lib/http";
 import { toPublicItems } from "@/lib/items";
 import { getStory } from "@/lib/stories";
 
@@ -15,7 +16,10 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   const auth = requireUser(req, { mutating: true });
   if (!auth.ok) return auth.response;
   const { id } = await params;
-  const r = completeAdSession(auth.user.id, id);
+  // The body is optional and only says what the viewer saw; a bad one is ignored, never an error.
+  const raw = await readJsonBody(req, 1_000).catch(() => null);
+  const parsed = raw && raw.ok ? AdCompleteBodySchema.safeParse(raw.body) : null;
+  const r = completeAdSession(auth.user.id, id, Date.now(), parsed?.success ? parsed.data.shown : undefined);
   if (!r.ok) return adErrorResponse(r.error, r);
   if (r.reward.type === "guide") {
     const reward: AdReward = { type: "guide", quota: guideQuota(auth.user.id) };

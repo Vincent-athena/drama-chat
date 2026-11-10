@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 import { MeProvider } from "@/components/MeProvider";
 import UserMenu from "@/components/UserMenu";
+import { googlePublisherId } from "@/lib/env";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Drama Chat",
-  description: "Interactive drama: talk to the characters, uncover the story.",
-};
+// Evaluated per request: the Docker image is built without the env, so the AdSense tag cannot be baked in.
+export const dynamic = "force-dynamic";
+
+export function generateMetadata(): Metadata {
+  const pub = googlePublisherId();
+  return {
+    title: "Drama Chat",
+    description: "Interactive drama: talk to the characters, uncover the story.",
+    ...(pub ? { other: { "google-adsense-account": `ca-${pub}` } } : {}),
+  };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -22,7 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <UserMenu />
             </div>
           </header>
-          <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+          <main className="mx-auto max-w-6xl px-4 py-5 sm:py-8">{children}</main>
+          <Footer />
         </MeProvider>
       </body>
     </html>

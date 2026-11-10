@@ -1,10 +1,10 @@
+import { googleProvider } from "./google";
 import { standinProvider } from "./standin";
 import type { AdProvider } from "./types";
 
 export type { AdProvider } from "./types";
 
-/** The provider the app plays. Swap this one line (or branch on the session's provider) when a real network arrives. */
+/** The provider that plays a session: Google when the session says so, the stand-in otherwise. */
 export function adProviderFor(id: string): AdProvider {
-  void id;
-  return standinProvider;
+  return id === "google" ? googleProvider : standinProvider;
 }

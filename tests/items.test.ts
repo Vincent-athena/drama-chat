@@ -137,7 +137,7 @@ describe("ownership and gates", () => {
 
   it("migration v2 creates user_items", () => {
     assert.equal(db().pragma("user_version", { simple: true }), MIGRATIONS.length);
-    assert.equal(MIGRATIONS.length, 3);
+    assert.equal(MIGRATIONS.length, 4);
     assert.ok(db().prepare("SELECT 1 FROM sqlite_master WHERE name = 'user_items'").get());
   });
 

@@ -4,6 +4,20 @@ import Link from "next/link";
 import { Fragment } from "react";
 import type { DoneEvent, PublicItem } from "@/lib/api-types";
 
+/**
+ * Chat screen layout. On a phone the character header is compact and the conversation fills the rest of
+ * the screen, so the message box is always in view; from lg up it is a sidebar beside a tall panel.
+ * The heights subtract the sticky header (3.5rem plus its border) and main's vertical padding (2.5rem, 4rem from sm).
+ */
+export const CHAT_SHELL =
+  "flex h-[calc(100dvh-6.25rem)] flex-col gap-3 sm:h-[calc(100dvh-7.75rem)] lg:grid lg:h-auto lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6";
+export const CHAT_ASIDE = "shrink-0 space-y-2 lg:sticky lg:top-20 lg:space-y-4 lg:self-start";
+export const CHAT_PANEL =
+  "flex min-h-0 flex-1 flex-col rounded-2xl border border-white/10 bg-stage-900/60 lg:h-[calc(100vh-9rem)] lg:flex-none";
+export const CHAT_BACK = "inline-block py-1 text-sm text-white/50 hover:text-white";
+/** The chapter objective under the header: two lines at most on a phone. */
+export const CHAT_OBJECTIVE = "rounded-xl border border-white/10 bg-black/30 px-3 py-2 text-xs lg:p-4 lg:text-sm";
+
 export type PhaseAdvance = {
   completedPhaseTitle: string;
   eventSummary?: string;
@@ -48,8 +62,9 @@ export function PhaseAdvanceModal({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4">
-      <div className="w-full max-w-lg animate-rise rounded-2xl border border-gold-500/50 bg-stage-900 p-7 text-center">
+    <div className="fixed inset-0 z-50 flex overflow-y-auto bg-black/80 p-4">
+      {/* m-auto centres it, and on a short screen lets the overlay scroll from the dialog's top. */}
+      <div className="m-auto w-full max-w-lg animate-rise rounded-2xl border border-gold-500/50 bg-stage-900 p-5 text-center sm:p-7">
         <p className="text-xs uppercase tracking-[0.3em] text-gold-500">Chapter complete</p>
         <h2 className="mt-1 font-serif text-2xl text-white/80 line-through decoration-gold-500/60">
           {advance.completedPhaseTitle}

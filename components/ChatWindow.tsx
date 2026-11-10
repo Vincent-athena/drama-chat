@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ApiKeyNotice from "./ApiKeyNotice";
-import { ItemBlockedNotice, ItemFoundNotice, PhaseAdvanceModal, Rich, toPhaseAdvance, toTurnNotices, type PhaseAdvance } from "./chat-parts";
+import { CHAT_ASIDE, CHAT_BACK, CHAT_OBJECTIVE, CHAT_PANEL, CHAT_SHELL, ItemBlockedNotice, ItemFoundNotice, PhaseAdvanceModal, Rich, toPhaseAdvance, toTurnNotices, type PhaseAdvance } from "./chat-parts";
 import ItemPicker from "./ItemPicker";
 import TicketInvalidNotice from "./TicketInvalidNotice";
 import type { PublicItem, PublicStory, StreamEvent } from "@/lib/api-types";
@@ -151,29 +151,31 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
   if (!story || !character) return <p className="text-white/50">Loading…</p>;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-      <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
-        <Link href={`/story/${storyId}`} className="text-sm text-white/50 hover:text-white">← {story.title}</Link>
-        <div className="rounded-2xl border border-gold-500/20 bg-stage-900/80 p-5 text-center">
-          <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-black/40 text-5xl ring-1 ring-gold-500/40">
+    <div className={CHAT_SHELL}>
+      <aside className={CHAT_ASIDE}>
+        <Link href={`/story/${storyId}`} className={CHAT_BACK}>← {story.title}</Link>
+        <div className="flex items-center gap-3 rounded-2xl border border-gold-500/20 bg-stage-900/80 p-3 lg:block lg:p-5 lg:text-center">
+          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-black/40 text-2xl ring-1 ring-gold-500/40 lg:mx-auto lg:h-20 lg:w-20 lg:text-5xl">
             {character.avatarEmoji}
           </div>
-          <h1 className="mt-3 font-serif text-2xl text-gold-400">{character.name}</h1>
-          <p className="text-xs uppercase tracking-wider text-white/50">{character.role}</p>
-          <p className="mt-3 text-left text-sm text-white/70">{character.personality}</p>
+          <div className="min-w-0">
+            <h1 className="truncate font-serif text-lg text-gold-400 lg:mt-3 lg:whitespace-normal lg:text-2xl">{character.name}</h1>
+            <p className="truncate text-xs uppercase tracking-wider text-white/50 lg:whitespace-normal">{character.role}</p>
+          </div>
+          <p className="mt-3 hidden text-left text-sm text-white/70 lg:block">{character.personality}</p>
         </div>
         {story.currentPhase && (
-          <div className="rounded-xl border border-white/10 bg-black/30 p-4 text-sm">
-            <p className="text-xs uppercase tracking-wider text-gold-500">
+          <div className={CHAT_OBJECTIVE}>
+            <p className="hidden text-xs uppercase tracking-wider text-gold-500 lg:block">
               Chapter {story.phaseIndex + 1}: {story.currentPhase.title}
             </p>
-            <p className="mt-1 text-white/80">🎯 {story.currentPhase.objective}</p>
+            <p className="line-clamp-2 text-white/80 lg:mt-1 lg:line-clamp-none">🎯 {story.currentPhase.objective}</p>
           </div>
         )}
       </aside>
 
-      <section className="flex h-[calc(100vh-9rem)] flex-col rounded-2xl border border-white/10 bg-stage-900/60">
-        <div className="flex-1 space-y-4 overflow-y-auto p-5">
+      <section className={CHAT_PANEL}>
+        <div className="flex-1 space-y-4 overflow-y-auto p-3 sm:p-5">
           {messages.length === 0 && (
             <p className="mt-10 text-center font-serif italic text-white/40">
               {character.name} looks up as you approach. Say something…
@@ -182,7 +184,7 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
           {messages.map((m, i) => (
             <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
               <div
-                className={`max-w-[80%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-[15px] leading-relaxed ${
+                className={`max-w-[88%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-[15px] leading-relaxed sm:max-w-[80%] ${
                   m.role === "user" ? "rounded-br-sm bg-blood-600/70" : "rounded-bl-sm bg-stage-700/80 font-serif"
                 }`}
               >
@@ -200,7 +202,7 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
           <div ref={bottomRef} />
         </div>
 
-        <div className="border-t border-white/10 p-4">
+        <div className="border-t border-white/10 p-3 sm:p-4">
           {!hasApiKey && <div className="mb-3"><ApiKeyNotice /></div>}
           {ticketInvalid && error ? (
             <div className="mb-3"><TicketInvalidNotice message={error} onRestart={restart} /></div>
@@ -211,10 +213,10 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
           {shown && (
             <div className="mb-2 flex items-center gap-2 text-sm">
               <span className="rounded-full border border-gold-500/40 bg-black/40 px-3 py-1">Showing {shown.emoji} {shown.name}</span>
-              <button type="button" onClick={() => setShown(null)} aria-label="Stop showing the item" className="text-white/50 hover:text-white">✕</button>
+              <button type="button" onClick={() => setShown(null)} aria-label="Stop showing the item" className="p-2 text-white/50 hover:text-white">✕</button>
             </div>
           )}
-          <form onSubmit={send} className="flex gap-3">
+          <form onSubmit={send} className="flex gap-2 sm:gap-3">
             <button
               type="button" onClick={() => setPicking((v) => !v)} disabled={!!busy} title="Show an item"
               className="rounded-xl border border-white/10 px-3 text-xl hover:border-gold-500 disabled:opacity-50"
@@ -226,11 +228,11 @@ export default function ChatWindow({ storyId, characterId }: { storyId: string; 
               onChange={(e) => setInput(e.target.value)}
               placeholder={`Speak to ${character.name}… (use *asterisks* for actions)`}
               disabled={!!busy}
-              className="flex-1 rounded-xl border border-white/10 bg-black/40 px-4 py-3 outline-none focus:border-gold-500 disabled:opacity-60"
+              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-black/40 px-3 py-3 outline-none focus:border-gold-500 disabled:opacity-60 sm:px-4"
             />
             <button
               type="submit" disabled={!!busy || (!input.trim() && !shown)}
-              className="rounded-xl bg-blood-500 px-5 font-semibold hover:bg-blood-600 disabled:opacity-50"
+              className="rounded-xl bg-blood-500 px-4 font-semibold hover:bg-blood-600 disabled:opacity-50 sm:px-5"
             >
               Send
             </button>

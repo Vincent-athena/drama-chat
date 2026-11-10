@@ -22,7 +22,17 @@ export type MeResponse = {
 
 export type GuideQuota = { freeLeftToday: number; credits: number; resetsAt: number };
 export type AdStartBody = { rewardType: "item"; storyId: string; itemId: string } | { rewardType: "guide"; storyId: string };
-export type AdSessionView = { id: string; provider: "standin"; rewardType: "item" | "guide"; minSeconds: number; startedAt: number };
+export type AdGoogleConfig = { adUnitPath: string; noFill: "house" | "deny" };
+export type AdShown = "network" | "house";
+export type AdSessionView = {
+  id: string;
+  provider: "standin" | "google";
+  rewardType: "item" | "guide";
+  minSeconds: number;
+  startedAt: number;
+  /** Present only for google sessions. */
+  google?: AdGoogleConfig;
+};
 export type AdReward = { type: "item"; storyId: string; item: PublicItem } | { type: "guide"; quota: GuideQuota };
 export type GuideResponse = { guide: AdvanceGuide; source: "free" | "credit"; quota: GuideQuota };
 

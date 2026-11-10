@@ -1,5 +1,6 @@
 /** The seam between the app and an ad network. Types only, plus the stand-in's server check. */
 import type React from "react";
+import type { AdGoogleConfig, AdShown } from "../api-types";
 
 /**
  * Browser side: a component that plays one ad. `onFinished` means the viewer reached the end (the server
@@ -7,9 +8,15 @@ import type React from "react";
  * the stand-in by providing another AdProvider; the modal's callers do not change.
  */
 export type AdProvider = {
-  id: "standin";
+  id: "standin" | "google";
   label: string;
-  Component: React.ComponentType<{ minSeconds: number; onFinished(): void; onCancel(): void }>;
+  Component: React.ComponentType<{
+    minSeconds: number;
+    google?: AdGoogleConfig;
+    /** `shown` says what played: a network ad or the house ad. The server records it but does not trust it. */
+    onFinished(shown: AdShown): void;
+    onCancel(): void;
+  }>;
 };
 
 /**
@@ -23,5 +30,16 @@ export interface AdServerVerifier {
 
 export const standinVerifier: AdServerVerifier = {
   provider: "standin",
+  verifyCompletion: async () => true,
+};
+
+/**
+ * Not wired up yet. Google offers optional server-side verification (SSV) for rewarded web: with an SSV URL
+ * set on the ad unit, Google's servers call it when a viewer completes the ad. Until a callback route exists
+ * and is checked here, nothing confirms the ad was seen; the only server checks are the ones
+ * `completeAdSession` applies to every provider: owner, unused, the elapsed-time floor and the daily cap.
+ */
+export const googleVerifier: AdServerVerifier = {
+  provider: "google",
   verifyCompletion: async () => true,
 };

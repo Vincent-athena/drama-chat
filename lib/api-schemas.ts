@@ -55,6 +55,8 @@ export const AdStartBodySchema = z.union([
   z.object({ rewardType: z.literal("guide"), storyId: z.string().max(100) }),
 ]);
 
+export const AdCompleteBodySchema = z.object({ shown: z.enum(["network", "house"]) });
+
 export const GuideBodySchema = z.object({ context: JudgeContextSchema });
 
 export const RequestCodeBodySchema = z.object({ email: z.string().max(300) });
