@@ -402,6 +402,35 @@ describe("outlineProblems: item rules", () => {
     assert.match(outlineProblems(o, 3, 4), /At least one phase from the second on must have requiredItems/);
   });
 
+  it("flags a found item whose criteria names nobody", () => {
+    const o = good();
+    o.items[1].obtainCriteria = "99 ??";
+    assert.match(outlineProblems(o, 3, 4), /Found item "shard": its obtainCriteria must name the character/);
+  });
+
+  it("flags a found item whose only giver unlocks after the item is available", () => {
+    const o = good();
+    o.items[2].obtainCriteria = "d 99";
+    assert.match(outlineProblems(o, 3, 4), /Found item "key" is available from "p2", but the character named in its obtainCriteria is not unlocked by then/);
+  });
+
+  it("accepts the ITEM_RULES example pattern", () => {
+    const o = good();
+    o.phases.push(phase("p4"));
+    o.phases[3].requiredItems = [];
+    o.phases[1].requiredItems = ["glass-shard"];
+    o.items = [
+      { id: "gala-invitation", name: "Gala invitation", emoji: "💌", description: "d", source: "start", availablePhase: "p1" },
+      { id: "glass-shard", name: "Shard of the brandy glass", emoji: "🥃", description: "d", source: "found", availablePhase: "p1", obtainCriteria: "Mrs. Hale has handed the player the shard of the broken brandy glass she kept in her apron pocket, or has told the player where she put it and the player has taken it." },
+      { id: "ledger", name: "Ledger", emoji: "📒", description: "d", source: "found", availablePhase: "p2", obtainCriteria: "Julian has given the player the ledger." },
+      { id: "orchard-key", name: "Orchard cabinet key", emoji: "🗝️", description: "d", source: "ad", availablePhase: "p4" },
+    ];
+    o.characters = [["mrs-hale", "Mrs. Agnes Hale", "p1"], ["eleanor", "Eleanor", "p1"], ["julian", "Julian", "p2"], ["cook", "Cook", "p3"], ["vicar", "Vicar", "p4"]].map(
+      ([id, name, unlockPhase]) => ({ id, name, role: "r", avatarEmoji: "x", unlockPhase, concept: "c" })
+    );
+    assert.equal(outlineProblems(o, 4, 5), "");
+  });
+
   it("applies the schema rules", () => {
     const noCriteria = good();
     noCriteria.items[1].obtainCriteria = "";

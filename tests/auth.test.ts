@@ -49,60 +49,60 @@ describe("auth", () => {
   });
 
   it("normalises emails", () => {
-    assert.equal(normalizeEmail(" A@B.co "), "a@b.co");
+    assert.equal(normalizeEmail(" A@Example.com "), "a@example.com");
     assert.equal(normalizeEmail("nope"), null);
     assert.equal(normalizeEmail("a@b"), null);
   });
 
   it("stores the code hashed and signs in with the right one, creating the user", async () => {
-    const code = await codeFor("a@b.co");
-    const row = db().prepare("SELECT * FROM login_codes WHERE email = ?").get("a@b.co") as Record<string, unknown>;
+    const code = await codeFor("a@example.com");
+    const row = db().prepare("SELECT * FROM login_codes WHERE email = ?").get("a@example.com") as Record<string, unknown>;
     assert.ok(!JSON.stringify(row).includes(code));
     assert.match(String(row.code_hash), /^[0-9a-f]{64}$/);
-    const res = verifyCode("A@B.co", code, "UA/1", T0 + 1000);
+    const res = verifyCode("A@Example.com", code, "UA/1", T0 + 1000);
     assert.ok(res.ok);
     if (!res.ok) return;
-    assert.equal(res.user.email, "a@b.co");
+    assert.equal(res.user.email, "a@example.com");
     assert.equal(res.user.displayName, "a");
     assert.equal(res.user.avatarEmoji, "🎭");
-    assert.equal((db().prepare("SELECT COUNT(*) AS n FROM login_codes WHERE email = ?").get("a@b.co") as { n: number }).n, 0);
+    assert.equal((db().prepare("SELECT COUNT(*) AS n FROM login_codes WHERE email = ?").get("a@example.com") as { n: number }).n, 0);
     // a code works once
-    assert.equal(verifyCode("a@b.co", code, "UA", T0 + 2000).ok, false);
+    assert.equal(verifyCode("a@example.com", code, "UA", T0 + 2000).ok, false);
     // the DB keeps only the sha256 of the token
     const sess = db().prepare("SELECT token_hash FROM sessions").all() as { token_hash: string }[];
     assert.ok(sess.every((s) => s.token_hash !== res.token && /^[0-9a-f]{64}$/.test(s.token_hash)));
   });
 
   it("fails after five wrong codes even with the right one", async () => {
-    const code = await codeFor("five@b.co");
+    const code = await codeFor("five@example.com");
     const wrong = code === "000000" ? "111111" : "000000";
-    for (let i = 0; i < 5; i++) assert.equal(verifyCode("five@b.co", wrong, "UA", T0 + i).ok, false);
-    assert.equal(verifyCode("five@b.co", code, "UA", T0 + 10).ok, false);
+    for (let i = 0; i < 5; i++) assert.equal(verifyCode("five@example.com", wrong, "UA", T0 + i).ok, false);
+    assert.equal(verifyCode("five@example.com", code, "UA", T0 + 10).ok, false);
   });
 
   it("rejects an expired code", async () => {
-    const code = await codeFor("late@b.co");
-    assert.equal(verifyCode("late@b.co", code, "UA", T0 + 11 * 60_000).ok, false);
+    const code = await codeFor("late@example.com");
+    assert.equal(verifyCode("late@example.com", code, "UA", T0 + 11 * 60_000).ok, false);
   });
 
   it("a new request replaces the old code", async () => {
-    const first = await codeFor("two@b.co", T0);
-    const second = await codeFor("two@b.co", T0 + 2 * 60_000);
-    if (first !== second) assert.equal(verifyCode("two@b.co", first, "UA", T0 + 3 * 60_000).ok, false);
-    assert.ok(verifyCode("two@b.co", second, "UA", T0 + 3 * 60_000).ok);
+    const first = await codeFor("two@example.com", T0);
+    const second = await codeFor("two@example.com", T0 + 2 * 60_000);
+    if (first !== second) assert.equal(verifyCode("two@example.com", first, "UA", T0 + 3 * 60_000).ok, false);
+    assert.ok(verifyCode("two@example.com", second, "UA", T0 + 3 * 60_000).ok);
   });
 
   it("looks up sessions, expires them and signs out", async () => {
-    const res = verifyCode("s@b.co", await codeFor("s@b.co"), "UA", T0);
+    const res = verifyCode("s@example.com", await codeFor("s@example.com"), "UA", T0);
     assert.ok(res.ok);
     if (!res.ok) return;
-    assert.equal(getSessionUser(reqWithToken(res.token), T0 + 1000)?.user.email, "s@b.co");
+    assert.equal(getSessionUser(reqWithToken(res.token), T0 + 1000)?.user.email, "s@example.com");
     assert.equal(getSessionUser(reqWithToken("bogus"), T0), null);
     // expired: ignored and deleted
     assert.equal(getSessionUser(reqWithToken(res.token), T0 + 31 * 24 * 3600_000), null);
     assert.equal((db().prepare("SELECT COUNT(*) AS n FROM sessions WHERE user_id = ?").get(res.user.id) as { n: number }).n, 0);
 
-    const again = verifyCode("s@b.co", await codeFor("s@b.co", T0 + 120_000), "UA", T0 + 121_000);
+    const again = verifyCode("s@example.com", await codeFor("s@example.com", T0 + 120_000), "UA", T0 + 121_000);
     assert.ok(again.ok);
     if (!again.ok) return;
     assert.ok(getSessionUser(reqWithToken(again.token), T0 + 122_000));
@@ -119,7 +119,7 @@ describe("auth", () => {
   });
 
   it("requireUser(mutating) rejects a foreign origin", async () => {
-    const res = verifyCode("o@b.co", await codeFor("o@b.co"), "UA", Date.now());
+    const res = verifyCode("o@example.com", await codeFor("o@example.com"), "UA", Date.now());
     assert.ok(res.ok);
     if (!res.ok) return;
     const mk = (origin: string) =>
@@ -137,11 +137,11 @@ describe("auth", () => {
   });
 
   it("isAdminEmail: unset means nobody, set is case-insensitive", () => {
-    assert.equal(isAdminEmail("a@b.co"), false);
+    assert.equal(isAdminEmail("a@example.com"), false);
     process.env.ADMIN_EMAILS = "Boss@Example.com, other@example.com";
     assert.equal(isAdminEmail("boss@example.com"), true);
     assert.equal(isAdminEmail("OTHER@example.com"), true);
-    assert.equal(isAdminEmail("a@b.co"), false);
+    assert.equal(isAdminEmail("a@example.com"), false);
   });
 
   it("session cookie is HttpOnly, Lax, Path=/ and Secure only in production", () => {
@@ -162,13 +162,13 @@ describe("auth", () => {
     const orig = console.log;
     console.log = (...a: unknown[]) => void lines.push(a.join(" "));
     try {
-      const r = await requestCode("prod@b.co", freshIp(), T0);
+      const r = await requestCode("prod@example.com", freshIp(), T0);
       assert.deepEqual(r, { ok: false, status: 503, code: "mail_unavailable" });
     } finally {
       console.log = orig;
       (process.env as Record<string, string | undefined>).NODE_ENV = "test";
     }
     assert.equal(lines.length, 0);
-    assert.equal((db().prepare("SELECT COUNT(*) AS n FROM login_codes WHERE email = ?").get("prod@b.co") as { n: number }).n, 0);
+    assert.equal((db().prepare("SELECT COUNT(*) AS n FROM login_codes WHERE email = ?").get("prod@example.com") as { n: number }).n, 0);
   });
 });

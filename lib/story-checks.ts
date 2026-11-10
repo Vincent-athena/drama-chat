@@ -56,10 +56,15 @@ export function storyContentProblems(story: Story): string[] {
 
 type Cast = { id: string; name: string; unlockPhase: string; concept?: string };
 
-/** Characters whose name or id appears in the item's obtainCriteria: the people who can hand it over. */
+/** Characters whose name, id or last name word appears in the item's obtainCriteria: the people who can hand it over. */
 export function giversOf(item: Pick<Item, "obtainCriteria">, characters: Cast[]): Cast[] {
   const criteria = norm(item.obtainCriteria ?? "");
-  return criteria ? characters.filter((c) => criteria.includes(norm(c.name)) || criteria.includes(norm(c.id))) : [];
+  const last = (n: string) => norm(n).split(/\s+/).pop() ?? "";
+  return criteria
+    ? characters.filter(
+        (c) => criteria.includes(norm(c.name)) || criteria.includes(norm(c.id)) || (last(c.name).length >= 3 && criteria.includes(last(c.name)))
+      )
+    : [];
 }
 
 /** Characters who hold, want or recognise the item: its givers, plus anyone whose concept mentions its name or id. */

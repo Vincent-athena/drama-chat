@@ -3,7 +3,7 @@
 Interactive drama chat. Pick a story, talk one-on-one with its characters, and uncover the plot.
 Each story has chapters (phases). An AI "director" watches your conversations, and when you
 reach a chapter's objective the story advances and **new characters unlock**.
-DeepSeek plays every character and also writes new stories.
+ByteDance (ModelArk) plays every character and writes new stories, with DeepSeek as the backup.
 
 ## Quick start
 
@@ -20,7 +20,7 @@ Other ways to set the key:
 ```bash
 npm run setup -- sk-xxxxxxxxxxxxxxxx               # non-interactive, DeepSeek key only
 npm run setup -- --ark <key> --ark-chat-model <model-id> --deepseek <key>   # ByteDance primary, DeepSeek backup
-echo "DEEPSEEK_API_KEY=sk-xxxxxxxxxxxxxxxx" > .env.local
+echo "DEEPSEEK_API_KEY=sk-xxxxxxxxxxxxxxxx" >> .env.local
 ```
 
 Get a DeepSeek key at https://platform.deepseek.com/api_keys. Restart `npm run dev` after changing keys.
@@ -68,6 +68,39 @@ Context flows both ways:
 The director sees group messages too, so a chapter can be completed in a group, for example by
 confronting two suspects at once.
 
+## Items, ads and the story guide
+
+Each story has 4 to 7 items. **Start** items are yours from the first chapter, **found** items are handed over by a
+character when the director sees the condition met in your chats, and **ad** items are unlocked by watching an ad.
+A chapter can list `requiredItems` you must carry before it can end. In a private or group chat, the **show item**
+button opens a picker so you can put an item you own in front of a character. Ad items survive **↺ Restart story**;
+found items do not.
+
+The **story guide** (on the chapter banner) is one free per day, then one per ad watched. Env (see `.env.example`):
+`GUIDE_FREE_PER_DAY` (default 1), `AD_MIN_SECONDS` (default 15, the server times it), `AD_DAILY_CAP` (default 10
+completed ads per account per day, shared by item and guide rewards). The ad is a labelled placeholder with no network;
+see `docs/monetization.md` for the plan to swap in a real network.
+
+## Profile
+
+The profile page (user menu) lets you change your display name and avatar emoji, see your signed-in devices and
+**sign out everywhere**, **export** the browser save to a JSON file and **import** it on another browser, and
+**delete your account** (type your email to confirm). Deleting removes the account on the server; the save stays in
+the browser until you clear site data.
+
+## Checks
+
+```bash
+npm run typecheck          # tsc --noEmit
+npm test                   # node:test suite
+npm run validate-stories   # every file in stories/ against the schema and the item rules
+```
+
+A hand-written story must pass the item rules in `lib/story-checks.ts`: 4 to 7 items with at least one start, found
+and ad item; some chapter has `requiredItems`; the first chapter and non-fixture chapters never require an ad item; and
+a found item is named in the secrets or knowledge of a character unlocked by the first chapter that requires it, and an
+ad item is named in some character's `knowledgeByPhase`. Found items need an `obtainCriteria` naming the giver.
+
 ## Deploy to Snow
 
 Production runs as two containers on Snow (a Linux x86_64 machine with Docker, no Node): the app (Next
@@ -112,7 +145,8 @@ stories live in `./data` and survive rebuilds.
 |---|---|
 | Story format (zod) | `lib/schema.ts` |
 | Character / director / generator prompts | `lib/prompts.ts` |
-| DeepSeek calls (OpenAI-compatible SDK) | `lib/llm.ts` |
+| Model calls for the app (character, director, guide, story generation) | `lib/llm.ts` |
+| Model providers, fallback and logging (OpenAI-compatible SDK) | `lib/llm-core.ts` |
 | Accounts, sessions, login codes (SQLite `data/drama.db`) | `lib/db.ts`, `lib/auth.ts` |
 | Signed save ticket | `lib/ticket.ts`, `lib/ticket-payload.ts` |
 | The browser save (IndexedDB) | `lib/save/` |
@@ -120,10 +154,14 @@ stories live in `./data` and survive rebuilds.
 | Chat stream | `app/api/stories/[id]/chat/[charId]/route.ts` |
 | Group chat stream | `app/api/stories/[id]/group-chat/route.ts` |
 | Director judgement & chapter advance (stateless) | `lib/director.ts` |
+| Items: owned, found and ad items, chapter requirements | `lib/items.ts` |
+| Rewarded ads (placeholder) | `lib/ads.ts` |
+| Story guide and its daily allowance | `lib/guide.ts` |
+| Content rules for hand-written stories | `lib/story-checks.ts` |
 
 - **Characters** only receive knowledge for chapters you've reached, so they can't spoil later twists.
   Their secrets are in the prompt, with the instruction to reveal them only when you earn it.
-- **The director** runs after each reply. It returns JSON `{completed, reason, eventSummary, notes}` checked
+- **The director** runs after each reply. It returns JSON `{completed, reason, eventSummary, notes, grantedItemIds}` checked
   against the chapter's hidden `completionCriteria`. It reads the last 30 messages plus its own running notes
   on what you've achieved this chapter, so progress made long ago (or in another chat) still counts. When a chapter completes, its summary becomes a
   shared "what happened so far" memory for every character.

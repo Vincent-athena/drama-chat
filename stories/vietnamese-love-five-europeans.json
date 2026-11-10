@@ -21,7 +21,7 @@
       "knowledgeByPhase": {
         "p1": "Tiết lộ cô đến Việt Nam để tìm bức tranh 'Mùa Thu Hà Nội' bị thất lạc, nhưng không nói ai đã lấy. Nếu người chơi cho xem tấm ảnh cũ ở Paris, cô sững người: bức tranh trong góc ảnh chính là bức tranh cô đang tìm.",
         "p2": "Thừa nhận Sofia là bạn thân và đã nhờ Sofia để mắt đến Minh.",
-        "p6": "Thú nhận Jacques là chồng cũ và bức tranh là của cô, bị Jacques đánh cắp. Cô cũng thừa nhận đã nghi ngờ Greta. Thấy chiếc nhẫn cưới khắc 'J & E', cô không thể chối Jacques là chồng cũ."
+        "p6": "Thú nhận Jacques là chồng cũ và bức tranh là của cô, bị Jacques đánh cắp. Cô cũng thừa nhận đã nghi ngờ Greta. Thấy chiếc nhẫn cưới cũ khắc 'J & E', cô không thể chối Jacques là chồng cũ."
       },
       "unlockPhase": "p1",
       "appearance": {
@@ -124,7 +124,7 @@
         "Cô đã chụp được bằng chứng Greta gặp Carmen và Anneke."
       ],
       "knowledgeByPhase": {
-        "p2": "Thừa nhận là bạn thân của Elodie và đã theo dõi Minh, nhưng nói cô bắt đầu nghi ngờ Elodie. Cô có bức ảnh chụp Greta gặp Carmen; cô gửi nó cho người chơi khi tin họ không đứng về phía Greta.",
+        "p2": "Thừa nhận là bạn thân của Elodie và đã theo dõi Minh, nhưng nói cô bắt đầu nghi ngờ Elodie. Cô có một tấm ảnh chụp lén ở quán kín, cho thấy Greta gặp Carmen; cô gửi nó cho người chơi khi tin họ không đứng về phía Greta.",
         "p7": "Tiết lộ đã tìm thấy bằng chứng về âm mưu của Greta và cung cấp bằng chứng."
       },
       "unlockPhase": "p2",
@@ -175,7 +175,7 @@
         "Cô thực sự muốn giúp Minh nếu anh bảo vệ cô khỏi Greta."
       ],
       "knowledgeByPhase": {
-        "p3": "Thú nhận bị Greta ép buộc viết bài và tiết lộ Greta là người đứng sau. Thấy ảnh Greta gặp Carmen, cô biết không giấu được nữa và thú nhận mình bị ép viết bài.",
+        "p3": "Thú nhận bị Greta ép buộc viết bài và tiết lộ Greta là người đứng sau. Thấy ảnh chụp lén ở quán kín, cô biết không giấu được nữa và thú nhận mình bị ép viết bài.",
         "p7": "Cung cấp bằng chứng Greta đã thuê cô và mua chuộc Anneke."
       },
       "unlockPhase": "p3",
@@ -430,7 +430,7 @@
         "Anh có cảm tình với Sofia và muốn bảo vệ cô."
       ],
       "knowledgeByPhase": {
-        "p3": "Cung cấp thông tin về cuộc gặp giữa Greta và Carmen. Anh cũng có ảnh Greta gặp Carmen ở quán kín và sẵn lòng gửi cho người chơi.",
+        "p3": "Cung cấp thông tin về cuộc gặp giữa Greta và Carmen. Anh cũng có một tấm ảnh chụp lén ở quán kín, cho thấy Greta gặp Carmen, và sẵn lòng gửi cho người chơi.",
         "p5": "Chia sẻ nghi ngờ về Beatrice và cảm xúc với Sofia."
       },
       "unlockPhase": "p3",
@@ -655,12 +655,12 @@
     },
     {
       "id": "anh-greta-carmen",
-      "name": "Ảnh Greta gặp Carmen",
+      "name": "Ảnh chụp lén ở quán kín",
       "emoji": "🖼️",
       "description": "Ảnh chụp lén qua cửa kính một quán kín: hai người phụ nữ cúi sát vào nhau.",
       "source": "found",
       "availablePhase": "p2",
-      "obtainCriteria": "Sofia hoặc Lucas đã gửi cho người chơi bức ảnh chụp Greta gặp Carmen."
+      "obtainCriteria": "Sofia hoặc Lucas đã gửi cho người chơi tấm ảnh chụp lén ở quán kín."
     },
     {
       "id": "thu-nac-danh",
@@ -675,15 +675,15 @@
       "id": "so-dang-ky-homestay",
       "name": "Trang sổ đăng ký homestay",
       "emoji": "📒",
-      "description": "Một trang sổ đăng ký khách của homestay ở Đà Lạt, do người dọn phòng bán lại — có tên một vị khách người Pháp.",
+      "description": "Một trang sổ đăng ký khách của homestay ở Đà Lạt, do người dọn phòng bán lại — ghi tên những vị khách tuần trước.",
       "source": "ad",
       "availablePhase": "p5"
     },
     {
       "id": "nhan-cuoi-cu",
-      "name": "Nhẫn cưới khắc 'J & E'",
+      "name": "Nhẫn cưới cũ",
       "emoji": "💍",
-      "description": "Chiếc nhẫn cưới khắc 'J & E', bạn đấu giá được trong lô đồ cũ của một nhà sưu tập người Bỉ.",
+      "description": "Chiếc nhẫn cưới cũ khắc hai chữ cái lồng vào nhau, bạn đấu giá được trong lô đồ cũ của một nhà sưu tập người Bỉ.",
       "source": "ad",
       "availablePhase": "p6"
     },

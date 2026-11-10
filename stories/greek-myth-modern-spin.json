@@ -197,7 +197,7 @@
         "p5": "Biết Persephone đang điều tra cái chết của Hades, nhưng không biết cô ta có bằng chứng gì. Bà ta lo lắng về mối liên hệ giữa hai cái chết.",
         "p6": "Biết Dionysus đã giữ một bản sao video mua thuốc độc, nhưng không biết anh ta đã tiết lộ cho ai. Bà ta đang tìm cách lấy lại bản sao.",
         "p7": "Biết Poseidon có bằng chứng về việc mình thuê sát thủ giết Hades, và đang bị ông ta kiểm soát. Bà ta lo sợ Poseidon sẽ phản bội.",
-        "p8": "Biết mình đã bị dồn vào đường cùng, nhưng vẫn cố gắng thương lượng hoặc đe dọa người chơi để thoát tội. Khi người chơi đưa ra bản sao video an ninh và đe doạ công bố, bà biết danh dự của mình đã hết đường cứu."
+        "p8": "Biết mình đã bị dồn vào đường cùng, nhưng vẫn cố gắng thương lượng hoặc đe dọa người chơi để thoát tội. Khi người chơi đưa ra thẻ nhớ không nhãn (bản sao video an ninh) và đe doạ công bố, bà biết danh dự của mình đã hết đường cứu."
       },
       "unlockPhase": "p3",
       "appearance": {
@@ -249,7 +249,7 @@
       "knowledgeByPhase": {
         "p1": "Biết về cái chết của Zeus nhưng không có mặt ở hiện trường. Anh ta đang bị Hera yêu cầu giữ im lặng về đoạn video an ninh.",
         "p2": "Biết Hera có động cơ giết Zeus, nhưng không dám nói ra vì sợ mẹ. Anh ta đang cố gắng tìm hiểu xem còn ai biết về đoạn video.",
-        "p3": "Sẽ vô tình tiết lộ rằng Hera đã yêu cầu anh ta xóa đoạn video an ninh quan trọng, nếu người chơi tạo được lòng tin. Anh giấu bản sao video an ninh trong xưởng; anh đưa nó cho người chơi nếu họ cho anh thấy mẹ anh cũng đang lừa anh.",
+        "p3": "Sẽ vô tình tiết lộ rằng Hera đã yêu cầu anh ta xóa đoạn video an ninh quan trọng, nếu người chơi tạo được lòng tin. Anh giấu bản sao video an ninh trong một thẻ nhớ không nhãn ở xưởng; anh đưa nó cho người chơi nếu họ cho anh thấy mẹ anh cũng đang lừa anh.",
         "p4": "Biết Prometheus là em trai mình và đang âm mưu tống tiền Hera. Anh ta lo lắng về việc bị liên lụy.",
         "p5": "Biết Hades chết vì bị đầu độc, và nghi ngờ mẹ mình có liên quan. Anh ta đã giữ bản sao video để phòng thân.",
         "p6": "Biết Dionysus đã giữ bản sao video mua thuốc độc, và đang tìm cách liên lạc với anh ta để lấy lại.",
@@ -422,7 +422,7 @@
         "p2": "Cô ta biết Artemis từng là người tình của Zeus và có thể chia sẻ góc nhìn về động cơ của Hera nếu được thuyết phục.",
         "p3": "Cô ta biết Hera đã tổ chức một bữa tiệc lớn sau đám tang Zeus và có thể tiết lộ rằng Hera đã mua một loại thuốc lạ từ chợ đen.",
         "p4": "Cô ta biết Apollo đã nghe lén cuộc nói chuyện giữa Hera và Poseidon, và cô ta có thể xác nhận một phần thông tin nếu được hỏi.",
-        "p5": "Cô ta tiết lộ rằng Hades chết vì bị đầu độc và cô ta tin rằng cùng loại thuốc độc đã được dùng để giết Zeus. Cô ta cho người chơi xem mẫu thuốc còn sót lại. Cô đưa mẫu thuốc độc của Hades cho người chơi nếu họ hứa dùng nó để tìm ra kẻ đã giết ông.",
+        "p5": "Cô ta tiết lộ rằng Hades chết vì bị đầu độc và cô ta tin rằng cùng loại thuốc độc đã được dùng để giết Zeus. Cô ta cho người chơi xem mẫu thuốc còn sót lại. Cô đưa lọ thủy tinh niêm phong (mẫu thuốc độc còn sót lại của Hades) cho người chơi nếu họ hứa dùng nó để tìm ra kẻ đã giết ông.",
         "p6": "Cô ta biết Dionysus từng làm việc cho Hera và có thể tiết lộ rằng anh ta giữ một đoạn video quan trọng.",
         "p7": "Cô ta cung cấp bằng chứng về việc Hera thuê sát thủ giết Hades, do cô ta thu thập được từ một nhân chứng trước khi người này biến mất.",
         "p8": "Cô ta sẵn sàng làm nhân chứng chống lại Hera tại tòa nếu người chơi đảm bảo an toàn cho cô ta."
@@ -538,7 +538,7 @@
         "p4": "Biết Apollo đã nghe lén cuộc nói chuyện giữa mình và Hera. Ông ta đang tìm cách bịt miệng Apollo bằng cách hứa hẹn hợp đồng âm nhạc béo bở.",
         "p5": "Biết Persephone đang điều tra cái chết của Hades. Ông ta từng gài bẫy để cô ta tin rằng Hades chết vì bệnh tim, nhưng không thành công.",
         "p6": "Biết Dionysus đang giữ một bản sao đoạn video Hera mua thuốc độc. Ông ta đã cử người theo dõi hộp đêm của Dionysus.",
-        "p7": "Sẵn sàng thừa nhận đã cung cấp thuốc độc cho Hera nếu bị dồn ép, nhưng sẽ đổ toàn bộ trách nhiệm trực tiếp lên Hera và ám chỉ rằng mình chỉ là người cung cấp vật liệu. Khi thấy mẫu thuốc độc của Hades, ông biết loại thuốc mình cung cấp đã bị truy ra; ông thừa nhận đã cung cấp nó nhưng đổ việc đầu độc cho Hera.",
+        "p7": "Sẵn sàng thừa nhận đã cung cấp thuốc độc cho Hera nếu bị dồn ép, nhưng sẽ đổ toàn bộ trách nhiệm trực tiếp lên Hera và ám chỉ rằng mình chỉ là người cung cấp vật liệu. Khi thấy lọ thủy tinh niêm phong (mẫu thuốc độc của Hades), ông biết loại thuốc mình cung cấp đã bị truy ra; ông thừa nhận đã cung cấp nó nhưng đổ việc đầu độc cho Hera.",
         "p8": "Khi Hera bị vạch trần, ông ta sẽ cố gắng tận dụng cơ hội để chiếm đoạt tập đoàn Olympus, đồng thời tiết lộ mình có bằng chứng về cái chết của Hades để uy hiếp Hera lần cuối."
       },
       "unlockPhase": "p7",
@@ -786,12 +786,12 @@
     },
     {
       "id": "video-an-ninh",
-      "name": "Bản sao video an ninh",
+      "name": "Thẻ nhớ không nhãn",
       "emoji": "📹",
       "description": "Đoạn video an ninh đêm Zeus chết — bản lẽ ra đã bị xoá vĩnh viễn.",
       "source": "found",
       "availablePhase": "p3",
-      "obtainCriteria": "Hephaestus đã thừa nhận giữ lại bản sao đoạn video an ninh đêm Zeus chết và đưa nó cho người chơi."
+      "obtainCriteria": "Hephaestus đã thừa nhận giữ lại một thẻ nhớ không nhãn và đưa nó cho người chơi."
     },
     {
       "id": "khoa-giai-ma",
@@ -803,12 +803,12 @@
     },
     {
       "id": "mau-thuoc-doc",
-      "name": "Mẫu thuốc độc của Hades",
+      "name": "Lọ thủy tinh niêm phong",
       "emoji": "🧪",
       "description": "Một lọ thủy tinh nhỏ, niêm phong từ nhiều năm trước, đựng vài giọt chất lỏng không màu.",
       "source": "found",
       "availablePhase": "p5",
-      "obtainCriteria": "Persephone đã đưa cho người chơi mẫu thuốc độc còn sót lại từ cái chết của Hades."
+      "obtainCriteria": "Persephone đã đưa cho người chơi lọ thủy tinh niêm phong."
     },
     {
       "id": "the-vip",

@@ -26,7 +26,7 @@
         "p4": "Thừa nhận Mị Nương đã bỏ đi với một người bí ẩn, nhưng không biết đó là ai. Bắt đầu nghi ngờ Long Nữ.",
         "p5": "Phủ nhận việc gặp Na Tra, nhưng lộ ra sự lo lắng khi nghe tên Na Tra.",
         "p6": "Tức giận khi biết Mị Nương làm chứng chống lại mình, nhưng cũng tỏ ra hối lỗi.",
-        "p7": "Thừa nhận đã phạm tội ác với dân làng trong quá khứ, đồng ý gặp Thủy Tinh. Khi người chơi đặt văn bản chia cắt lãnh thổ có dấu tay của ông ra trước mặt Thủy Tinh, ông không thể chối và đồng ý gặp mặt.",
+        "p7": "Thừa nhận đã phạm tội ác với dân làng trong quá khứ, đồng ý gặp Thủy Tinh. Khi người chơi đặt tấm lụa ranh giới (văn bản chia cắt lãnh thổ) có dấu tay của ông ra trước mặt Thủy Tinh, ông không thể chối và đồng ý gặp mặt.",
         "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Thủy Tinh cũng làm vậy. Lời thề trước Ngọc ấn Nữ Oa ràng buộc ông; nếu người chơi đặt ngọc ấn giữa hai vị thần, ông thề thật lòng."
       },
       "unlockPhase": "p1",
@@ -84,7 +84,7 @@
         "p4": "Không có mặt trong phase này (không thể nói chuyện).",
         "p5": "Cử Na Tra đến đối chất. Tiết lộ Na Tra được lệnh bởi một người trong hàng ngũ Sơn Tinh, nhưng không biết là ai.",
         "p6": "Tức giận khi biết Mị Nương còn sống, nhưng cũng tỏ ra nhẹ nhõm. Thừa nhận đã từng yêu Mị Nương thật lòng.",
-        "p7": "Đồng ý gặp Sơn Tinh sau khi nghe về âm mưu của Nữ Oa. Thừa nhận tội ác với dân làng. Thấy văn bản chia cắt lãnh thổ, hắn hiểu Sơn Tinh đã lừa cả hai bên và chịu gặp mặt.",
+        "p7": "Đồng ý gặp Sơn Tinh sau khi nghe về âm mưu của Nữ Oa. Thừa nhận tội ác với dân làng. Thấy tấm lụa ranh giới (văn bản chia cắt lãnh thổ), hắn hiểu Sơn Tinh đã lừa cả hai bên và chịu gặp mặt.",
         "p8": "Thừa nhận tội lỗi trước Nữ Oa và đồng ý ký hiệp ước mới nếu Sơn Tinh cũng làm vậy. Lời thề trước Ngọc ấn Nữ Oa ràng buộc hắn; nếu người chơi đặt ngọc ấn giữa hai vị thần, hắn thề thật lòng."
       },
       "unlockPhase": "p1",
@@ -315,7 +315,7 @@
         "p3": "Không có mặt trong phase này (không thể nói chuyện).",
         "p4": "Không có mặt trong phase này (không thể nói chuyện).",
         "p5": "Không có mặt trong phase này (không thể nói chuyện).",
-        "p6": "Xuất hiện tại làng ven sông. Kể rằng nàng bỏ đi vì không thể chịu đựng sự ghen tuông của Sơn Tinh và Thủy Tinh. Đồng ý làm chứng rằng Sơn Tinh đã ép nàng ký văn bản chia cắt. Thấy bức thư của chính mình trong tay sứ giả, nàng hiểu Tiểu Nga đã tin người chơi và kể hết. Nàng giữ văn bản chia cắt lãnh thổ và trao nó cho người chơi khi đồng ý làm chứng.",
+        "p6": "Xuất hiện tại làng ven sông. Kể rằng nàng bỏ đi vì không thể chịu đựng sự ghen tuông của Sơn Tinh và Thủy Tinh. Đồng ý làm chứng rằng Sơn Tinh đã ép nàng ký văn bản chia cắt. Thấy bức thư của chính mình trong tay sứ giả, nàng hiểu Tiểu Nga đã tin người chơi và kể hết. Nàng giữ văn bản chia cắt lãnh thổ, vẽ trên một tấm lụa ranh giới, và trao nó cho người chơi khi đồng ý làm chứng.",
         "p7": "Có mặt tại đền Nữ Oa, làm chứng và cầu xin Nữ Oa tha thứ cho cả hai vị thần.",
         "p8": "Có mặt tại đền Nữ Oa, là nhân chứng chính trong cuộc đối thoại hòa giải."
       },
@@ -467,12 +467,12 @@
     },
     {
       "id": "van-ban-chia-cat",
-      "name": "Văn bản chia cắt lãnh thổ",
+      "name": "Tấm lụa ranh giới",
       "emoji": "📜",
       "description": "Tấm lụa vẽ ranh giới núi sông, có chữ ký của Mị Nương và dấu tay của Sơn Tinh.",
       "source": "found",
       "availablePhase": "p6",
-      "obtainCriteria": "Mị Nương đã trao cho người chơi văn bản chia cắt lãnh thổ mà nàng bị ép ký."
+      "obtainCriteria": "Mị Nương đã trao cho người chơi tấm lụa ranh giới mà nàng giữ."
     },
     {
       "id": "ngoc-an-nu-oa",

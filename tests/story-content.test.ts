@@ -126,6 +126,16 @@ describe("giversOf and holdersOf", () => {
     assert.deepEqual(giversOf({ obtainCriteria: "julian gave it." }, cast).map((c) => c.id), ["julian"]);
     assert.deepEqual(giversOf({ obtainCriteria: "" }, cast), []);
   });
+  it("matches the last word of a character name", () => {
+    const people = [
+      { id: "agnes", name: "Mrs. Agnes Hale", unlockPhase: "p1" },
+      { id: "ba-hoa", name: "Bà Hoa", unlockPhase: "p1" },
+      { id: "jo", name: "Jo Li", unlockPhase: "p1" },
+    ];
+    assert.deepEqual(giversOf({ obtainCriteria: "Mrs. Hale has handed over the shard." }, people).map((c) => c.id), ["agnes"]);
+    assert.deepEqual(giversOf({ obtainCriteria: "Hoa đã đưa cho người chơi lọ thuốc." }, people).map((c) => c.id), ["ba-hoa"]);
+    assert.deepEqual(giversOf({ obtainCriteria: "Li gave it." }, people), []);
+  });
   it("adds characters whose concept mentions the item", () => {
     const item = { id: "ledger-page", name: "Torn ledger page", obtainCriteria: "Mrs. Hale gave it." };
     assert.deepEqual(holdersOf(item, cast).map((c) => c.id).sort(), ["julian", "mrs-hale"]);

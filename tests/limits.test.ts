@@ -23,22 +23,22 @@ const quiet = async <T>(fn: () => Promise<T>) => {
 
 describe("limits", () => {
   it("code requests: 1 per minute per email", async () => {
-    assert.equal((await quiet(() => requestCode("m@b.co", "ip-m", T0))).ok, true);
-    const second = await quiet(() => requestCode("m@b.co", "ip-m", T0 + 30_000));
+    assert.equal((await quiet(() => requestCode("m@example.com", "ip-m", T0))).ok, true);
+    const second = await quiet(() => requestCode("m@example.com", "ip-m", T0 + 30_000));
     assert.equal(second.ok, false);
     if (!second.ok) {
       assert.equal(second.status, 429);
       assert.equal(second.code, "rate_limited");
       assert.ok((second.retryAfter ?? 0) > 0);
     }
-    assert.equal((await quiet(() => requestCode("m@b.co", "ip-m", T0 + 61_000))).ok, true);
+    assert.equal((await quiet(() => requestCode("m@example.com", "ip-m", T0 + 61_000))).ok, true);
   });
 
   it("code requests: 5 per hour per email", async () => {
     // Space the requests 61 s apart inside one hour window.
     const base = Math.floor(T0 / 3600_000) * 3600_000 + 3600_000 * 5;
     const results: boolean[] = [];
-    for (let i = 0; i < 6; i++) results.push((await quiet(() => requestCode("h@b.co", `ip-h${i}`, base + i * 61_000))).ok);
+    for (let i = 0; i < 6; i++) results.push((await quiet(() => requestCode("h@example.com", `ip-h${i}`, base + i * 61_000))).ok);
     assert.deepEqual(results, [true, true, true, true, true, false]);
   });
 
@@ -47,7 +47,7 @@ describe("limits", () => {
     let okCount = 0;
     let lastOk = true;
     for (let i = 0; i < 21; i++) {
-      const r = await quiet(() => requestCode(`u${i}@b.co`, "ip-shared", base + i * 1000));
+      const r = await quiet(() => requestCode(`u${i}@example.com`, "ip-shared", base + i * 1000));
       if (r.ok) okCount++;
       lastOk = r.ok;
     }

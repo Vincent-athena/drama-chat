@@ -74,7 +74,7 @@
         "Bà ta giữ một lọ thuốc giải độc có thể cứu Malakar nếu ông ta còn sống."
       ],
       "knowledgeByPhase": {
-        "p1": "Bà ta là người đầu tiên xác nhận bạn là Malakar sau khi bạn kể lại một ký ức riêng tư. Bà đưa lọ thuốc giải độc cho người chơi nếu tin họ là Malakar, và dặn giữ nó làm bằng chứng ông từng bị đầu độc.",
+        "p1": "Bà ta là người đầu tiên xác nhận bạn là Malakar sau khi bạn kể lại một ký ức riêng tư. Bà đưa lọ thuốc tím của Mira (thuốc giải độc) cho người chơi nếu tin họ là Malakar, và dặn giữ nó làm bằng chứng ông từng bị đầu độc.",
         "p2": "Bà ta tiết lộ rằng có người đã mua chuộc người hầu để lan tin đồn.",
         "p4": "Bà ta cung cấp bằng chứng về việc Lysandra mua độc dược.",
         "p6": "Bà ta giúp bạn kiểm tra ADN phép thuật của Elara."
@@ -342,7 +342,7 @@
         "Ông ta biết về âm mưu của Lysandra nhưng im lặng vì bị đe dọa."
       ],
       "knowledgeByPhase": {
-        "p4": "Ông ta chủ trì phiên điều trần và là người bạn cần thuyết phục. Khi thấy lọ thuốc giải và hiểu nó dành cho loại độc nào, ông có cớ đứng về phía người chơi mà không lộ việc mình bị đe doạ. Ông cũng giữ một bức thư của Lysandra gửi Theron và đưa nó nếu người chơi che chở được ông trước hội đồng.",
+        "p4": "Ông ta chủ trì phiên điều trần và là người bạn cần thuyết phục. Khi thấy lọ thuốc tím của Mira (thuốc giải) và hiểu nó dành cho loại độc nào, ông có cớ đứng về phía người chơi mà không lộ việc mình bị đe doạ. Ông cũng giữ một bức thư của Lysandra gửi Theron và đưa nó nếu người chơi che chở được ông trước hội đồng.",
         "p5": "Ông ta tiết lộ rằng mình đã bị Lysandra đe dọa, và cung cấp bằng chứng.",
         "p7": "Ông ta công khai ủng hộ bạn sau khi chứng kiến sự thật."
       },
@@ -724,12 +724,12 @@
     },
     {
       "id": "lo-thuoc-giai",
-      "name": "Lọ thuốc giải độc",
+      "name": "Lọ thuốc tím của Mira",
       "emoji": "🧪",
       "description": "Lọ thuỷ tinh tím nút sáp, bên trong là thứ thuốc đặc sánh có mùi cỏ đắng.",
       "source": "found",
       "availablePhase": "p1",
-      "obtainCriteria": "Mira đã đưa cho người chơi lọ thuốc giải độc bà cất giữ."
+      "obtainCriteria": "Mira đã đưa cho người chơi lọ thuốc tím của Mira bà cất giữ."
     },
     {
       "id": "tinh-the-ky-uc",
