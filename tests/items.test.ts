@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 const dataDir = mkdtempSync(join(tmpdir(), "drama-items-"));
 process.env.DATA_DIR = dataDir;
+process.env.OPEN_STORIES = "*"; // the route tests play the sample story, which is closed by default
 process.env.AUTH_SECRET = "test-secret-test-secret-test-secret-123";
 (process.env as Record<string, string | undefined>).NODE_ENV = "test";
 process.env.DEEPSEEK_API_KEY = "sk-test-not-real";

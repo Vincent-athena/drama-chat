@@ -20,6 +20,17 @@ export const adminEmails = () =>
     .split(",")
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean);
+/**
+ * Stories normal players can see and open. Admins see every story (the closed ones dimmed).
+ * Comma-separated ids; "*" opens all. Unset means the two featured stories.
+ */
+export const DEFAULT_OPEN_STORIES = ["son-tinh-thuy-tinh-hau-truyen", "journey-west-sequel"];
+export function openStoryIds(): "all" | string[] {
+  const raw = process.env.OPEN_STORIES;
+  if (raw === undefined || raw.trim() === "") return DEFAULT_OPEN_STORIES;
+  if (raw.trim() === "*") return "all";
+  return raw.split(",").map((s) => s.trim()).filter(Boolean);
+}
 export const appOrigin = () => process.env.APP_ORIGIN || "";
 export const resendApiKey = () => process.env.RESEND_API_KEY || "";
 export const mailFrom = () => process.env.MAIL_FROM || "Drama Chat <login@example.com>";

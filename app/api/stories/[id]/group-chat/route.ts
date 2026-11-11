@@ -5,7 +5,7 @@ import { jsonError, readJsonBody } from "@/lib/http";
 import { chatInGroup, pickSpeakers } from "@/lib/llm";
 import { CONTEXT_LIMITS } from "@/lib/limits-shared";
 import type { TaggedMessage } from "@/lib/schema";
-import { getStory } from "@/lib/stories";
+import { getStoryFor } from "@/lib/stories";
 import { admit, charactersLocked, groupMembersMap, lockedResponse, NDJSON_HEADERS, itemContext, ticketFrom } from "@/lib/turn";
 
 export const runtime = "nodejs";
@@ -25,7 +25,7 @@ export async function POST(req: Request, { params }: Params) {
   const auth = requireUser(req, { mutating: true });
   if (!auth.ok) return auth.response;
   const { id } = await params;
-  const story = getStory(id);
+  const story = getStoryFor(id, auth.user);
   if (!story) return jsonError(404, "not_found", "Story not found");
 
   const raw = await readJsonBody(req);

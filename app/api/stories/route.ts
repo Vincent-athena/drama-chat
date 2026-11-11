@@ -1,9 +1,11 @@
+import { getSessionUser, isAdminEmail } from "@/lib/auth";
 import { hasApiKey } from "@/lib/llm";
-import { listStories, toStorySummary } from "@/lib/stories";
+import { listStoriesFor } from "@/lib/stories";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET() {
-  return Response.json({ stories: listStories().map(toStorySummary), hasApiKey: hasApiKey() });
+export async function GET(req: Request) {
+  const user = getSessionUser(req)?.user;
+  return Response.json({ stories: listStoriesFor(!!user && isAdminEmail(user.email)), hasApiKey: hasApiKey() });
 }

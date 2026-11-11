@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { dataDir } from "./env";
+import { isAdminEmail, type User } from "./auth";
+import { dataDir, openStoryIds } from "./env";
 import type { PublicPhase, PublicStory, StorySummary } from "./api-types";
 import { toPublicItems } from "./items";
 import { StorySchema, type Character, type Phase, type Story } from "./schema";
@@ -34,6 +35,19 @@ export function listStories(): Story[] {
 
 export function getStory(id: string): Story | null {
   return listStories().find((s) => s.id === id) ?? null;
+}
+
+/** Whether normal players can see and open this story (see OPEN_STORIES). */
+export function isStoryOpen(id: string): boolean {
+  const open = openStoryIds();
+  return open === "all" || open.includes(id);
+}
+
+/** The story if this user may open it: admins open every story, players only the open ones. */
+export function getStoryFor(id: string, user: User): Story | null {
+  const story = getStory(id);
+  if (!story) return null;
+  return isStoryOpen(id) || isAdminEmail(user.email) ? story : null;
 }
 
 /** Writes the story under a unique id (unique across the bundled and generated sets) and returns the id. */
@@ -104,5 +118,13 @@ export function toStorySummary(story: Story): StorySummary {
     synopsis: story.synopsis,
     phaseCount: story.phases.length,
     characterCount: story.characters.length,
+    ...(isStoryOpen(story.id) ? {} : { hidden: true }),
   };
+}
+
+/** The library for this viewer: players get the open stories; admins get all, open ones first. */
+export function listStoriesFor(isAdmin: boolean): StorySummary[] {
+  const all = listStories();
+  const open = all.filter((s) => isStoryOpen(s.id));
+  return (isAdmin ? [...open, ...all.filter((s) => !isStoryOpen(s.id))] : open).map(toStorySummary);
 }

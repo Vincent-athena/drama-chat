@@ -40,7 +40,10 @@ creates an account automatically.
   restarts story progress (chats survive).
 - **Admins** (`ADMIN_EMAILS`, comma separated; empty means nobody) see **✨ Generate new story**. Generated
   stories are saved under `$DATA_DIR/stories/` (default `data/stories/`); the bundled `stories/` folder is read-only.
-- Env: `AUTH_SECRET` (required, 32+ chars), `ADMIN_EMAILS`, `APP_ORIGIN`, `DATA_DIR`, `RESEND_API_KEY`, `MAIL_FROM`,
+- **Open stories** (`OPEN_STORIES`, comma separated ids, `*` for all; unset means `son-tinh-thuy-tinh-hau-truyen`
+  and `journey-west-sequel`): players and guests see and open only these; every other story, generated ones included,
+  answers 404 for them. Admins see all stories, the closed ones dimmed and marked "Hidden from players".
+- Env: `AUTH_SECRET` (required, 32+ chars), `ADMIN_EMAILS`, `OPEN_STORIES`, `APP_ORIGIN`, `DATA_DIR`, `RESEND_API_KEY`, `MAIL_FROM`,
   `DAILY_MESSAGE_CAP` (default 200 chat turns per account per day), `DAY_TZ` (default `Asia/Ho_Chi_Minh`). See `.env.example`.
 
 ## Generate a mock story

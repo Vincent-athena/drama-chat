@@ -3,7 +3,7 @@ import { startAdSession } from "@/lib/ads";
 import { adErrorResponse } from "@/lib/ads-http";
 import { requireUser } from "@/lib/auth";
 import { jsonError, readJsonBody } from "@/lib/http";
-import { getStory } from "@/lib/stories";
+import { getStoryFor } from "@/lib/stories";
 import { ticketFrom } from "@/lib/turn";
 
 export const runtime = "nodejs";
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   const parsed = AdStartBodySchema.safeParse(raw.body);
   if (!parsed.success) return jsonError(400, "bad_request", "That ad request could not be read.");
   const body = parsed.data;
-  const story = getStory(body.storyId);
+  const story = getStoryFor(body.storyId, auth.user);
   if (!story) return jsonError(404, "not_found", "Story not found");
 
   let t = null;

@@ -38,7 +38,8 @@ export type GuideResponse = { guide: AdvanceGuide; source: "free" | "credit"; qu
 
 export type SessionView = { id: number; userAgent: string; createdAt: number; lastSeenAt: number; current: boolean };
 
-export type StorySummary = { id: string; title: string; synopsis: string; phaseCount: number; characterCount: number };
+/** `hidden` is only sent to admins, for stories players cannot see (OPEN_STORIES). */
+export type StorySummary = { id: string; title: string; synopsis: string; phaseCount: number; characterCount: number; hidden?: true };
 export type PublicPhase = { id: string; title: string; narration: string; objective: string; hint: string; requiredItemIds: string[] };
 export type PublicStory = {
   id: string;

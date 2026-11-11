@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 import { jsonError, readJsonBody } from "@/lib/http";
 import { adItemIds, ownedItemIds, toPublicItems } from "@/lib/items";
 import type { Story } from "@/lib/schema";
-import { getStory } from "@/lib/stories";
+import { getStoryFor } from "@/lib/stories";
 import { TicketError, verifyTicket } from "@/lib/ticket";
 import type { TicketPayload } from "@/lib/ticket-payload";
 
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
   const stories: OwnedStoryItems[] = [];
   for (const storyId of storyIds) {
-    const story = getStory(storyId);
+    const story = getStoryFor(storyId, auth.user);
     if (!story) continue;
     let t: TicketPayload | null = null;
     try {
