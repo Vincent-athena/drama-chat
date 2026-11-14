@@ -187,6 +187,9 @@ const TRUNCATED_PROBLEM = "The response was cut off before the JSON ended. Be mo
 
 type Checked<T> = { value: T; problems?: undefined } | { problems: string };
 
+const LOG_PROBLEMS_CHARS = 2000;
+const clip = (text: string) => (text.length > LOG_PROBLEMS_CHARS ? `${text.slice(0, LOG_PROBLEMS_CHARS)}… (${text.length} chars)` : text);
+
 /**
  * Asks for JSON until `check` accepts it, feeding the problems back to the model.
  * `check` returns the value, or a description of what is wrong.
@@ -217,6 +220,7 @@ async function generateChecked<T>(
       if (result.problems === undefined) return result.value;
       problems = result.problems;
     }
+    console.warn(`Story generation: ${stage} attempt ${attempt + 1}/${STORY_ATTEMPTS} rejected:\n${clip(problems)}`);
     messages.push(
       { role: "assistant", content: raw },
       { role: "user", content: `Your JSON has problems:\n${problems}\nReturn the complete corrected JSON only.` }
@@ -315,6 +319,44 @@ export function dropExtraCharacters(outline: StoryOutline, numCharacters: number
   return { ...outline, characters };
 }
 
+/**
+ * Moves characters between unlock phases so that exactly 2 unlock in the first phase and, when there are
+ * enough characters, every later phase unlocks at least one, instead of asking the model to rewrite the outline.
+ * Moves characters earlier where it can, so found items stay reachable, and avoids moving item givers later.
+ * Leaves the outline alone when a character names an unknown phase. Returns a new outline.
+ */
+export function rebalanceUnlocks(outline: StoryOutline, numPhases: number, numCharacters: number): StoryOutline {
+  const phaseIds = outline.phases.map((p) => p.id);
+  if (phaseIds.length < 2 || new Set(phaseIds).size !== phaseIds.length) return outline;
+  if (outline.characters.some((c) => !phaseIds.includes(c.unlockPhase))) return outline;
+  const chars = outline.characters.map((c) => ({ ...c }));
+  const givers = new Set(
+    outline.items.filter((i) => i.source === "found").flatMap((i) => giversOf(i, chars).map((c) => c.id))
+  );
+  const count = (id: string) => chars.filter((c) => c.unlockPhase === id).length;
+  const lastNonGiver = (list: typeof chars) => [...list].reverse().find((c) => !givers.has(c.id)) ?? list[list.length - 1];
+  const [first, ...later] = phaseIds;
+
+  while (count(first) > 2) {
+    lastNonGiver(chars.filter((c) => c.unlockPhase === first)).unlockPhase = later.find((id) => count(id) === 0) ?? later[0];
+  }
+  while (count(first) < 2) {
+    const donor = later.find((id) => count(id) > 1) ?? later.find((id) => count(id) > 0);
+    if (!donor) break;
+    chars.find((c) => c.unlockPhase === donor)!.unlockPhase = first;
+  }
+  if (numCharacters >= numPhases + 1) {
+    later.forEach((id, k) => {
+      if (count(id) > 0) return;
+      const after = later.slice(k + 1).find((p) => count(p) > 1);
+      const before = later.slice(0, k).reverse().find((p) => count(p) > 1);
+      if (after) chars.find((c) => c.unlockPhase === after)!.unlockPhase = id;
+      else if (before) lastNonGiver(chars.filter((c) => c.unlockPhase === before)).unlockPhase = id;
+    });
+  }
+  return { ...outline, characters: chars };
+}
+
 const CharacterBatchSchema = z.object({ characters: z.array(z.unknown()) });
 
 /** Writes the full details of the characters `ids`, keeping the roster's id, name, role, emoji and unlock phase. */
@@ -376,7 +418,13 @@ export async function generateStory(
     if (!parsed.success) return { problems: zodProblems(parsed.error) };
     const trimmed = dropExtraCharacters(parsed.data, numCharacters);
     const problems = outlineProblems(trimmed, numPhases, numCharacters);
-    return problems ? { problems } : { value: trimmed };
+    if (!problems) return { value: trimmed };
+    const repaired = rebalanceUnlocks(trimmed, numPhases, numCharacters);
+    if (!outlineProblems(repaired, numPhases, numCharacters)) {
+      console.info(`Story generation: outline accepted after moving character unlock phases in code. Was:\n${clip(problems)}`);
+      return { value: repaired };
+    }
+    return { problems };
   }, (attempt) => progress({ stage: "outline", attempt }));
 
   const ids = outline.characters.map((c) => c.id);
