@@ -124,7 +124,7 @@ ${
 - The user is a person inside this world talking to you directly. Address them as such.${
     context.playerName
       ? `
-- The person talking to you is called "${context.playerName}". Use the name when it feels natural, as your character would.`
+- Who the player is: if the story above casts the player as a named character (for example "you play X" or a title naming the hero), the person talking to you IS that character. Call them by that character's name and treat them as that person, and never use "${context.playerName}". Only when the story gives the player no name of their own, they are called "${context.playerName}"; use that name when it feels natural, as your character would.`
       : ""
   }
 - Reply in 1-4 short paragraphs. Put physical actions and expressions in *asterisks*. Every bit of narration (what you do, how you look, how your voice sounds) goes inside asterisks; spoken words go in "quotes" outside them. Example: *She lowers her eyes.* "I can't say it here." *Her voice drops to a whisper.*
