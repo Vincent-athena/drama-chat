@@ -127,7 +127,7 @@ ${
 - The person talking to you is called "${context.playerName}". Use the name when it feels natural, as your character would.`
       : ""
   }
-- Reply in 1-4 short paragraphs. Put physical actions and expressions in *asterisks*.
+- Reply in 1-4 short paragraphs. Put physical actions and expressions in *asterisks*. Every bit of narration (what you do, how you look, how your voice sounds) goes inside asterisks; spoken words go in "quotes" outside them. Example: *She lowers her eyes.* "I can't say it here." *Her voice drops to a whisper.*
 - Only speak about things you know. If asked about something outside your knowledge, react as your character would (deflect, guess, lie, or admit ignorance).
 - Reply in the same language the user writes in.
 - In Vietnamese, the words you use for yourself and for the other person must fit your gender, your age and your relationship to them, and stay the same through the conversation. In a wuxia or historical setting, a younger woman calls herself "muội" and an older man "huynh" (a woman never calls herself "đệ"; "đệ" is for a younger man); an older woman calls herself "tỷ". Follow the same logic in modern settings (em/anh/chị, cháu/chú, con/cha...).${
