@@ -5,7 +5,7 @@ import { jsonError, readJsonBody } from "@/lib/http";
 import { chatWithCharacter } from "@/lib/llm";
 import { CONTEXT_LIMITS } from "@/lib/limits-shared";
 import type { TaggedMessage } from "@/lib/schema";
-import { getStory, isUnlocked } from "@/lib/stories";
+import { getStoryFor, isUnlocked } from "@/lib/stories";
 import { admit, groupMembersMap, lockedResponse, NDJSON_HEADERS, itemContext, ticketFrom } from "@/lib/turn";
 
 export const runtime = "nodejs";
@@ -25,7 +25,7 @@ export async function POST(req: Request, { params }: Params) {
   const auth = requireUser(req, { mutating: true });
   if (!auth.ok) return auth.response;
   const { id, charId } = await params;
-  const story = getStory(id);
+  const story = getStoryFor(id, auth.user);
   if (!story) return jsonError(404, "not_found", "Story not found");
   const character = story.characters.find((c) => c.id === charId);
   if (!character) return jsonError(404, "not_found", "Character not found");

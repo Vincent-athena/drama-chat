@@ -6,7 +6,7 @@ import { requireUser } from "@/lib/auth";
 import { guideQuota } from "@/lib/guide";
 import { jsonError, readJsonBody } from "@/lib/http";
 import { toPublicItems } from "@/lib/items";
-import { getStory } from "@/lib/stories";
+import { getStoryFor } from "@/lib/stories";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,7 +26,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
     return Response.json({ reward });
   }
   const { storyId, itemId } = r.reward;
-  const story = getStory(storyId);
+  const story = getStoryFor(storyId, auth.user);
   const item = story && toPublicItems(story, story.phases.length, new Set([itemId])).find((i) => i.id === itemId);
   if (!item) return jsonError(404, "not_found", "Story not found");
   const reward: AdReward = { type: "item", storyId, item };

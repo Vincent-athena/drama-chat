@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import type { DoneEvent, PublicItem } from "@/lib/api-types";
+import { segments } from "@/lib/rich-text";
 
 /**
  * Chat screen layout. On a phone the character header is compact and the conversation fills the rest of
@@ -26,15 +27,15 @@ export type PhaseAdvance = {
   unlocked: { id: string; name: string; avatarEmoji: string }[];
 };
 
-/** Renders *actions* in italics, everything else as plain text. */
+/** Renders actions in gold italics, everything else as plain text. */
 export function Rich({ text }: { text: string }) {
   return (
     <>
-      {text.split(/(\*[^*\n]+\*)/g).map((part, i) =>
-        part.startsWith("*") && part.endsWith("*") && part.length > 2 ? (
-          <em key={i} className="text-gold-400/80">{part.slice(1, -1)}</em>
+      {segments(text).map((s, i) =>
+        s.action ? (
+          <em key={i} className="text-gold-400/80">{s.text}</em>
         ) : (
-          <Fragment key={i}>{part}</Fragment>
+          <Fragment key={i}>{s.text}</Fragment>
         )
       )}
     </>

@@ -5,7 +5,7 @@ import { runGuide } from "@/lib/guide";
 import { jsonError, readJsonBody } from "@/lib/http";
 import { ownedItemIds } from "@/lib/items";
 import { generateAdvanceGuide, hasApiKey, MissingApiKeyError } from "@/lib/llm";
-import { getStory, isUnlocked } from "@/lib/stories";
+import { getStoryFor, isUnlocked } from "@/lib/stories";
 import { groupMembersMap, ticketFrom } from "@/lib/turn";
 
 export const runtime = "nodejs";
@@ -16,7 +16,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   const auth = requireUser(req, { mutating: true });
   if (!auth.ok) return auth.response;
   const { id } = await params;
-  const story = getStory(id);
+  const story = getStoryFor(id, auth.user);
   if (!story) return jsonError(404, "not_found", "Story not found");
 
   const raw = await readJsonBody(req);

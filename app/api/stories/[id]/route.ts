@@ -2,7 +2,7 @@ import { requireUser } from "@/lib/auth";
 import { jsonError } from "@/lib/http";
 import { ownedItemIds } from "@/lib/items";
 import { hasApiKey } from "@/lib/llm";
-import { getStory, toPublicStory } from "@/lib/stories";
+import { getStoryFor, toPublicStory } from "@/lib/stories";
 import { freshTicket, TicketError, verifyTicket } from "@/lib/ticket";
 import { TICKET_INVALID_MESSAGE, TICKET_HEADER } from "@/lib/ticket-http";
 
@@ -13,7 +13,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
   const auth = requireUser(req);
   if (!auth.ok) return auth.response;
   const { id } = await params;
-  const story = getStory(id);
+  const story = getStoryFor(id, auth.user);
   if (!story) return jsonError(404, "not_found", "Story not found");
 
   const given = req.headers.get(TICKET_HEADER);

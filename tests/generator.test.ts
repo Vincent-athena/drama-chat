@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { dropExtraCharacters, fixMismatchedBrackets, outlineProblems } from "../lib/llm";
+import { dropExtraCharacters, fixMismatchedBrackets, outlineProblems, rebalanceUnlocks } from "../lib/llm";
 import { characterBatchPrompt, storyOutlinePrompt } from "../lib/prompts";
 import type { StoryOutline } from "../lib/schema";
 
@@ -132,6 +132,51 @@ describe("dropExtraCharacters", () => {
     const o = outline(["p1", "p2"], [["a", "p1"], ["b", "p1"], ["c", "p2"], ["d", "p2"]]);
     dropExtraCharacters(o, 3);
     assert.equal(o.characters.length, 4);
+  });
+});
+
+describe("rebalanceUnlocks", () => {
+  const unlocks = (o: StoryOutline) => o.characters.map((c) => `${c.id}:${c.unlockPhase}`);
+
+  it("leaves a valid outline as it is", () => {
+    const o = good();
+    assert.deepEqual(unlocks(rebalanceUnlocks(o, 3, 4)), unlocks(o));
+  });
+
+  it("pulls a character into a first phase that has only one, without emptying a later phase", () => {
+    const o = outline(["p1", "p2", "p3"], [["a", "p1"], ["b", "p2"], ["c", "p2"], ["d", "p3"], ["e", "p3"]]);
+    const fixed = rebalanceUnlocks(o, 3, 5);
+    assert.deepEqual(unlocks(fixed), ["a:p1", "b:p1", "c:p2", "d:p3", "e:p3"]);
+    assert.equal(outlineProblems(fixed, 3, 5), "");
+  });
+
+  it("moves extras out of a crowded first phase into an empty later phase", () => {
+    const o = outline(["p1", "p2", "p3"], [["a", "p1"], ["b", "p1"], ["c", "p1"], ["d", "p3"]]);
+    const fixed = rebalanceUnlocks(o, 3, 4);
+    assert.deepEqual(unlocks(fixed), ["a:p1", "b:p1", "c:p2", "d:p3"]);
+    assert.equal(outlineProblems(fixed, 3, 4), "");
+  });
+
+  it("fills an empty later phase, moving a character earlier when it can", () => {
+    const o = outline(["p1", "p2", "p3"], [["a", "p1"], ["b", "p1"], ["c", "p3"], ["d", "p3"]]);
+    const fixed = rebalanceUnlocks(o, 3, 4);
+    assert.deepEqual(unlocks(fixed), ["a:p1", "b:p1", "c:p2", "d:p3"]);
+    assert.equal(outlineProblems(fixed, 3, 4), "");
+  });
+
+  it("fixes a large outline with every later phase crowded at the end", () => {
+    const ids = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"];
+    const chars: [string, string][] = [["a", "p1"], ...["b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"].map((id): [string, string] => [id, "p8"])];
+    const fixed = rebalanceUnlocks(outline(ids, chars), 8, 12);
+    assert.equal(outlineProblems(fixed, 8, 12), "");
+  });
+
+  it("does not guess when a character names an unknown phase, and does not mutate the input", () => {
+    const o = outline(["p1", "p2"], [["a", "p1"], ["b", "p9"], ["c", "p1"], ["d", "p1"]]);
+    assert.equal(rebalanceUnlocks(o, 2, 4), o);
+    const crowded = outline(["p1", "p2"], [["a", "p1"], ["b", "p1"], ["c", "p1"]]);
+    rebalanceUnlocks(crowded, 2, 3);
+    assert.deepEqual(unlocks(crowded), ["a:p1", "b:p1", "c:p1"]);
   });
 });
 

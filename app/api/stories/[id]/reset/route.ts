@@ -1,6 +1,6 @@
 import { requireUser } from "@/lib/auth";
 import { jsonError } from "@/lib/http";
-import { getStory } from "@/lib/stories";
+import { getStoryFor } from "@/lib/stories";
 import { freshTicket } from "@/lib/ticket";
 
 export const runtime = "nodejs";
@@ -11,7 +11,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   const auth = requireUser(req, { mutating: true });
   if (!auth.ok) return auth.response;
   const { id } = await params;
-  const story = getStory(id);
+  const story = getStoryFor(id, auth.user);
   if (!story) return jsonError(404, "not_found", "Story not found");
   return Response.json({ ticket: freshTicket(auth.user.id, story.id) });
 }

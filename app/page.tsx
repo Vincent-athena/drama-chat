@@ -21,7 +21,7 @@ export default function Library() {
         setStories(d.stories);
         setHasApiKey(d.hasApiKey);
       });
-  }, []);
+  }, [me?.user?.id, me?.isAdmin]); // admins get the hidden stories too, so refetch when the viewer changes
 
   // Progress lives in this browser's save for the signed-in user; guests see "Not started" everywhere.
   useEffect(() => {
@@ -69,11 +69,16 @@ export default function Library() {
             <Link
               key={s.id}
               href={`/story/${s.id}`}
-              className="group animate-rise flex flex-col rounded-2xl border border-white/10 bg-stage-900/80 p-6 transition hover:border-gold-500/50"
+              className={`group animate-rise flex flex-col rounded-2xl border border-white/10 bg-stage-900/80 p-6 transition hover:border-gold-500/50 ${s.hidden ? "[&>.dim]:opacity-40 hover:[&>.dim]:opacity-80" : ""}`}
             >
-              <h2 className="font-serif text-2xl text-gold-400 group-hover:text-gold-500">{s.title}</h2>
-              <p className="mt-2 line-clamp-4 flex-1 text-sm text-white/70">{s.synopsis}</p>
-              <div className="mt-5">
+              {s.hidden && (
+                <span className="mb-2 self-start rounded-full border border-white/20 px-2 py-0.5 text-[11px] uppercase tracking-wide text-white/70">
+                  Hidden from players
+                </span>
+              )}
+              <h2 className="dim font-serif text-2xl text-gold-400 group-hover:text-gold-500">{s.title}</h2>
+              <p className="dim mt-2 line-clamp-4 flex-1 text-sm text-white/70">{s.synopsis}</p>
+              <div className="dim mt-5">
                 <div className="flex justify-between text-xs text-white/50">
                   <span>{s.characterCount} characters</span>
                   <span>{finished ? "Completed ✔" : phaseIndex === 0 ? "Not started" : `Chapter ${phaseIndex + 1} / ${s.phaseCount}`}</span>

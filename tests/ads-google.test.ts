@@ -2,6 +2,7 @@ import { mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 process.env.DATA_DIR = mkdtempSync(join(tmpdir(), "drama-ads-google-"));
+process.env.OPEN_STORIES = "*"; // the route tests play the sample story, which is closed by default
 process.env.AUTH_SECRET = "test-secret-test-secret-test-secret-123";
 process.env.DAY_TZ = "Asia/Ho_Chi_Minh";
 (process.env as Record<string, string | undefined>).NODE_ENV = "test";

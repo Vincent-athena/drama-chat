@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 const dataDir = mkdtempSync(join(tmpdir(), "drama-routes-"));
 process.env.DATA_DIR = dataDir;
+process.env.OPEN_STORIES = "*"; // the route tests play the sample story, which is closed by default
 process.env.AUTH_SECRET = "test-secret-test-secret-test-secret-123";
 (process.env as Record<string, string | undefined>).NODE_ENV = "test";
 process.env.DEEPSEEK_API_KEY = "sk-test-not-real";
@@ -181,7 +182,7 @@ describe("routes", () => {
     const id = saveStory({ ...story, id: "my-generated-story" });
     assert.equal(id, "my-generated-story");
     assert.ok(readdirSync(join(dataDir, "stories")).includes("my-generated-story.json"));
-    const list = await (await storiesGET()).json();
+    const list = await (await storiesGET(new Request("http://localhost:3000/api/stories"))).json();
     assert.ok(list.stories.some((s: { id: string }) => s.id === "my-generated-story"));
     assert.ok(list.stories.some((s: { id: string }) => s.id === SID));
     // a clash with a bundled id gets a new id, and the bundled story still wins
